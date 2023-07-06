@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        /* quero que el body posicione en el centro vertical y horizontal*/
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Estilos para el botón flotante */
+        #play-button {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            background-color: rgb(216, 142, 46);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #play-button button {
+            color: black;
+        }
+
+        /* Estilos para ocultar el resto del contenido */
+        #home-central-main {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+     <!-- Botón para reproducir el video con sonido -->
+     <div id="play-button">
+        <button onclick="playVideoWithSound()">click necesari per reproduri video</button>
+    </div>
+    <script>
+        function playVideoWithSound() {
+            var video = document.getElementById("home-video");
+            video.muted = false; // Activar el sonido del video
+            video.play(); // Reproducir el video
+
+            // Ocultar el botón y mostrar el resto del contenido
+            var playButton = document.getElementById("play-button");
+            playButton.style.display = "none";
+            var homeCentralMain = document.getElementById("home-central-main");
+            homeCentralMain.style.display = "flex";
+        }
+    </script>
+
+    <div id="home-central-main">
+        <div class="home-spreader-2 home-spreader-video">
+            <div id="home-video-chat">
+                <div id="message-container"></div>
+                <div id="home-video-chat-writing"></div>
+
+            </div>
+
+            <!-- VIDEO verical test_vertical_video.mp4 height 702 con sonido -->
+            <video id="home-video">
+                <source src="video/test_vertical_video.mp4" loop type="video/mp4">
+            </video>
+
+        </div>
+        <div id="home_planet_spreader" class="home-spreader-2">
+            <div class="home-planet-margin-right"> </div>
+            <!-- LITTLEPLANET -->
+            <div id="home-planet-wrapper">
+                <div class="home-planet-label">Etiqueta 1</div>
+                <div class="home-planet-label">Etiqueta 2</div>
+                <div class="home-planet-label">Etiqueta 3</div>
+                <div class="home-planet-label">Etiqueta 4</div>
+                <div class="home-planet-label">Etiqueta 5</div>
+                <div id="home-littleplanet"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="components/littleplanet/js.js"></script>
+    <script src="components/tiltshifteffect/js.js"></script>
+    <script src="components/livecommentsimulator/js.js"></script>
+    <script src="js/js.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

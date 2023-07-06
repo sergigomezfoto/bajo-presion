@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Obtener tiempo de ejecución de video de YouTube</title>
+</head>
+<body>
+  <div id="player"></div>
+  <p id="current-time">Tiempo actual: 0 segundos</p>
+
+  <script>
+    // Cargar la API de YouTube
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Función para inicializar el reproductor
+    function onYouTubeIframeAPIReady() {
+      // Crear el objeto del reproductor de video
+      var player = new YT.Player('player', {
+        videoId: '-UJpzbq6VXE', // ID del video de YouTube
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // Función que se ejecuta cuando el reproductor está listo
+    function onPlayerReady(event) {
+      // Iniciar la reproducción del video
+      event.target.playVideo();
+    }
+
+    // Función que se ejecuta cuando cambia el estado del reproductor
+    function onPlayerStateChange(event) {
+      // Verificar si el video está reproduciéndose
+      if (event.data == YT.PlayerState.PLAYING) {
+        // Actualizar el tiempo de reproducción actual en tiempo real
+        setInterval(function() {
+          var currentTime = event.target.getCurrentTime();
+          document.getElementById('current-time').innerText = 'Tiempo actual: ' + currentTime.toFixed(2) + ' segundos';
+        }, 100); // Actualizar cada 100 milisegundos
+      }
+    }
+  </script>
+</body>
+</html>

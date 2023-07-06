@@ -1,0 +1,168 @@
+body{
+    margin: 0;
+    padding: 0;
+/* background es un degadadao en diagonal abajo izquierda arriba derecha que pasa por los colores: ed9631 ff013c 0008ff */
+    background: linear-gradient(20deg, #ed9631, #ff013c, #0008ff);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+/* --------------------------------------------------------HOME-------------------------------------------------------- */
+
+
+
+/* div id home-central-main tamany de pantalla i flex */
+#home-central-main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    background-color: transparent;
+
+}
+
+.home-spreader-2{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid red;
+}
+
+
+/*------------------------------------------ VIDEO -------------------------------------  */
+.home-spreader-video{
+  gap:40px;
+}
+/*------------------------------------------ CHAT -------------------------------------  */
+
+.typing-indicator {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.typing-indicator span {
+    position: absolute;
+    top: 0;
+    width: 6px;
+    height: 6px;
+    margin: 0 1px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: typing-indicator 1s infinite;
+}
+
+.typing-indicator span:nth-child(1) {
+    left: 0;
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    left: 8px;
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    left: 16px;
+    animation-delay: 0.4s;
+}
+
+@keyframes typing-indicator {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+
+#home-video-chat {
+    width: 200px;
+    height: 320px;
+    bottom: 130px;
+    background-color: transparent;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden; /* Oculta el contenido que excede el alto del div */
+    -webkit-mask: linear-gradient(180deg, transparent 5%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 80%);
+    mask: linear-gradient(180deg, transparent 5%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 80%);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    
+}
+#home-video{
+    height: 600px;
+}
+/*mediaquery para cuando ancho pantalla inferior a 1200*/
+@media (max-width: 1364px) {
+    #home-video-chat{
+        /* width: 170px; */
+        height: 220px;
+        bottom: 100px;
+
+    }
+    #home-video{
+ 
+        height: 400px;
+    }
+}
+
+/*------------------------------------------ LITTLE PLANET -------------------------------------  */
+.home-planet-margin-right{
+    display: none;
+margin-right: 100px;
+}
+
+#home-planet-wrapper {
+    display: block;
+    transition: transform .2s;
+}
+
+#home-littleplanet {
+    position: relative;
+    width: 650px;
+    height: 650px;
+    background: url(components/littleplanet/littleplanet.png) no-repeat center center;
+    background-size: cover;
+    margin: auto;
+    display: block;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+}
+
+
+.home-planet-label {
+    position: absolute;
+    display: inline-block;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 4px 12px;
+    border-radius: 16px;
+    border:1px solid white;
+    transform-origin: bottom center;
+
+    will-change: transform;
+    z-index: 2;
+    cursor:pointer;
+}
+

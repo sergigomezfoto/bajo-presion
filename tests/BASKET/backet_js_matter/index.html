@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+    <style>
+      #myCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <script>
+      const { Engine, World, Bodies, Mouse, MouseConstraint, Constraint } = Matter;
+
+      let ground;
+      let poles = [];
+      let poleParts = 8;
+      let poleHeight = 50; // Height of each pole part
+
+      let ball;
+      //engine and world lets
+      let engine;
+      let world;
+      let mConstraint;
+      let slingShot;
+
+      const canvas = document.getElementById('myCanvas');
+      const context = canvas.getContext('2d');
+
+      //engine and world
+      engine = Engine.create();
+      world = engine.world;
+      ground = Bodies.rectangle(400, 590, 800, 20, { isStatic: true });
+
+      World.add(world, ground);
+
+      // Create pole parts
+      for (let i = 0; i < poleParts; i++) {
+        let pole = Bodies.rectangle(750, 600 - (i * poleHeight + poleHeight / 2) - 10, 15, poleHeight, { isStatic: true });
+        poles.push(pole);
+        World.add(world, pole);
+      }
+
+      ball = Bodies.circle(150, 300, 16);
+      World.add(world, ball);
+
+      slingShot = Constraint.create({
+        pointA: { x: 150, y: 300 },
+        bodyB: ball,
+        stiffness: 0.02,
+        length: 0
+      });
+
+      World.add(world, slingShot);
+
+      const mouse = Mouse.create(canvas);
+      mConstraint = MouseConstraint.create(engine, { mouse: mouse });
+      World.add(world, mConstraint);
+
+      function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw ground
+        context.fillRect(ground.position.x - 400, ground.position.y - 10, 800, 20);
+
+        // Draw poles
+        for (let pole of poles) {
+          context.fillRect(pole.position.x - 7.5, pole.position.y - poleHeight / 2, 15, poleHeight);
+        }
+
+        // Draw ball
+        context.beginPath();
+        context.arc(ball.position.x, ball.position.y, 16, 0, 2 * Math.PI);
+        context.fill();
+
+        // Draw slingshot
+        if (slingShot.bodyB) {
+          context.beginPath();
+          context.moveTo(slingShot.pointA.x, slingShot.pointA.y);
+          context.lineTo(ball.position.x, ball.position.y);
+          context.stroke();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      // Run the engine
+      Engine.run(engine);
+    </script>
+  </body>
+</html>

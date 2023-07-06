@@ -1,0 +1,27 @@
+
+/*div id areaToRender centered in body */
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+  }
+#areaToRender{
+  background-image: url("../img/back.jpg");
+  height: 600px;
+
+}
+canvas {
+    position: relative;
+    width: 1024px;
+    height: 600px;
+   }
+
+

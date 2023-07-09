@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'untitled_sansmedium';
+    src: url('./fonts/untitledsans-medium-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sansregular';
+    src: url('./fonts/untitledsans-regular-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'bw_black';
+    src: url('./fonts/BwGradual-Black.woff2') format('woff2'),
+         url('./fonts/BwGradual-Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'bw_medium';
+    src: url('./fonts/BwGradual-Medium.woff2') format('woff2'),
+         url('./fonts/BwGradual-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'bw_regular';
+    src: url('./fonts/BwGradual-Regular.woff2') format('woff2'),
+         url('./fonts/BwGradual-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* 
+@font-face {
+    font-family: 'untitled_sansblack';
+    src: url('./fonts/untitledsans-black-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sansblack_italic';
+    src: url('./fonts/untitledsans-blackitalic-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-blackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sansbold';
+    src: url('./fonts/untitledsans-bold-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sansbold_italic';
+    src: url('./fonts/untitledsans-bolditalic-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sanslight';
+    src: url('./fonts/untitledsans-light-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sanslight_italic';
+    src: url('./fonts/untitledsans-lightitalic-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'untitled_sansmedium_italic';
+    src: url('./fonts/untitledsans-mediumitalic-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-mediumitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'untitled_sansregular_italic';
+    src: url('./fonts/untitledsans-regularitalic-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-regularitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+} */

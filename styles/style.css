@@ -1,0 +1,244 @@
+html {
+    height: 100%;
+    user-select: none;
+}
+
+body {
+    /* zoom:75%; */
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'untitled_sansregular', Arial, Helvetica, sans-serif;
+    /* font-size: 0.8rem; */
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+#startcontainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 600ms linear;
+}
+
+
+/* *****************************************************************FIRST LOADER****************************************************** */
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--maincolor);
+    z-index: 3;
+    opacity: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 600ms linear;
+
+}
+
+.loader-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.loadingtext {
+    opacity: .3;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 20px;
+    font-size: 0.8rem;
+
+}
+
+/* *****************************************************************FIRST LOADER****************************************************** */
+
+#intro {}
+
+#intro_black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: var(--zindexfirstloader);
+    opacity: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: opacity 1s linear;
+    background: #000;
+    z-index: 1;
+
+}
+
+.logos_intro {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+
+#presentan_intro {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s linear;
+    font-family: 'bw_black', Courier, monospace;
+    font-size: 1.5rem;
+}
+
+#intro_gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image:
+        url(../assets/img/noise.jpg),
+        linear-gradient(295deg,
+            hsl(240deg 100% 20%) 0%,
+            hsl(289deg 100% 21%) 11%,
+            hsl(315deg 100% 27%) 22%,
+            hsl(329deg 100% 36%) 33%,
+            hsl(337deg 100% 43%) 44%,
+            hsl(357deg 91% 59%) 56%,
+            hsl(17deg 100% 59%) 67%,
+            hsl(34deg 100% 53%) 78%,
+            hsl(45deg 100% 50%) 89%,
+            hsl(55deg 100% 50%) 100%);
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1.5s ease-in-out;
+    z-index: 2;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#intro_gradient_form{
+    top: -100%;
+    transition: top 1s ease-in-out;
+}
+
+#intro_gradient_first {
+    justify-content: center;
+    transition: top 1s ease-in-out;
+}
+
+#first_little_planet_super_wraper {
+    height: 100%;
+    width: 512px;
+}
+
+#first_little_planet_wraper {
+    background-image: url(../assets/img/shine_lp_intro.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: cover; */
+    background-blend-mode: overlay;
+    width: 512px;
+    height: 100%;
+    transform-origin: center;
+    display: flex;
+    /* transform: translateX(130px); */
+    animation: upDownAnimation 4s infinite ease-in-out;
+
+}
+
+@keyframes upDownAnimation {
+    0% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+
+#first_little_planet {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    background: url(../assets/img/lp_intro.png) no-repeat center center;
+    background-size: cover;
+    margin: auto;
+    display: block;
+    top: 10px;
+    right: -15px;
+}
+
+#shadow_lp_intro {
+    position: relative;
+    bottom: 10%;
+    left: 50%;
+    background: url(../assets/img/shadow_lp_intro.png) no-repeat center center;
+    background-size: 100% 100%;
+    width: 160px;
+    height: 50px;
+    transform: translateX(-50%);
+}
+
+#firts_text_intro {
+    /* width:512px; */
+    width: 0;
+    opacity: 0;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    font-family: 'bw_regular';
+    font-size: 1em;
+    line-height: 1.5em;
+    transition: width 1s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+#firts_text_intro > p {
+    display: inline-block;
+    width: 360px;
+}
+
+#firts_text_intro > p >span {
+    font-family: 'bw_black';
+}

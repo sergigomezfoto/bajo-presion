@@ -10,7 +10,7 @@ const planetAnimation = (options) => {
     const littleplanetTop = parseInt(window.getComputedStyle(littleplanet).getPropertyValue("top"), 10);
     const littleplanetRight = parseInt(window.getComputedStyle(littleplanet).getPropertyValue("right"), 10);
     if (!littleplanetTop || !littleplanetRight) {
-        console.log("Error Sergi: No s'ha pogut obtenir la posició del littleplanet. Sobretot!!!! assegirar que littleplanet  'top' i 'right' en píxels.");
+        console.log("Error Sergi: No s'ha pogut obtenir la posició del littleplanet. Sobretot!!!! assegurar que littleplanet  'top' i 'right' en píxels.");
     }
   
     const speed = options.speed || 0.025;

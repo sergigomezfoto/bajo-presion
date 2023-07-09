@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajo presión</title>
+    <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div id="startcontainer">
+        <div id="loader">
+            <div class="loader-spinner"></div>
+            <div class="loadingtext">loading...</div>
+        </div>
+        <div id="intro">
+            <div id="intro_black">
+                <div id="l1" class="logos_intro">
+                    <img src="assets/img/logo_pds.png" alt="PDS">
+                </div>
+                <div id="l2" class="logos_intro">
+                    <img src="assets/img/logo_noupunt.png" alt="Noupunt">
+                </div>
+                <div id="l3" class="logos_intro">
+                    <img src="assets/img/logo_ministerio.png" alt="Ministerio">
+                </div>
+                <div id="presentan_intro">PRESENTAN</div>
+            </div>
+            <div id="intro_gradient">
+                <div id="intro_gradient_form" class="fullscreen">
+                    <!-- form con una imagen svg, un input tio text y un boton -->
+                    <div id="form_intro">
+                        <div id="form_intro_svg">
+                            <svg id="svg_form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <path id="path_form" d="M 0 0 L 100 0 L 100 100 L 0 100 L 0 0 Z" />
+                            </svg>
+                        </div>
+                        <div id="form_intro_input">
+                            <input type="text" id="input_form" placeholder="Introduce tu nombre">
+                        </div>
+                        <div id="form_intro_button">
+                            <button id="button_form">Entrar</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="intro_gradient_first" class="fullscreen">
+                    <div id="first_little_planet_super_wraper">
+                        <div id="first_little_planet_wraper">
+                            <div id="first_little_planet">
+                            </div>
+                        </div>
+                        <div id="shadow_lp_intro"></div>
+                    </div>
+                    <div id="firts_text_intro">
+                        <p> Una historia que te guiará por diferentes espacios en los que podrás
+                            vivir en <span>primera persona</span> lo que “Etna” se encuentra un día cualquiera.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <script src="js/helpers.js"></script>
+            <script src="js/js.js"></script>
+            <script src="js/loadCheck.js"></script>
+            <script src="components/first_littleplanet/js.js"></script>
+</body>
+
+</html>

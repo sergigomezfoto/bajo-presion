@@ -58,3 +58,13 @@ const fadeInFadeOut = async (id, opaci, display = "none") => {
 };
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const waitForVariable = (variableName) => {
+  return new Promise((resolve) => {
+    const checkExist = setInterval(() => {
+      if (typeof window[variableName] !== 'undefined') {
+        clearInterval(checkExist);
+        resolve(window[variableName]);
+      }
+    }, 100); 
+  });
+};

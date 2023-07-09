@@ -32,16 +32,20 @@
                 <div id="intro_gradient_form" class="fullscreen">
                     <!-- form con una imagen svg, un input tio text y un boton -->
                     <div id="form_intro">
-                        <div id="form_intro_svg">
-                            <svg id="svg_form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                <path id="path_form" d="M 0 0 L 100 0 L 100 100 L 0 100 L 0 0 Z" />
-                            </svg>
-                        </div>
-                        <div id="form_intro_input">
-                            <input type="text" id="input_form" placeholder="Introduce tu nombre">
+                        <div id="form_intro_group_user">
+
+                            <div id="form_intro_img">
+                                <img src="assets/img/user_intro.png" alt="user_intro">
+                            </div>
+                            <div id="form_intro_input">
+                                <input type="text" id="input_form_intro" placeholder="Introduce tu nickname">
+                            </div>
                         </div>
                         <div id="form_intro_button">
-                            <button id="button_form">Entrar</button>
+                            <button id="button_form_intro">
+                                Empezar
+                            </button>
+                   
                         </div>
 
                     </div>
@@ -66,6 +70,7 @@
             <script src="js/js.js"></script>
             <script src="js/loadCheck.js"></script>
             <script src="components/first_littleplanet/js.js"></script>
+            <script src="components/intro_form/js.js"></script>
 </body>
 
 </html>

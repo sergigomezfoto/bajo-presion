@@ -1,4 +1,4 @@
-const test = false;
+const test = true;
 
 ////////////////////////////////////////////////////////////////FIRST INTRO
 const timeShowIntroElements = 2000;
@@ -7,6 +7,7 @@ const presentanIntro = document.getElementById("presentan_intro");
 const introGradientFirst = document.getElementById("intro_gradient_first");
 const firstTextIntro = document.getElementById("firts_text_intro");
 const introGradientForm = document.getElementById("intro_gradient_form");
+const inputElement = document.getElementById('input_form_intro');
 
 const generalIntro = async () => {
   if (!test) {
@@ -33,9 +34,15 @@ const generalIntro = async () => {
     clearInterval(introLPInterval);
     await asyncLoopPositive((_) => introGradientFirst.computedStyleMap().get("top").toString() === "100%", 10);
     introGradientFirst.style.display = "none";
+    inputElement.focus();
 
   } else if (test) {
     document.getElementById("intro_gradient").style.transition = "all 0s";
     document.getElementById("intro_gradient").style.clipPath = "circle(100% at 50% 50%)";
+    introGradientFirst.style.transition = "all 0s";
+    introGradientForm.style.transition = "all 0s";
+    introGradientFirst.style.top = "100%";
+    introGradientForm.style.top = "0";
+    inputElement.focus();
   }
 };

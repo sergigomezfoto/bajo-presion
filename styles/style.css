@@ -152,7 +152,8 @@ body {
     justify-content: center;
     align-items: center;
 }
-#intro_gradient_form{
+
+#intro_gradient_form {
     top: -100%;
     transition: top 1s ease-in-out;
 }
@@ -234,11 +235,123 @@ body {
     transition: width 1s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-#firts_text_intro > p {
+#firts_text_intro>p {
     display: inline-block;
     width: 360px;
 }
 
-#firts_text_intro > p >span {
+#firts_text_intro>p>span {
     font-family: 'bw_black';
 }
+#intro_gradient_form{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+#form_intro{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap:50px;
+}
+#form_intro_group_user{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+
+}
+#input_form_intro {
+    font-family: 'untitled_sansmedium';
+    color: white;
+    border: none;
+    background-color: transparent;
+    outline: none; /* Elimina el borde de enfoque */
+    text-align: center; /* Centra el texto horizontalmente */
+   
+  }
+  
+  #input_form_intro::placeholder {
+    opacity: 0.5;
+    color: white;
+    text-align: center; /* Centra el texto del placeholder horizontalmente */
+  }
+  
+  /* Estilos adicionales para compatibilidad con navegadores */
+  #input_form_intro::-webkit-input-placeholder {
+    opacity: 0.5;
+    color: white;
+    text-align: center; /* Centra el texto del placeholder horizontalmente */
+  }
+  
+  #input_form_intro::-moz-placeholder {
+    opacity: 0.5;
+    color: white;
+    text-align: center; /* Centra el texto del placeholder horizontalmente */
+  }
+  
+  #input_form_intro:-ms-input-placeholder {
+    opacity: 0.5;
+    color: white;
+    text-align: center; /* Centra el texto del placeholder horizontalmente */
+  }
+  
+  #input_form_intro:-moz-placeholder {
+    opacity: 0.5;
+    color: white;
+    text-align: center; /* Centra el texto del placeholder horizontalmente */
+  }
+
+  #button_form_intro {
+    font-family: 'untitled_sansmedium';
+    background-color: transparent;
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid white;
+    height: 40px;
+    width: 130px;
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  #button_form_intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+  }
+  
+  #button_form_intro:hover::before {
+    opacity: 1;
+  }
+  
+  @supports (-webkit-text-fill-color: transparent) or (-webkit-text-fill-color: pink) {
+    #button_form_intro {
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-image: linear-gradient(to bottom, white, white);
+    }
+  }
+  
+  @supports not ((-webkit-text-fill-color: transparent) or (-webkit-text-fill-color: pink)) {
+    #button_form_intro {
+      color: #ff69b4; /* Color de texto rosa oscuro como alternativa */
+    }
+  }

@@ -1,4 +1,4 @@
-const test = true;
+const test =true;
 
 ////////////////////////////////////////////////////////////////FIRST INTRO
 const timeShowIntroElements = 2000;

@@ -13,3 +13,25 @@ function sanitizeInput(input) {
 }
 
 //botó
+const buttonFormIntro = document.getElementById('button_form_intro');
+const inputFormIntro = document.getElementById('input_form_intro');
+
+buttonFormIntro.addEventListener('click', () => {
+  const inputValue = inputFormIntro.value.trim();
+
+  if (inputValue.length < 2) {
+    inputFormIntro.classList.add('shake-animation');
+    inputFormIntro.value = '';
+    inputFormIntro.placeholder = 'Introduce un nickname válido';
+    inputFormIntro.classList.add('error-placeholder');
+
+    setTimeout(() => {
+      inputFormIntro.classList.remove('shake-animation');
+      inputFormIntro.placeholder = 'Introduce tu nickname';
+      inputFormIntro.classList.remove('error-placeholder');
+      inputIntroControler.focus();
+    }, 1500);
+  } else {
+    console.log('Contenido del input:', inputValue);
+  }
+});

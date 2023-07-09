@@ -276,6 +276,7 @@ body {
     background-color: transparent;
     outline: none; 
     text-align: center; 
+    width:600px;
    
   }
   
@@ -324,35 +325,31 @@ body {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    cursor: pointer;
   }
   
-  #button_form_intro::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: -1;
-  }
   
-  #button_form_intro:hover::before {
+  #button_form_intro:hover {
     opacity: 1;
+    background-color: white;
+    color:black;
+
+  }
+  .shake-animation {
+    animation: shake 0.5s ease-in-out;
   }
   
-  @supports (-webkit-text-fill-color: transparent) or (-webkit-text-fill-color: pink) {
-    #button_form_intro {
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
-      background-image: linear-gradient(to bottom, white, white);
-    }
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
   }
   
-  @supports not ((-webkit-text-fill-color: transparent) or (-webkit-text-fill-color: pink)) {
-    #button_form_intro {
-      color: #ff69b4; /* Color de texto rosa oscuro como alternativa */
-    }
+  .error-placeholder::placeholder {
+    /* color: red !important; */
+    opacity:1 !important;
   }
+  

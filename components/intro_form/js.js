@@ -8,7 +8,6 @@ inputIntroControler.addEventListener('input', (event) => {
 });
 
 function sanitizeInput(input) {
-  // Remover acentos y espacios utilizando expresiones regulares
   const sanitizedValue = input.replace(/[^A-Za-z0-9_-]/g, '').toLowerCase();
   return sanitizedValue;
 }

@@ -274,42 +274,43 @@ body {
     color: white;
     border: none;
     background-color: transparent;
-    outline: none; /* Elimina el borde de enfoque */
-    text-align: center; /* Centra el texto horizontalmente */
+    outline: none; 
+    text-align: center; 
    
   }
   
   #input_form_intro::placeholder {
     opacity: 0.5;
     color: white;
-    text-align: center; /* Centra el texto del placeholder horizontalmente */
+    text-align: center; 
   }
   
-  /* Estilos adicionales para compatibilidad con navegadores */
+
   #input_form_intro::-webkit-input-placeholder {
     opacity: 0.5;
     color: white;
-    text-align: center; /* Centra el texto del placeholder horizontalmente */
+    text-align: center; 
   }
   
   #input_form_intro::-moz-placeholder {
     opacity: 0.5;
     color: white;
-    text-align: center; /* Centra el texto del placeholder horizontalmente */
+    text-align: center; 
   }
   
   #input_form_intro:-ms-input-placeholder {
     opacity: 0.5;
     color: white;
-    text-align: center; /* Centra el texto del placeholder horizontalmente */
+    text-align: center; 
   }
   
   #input_form_intro:-moz-placeholder {
     opacity: 0.5;
     color: white;
-    text-align: center; /* Centra el texto del placeholder horizontalmente */
+    text-align: center; 
   }
 
+  /* todo */
   #button_form_intro {
     font-family: 'untitled_sansmedium';
     background-color: transparent;

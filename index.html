@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="components/intro_black_logos/style.css">
     <link rel="stylesheet" href="components/intro_first_littleplanet/style.css">
     <link rel="stylesheet" href="components/intro_form/style.css">
+    <link rel="stylesheet" href="components/intro_video/style.css">
 </head>
 
 <body>
+    <div class="overlay-flash"></div>
+    <div id="home-interface" class="fullscreen" style="display:none;"></div>
     <div id="startcontainer">
         <div id="loader">
             <div class="loader-spinner"></div>
@@ -33,6 +36,13 @@
                 <div id="presentan_intro">PRESENTAN</div>
             </div>
             <div id="intro_gradient" class="rainbow_gradient">
+                <div id="intro_gradient_video" class="fullscreen">
+               
+                        <video id="home-video">
+                            <source src="assets/video/test_vertical_video.mp4" loop type="video/mp4">
+                        </video>
+
+                </div>
                 <div id="intro_gradient_form" class="fullscreen">
                     <div id="form_intro">
                         <div id="form_intro_group_user">
@@ -45,7 +55,7 @@
                             </div>
                         </div>
                         <div id="form_intro_button">
-                            <button id="button_form_intro">
+                            <button id="button_form_intro" class="button">
                                 Empezar
                             </button>
                         </div>
@@ -64,17 +74,21 @@
                         <p> Una historia que te guiará por diferentes espacios en los que podrás
                             vivir en <span>primera persona</span> lo que “Etna” se encuentra un día cualquiera.
                         </p>
+                        <button id="next_to_user_input" class="button"> Siguiente </button>
 
                     </div>
                 </div>
             </div>
+            <!-- <div id="home" class="rainbow_gradient fullscreen"></div> -->
         </div>
     </div>
     <script src="js/helpers.js"></script>
     <script src="js/js.js"></script>
+    <script src="js/intro.js"></script>
     <script src="components/general_loader/js.js"></script>
     <script src="components/intro_first_littleplanet/js.js"></script>
     <script src="components/intro_form/js.js"></script>
+    <script src="components/intro_video/js.js"></script>
 </body>
 
 </html>

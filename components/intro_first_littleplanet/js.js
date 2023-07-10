@@ -1,33 +1,37 @@
-const planetAnimation = (options) => {
-  if (!options || !options.containerId || !options.littleplanetId || !options.speed) {
-    console.log("Error: No s'han definit totes les opcions necessàries. Son: containerId, littleplanetId, speed");
-  }
+const nextToUserInput = document.getElementById("next_to_user_input");
+nextToUserInput.addEventListener('click', () => {
+  passToUserInput = true;
+});
+// const planetAnimation = (options) => {
+//   if (!options || !options.containerId || !options.littleplanetId || !options.speed) {
+//     console.log("Error: No s'han definit totes les opcions necessàries. Son: containerId, littleplanetId, speed");
+//   }
 
-  const littleplanet = document.getElementById(options.littleplanetId);
+//   const littleplanet = document.getElementById(options.littleplanetId);
 
-  const speed = options.speed || 0.025;
-  let startTime;
+//   const speed = options.speed || 0.025;
+//   let startTime;
 
-  const updateLittlePlanetRotation = (timestamp) => {
-    if (!startTime) {
-      startTime = timestamp;
-    }
-    const elapsed = timestamp - startTime;
-    const angle = (speed * elapsed) / 1000;
-    littleplanet.style.transform = `rotate(${angle * -1}deg)`;
-    requestAnimationFrame(updateLittlePlanetRotation);
-  };
+//   const updateLittlePlanetRotation = (timestamp) => {
+//     if (!startTime) {
+//       startTime = timestamp;
+//     }
+//     const elapsed = timestamp - startTime;
+//     const angle = (speed * elapsed) / 1000;
+//     littleplanet.style.transform = `rotate(${angle * -1}deg)`;
+//     requestAnimationFrame(updateLittlePlanetRotation);
+//   };
 
-  requestAnimationFrame(updateLittlePlanetRotation);
-};
+//   requestAnimationFrame(updateLittlePlanetRotation);
+// };
 
-const small_lp = {
-  containerId: "intro_gradient_first",
-  littleplanetId: "first_little_planet",
-  speed: 2,
-};
+// const small_lp = {
+//   containerId: "intro_gradient_first",
+//   littleplanetId: "first_little_planet",
+//   speed: 0.2,
+// };
 
-planetAnimation(small_lp);
+// planetAnimation(small_lp);
 const effectShadowDiv = (divId, shadowDiv) => {
     const maxDivWidth = 300;
     const minDivWidth = 100;

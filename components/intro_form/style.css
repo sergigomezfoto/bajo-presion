@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     top: -100%;
-    transition: top 1s ease-in-out;
+    transition: top 1s ease-in-out,left 1s ease-in-out,right 1s ease-in-out,bottom 1s ease-in-out;
 }
 
 #form_intro{
@@ -69,30 +69,7 @@
     text-align: center; 
   }
 
-  /* todo */
-  #button_form_intro {
-    font-family: 'untitled_sansmedium';
-    background-color: transparent;
-    text-transform: uppercase;
-    color: white;
-    border: 2px solid white;
-    height: 40px;
-    width: 130px;
-    text-align: center;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-  }
-  
-  
-  #button_form_intro:hover {
-    opacity: 1;
-    background-color: white;
-    color:black;
 
-  }
   .shake-animation {
     animation: shake 0.5s ease-in-out;
   }
@@ -111,3 +88,18 @@
     opacity:1 !important;
   }
   
+  .overlay-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .overlay-flash.show {
+    opacity: 1;
+  }

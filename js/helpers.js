@@ -38,9 +38,11 @@ const asyncLoopPositive = (condition, time = 300) => {
     if (condition()) {
       resolve();
     } else
-      setTimeout((_) => {
-        whatchIf(resolve);
-      }, time);
+      if (time !== null) {    
+        setTimeout((_) => {
+          whatchIf(resolve);
+        }, time);
+      }
   };
   return new Promise(whatchIf);
 };
@@ -70,4 +72,20 @@ const waitForVariable = (variableName) => {
       }
     }, 100);
   });
+};
+
+
+
+//<body>
+//<div class="overlay-flash"></div>
+//.
+//.
+//.
+const overlayFlash = document.querySelector(".overlay-flash");
+const flashLight = (fun) => {
+  overlayFlash.classList.add("show");
+  setTimeout(() => {
+    fun();
+    overlayFlash.classList.remove("show");
+  }, 300);
 };

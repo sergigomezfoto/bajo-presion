@@ -154,6 +154,7 @@ const imgArr = [
   "../../assets/img/shadow_lp_intro.png",
   "../../assets/img/shine_lp_intro.png",
   "../../assets/img/user_intro.png",
+  "../../assets/img/user_home.png",
   
 ];
 const fontArr = ["16pt untitled_sansmedium", "16pt untitled_sansregular", "16pt bw_black", "16pt bw_regular"];

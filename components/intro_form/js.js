@@ -31,7 +31,11 @@ buttonFormIntro.addEventListener('click', () => {
       inputFormIntro.classList.remove('error-placeholder');
       inputIntroControler.focus();
     }, 1500);
+
+    console.log(user.name);
   } else {
-    console.log('Contenido del input:', inputValue);
+    user.name = inputValue;  
+    console.log(user.nickName);
+
   }
 });

@@ -1,5 +1,11 @@
 const test = false;
 
+const user={
+  name:"anonimus",
+  get nickName(){
+    return "@"+this.name;
+  }
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////FIRST INTRO
 const timeShowIntroElements = 2000;
 const logosIntro = document.querySelectorAll(".logos_intro");

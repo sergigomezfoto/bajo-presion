@@ -44,7 +44,10 @@ const asyncLoopPositive = (condition, time = 300) => {
   };
   return new Promise(whatchIf);
 };
-
+const awaitStylecomplete = async (element, attribute, value) => {
+  await asyncLoopPositive((_) => element.computedStyleMap().get(attribute).toString() === value, 10);
+  return true;
+};
 const fadeInFadeOut = async (id, opaci, display = "none") => {
   if (display !== "none") {
     document.getElementById(id).style.display = display;
@@ -56,15 +59,15 @@ const fadeInFadeOut = async (id, opaci, display = "none") => {
     document.getElementById(id).style.display = display;
   }
 };
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const waitForVariable = (variableName) => {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
-      if (typeof window[variableName] !== 'undefined') {
+      if (typeof window[variableName] !== "undefined") {
         clearInterval(checkExist);
         resolve(window[variableName]);
       }
-    }, 100); 
+    }, 100);
   });
 };

@@ -1,0 +1,53 @@
+
+
+/* *****************************************************************FIRST LOADER****************************************************** */
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--maincolor);
+    z-index: 3;
+    opacity: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 600ms linear;
+
+}
+
+.loader-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.loadingtext {
+    opacity: .3;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 20px;
+    font-size: 0.8rem;
+
+}
+
+/* *****************************************************************FIRST LOADER****************************************************** */

@@ -1,13 +1,14 @@
-const test =true;
+const test = false;
 
-////////////////////////////////////////////////////////////////FIRST INTRO
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////FIRST INTRO
 const timeShowIntroElements = 2000;
 const logosIntro = document.querySelectorAll(".logos_intro");
 const presentanIntro = document.getElementById("presentan_intro");
+const introGradient = document.getElementById("intro_gradient");
 const introGradientFirst = document.getElementById("intro_gradient_first");
 const firstTextIntro = document.getElementById("firts_text_intro");
 const introGradientForm = document.getElementById("intro_gradient_form");
-const inputElement = document.getElementById('input_form_intro');
+const inputElement = document.getElementById("input_form_intro");
 
 const generalIntro = async () => {
   if (!test) {
@@ -18,27 +19,26 @@ const generalIntro = async () => {
     for (const logo of logosIntro) {
       fadeInFadeOut(logo.id, 0);
     }
-    await asyncLoopPositive((_) => logosIntro[1].computedStyleMap().get("display").toString() === "none", 10);
+    await awaitStylecomplete(logosIntro[1], "display", "none");
     fadeInFadeOut(presentanIntro.id, 1, "block");
     await sleep(timeShowIntroElements);
     fadeInFadeOut(presentanIntro.id, 0);
-    await asyncLoopPositive((_) => presentanIntro.computedStyleMap().get("display").toString() === "none", 10);
-    document.getElementById("intro_gradient").style.clipPath = "circle(100% at 50% 50%)";
-    await sleep(2000);
+    await awaitStylecomplete(presentanIntro, "display", "none");
+    introGradient.style.clipPath = "circle(100% at 50% 50%)";
+    await sleep(timeShowIntroElements);
     firstTextIntro.style.width = "360px";
-    await asyncLoopPositive((_) => firstTextIntro.computedStyleMap().get("width").toString() === "360px", 10);
+    await awaitStylecomplete(firstTextIntro, "width", "360px");
     firstTextIntro.style.opacity = "1";
-    await sleep(6000);
+    await sleep(timeShowIntroElements * 3);
     introGradientFirst.style.top = "100%";
     introGradientForm.style.top = "0";
     clearInterval(introLPInterval);
-    await asyncLoopPositive((_) => introGradientFirst.computedStyleMap().get("top").toString() === "100%", 10);
+    await awaitStylecomplete(introGradientFirst, "top", "100%");
     introGradientFirst.style.display = "none";
     inputElement.focus();
-
   } else if (test) {
-    document.getElementById("intro_gradient").style.transition = "all 0s";
-    document.getElementById("intro_gradient").style.clipPath = "circle(100% at 50% 50%)";
+    introGradient.style.transition = "all 0s";
+    introGradient.style.clipPath = "circle(100% at 50% 50%)";
     introGradientFirst.style.transition = "all 0s";
     introGradientForm.style.transition = "all 0s";
     introGradientFirst.style.top = "100%";

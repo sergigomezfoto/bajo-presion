@@ -18,7 +18,7 @@ const video = document.getElementById("home-video");
 ///////////////////////////////////////////////////////////////////////
 
 
-const test =  true;
+const test =  false;
 
 const user = {
   name: "anonimus",

@@ -161,7 +161,7 @@ const fontArr = ["16pt untitled_sansmedium", "16pt untitled_sansregular", "16pt 
 const krpanoDatasLoaded = true;
 
 (async () => {
-  if (test) {
+  if (Game.test) {
     console.log("test mode");
     homeLoader.style.display = "none";
     generalIntro();

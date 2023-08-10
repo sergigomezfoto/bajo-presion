@@ -3,15 +3,25 @@
 
 ///////////////////////////////////////////////////////////////////////
 
-const test = false;
+//const test = false;
+
+const gameOptions={
+  test:false,
+  freeMode:false,
+  intro:true,
+  user:'anonimus'
+}
+
+
 
 ////////////////////////////////////////////////////////////////////// MAIN GAME OBJ
 class GameClass {
-  constructor(user = null, freeMode = false, intro = true) {
+  constructor({user = null, freeMode = false, intro = true, test = false}) {
     this._obj = "Game";
     this.user = user;
     this.freeMode = freeMode;
     this.intro = intro;
+    this.test = test;
     this.state = {
       _obj: "Game.state",
       places: [],
@@ -43,27 +53,33 @@ class GameClass {
       },
     };
   }
-
-  // Funció per establir visiblilitat de video
-  setVideoVisibility(isVisible) {
-    this.state.now.video.visible = isVisible;
-}
-
-  // Funció per obtenir l'estat actual de visible
-  isVideoVisible() {
-    return this.state.now.video.visible;
-  }
-
+  ///////////////////////////////nikname
   get nickName() {
     return "@" + this.user;
+  }
+  ///////////////////////////////////////videos
+  set videoId(id) {
+    this.state.now.video.videoId = id;
+  }
+  get videoId() {
+    return this.state.now.video.videoId;
+  }
+  set videoState(state) {
+    this.state.now.video.state = state;
+  }
+  get videoState() {
+    return this.state.now.video.state;
+  }
+  set videoVisible(isVisible) {
+    this.state.now.video.visible = isVisible;
+  }
+  get videoVisible() {
+    return this.state.now.video.visible;
   }
 }
 
 // Instanciem la classe
-const Game = new GameClass("anonimus", true, false);
-
-
-
+const Game = new GameClass(gameOptions);
 
 // faciilitador d'estats
 const vstate = {

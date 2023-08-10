@@ -36,7 +36,7 @@ const skipIntro = () => {
 };
 
 const generalIntro = async () => {
-  if (!test) {
+  if (!Game.test) {
     for (const logo of logosIntro) {
       await fadeInFadeOut(logo.id, 1, "block");
     }
@@ -51,15 +51,17 @@ const generalIntro = async () => {
     await awaitStylecomplete(presentanIntro, "display", "none");
     introGradient.style.clipPath = "circle(100% at 50% 50%)";
     await sleep(timeShowIntroElements);
+    ///////////////////////////////////////////////////////////////////////////////////////lp + text
     firstTextIntro.style.width = "360px";
     await awaitStylecomplete(firstTextIntro, "width", "360px");
     firstTextIntro.style.opacity = "1";
     //await sleep(timeShowIntroElements * 3);
     intro_black.style.display = "none";
-    await asyncLoopPositive((_) => passToUserInput, 10);
+    await asyncLoopPositiveSafe((_) => passToUserInput, 10);
     introGradientFirst.style.top = "100%";
     introGradientForm.style.top = "0";
     clearInterval(introLPInterval); // mata l'interva que fa botar el lp
+    ///////////////////////////////////////////////////////////////////////////////////////form
     await awaitStylecomplete(introGradientFirst, "top", `${window.innerHeight}px`);
     introGradientFirst.style.display = "none";
     inputElement.focus();
@@ -73,20 +75,25 @@ const generalIntro = async () => {
     homeInterface.style.display = "block";
     await awaitStylecomplete(homeInterface, "display", "block");
     homeInterface.style.opacity = "1";
-    ///////////////////////////////////////////////////////////video etna
+    //////////////////////////////////////////////////////////////////video etna
     fadeinAndPlayNewVideo(videolist.smallTest);
     await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`);
     introGradientForm.style.display = "none";
-    await asyncLoopPositive((_) => Game.state.now.video.state === vstate.playing, 10);
+    //await asyncLoopPositive((_) => Game.videoState === vstate.playing, 10);
+    waitForEventToTrigger(document.getElementById("skipVideoButton"), "click",()=>{
+     
+
+    })
     // waitForVideoTime(6, ()=>{fadeinSoundVideo(0.1)});
-  } else if (test) {
+  } else if (Game.test) {
     skipIntro();
+    introGradientForm.style.display = "none";
     await asyncLoopPositive((_) => !isFirstClick, 10);
     
     fadeinAndPlayNewVideo(videolist.smallTest);
     // await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`); 
-    introGradientForm.style.display = "none";
-    await asyncLoopPositive((_) => Game.state.now.video.state === vstate.playing, 10);
+    await asyncLoopPositive((_) => Game.videoState === vstate.playing, 10);
+
     // waitForVideoTime(3,enterInstructions);
     
   }
@@ -97,6 +104,6 @@ const generalIntro = async () => {
 //   videoplayerCanvas.style.transform = "translateX(50%)";
 // }
 
-if (test) {
+if (Game.test) {
  detectFirstClick();
 }

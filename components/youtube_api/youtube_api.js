@@ -66,8 +66,8 @@ const startCheckInterval = (duration) => {
 
 function onYoutubePlayerStateChange(event) {
   const duration = youtubePlayer.getDuration();
-  Game.state.now.video.videoId = event.target.playerInfo.videoData.video_id;
-  Game.state.now.video.state = event.data;
+  Game.videoId = event.target.playerInfo.videoData.video_id;
+  Game.videoState = event.data;
 
   if (event.data === YT.PlayerState.PLAYING) {
     const currentTime = youtubePlayer.getCurrentTime();
@@ -184,7 +184,7 @@ const fadeinplayer = async (transition = 0.3) => {
     videoplayerCanvas.style.transition = `all ${transition}s`;
     await awaitStylecomplete(videoplayerCanvas, "display", "block");
     videoplayerCanvas.style.opacity = "1";
-    Game.setVideoVisibility(true);
+    Game.videoVisible=true;
     
   } else {
     console.log("error el div videocanvas està en: ", window.getComputedStyle(videoplayerCanvas).display);
@@ -197,7 +197,7 @@ const fadeoutplayer = async (transition = 0.3) => {
     videoplayerCanvas.style.opacity = "0";
     await awaitStylecomplete(videoplayerCanvas, "opacity", "0");
     videoplayerCanvas.style.display = "none";
-    Game.setVideoVisibility(false);
+    Game.videoVisible=false;
 
   } else {
     console.log("error el div videocanvas està en: ", window.getComputedStyle(videoplayerCanvas).display);
@@ -211,9 +211,9 @@ const fadeinVideo = async (videoId, transition = 0.3, player = youtubePlayer) =>
     videoplayerCanvas.style.transition = `all ${transition}s`;
     await awaitStylecomplete(videoplayerCanvas, "display", "block");
     loadVideo(videoId, player);
-    await asyncLoopPositive((_) => Game.state.now.video.videoId === videoId && Game.state.now.video.state === vstate.cued, 10);
+    await asyncLoopPositive((_) => Game.videoId === videoId && Game.videoState === vstate.cued, 10);
     videoplayerCanvas.style.opacity = "1";
-    Game.setVideoVisibility(true);
+    Game.videoVisible=true;
   }
 };
 const fadeinAndPlayNewVideo = async (videoId, transition = 0.3, player = youtubePlayer) => {
@@ -223,9 +223,9 @@ const fadeinAndPlayNewVideo = async (videoId, transition = 0.3, player = youtube
     videoplayerCanvas.style.transition = `all ${transition}s`;
     await awaitStylecomplete(videoplayerCanvas, "display", "block");
     loadAndPlayVideo(videoId, player);
-    await asyncLoopPositive((_) => Game.state.now.video.videoId === videoId && Game.state.now.video.state === vstate.playing, 10);
+    await asyncLoopPositive((_) => Game.videoId === videoId && Game.videoState === vstate.playing, 10);
     videoplayerCanvas.style.opacity = "1";
-    Game.setVideoVisibility(true);
+    Game.videoVisible=true;
   }
 };
 const fadeoutVideo = async (transition = 0.3, player = youtubePlayer) => {
@@ -235,7 +235,7 @@ const fadeoutVideo = async (transition = 0.3, player = youtubePlayer) => {
     videoplayerCanvas.style.opacity = "0";
     await awaitStylecomplete(videoplayerCanvas, "opacity", "0");
     videoplayerCanvas.style.display = "none";
-    Game.setVideoVisibility(false);
+    Game.videoVisible=false;
 
   }
 };

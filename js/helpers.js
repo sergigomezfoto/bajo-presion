@@ -145,6 +145,7 @@ const waitForEventToTrigger=(element, eventName, callback)=> {
       resolve(e);
       element.removeEventListener(eventName, eventHandler);
     };
+    
     element.addEventListener(eventName, eventHandler);
   });
 }

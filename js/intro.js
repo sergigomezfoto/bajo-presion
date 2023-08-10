@@ -81,7 +81,7 @@ const generalIntro = async () => {
     introGradientForm.style.display = "none";
     //await asyncLoopPositive((_) => Game.videoState === vstate.playing, 10);
     waitForEventToTrigger(document.getElementById("skipVideoButton"), "click",()=>{
-     
+      console.log("skipVideoButton");
 
     })
     // waitForVideoTime(6, ()=>{fadeinSoundVideo(0.1)});

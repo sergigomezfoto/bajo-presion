@@ -1,8 +1,21 @@
+let passToUserInput = false;
+let passToVideo = false;
+const timeShowIntroElements = 500;
+const startcontainer = document.getElementById("startcontainer");
+const intro_black= document.getElementById("intro_black");
+const logosIntro = document.querySelectorAll(".logos_intro");
+const presentanIntro = document.getElementById("presentan_intro");
+const introGradient = document.getElementById("intro_gradient");
+const introGradientFirst = document.getElementById("intro_gradient_first");
+const firstTextIntro = document.getElementById("firts_text_intro");
+const introGradientForm = document.getElementById("intro_gradient_form");
+const inputElement = document.getElementById("input_form_intro");
+const introGradientVideo = document.getElementById("intro_gradient_video");
+const homeInterface = document.getElementById("homeInterface");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////FIRST INTRO
 
-
-
 const skipIntro = () => {
+  startcontainer.classList.add("rainbow_gradient");
   introGradient.style.transition = "all 0s";
   introGradient.style.clipPath = "circle(100% at 50% 50%)";
   introGradientFirst.style.transition = "all 0s";
@@ -12,10 +25,14 @@ const skipIntro = () => {
   introGradientForm.style.top = "0";
   introGradientForm.style.left = "-100%";
   introGradientForm.style.display = "none";
-  introGradientVideo.style.left="0";
-  video.muted = false; 
-  video.play(); 
- 
+  introGradientVideo.style.left = "0";
+  introGradientForm.style.display = "none";
+  intro_black.style.display = "none";
+  startcontainer.classList.add("rainbow_gradient");
+  introGradient.classList.remove("rainbow_gradient");
+
+  // video.muted = false;
+  // video.play();
 };
 
 const generalIntro = async () => {
@@ -37,23 +54,49 @@ const generalIntro = async () => {
     firstTextIntro.style.width = "360px";
     await awaitStylecomplete(firstTextIntro, "width", "360px");
     firstTextIntro.style.opacity = "1";
-    // await sleep(timeShowIntroElements * 3);
-    await asyncLoopPositive((_)=>passToUserInput, 10);
+    //await sleep(timeShowIntroElements * 3);
+    intro_black.style.display = "none";
+    await asyncLoopPositive((_) => passToUserInput, 10);
     introGradientFirst.style.top = "100%";
     introGradientForm.style.top = "0";
-    clearInterval(introLPInterval);
-    await awaitStylecomplete(introGradientFirst, "top", "100%");
+    clearInterval(introLPInterval); // mata l'interva que fa botar el lp
+    await awaitStylecomplete(introGradientFirst, "top", `${window.innerHeight}px`);
     introGradientFirst.style.display = "none";
     inputElement.focus();
-    await asyncLoopPositive((_)=>passToVideo, 10);
+    addKeyEventToForm();
+    await asyncLoopPositive((_) => passToVideo, 10);
     introGradientForm.style.left = "-100%";
-    introGradientVideo.style.left="0";
-    await awaitStylecomplete(introGradientForm, "left", "-100%");
+    introGradientVideo.style.left = "0";
+    startcontainer.classList.add("rainbow_gradient");
+    introGradient.classList.remove("rainbow_gradient");
+    await sleep(1000);
+    homeInterface.style.display = "block";
+    await awaitStylecomplete(homeInterface, "display", "block");
+    homeInterface.style.opacity = "1";
+    ///////////////////////////////////////////////////////////video etna
+    fadeinAndPlayNewVideo(videolist.smallTest);
+    await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`);
     introGradientForm.style.display = "none";
-    video.muted = false; 
-    video.play(); 
+    await asyncLoopPositive((_) => Game.state.now.video.state === vstate.playing, 10);
+    // waitForVideoTime(6, ()=>{fadeinSoundVideo(0.1)});
   } else if (test) {
     skipIntro();
+    await asyncLoopPositive((_) => !isFirstClick, 10);
+    
+    fadeinAndPlayNewVideo(videolist.smallTest);
+    // await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`); 
+    introGradientForm.style.display = "none";
+    await asyncLoopPositive((_) => Game.state.now.video.state === vstate.playing, 10);
+    // waitForVideoTime(3,enterInstructions);
+    
   }
 };
+// const enterInstructions = () => {
+//   const videoplayerCanvas = document.getElementById("videoplayerCanvas");
+//   videoplayerCanvas.style.transition = "transform 1s";
+//   videoplayerCanvas.style.transform = "translateX(50%)";
+// }
 
+if (test) {
+ detectFirstClick();
+}

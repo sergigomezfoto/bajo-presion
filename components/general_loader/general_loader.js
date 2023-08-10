@@ -141,20 +141,20 @@ console.log();
 ///////////////////////////////////////////////////////////////////LittlePlanet ready
 const homeLoader = document.getElementById("loader");
 const svgArr = [
-  // document.getElementById("start-svg"),
+  document.getElementById("reloadImg"),
   // document.getElementById("time-message-wrapper-svg")
 ];
 const imgArr = [
-  "../../assets/img/logo_pds.png",
-  "../../assets/img/logo_noupunt.png",
-  "../../assets/img/logo_ministerio.png",
-  "../../assets/img/lp_intro_big.png",
-  "../../assets/img/lp_intro.png",
-  "../../assets/img/noise.jpg",
-  "../../assets/img/shadow_lp_intro.png",
-  "../../assets/img/shine_lp_intro.png",
-  "../../assets/img/user_intro.png",
-  "../../assets/img/user_home.png",
+  "./assets/img/logo_pds.png",
+  "./assets/img/logo_noupunt.png",
+  "./assets/img/logo_ministerio.png",
+  "./assets/img/lp_intro_big.png",
+  "./assets/img/lp_intro.png",
+  "./assets/img/noise.jpg",
+  "./assets/img/shadow_lp_intro.png",
+  "./assets/img/shine_lp_intro.png",
+  "./assets/img/user_intro.png",
+  "./assets/img/user_home.png",
   
 ];
 const fontArr = ["16pt untitled_sansmedium", "16pt untitled_sansregular", "16pt bw_black", "16pt bw_regular"];
@@ -162,6 +162,7 @@ const krpanoDatasLoaded = true;
 
 (async () => {
   if (test) {
+    console.log("test mode");
     homeLoader.style.display = "none";
     generalIntro();
     return;

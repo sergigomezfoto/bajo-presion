@@ -1,6 +1,8 @@
 html {
     height: 100%;
     user-select: none;
+    --margin:40px;
+
 }
 
 body {
@@ -73,10 +75,11 @@ body {
     overflow: hidden;
     z-index: 1;
     cursor: pointer;
-  }
-  .button:hover {
-    opacity: 1;
-    background-color: white;
-    color:black;
+}
 
-  }
+.button:hover {
+    opacity: 1;
+    background-color: #ffffff;
+    color: #d304c1;
+
+}

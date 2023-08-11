@@ -296,7 +296,7 @@ const replayFunction = (player = youtubePlayer) => {
 };
 
 (async () => {
-  await asyncLoopPositive((_) => youtubePlayerReady, 10);
+ // await asyncLoopPositive((_) => youtubePlayerReady, 10);
   playPause.addEventListener("click", () => {
     togglePlayPause(youtubePlayer);
   });

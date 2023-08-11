@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="components/intro_first_littleplanet/style.css">
     <link rel="stylesheet" href="components/intro_form/style.css">
     <link rel="stylesheet" href="components/youtube_api/style.css">
+    <link rel="stylesheet" href="components/homeui/counter_home/styles.css">
+    <link rel="stylesheet" href="components/homeui/littleplanet/styles.css">
 
 </head>
 
@@ -107,13 +109,32 @@
             <!-- <div id="home" class="rainbow_gradient fullscreen"></div> -->
         </div>
         <div id="homeInterface">
+            <div id="homeLittlePlanet">
+                <div id="home-planet-wrapper">
+                    <div id="hlp-label-1" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-2" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-3" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-4" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-5" class="hlp-label home-planet-label-active"></div>
+                    <div id="home-littleplanet"></div>
+                </div>
+                <div class="circle">
+                    <span class="homeCounterPercentage">0%</span>
+                    <div class="homeCounterportion" data-value="20"></div>
+                    <div class="homeCounterportion" data-value="40"></div>
+                    <div class="homeCounterportion" data-value="60"></div>
+                    <div class="homeCounterportion" data-value="80"></div>
+                    <div class="homeCounterportion" data-value="100"></div>
+                </div>
+            </div>
             <div id="homeTitle">BAJO<br>PRESIÓN</div>
             <div id="homeUser">
                 <img src="./assets/img/user_home_ui.png" alt="" id="userImageHome">
-                <div id="nikname">@tupadre</div>
+                <div id="nikname">@anonimus</div>
             </div>
             <div id="homeHelp">?</div>
             <div id="homeCredits">CRÉDITOS</div>
+
         </div>
     </div>
 
@@ -122,8 +143,11 @@
     <script src="components/youtube_api/youtube_api.js"></script>
     <script src="components/intro_first_littleplanet/intro_first_littleplanet.js"></script>
     <script src="components/intro_form/intro_form.js"></script>
+    <script src="components/homeui/littleplanet/littleplanet.js"></script>
+    <script src="components/homeui/counter_home/counter_home.js"></script>
     <script src="components/homeui/homeui.js"></script>
     <script src="js/intro.js"></script>
+    <script src="js/home.js"></script>
     <script src="components/general_loader/general_loader.js"></script>
 
 </body>

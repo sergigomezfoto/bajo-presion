@@ -11,7 +11,6 @@ const withErrorHandling = (asyncFn) => {
   };
 };
 
-
 const getUserDeviceInfo = () => {
   const userAgent = navigator.userAgent.toLowerCase();
   const isMobile = /iphone|ipad|ipod|android/.test(userAgent);
@@ -26,7 +25,6 @@ const getUserDeviceInfo = () => {
   } else if (window.innerWidth <= 768) {
     deviceType = "tablet";
   }
-
 
   const getBrowser = () => {
     if (userAgent.indexOf("edge") > -1) return "edge";
@@ -48,21 +46,18 @@ const getUserDeviceInfo = () => {
   };
 };
 
-
-
-
-
-
-const asyncLoopPositive = (condition, time = 300, maxAttempts = 1000) => {
-
+const asyncLoopPositive = (condition, time = 300, maxAttempts = null) => {
   return new Promise((resolve, reject) => {
     let attempts = 0;
 
     const checkCondition = () => {
       attempts++;
-      if (attempts > maxAttempts) {
-        reject(new Error(`Max attempts reached `));
-        return;
+
+      // Logging the current attempt number
+      if (Game.test) console.log(`bucleAsyncLoopPositive: ${attempts}`);
+      if (maxAttempts !== null && attempts > maxAttempts) {
+        resolve();
+        throw new Error("Max attempts reached");
       }
 
       try {
@@ -72,16 +67,16 @@ const asyncLoopPositive = (condition, time = 300, maxAttempts = 1000) => {
           setTimeout(checkCondition, time);
         }
       } catch (error) {
-        reject(new Error(`Error in condition function: ${error.message}.}`));
+        reject(new Error(`Error in condition function: ${error.message}.`));
       }
     };
-    
+
     checkCondition();
   });
 };
 const cssToJsAttributes = (attribute) => {
-  if (typeof attribute !== 'string') {
-    throw new Error('Invalid attribute type. Expected a string.');
+  if (typeof attribute !== "string") {
+    throw new Error("Invalid attribute type. Expected a string.");
   }
 
   return attribute.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase();
@@ -89,11 +84,11 @@ const cssToJsAttributes = (attribute) => {
 
 const awaitStylecomplete = async (element, attribute, value) => {
   if (!element || !(element instanceof HTMLElement)) {
-    throw new Error('Invalid element provided.');
+    throw new Error("Invalid element provided.");
   }
-  
-  if (typeof attribute !== 'string') {
-    throw new Error('Invalid attribute type. Expected a string.');
+
+  if (typeof attribute !== "string") {
+    throw new Error("Invalid attribute type. Expected a string.");
   }
 
   await asyncLoopPositive(() => {
@@ -103,7 +98,7 @@ const awaitStylecomplete = async (element, attribute, value) => {
       throw new Error(`Error checking style completion: ${error.message}`);
     }
   }, 10);
-  
+
   return true;
 };
 
@@ -123,48 +118,22 @@ const fadeInFadeOut = async (id, opaci, display = "none") => {
 };
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const waitForVariable = (variableName) => {
-  return new Promise((resolve) => {
-    const checkExist = setInterval(() => {
-      if (typeof window[variableName] !== "undefined") {
-        clearInterval(checkExist);
-        resolve(window[variableName]);
-      }
-    }, 100);
-  });
-};
-const waitForEventToTrigger=(element, eventName, callback)=> {
+const waitForEventToTrigger = (element, eventName, callback) => {
   let triggered = false;
   return new Promise((resolve, reject) => {
     const eventHandler = (e) => {
       if (triggered) return;
       triggered = true;
-      if (callback && typeof callback === 'function') {
+      if (callback && typeof callback === "function") {
         callback(e);
       }
       resolve(e);
       element.removeEventListener(eventName, eventHandler);
     };
-    
+
     element.addEventListener(eventName, eventHandler);
   });
-}
-
-//<body>
-//<div class="overlay-flash"></div>
-//.
-//.
-//.
-const overlayFlash = document.querySelector(".overlay-flash");
-const flashLight = (fun) => {
-  overlayFlash.classList.add("show");
-  setTimeout(() => {
-    fun();
-    overlayFlash.classList.remove("show");
-  }, 300);
 };
-
-
 
 ///////////////////////////////////////////////////////////////////////PROXY PER DEBUG NO UTILITZAT
 const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
@@ -205,7 +174,6 @@ const proxyHandler = {
 // const prxGame = createDeepProxy(clonedGame, proxyHandler);
 
 /////////////////////////////////////////////////////////////////////////////////INTERVAL PER VARIABLES
-
 
 class ObservableValue {
   constructor(initialValue) {
@@ -252,9 +220,6 @@ class ObservableValue {
 // observable.set(9);   // Esto imprimirá "El valor es mayor que 8 y menor que 10: 9"
 // observable.set(true); // Esto imprimirá "El valor es verdadero."
 
-
-
-
 setInterval(() => {
   // console.log(window.innerWidth)
   //   console.log(window.getComputedStyle(document.getElementById("intro_gradient_form")).getPropertyValue( cssToJsAttributes('left')).trim());
@@ -265,7 +230,7 @@ setInterval(() => {
 var isFirstClick = true;
 function handleFirstClick(event) {
   if (isFirstClick) {
-    console.log("Este es el primer clic en la pantalla.");
+    console.log("Primer Click.");
     document.removeEventListener("click", handleFirstClick);
     isFirstClick = false;
   }

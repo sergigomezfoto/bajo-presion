@@ -100,23 +100,44 @@ class S_LoadControl {
   };
   ///////////////////////////////////
   registerSvg = (svg) => {
-    // const isFirefox = typeof InstallTrigger !== 'undefined';
     const isFirefox = /Firefox/i.test(navigator.userAgent);
+    console.log("Is Firefox:", isFirefox);
+    
     const isIE = !!document.documentMode;
+    console.log("Is IE:", isIE);
+    
     const isEdge = !isIE && !!window.StyleMedia;
+    console.log("Is Edge:", isEdge);
+    
     const loadEvent = isFirefox ? "SVGLoad" : isIE || isEdge ? "readystatechange" : "load";
+    console.log("Using event:", loadEvent);
+
     svg.addEventListener(loadEvent, () => {
       this.add(`svg|${svg.id}`, "svg");
       console.log("SVG loaded.");
     });
-  };
+};
+
   registerKrpano = (name) => {
     this.add(`kp|${name}`, "krp");
   };
-  registerImage = async (image) => {
-    let img = new Image();
-    img.src = image;
-    img.decode().then(this.add(`image|${image}`, "img"));
+  // registerImage = async (image) => {
+  //   let img = new Image();
+  //   img.src = image;
+  //   img.decode().then(this.add(`image|${image}`, "img"));
+  // };
+  registerImage = (image) => {
+    return new Promise((resolve, reject) => {
+      let img = new Image();
+      img.onload = () => {
+        requestAnimationFrame(() => {
+          this.add(`image|${image}`, "img");
+          resolve();
+        });
+      };
+      img.onerror = reject;
+      img.src = image;
+    });
   };
   //////////////////////////////////////////////////////////////////fonts al html
   registerFonts = async (font) => {
@@ -148,14 +169,13 @@ const imgArr = [
   "./assets/img/logo_pds.png",
   "./assets/img/logo_noupunt.png",
   "./assets/img/logo_ministerio.png",
-  "./assets/img/lp_intro_big.png",
   "./assets/img/lp_intro.png",
   "./assets/img/noise.jpg",
   "./assets/img/shadow_lp_intro.png",
   "./assets/img/shine_lp_intro.png",
   "./assets/img/user_intro.png",
-  "./assets/img/user_home.png",
-  
+  "./assets/img/home_lp.png",
+
 ];
 const fontArr = ["16pt untitled_sansmedium", "16pt untitled_sansregular", "16pt bw_black", "16pt bw_regular"];
 const krpanoDatasLoaded = true;
@@ -169,6 +189,7 @@ const krpanoDatasLoaded = true;
   }
   for (const svg of svgArr) {
     generalLoadControl.registerSvg(svg);
+    console.log('aa');
   }
   for (const img of imgArr) {
     await generalLoadControl.registerImage(img);
@@ -176,7 +197,7 @@ const krpanoDatasLoaded = true;
   for (const font of fontArr) {
     await generalLoadControl.registerFonts(font);
   }
-  await asyncLoopPositive((_) => generalLoadControl.count === svgArr.length + imgArr.length + fontArr.length && krpanoDatasLoaded); // +1=krpano little planet
+  await asyncLoopPositive((_) => generalLoadControl.count === svgArr.length + imgArr.length + fontArr.length && krpanoDatasLoaded,300,50); // +1=krpano little planet
   homeLoader.style.opacity = "0";
   console.log("he arribat!!", generalLoadControl.count);
   generalLoadControl.log();

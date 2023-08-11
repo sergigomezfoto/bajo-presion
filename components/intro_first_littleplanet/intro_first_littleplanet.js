@@ -1,8 +1,8 @@
-const nextToUserInput = document.getElementById("next_to_user_input");
-nextToUserInput.addEventListener("click", () => {
-  passToUserInput = true;
-  console.log(passToUserInput);
-});
+// const nextToUserInput = document.getElementById("next_to_user_input");
+// nextToUserInput.addEventListener("click", () => {
+//   passToUserInput = true;
+//   console.log(passToUserInput);
+// });
 // const planetAnimation = (options) => {
 //   if (!options || !options.containerId || !options.littleplanetId || !options.speed) {
 //     console.log("Error: No s'han definit totes les opcions necessàries. Son: containerId, littleplanetId, speed");
@@ -67,4 +67,3 @@ const effectShadowDiv = (divId, shadowDiv) => {
   }
 };
 
-const introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wraper", "shadow_lp_intro"), 50);

@@ -5,18 +5,16 @@
 
 //const test = false;
 
-const gameOptions={
-  test:false,
-  freeMode:false,
-  intro:true,
-  user:'anonimus'
-}
-
-
+const gameOptions = {
+  test: true,
+  freeMode: false,
+  intro: true,
+  user: "anonimus",
+};
 
 ////////////////////////////////////////////////////////////////////// MAIN GAME OBJ
 class GameClass {
-  constructor({user = null, freeMode = false, intro = true, test = false}) {
+  constructor({ user = null, freeMode = false, intro = true, test = false }) {
     this._obj = "Game";
     this.user = user;
     this.freeMode = freeMode;
@@ -24,8 +22,10 @@ class GameClass {
     this.test = test;
     this.state = {
       _obj: "Game.state",
-      places: [],
+      places: ["Casa de Etna", "Polideportivo", "Instituto", "Centro cívico", "Parque"],
       placesConquered: [],
+      placesConqueredNum: 1,
+      placesConqueredPercentage: "0%",
       aptitudes: [],
       aptitudesConquered: [],
       timerTime: 20 * 60 * 1000, //20 minuts
@@ -76,10 +76,43 @@ class GameClass {
   get videoVisible() {
     return this.state.now.video.visible;
   }
-}
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////places
+  conqueredPlace(place, callback) {
+    if (!this.state.places.includes(place)) {
+      console.log(`El lloc "${place}" no està definit a la llista places.`);
+      return;
+    }
 
-// Instanciem la classe
-const Game = new GameClass(gameOptions);
+    if (!this.state.placesConquered.includes(place)) {
+      this.state.placesConquered.push(place);
+    } else {
+      console.log(`El lloc "${place}" ya ha sido conquistado.`);
+      return;
+    }
+
+    if (callback && typeof callback === "function") {
+      this.updateConqueredStats(callback);
+    } else {
+      this.updateConqueredStats();
+    }
+  }
+  updateConqueredStats(callback) {
+    this.state.placesConqueredNum = this.state.placesConquered.length;
+    const totalPlaces = 5;
+    this.state.placesConqueredPercentage = `${(this.state.placesConqueredNum / totalPlaces) * 100}%`;
+
+    if (callback && typeof callback === "function") {
+      callback();
+    }
+  }
+  get conqueredPlacesNum() {
+    return this.state.placesConqueredNum;
+  }
+
+  get conqueredPlacesPercentage() {
+    return this.state.placesConqueredPercentage;
+  }
+}
 
 // faciilitador d'estats
 const vstate = {
@@ -96,3 +129,45 @@ const videolist = {
   shortTest: "keyJeG2lMwk",
   smallTest: "RpLm69FLs74",
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////GAME FUNCTIONS
+// Instanciem la classe
+const Game = new GameClass(gameOptions);
+
+const updateGameState = () => {
+  updateHome();
+};
+
+const updateHome = () => {
+  Game.updateConqueredStats(); //percentatge
+  const homeCounterPercentage = document.querySelector(".homeCounterPercentage");
+  homeCounterPercentage.innerHTML = Game.conqueredPlacesPercentage;
+
+  const homeCounterPortions = document.querySelectorAll(".homeCounterportion");
+  homeCounterPortions.forEach((portion, index) => {
+    if (index < Game.conqueredPlacesNum) {
+      portion.classList.add("highlighted");
+    } else {
+      portion.classList.remove("highlighted");
+    }
+  });
+
+  Game.state.placesConquered.forEach((place) => {
+    const matchingDiv = [...document.querySelectorAll(".hlp-label")].find((div) => div.innerText === place);
+    if (matchingDiv) {
+      matchingDiv.classList.remove("home-planet-label-active");
+      matchingDiv.classList.add("home-planet-label-disabled");
+    }
+  });
+};
+
+////////////////////////////////////////////////////////////////////////////////////////QUAN EL DOM ESTÀ CARREGAT
+// cuan el dom está carregat,poso els noms dels llocs per ordre
+document.addEventListener("DOMContentLoaded", () => {
+  const labels = document.querySelectorAll(".hlp-label");
+  Game.state.places.forEach((place, index) => {
+    if (labels[index]) {
+      labels[index].innerText = place;
+    }
+  });
+});

@@ -280,7 +280,7 @@ const fadeinAndPlayNewVideoIntro = async (videoId, transition = 0.3, player = yo
   }
 };
 const fadeinAndPlayNewPlaceVideo = async (videoId, transition = 0.3, player = youtubePlayer) => {
-  if (!test) {
+  if (!Game.test) {
     if (videoPlayerCanvas.classList.contains("panovideo")) {
       videoPlayerCanvas.classList.remove("panovideo");
     }

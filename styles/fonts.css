@@ -38,6 +38,14 @@
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'untitled_sansbold';
+    src: url('./fonts/untitledsans-bold-webfont.woff2') format('woff2'),
+         url('./fonts/untitledsans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* 
 @font-face {
     font-family: 'untitled_sansblack';
@@ -55,14 +63,7 @@
     font-style: normal;
 
 }
-@font-face {
-    font-family: 'untitled_sansbold';
-    src: url('./fonts/untitledsans-bold-webfont.woff2') format('woff2'),
-         url('./fonts/untitledsans-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 
-}
 @font-face {
     font-family: 'untitled_sansbold_italic';
     src: url('./fonts/untitledsans-bolditalic-webfont.woff2') format('woff2'),

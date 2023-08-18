@@ -159,11 +159,23 @@
 		<image>
 			<cube url="panos/centro_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-			<hotspot name="htest" keep="true" ath="0" atv="0" style="speech_bubbles"/>
-			<layer name="test2wrapper" style="test2wrapper" keep="true">
-				<layer name="test2" style="test2" keep="true"/>
-				<layer name="test3" style="test3" keep="true"/>
-				<layer name="test4" style="test4" keep="true"/>
+			<hotspot name="htest" keep="true" ath="100" atv="0" style="speech_bubbles"/>
+			<layer name="test2wrapper" style="hstotalwrapper" keep="true">
+				<layer name="test2" style="hsimage" keep="true"/>
+				
+				<layer name="test98" keep="true" style="hsuserinfocontentwrapper">				
+					<layer name="test23" keep="true" style="hsuserdatewrapper">			
+						<layer name="test3" style="hsuser" keep="true"/>
+						<layer name="test4" style="hsdate" keep="true"/>
+						
+						<layer name="test8796876" keep="true" style="hsheart"
+							
+						/>
+						
+					</layer>
+					
+					<layer name="test54" keep="true" style="hscontent"/>
+				</layer>
 			</layer>
 	</scene>
 

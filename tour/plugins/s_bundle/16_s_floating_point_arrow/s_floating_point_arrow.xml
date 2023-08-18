@@ -1,0 +1,99 @@
+<krpano>
+
+<include url="config/config.xml" />  
+
+
+<action name="s_arrow_pointer" scope="local" args="target,s_html,styles"> 
+
+    spheretoscreen(hotspot[get(target)].ath,hotspot[get(target)].atv,layerx,layery);
+    if (!styles,
+     set(st0,'s_point_arrow');
+     set(st1,'s_point_arrow_instruction');
+     ,
+     txtsplit(get(styles),'|',st0,st1);
+    );
+
+    if (!layer[calc(target + '_s_point_arrow')].name,
+        
+        addlayer(calc(target + '_s_point_arrow'));
+        layer[calc(target + '_s_point_arrow')].loadstyle(get(st0));
+        tween(layer[calc(target + '_s_point_arrow')].alpha,get(layer[calc(target + '_s_point_arrow')].finalalpha),0.2);
+
+        addlayer(calc(target + '_s_point_arrow_child'));
+        layer[calc(target + '_s_point_arrow_child')].loadstyle(get(st1));
+        set(layer[calc(target + '_s_point_arrow_child')].parent,calc(target + '_s_point_arrow'));
+       
+        if(s_html,
+            trace(get(s_html));
+            trace(faig això);
+            set(layer[calc(target + '_s_point_arrow_child')].html,get(s_html));
+        );
+    );
+if (layerx GT (0 - style[s_point_arrow].oy) AND layerx LT (stagewidth + style[s_point_arrow].oy),
+
+
+
+
+    set(layer[calc(target + '_s_point_arrow')], 
+        y=get(layery)
+        ,
+        x=get(layerx)
+        ,
+    );
+
+
+    calc(phi_1,view.vlookat * ( Math.PI / 180 ) ); 					
+    calc(phi_2, hotspot[get(target)].atv * ( Math.PI / 180 ));		
+    calc(delta_lambda, (hotspot[get(target)].ath - view.hlookat) * ( Math.PI / 180 ));
+    Math.cos(cos1,get(phi_1));  
+    Math.sin(sin,get(phi_2));
+    Math.sin(sin2,get(phi_1));
+    Math.cos(cos2,get(phi_2));
+    Math.cos(cos3,get(delta_lambda));
+    Math.sin(sin3,get(delta_lambda));
+    calc(x, cos1 * sin - sin2 * cos2 * cos3 );  								
+    calc(y, sin3 * cos2); 
+    Math.atan2(theta,y, x);													
+    calc(bearing, -1 * theta * (180/Math.PI) + 180);  						
+    if(bearing,
+        set(layer[calc(target + '_s_point_arrow')].rotate, get(bearing));
+    );
+
+
+
+    if (layer[calc(target + '_s_point_arrow')].rotate GT 90 AND layer[calc(target + '_s_point_arrow')].rotate LT 270 ,
+
+        set(layer[calc(target + '_s_point_arrow_child')]
+            ,
+            edge="bottom"
+            ,
+            rotate="180"
+            ,
+            oy=calc(layer[calc(target + '_s_point_arrow_child')].oyfinal)
+            ,
+        );
+    ,
+
+        set(layer[calc(target + '_s_point_arrow_child')]
+            ,
+            edge="top"
+            ,
+            rotate="0"
+            ,
+            oy=get(layer[calc(target + '_s_point_arrow_child')].oyinitial)
+            ,
+            html=get(s_html)
+        );
+
+    );
+
+,
+tween(layer[calc(target + '_s_point_arrow')].alpha,0,0.1,,removelayer(calc(target + '_s_point_arrow'),true););
+);
+delayedcall(0.0,
+s_arrow_pointer(get(target),get(s_html),get(styles));
+);
+
+</action>
+
+</krpano>

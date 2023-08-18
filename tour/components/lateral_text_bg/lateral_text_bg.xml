@@ -1,0 +1,75 @@
+
+<krpano>
+  
+<mlwidth
+value="285"
+start="0"
+/>
+
+<style name="lateral_text_bg"
+type="text"
+bg="true"
+bgcolor="0x000000"
+bgalpha="0.5"
+align="topleft"
+height="100%"
+width="calc: mlwidth.value + 'px'"
+x="get:mlwidth.start"
+zorder="1"
+capture="false"
+    
+/>
+
+
+<style name="lateral_text_bg_close"
+url="%FIRSTXML%/../assets/img/lateral_menu_close.png"
+align="topright"
+edge="center"
+
+x="25"
+y="35"  
+onhover="tween(rotate,90,0.2);"  
+onout="tween(rotate,0,0.2);"  
+onclick="close_lateral_text_bg_action"
+/>
+
+<style name="lateral_text_bg_open"
+    url="%FIRSTXML%/../assets/img/lateral_menu_open.png"
+    align="left"
+    edge="center"
+    x="45"
+    crop="0|0|40|40"
+    onovercrop="40|0|40|40"
+    onclick="open_lateral_text_bg_action"
+    alpha="0"
+    capture="false"
+
+/>
+
+
+<action name="close_lateral_text_bg_action">
+jscall('hidePanoText()');
+tween(layer[lateral_text_bg].x,(mlwidth.value * -1),0.3); 
+tween(layer[lateral_text_bg_open].alpha,1,0.3);
+</action>
+<action name="open_lateral_text_bg_action">
+jscall('showPanoText()');
+tween(layer[lateral_text_bg].x,0,0.3); 
+tween(layer[lateral_text_bg_open].alpha,0,0.3);
+</action>
+
+
+  
+  <layer name="lateral_text_bg" keep="true" style="lateral_text_bg">
+
+    
+    <layer name="lateral_text_bg_close" keep="true" style="lateral_text_bg_close"/>
+    
+
+  </layer>
+  
+  <layer name="lateral_text_bg_open" keep="true" style="lateral_text_bg_open"/>
+  
+  
+</krpano>
+

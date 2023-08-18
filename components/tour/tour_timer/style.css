@@ -1,0 +1,24 @@
+  #tourUiPlaceTime {
+      position: absolute;
+      top: 73px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 35px;
+      background-color: white;
+      border-radius: 30px;
+      color: #f5005d;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      font-family: 'bw_medium';
+      -webkit-box-shadow: -2px 6px 16px -1px rgba(0, 0, 0, 0.39);
+      -moz-box-shadow: -2px 6px 16px -1px rgba(0, 0, 0, 0.39);
+      box-shadow: -2px 2px 8px -1px rgba(0, 0, 0, 0.39);
+  }
+  .timerNumber{
+ 
+    width:12px;
+    text-align: center;
+  }

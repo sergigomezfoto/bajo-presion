@@ -1,0 +1,27 @@
+<krpano>
+	
+	
+      <action name="passcheck" scope="local" protect="true" >  
+            if(!passkey31760,
+             , 
+             scope(global,correctpass08027()); 
+             ); 
+      </action>    
+     
+      <action name="passinput" scope="local" protect="true" >
+            callwhen(passkey31760, scope(global,correctpass08027());); 
+
+            if(caller.text == pass.word
+            	, 
+                        set(global.var933514608,'f0040');
+      		      set(global.passkey31760, true);
+      		       , 
+      		      set(layer[passtitle].html, 'data:wrong_password');
+      		      set(layer[passinput].text, );
+            );         
+      </action>
+      
+
+
+	
+</krpano>

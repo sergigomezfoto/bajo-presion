@@ -1,0 +1,40 @@
+<krpano>
+
+    <style name="s_autotour_ui_player_background"
+    parent="STAGE"
+    oy="-30"
+    ox="-160"
+    type="container"
+    width="80"
+    height="60"
+    bg="true"
+    bgcolor="0x004400"
+    bgalpha="1"
+    alpha="1"
+    align="top" 
+    zorder="1000000000001" 
+    />
+
+        <style name="s_autotour_ui_play_pause_recorded_autotour"
+        type="text"
+        html="play"  
+        align="top" 
+        bgcolor="0x589992" 
+        alpha="1" 
+        oy="25"  
+        onclick="s_play_pause_autotour();"  
+        s_autotour_excluded="true"
+        />
+        <style name="s_autotour_ui_stop_recorded_autotour"
+        type="text"
+        html="stop"  
+        align="top" 
+        bgcolor="0x588892" 
+        alpha="1" 
+        oy="50"  
+        onclick="s_stop_autotour();"  
+        s_autotour_excluded="true"
+        />
+       
+
+</krpano>

@@ -1,0 +1,475 @@
+<krpano>
+	
+<include url="config/s_blockall.xml" />		
+<include url="config/s_changepointer.xml" />	
+<include url="config/s_steps.xml" />	
+	<!-- TODO CINEMATIC EFFECT -->
+	 
+//////////////////////////////////////BLOCKALL///////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////BLOCKALL///////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////BLOCKALL///////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////BLOCKALL///////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////BLOCKALL///////////////////////////////////////////////////////////////////////
+
+<!-- sf_blockall(true|false,*zorder of the blocking layer); no mouse no buttons no nothing but cursor custom:
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
+  -->
+<action name="s_blockall" args="bool,s_cursor" scope="local">
+
+if (s_cursor == null
+ 	,   
+ 	    set(layer[s_invisible-bloking-layer].handcursor,'false');
+ 		set(layer[s_invisible-bloking-layer].cursor,'default');
+	,
+		if (bool
+			,
+			set(layer[s_invisible-bloking-layer].handcursor,'true');
+			set(layer[s_invisible-bloking-layer].cursor,get(s_cursor));
+			,
+			set(layer[s_invisible-bloking-layer].handcursor,'false');
+			set(layer[s_invisible-bloking-layer].cursor,'default');
+		);
+); 
+
+if (bool
+	,
+	set(layer[s_invisible-bloking-layer].alpha,1);
+	set(control.usercontrol,"off");
+	,
+	set(control.usercontrol,"all");
+    set(layer[s_invisible-bloking-layer].alpha,0);
+);
+</action>
+ 
+
+///////////////////////////////////////////////CHANGEPOINTER//////////////////////////////////////////////////////////
+///////////////////////////////////////////////CHANGEPOINTER//////////////////////////////////////////////////////////
+///////////////////////////////////////////////CHANGEPOINTER//////////////////////////////////////////////////////////
+///////////////////////////////////////////////CHANGEPOINTER//////////////////////////////////////////////////////////
+///////////////////////////////////////////////CHANGEPOINTER//////////////////////////////////////////////////////////
+
+<!-- s-changepointer('cursor-key layer') ||reset-> s-changepointer('cursor-key',off)  -->
+<!-- onover="s-changepointer('cursor-key')" onout="s-changepointer('cursor-key',off)" -->
+
+  <action name="s_changepointer" args="picture,second" scope="local">
+
+ if (second === null
+ ,
+
+			//set(layer[calc(picture)].alpha,1);
+			set(global.s_var_changepointer,get(cursors.standard));
+			set(cursors.standard,'none'); 
+            tween(layer[calc(picture)].alpha,1); 
+            			copy(layer[calc(picture)].y, mouse.y);
+						copy(layer[calc(picture)].x, mouse.x); 
+			setinterval(calc(caller.name + picture), 0, 
+						copy(layer[calc(picture)].y, mouse.y);
+						copy(layer[calc(picture)].x, mouse.x);	
+						
+
+				);
+,
+			set(layer[calc(picture)].alpha,0);
+			set(cursors.standard,get(global.s_var_changepointer));	
+			clearinterval(calc(caller.name + picture));
+
+
+			
+);		
+  </action>
+
+  <action name="s_changepointer_key_press" args="picture,second" scope="local">
+
+ if (second === null
+ ,
+
+			set(layer[calc(picture)].alpha,1);
+			set(cursors.standard,'none'); 
+            tween(layer[calc(picture)].alpha,1); 
+             
+			setinterval(calc(caller.name + picture), 0, 
+						copy(layer[calc(picture)].y, mouse.y);
+						copy(layer[calc(picture)].x, mouse.x);	
+						
+
+				);
+,
+			set(layer[calc(picture)].alpha,0);
+			set(cursors.standard,'default');	
+			clearinterval(calc(caller.name + picture));
+
+
+			
+);		
+  </action>
+
+  								
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////STEPS//////////////////////////////////////////////////////////////////
+
+
+//FONT
+<!-- <walk
+stepspairs="4"
+intensitybounce="3"
+intensityup="2"
+duration="0.45"
+factorreprise="1"
+tweentipes="easeinoutsine"
+reprise="false"
+onend=""
+/> -->
+
+<!-- TODO 
+
+MODE DESPERTADOR ES MOU CAP ADALT!!!!
+
+PULIR EFECTE?!
+
+
+
+-->
+<action name="s_steps" args="font" scope="local">
+copy(oldfov,view.fov);
+set(sfovtype,easeinoutsine);
+set(view.camroll,0.0);
+set(counter,0);
+
+if (calc(font + '.onendtime') != 0,
+	copy(endaction,false);
+	delayedcall(calc(calc(font + '.onendtime')), s_steps_onendaction(calc(font)));
+	,
+	copy(endaction,true);
+);
+
+	<!-- PASSES -->
+
+	 
+delayedcall(calc(calc(font + '.eachstepduration') )
+		,
+		//fov
+	  tween(view.fov,calc(view.fov - calc(font + '.fovinc')),calc(calc(font + '.eachstepduration') + calc(calc(font + '.eachstepduration')) / 2),get(sfovtype));
+);
+
+if (calc(font + '.wantcamroll')
+		,
+		//camroll
+		tween(view.camroll,calc(calc(font + '.intensitybounce') * 1),calc(calc(font + '.eachstepduration' )),calc(calc(font + '.tweentypes')),
+			set(view.camroll,calc(calc(font + '.intensitybounce') * 1));
+			tween(view.camroll,calc(calc(font + '.intensitybounce') * -1),calc(calc(font + '.eachstepduration') ),calc(calc(font + '.tweentypes')),
+				set(view.camroll,calc(calc(font + '.intensitybounce') * -1));
+			)	
+		);
+);
+if (calc(font + '.wanttilt')
+		,
+		//tilt
+		tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') * -1)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+			tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') * 1)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+			) 
+		);
+);
+
+///////////////////////////////////////////interval///////////////////////////////////////   
+<!-- 
+setinterval(calc(font), calc(calc(font + '.eachstepduration') * calc(calc(font + '.eachstepduration') GT 0.1? 2 : 3)), 
+	trace(calc(calc(font + '.eachstepduration') GT 0.1? 2 : 3));
+ -->
+setinterval(calc(font), calc(calc(font + '.eachstepduration') * calc(calc(font + '.eachstepduration') GT 0.1? 2 : 2.6)), 
+		//trace('interval-----------------------------------------');
+		inc(counter); 
+
+		//s_steps_finalcounterr(get(counter),calc(font));
+if (calc(font + '.wantcamroll')
+		,
+		//camroll
+		tween(view.camroll,calc(calc(font + '.intensitybounce') * 1),calc(calc(font + '.eachstepduration' )),calc(calc(font + '.tweentypes')),
+			set(view.camroll,calc(calc(font + '.intensitybounce') * 1));
+			tween(view.camroll,calc(calc(font + '.intensitybounce') * -1),calc(calc(font + '.eachstepduration') ),calc(calc(font + '.tweentypes')),
+				set(view.camroll,calc(calc(font + '.intensitybounce') * -1));
+			)	
+		);
+);
+if (calc(font + '.wanttilt')
+		,
+		//tilt
+		tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') * -1)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+
+			tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') * 1)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+
+			); 
+		);
+	);
+	
+//fov
+	tween(view.fov,calc(view.fov - calc(font + '.fovinc')),calc(calc(font + '.eachstepduration') + calc(calc(font + '.eachstepduration')) / 15),get(sfovtype),
+			tween(view.fov,calc(view.fov - calc(font + '.fovinc')),calc(calc(font + '.eachstepduration') + calc(calc(font + '.eachstepduration')) / 15),get(sfovtype),
+			) 
+		);
+if (counter GE calc(font + '.stepspairs'),
+	if (calc(font + '.fovinc')
+		,
+			stoptween(view.fov);
+			tween(view.fov,calc(view.fov - calc(font + '.fovinc') / 2),calc(calc(font + '.eachstepduration')),get(sfovtype),
+						delayedcall(calc(calc(font + '.fovdelayreturn')),
+								tween(view.fov,get(oldfov),calc(calc(font + '.fovreturntweentime')),easeoutquad);
+						);
+				);
+		);
+    clearinterval(calc(font));
+	s_steps_finalcounterr(get(counter),calc(font),get(endaction));
+);
+
+if (calc( font + '.clear'),
+
+		calc(counter, calc(font + '.stepspairs') );
+		if (calc(font + '.fovinc')
+		,
+			stoptween(view.fov);
+			tween(view.fov,calc(view.fov - calc(font + '.fovinc') / 2),calc(calc(font + '.eachstepduration')),get(sfovtype),
+						delayedcall(calc(calc(font + '.fovdelayreturn')),
+								tween(view.fov,get(oldfov),calc(calc(font + '.fovreturntweentime')),easeoutquad);
+						);
+				);
+		);
+		s_steps_finalcounterr(get(counter),calc(font),get(endaction),true);
+		clearinterval(calc(font));
+	    calc(calc( font + '.clear'),false);
+
+	);
+
+
+);
+	
+
+
+</action>
+
+<action name="s_steps_finalcounterr" args="counter,font,endaction,cutted" scope="local" >
+
+if (cutted,
+copy(endaction,false);
+);
+
+
+		if (calc(font + '.reprise')
+			,
+			delayedcall(calc(calc((font + '.eachstepduration')*2)),
+					//trace('hi ha reprise');
+					clearinterval(calc(font));
+						if (calc(font + '.wantcamroll') == true AND calc(font + '.wanttilt') == true
+						,
+							s_steps_camrollreprise(calc(font),calc(endaction));
+							s_steps_vlookatreprise(calc(font),false);
+							trace('cam roll i tilt');
+						,
+							if (calc(font + '.wantcamroll') == true 
+							,
+							trace('nomes cam roll');
+							//camroll - reprise
+								s_steps_camrollreprise(calc(font),calc(endaction));
+							);
+							if (calc(font + '.wantcamroll') == false
+							,
+							//tilt - reprise
+							trace('nomes tilt');
+								s_steps_vlookatreprise(calc(font),calc(endaction));
+							);
+						);
+						
+			);
+			,
+
+			delayedcall(calc(calc((font + '.eachstepduration') *2)),
+						//trace('NO hi ha reprise');
+						clearinterval(calc(font));
+						//delayedcall(calc(font + '.eachstepduration'),s_steps_onendaction(calc(font)));
+
+						if (calc(font + '.wantcamroll')
+						,
+								//camroll
+								tween(view.camroll,-0,calc(calc(calc(font + '.eachstepduration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentypes')),
+									set(view.camroll,0);
+									);
+						);
+						if (calc(font + '.wanttilt')
+						,
+								//tilt
+								tween(view.vlookat,0,calc(calc(calc(font + '.eachstepduration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentypes')),
+								set(view.vlookat,0));	
+						);
+
+						if (endaction,
+								scope(global,calc(calc(font + '.onend')));
+							);
+
+
+
+			);
+		);	
+
+</action>
+
+//camroll - reprise
+<action name="s_steps_camrollreprise"  args="font,endaction" scope="local">
+//s_steps_onendaction(calc(font));
+	tween(view.camroll,calc(calc(font + '.intensitybounce') / 3),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+		tween(view.camroll,calc(calc(font + '.intensitybounce') / -3),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+			tween(view.camroll,calc(calc(font + '.intensitybounce') / 6),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+				tween(view.camroll,-0,calc(calc(calc(font + '.eachstepduration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentypes')),
+					set(view.camroll,0);//s_steps_onendaction(calc(font))
+
+					if (endaction,
+								scope(global,calc(calc(font + '.onend')));
+							);
+				)
+			)
+		) 
+	);		
+
+</action>
+
+//tilt - reprise
+<action name="s_steps_vlookatreprise"  args="font,endaction" scope="local">
+//calc(view.vlookat + (calc(font + '.intensityup') * -1)),
+	tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') / -2)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+		tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') / 2)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+			tween(view.vlookat,calc(view.vlookat + (calc(font + '.intensityup') / -4)),calc(calc(font + '.eachstepduration')),calc(calc(font + '.tweentypes')),
+				   if (endaction,
+						scope(global,calc(calc(font + '.onend')));
+					);
+			)
+		)	
+	);	
+
+</action>
+
+//fov - reprise
+<action name="s_steps_fovreprise"  args="font" scope="local">
+<!-- trace('estic aquiiiiiiiii');
+tween(view.fov,calc(view.fov - calc(font + '.fovinc')),calc(calc(font + '.eachstepduration') / 2),get(sfovtype)); -->
+</action>
+
+<action name="s_steps_onendaction" args="font" scope="local">
+
+	scope(global, calc(calc(font + '.onend')));
+
+</action>
+
+
+///////////////////////////////////////////////////// UI YES ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI YES ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI YES ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI YES ////////////////////////////////////////////////////////////////////
+
+<action name="s_ui_yes" scope="local" args="intensity,timeeach,tweentype,finalaction">
+
+if (!tweentype,
+	set(tweentype,'easeinoutsine' );
+);
+
+if (!timeeach,
+	set(timeeach,0.25);
+);
+
+if (!intensity,
+	set(intensity,3);
+);
+
+
+copy(initialvlookat, calc(number(roundval(view.vlookat))); );
+trace(initialvlookat);
+trace(calc(initialvlookat - (intensity /2) ));
+
+tween(view.vlookat,calc(initialvlookat - (intensity/2 )) ,calc(timeeach/2),calc(tweentype),
+
+		tween(view.vlookat, calc(initialvlookat + intensity) ,calc(timeeach),calc(tweentype),
+
+				tween(view.vlookat, calc(initialvlookat - intensity) ,calc(timeeach/1.5),calc(tweentype),
+
+					tween(view.vlookat, calc(initialvlookat + intensity),calc(timeeach/1),calc(tweentype),
+
+							tween(view.vlookat, calc(initialvlookat - (intensity * 0.9 )),calc(timeeach/1),calc(tweentype),
+															
+									tween(view.vlookat, calc(initialvlookat),calc(timeeach),easeoutback,
+
+												if(finalaction,scope(global, calc(finalaction)));
+						 
+										 );								
+								 )
+						  )
+					)
+			)
+	);
+
+	
+</action>
+
+///////////////////////////////////////////////////// UI NO ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI NO ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI NO ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// UI NO ////////////////////////////////////////////////////////////////////
+
+								
+<action name="s_ui_no" scope="local" args="intensity,timeeach,tweentype,finalaction">
+
+
+if (!tweentype,
+	set(tweentype,'' );
+);
+
+if (!timeeach,
+	set(timeeach,0.25);
+);
+
+if (!intensity,
+	set(intensity,3);
+);
+
+
+copy(initialhlookat, view.hlookat );
+
+tween(view.hlookat,calc(initialhlookat - intensity ) ,calc(timeeach),calc(tweentype),
+
+		tween(view.hlookat, calc(initialhlookat + intensity) ,calc(timeeach),calc(tweentype),
+
+				tween(view.hlookat, calc(initialhlookat - intensity) ,calc(timeeach),calc(tweentype),
+
+					tween(view.hlookat, calc(initialhlookat + intensity),calc(timeeach/1.3),calc(tweentype),
+
+							tween(view.hlookat, calc(initialhlookat - (intensity * 0.6 )),calc(timeeach/1.2),calc(tweentype),
+
+								tween(view.hlookat, calc(initialhlookat),calc(timeeach),easeoutback,
+
+										if(finalaction,scope(global, calc(finalaction)));
+									 );
+								 )
+						  )
+					)
+			)
+	);
+
+	
+</action>
+
+///////////////////////////////////////////////////// ACTION AND MOVE ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// ACTION AND MOVE ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// ACTION AND MOVE ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// ACTION AND MOVE ////////////////////////////////////////////////////////////////////
+
+<action name="s_action_and_move" scope="local" args="a,h,v,f,t">
+
+		if (a,
+				scope(global,calc(a));
+		); 
+
+	lookto(get(h),get(v),get(f),tween(easeoutquad,get(t))); 
+
+</action>
+
+</krpano>

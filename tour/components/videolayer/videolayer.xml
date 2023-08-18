@@ -1,0 +1,55 @@
+
+<krpano>
+  
+
+<style name="minivideo"
+    url="%FIRSTXML%/plugins/videoplayer.js"
+    videourl="%FIRSTXML%/../assets/video/video_etna.mp4"
+    posterurl="videoposter.jpg"
+    align="bottomleft" x="40" y="40"
+    alpha="0"
+    pausedonstart="false"
+    loop="true"
+    volume="0"
+    muted="true"
+    autoresume="true"
+    onvideoready="tween(alpha,1,0.5)"
+    onvideoplay=""
+    onvideopaused=""
+    onvideocomplete=""
+    onerror="tween(alpha,0,0.5)" 
+    width="100"
+    height="prop"
+    onclick="minivideo-onclick"
+    capture="false"
+    zorder="2"
+/>
+
+
+<action name="minivideo-onclick" scope="local">
+
+jscall('displayRandomPlayer()');
+disable_minivideo();
+tween(caller.width,200,,,jscall('randomPlay()'));   
+
+</action>
+
+
+<action name="minivideo_return">
+tween(layer[minivideo].width,100,,,enable_minivideo(););      
+</action>
+
+<action name="disable_minivideo">
+layer[minivideo].enabled = false;    
+</action>
+<action name="enable_minivideo">
+layer[minivideo].enabled = true;    
+</action>
+
+
+<layer name="minivideo" keep="true" style="minivideo"/>
+  
+  
+  
+</krpano>
+

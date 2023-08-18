@@ -1,0 +1,206 @@
+<krpano>
+  
+<include url="styles/styles.xml" />
+
+ 
+<action name="s_construct_text" scope="local" args="content,parentlayer,customstyles,verticalpadding,scroll">
+
+    if (parentlayer == 's_popup',
+        set(parentlayer,'s_popup_main');     
+    );
+    if (!verticalpadding,
+      set(verticalpadding,60);
+    );
+
+    if (customstyles,
+      txtsplit(customstyles,'|',arr_styles);
+    );
+
+///////////DEPENDENCIA
+    s_uniqueid();
+///////////FI DEPENDENCIA
+    asyncloop(!s_uniqueid_var,,
+    //styles
+        //bg
+        txtadd(bglayer_style,calc(arr_styles[0].value AND arr_styles[0].value !== 'off' ? arr_styles[0].value : 's_p_text_bg'));
+        //scrollarea
+        txtadd(scrollarea_style,calc(arr_styles[1].value AND arr_styles[1].value !== 'off' ? arr_styles[1].value : 's_p_text_bg_scrollarea'));
+        //content
+        txtadd(contentlayer_style,calc(arr_styles[2].value AND arr_styles[2].value !== 'off' ? arr_styles[2].value : 's_p_text_bg_scrollarea_content'));  
+    //layer names
+        //bg
+        calc(bglayer_element,'s_p_text_bg' + s_uniqueid_var);
+        //scrollarea
+        calc(scrollarea_element,'s_p_text_bg_scrollarea' + s_uniqueid_var);
+        //content
+        calc(contentlayer_element,'s_p_text_bg_scrollarea_content' + s_uniqueid_var);
+    //layer elements
+        //bg
+        addlayer(get(bglayer_element),bglayer); 
+        bglayer.loadstyle(get(bglayer_style));
+        set(bglayer, 
+            parent=get(parentlayer)
+            ,
+            height= calc(layer[get(parentlayer)].height - verticalpadding)
+        );
+                  //content
+                  addlayer(get(contentlayer_element),contentlayer);
+                  contentlayer.loadstyle(get(contentlayer_style));
+                  set(contentlayer,
+                      parent=get(bglayer_element)
+                      ,
+                      html=get(content)
+                      ,
+                      alpha="0"
+                  );
+                  //scrollarea
+                  asyncloop(!layer[get(contentlayer_element)].pixelheight,, 
+                            addlayer(get(scrollarea_element),scrollarea);
+                            //assignacio del parent al content després de tenir el pixelheight
+                            calc(layer[get(contentlayer_element)].parent,scrollarea_element); 
+                            
+                            calc(scrollarearealheight,layer[get(contentlayer_element)].pixelheight - (verticalpadding / 2) );
+                            scrollarea.loadstyle(get(scrollarea_style));
+                            set(scrollarea,
+                                height=get(scrollarearealheight)
+                                ,
+                                parent=get(bglayer_element)
+                                ,
+                                y="0"
+                                ,
+                                onscroll=calc('s_p_text_bg_scrollarea_onscroll_action(' + scrollarea_element + ',' + scrollarearealheight + ')');
+                             
+                            );   
+                            if ( scroll == 'false' OR scrollarearealheight LT layer[get(bglayer_element)].height,
+                                    set(scrollarea,
+                                        draggable="false"
+                                        , 
+                                        mwheel="false"
+                                    );
+                                ,scroll != 'false' AND  scrollarearealheight GT layer[get(bglayer_element)].height,
+                                    ///////////DEPENDENCIA                      
+                                    s_construct_textslider(
+                                        get(scrollarea_element)
+                                        ,
+                                        y
+                                        ,
+                                        calc((layer[get(contentlayer_element)].pixelheight - layer[get(parentlayer)].height + (verticalpadding / 2)) * -1 )
+                                        ,
+                                        0
+                                        ,
+                                        0
+                                        ,
+                                        get(layer[get(parentlayer)].height)
+                                        ,
+                                        get(parentlayer)
+                                    );
+                                    
+                            );
+
+                                delayedcall(0.0,tween(layer[get(contentlayer_element)].alpha,1,0.2););
+
+                            
+                            ///////////FI DEPENDENCIA
+                    );
+    );  
+
+</action> 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SLIDERS
+ <action name="s_construct_textslider" scope="local" args="elementtochanche,atributetochange,higgervalue,xpos,ypos,barheight,parentname,salign,sedge">
+//DEFINICIONS
+
+calc(s_construct_textslider_line, elementtochanche + atributetochange + '_l');
+calc(s_construct_textslider_thumb,elementtochanche + atributetochange + '_b');
+calc(settingtochange, 'layer[' + elementtochanche + '].' + atributetochange);
+//LINIA MARE
+addlayer(get(s_construct_textslider_line), line);
+line.loadstyle('s_construct_textslider_line');
+set(line
+	,
+	ox=get(xpos)
+	,
+	oy=get(ypos)
+	,
+	height=calc(barheight - s_construct_textslider_config.linetopdownmargin )
+	,
+	parent=get(parentname)
+	,
+	align=calc(salign ? salign : style[s_construct_textslider_line].align)
+	,
+	edge=calc(sedge ? sedge : style[s_construct_textslider_line].edge)
+);
+//THUMB
+addlayer(get(s_construct_textslider_thumb),thumb);
+thumb.loadstyle('s_construct_textslider_thumb');
+ set(thumb,	
+	doingdragg=calc('s_construct_textslider_helper_setting_changer(' + settingtochange + ',' + higgervalue + ')');
+	,
+	ondown="copy(drag_currenty,y);copy(drag_stagey,mouse.stagey); doingdragg();"
+	//ondown="s_drag(x,preaction,whileaction,postaction,layerwhat)"
+	,
+	parent=get(s_construct_textslider_line)
+	,
+	max_value=calc(higgervalue)
+  ,
+  height=calc(style[s_construct_textslider_thumb].height)
+ );
+//CALCUL DELS STEPS
+calc(steps, higgervalue / (layer[get(s_construct_textslider_line)].height + layer[get(s_construct_textslider_thumb)].height ));
+calc(posicio, calc('layer[' + elementtochanche + '].' + atributetochange ) / steps);
+set(layer[get(s_construct_textslider_thumb)].y,get(posicio));  
+</action>
+
+		<action name="s_construct_textslider_helper_setting_changer" scope="local" args="settingtochange,higgervalue">
+    
+			if(caller.pressed
+			,									
+				 sub(dy, mouse.stagey, drag_stagey); 										     		
+				 add(newy, global.drag_currenty, dy); 
+
+          if(newy LT 0
+          ,
+          calc(newy,0);
+          );	
+          if(newy GT layer[get(caller.parent)].height - caller.height
+          , 
+            calc(newy,global.layer[get(caller.parent)].height - caller.height);
+          );   
+          copy(caller.y,newy);
+          div(vap, newy, calc(layer[get(caller.parent)].height - caller.height));	  
+          calc(val,vap * (caller.max_value));
+				  scope(global,calc('set(' + settingtochange + ',' + val + ');'));	
+				  delayedcall(0,callwith(layer[get(caller.name)],doingdragg()));	
+			,								 
+         trace('leave'); 
+			   scope(global,calc(leaveaction));
+			); 
+			</action>
+
+
+<action name="s_p_text_bg_scrollarea_onscroll_action" scope="local" args="layername,pixelheightscrollarea">
+  calc(thumb_name, layername + 'y_b');
+  calc(steps, (layer[get(thumb_name)].max_value / (layer[calc(layer[get(thumb_name)].parent)].height - layer[get(thumb_name)].height ) * -1) );
+  calc(posicio, (calc('layer[' + layername + '].y') / steps) * -1);
+  set(layer[get(thumb_name)].y,get(posicio));   
+</action>
+
+
+
+
+
+
+</krpano>
+
+
+
+
+
+
+
+
+
+
+
+

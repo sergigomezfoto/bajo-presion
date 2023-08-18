@@ -1,0 +1,79 @@
+
+<krpano>
+
+<include url="config/config.xml" />
+
+<action name="js_s_exp_resolve_first" type="Javascript">
+<![CDATA[
+
+
+]]>		
+</action>
+	
+<action name="next_s_expire"  >
+	
+
+	s_expire(%1);
+
+	if (!isset(s_expirated2708)
+		,
+			setinterval(s_exp080,get(s_expiration_check.seconds)
+				, 
+					s_expire(%1);
+					if (isset(s_expirated2708)
+						,
+						clearinterval(s_exp080);
+					);
+			);
+		);
+	
+</action>
+
+<action name="s_expire" type="Javascript" >
+
+<![CDATA[
+
+function toTimestamp(strDate){
+ var datum = Date.parse(strDate);
+ return datum;
+}
+
+if (!Date.now) {
+    Date.now = function now() {
+      return new Date().getTime();
+    };
+  }
+krpano.set('s_current_time',Date.now());
+krpano.set('s_expiration_time',toTimestamp(args[1]));
+
+//console.log('DINTRE JS');
+//console.log('------------------');
+//krpano.call('trace("e time:")');
+//krpano.call('trace(calc(s_expiration_time))');
+//krpano.call('trace("c time:")');
+//krpano.call('trace(calc(s_current_time))');
+
+krpano.call('s_expiration_resolve(get(s_expiration_time),get(s_current_time),s_expiration_action());');
+
+
+]]>	
+	
+</action>
+
+<action name="s_expiration_resolve" scope="local" args="expiration_time,current_time,s_expiration_action">
+
+//trace(calc(expiration_time));
+//trace(calc(current_time));
+if (current_time GE expiration_time,
+	scope(global,calc(s_expiration_action));
+	set(global.s_expirated2708,true); 
+	,
+	if (!isset(s_okaftercheck)
+			,	
+			s_expiration_aftercheck_ok_action();
+			set(global.s_okaftercheck,true);
+		);
+	);	
+</action>
+
+</krpano>

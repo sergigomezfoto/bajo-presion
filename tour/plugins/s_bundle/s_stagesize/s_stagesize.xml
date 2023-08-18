@@ -1,0 +1,70 @@
+﻿<krpano>
+
+<!-- 
+ onresize="resize" 
+    />
+
+<action name="resize">
+if (device.desktop,
+     s_stagewidth_bigger(1023
+        , 
+            trace('pantalla més gran que 1023');
+        , 
+             trace('pantalla més petita que 1023');
+     );
+     ,device.handheld,
+      s_stagewidth_bigger(450
+        ,
+            //trace('pantalla més gran 450');
+            set(layer[logo].scale,1 );
+            set(layer[logo].x,20 );
+        ,
+           // trace('pantalla més petita 450');
+            set(layer[logo].scale,0.75 );
+            set(layer[logo].x,10 ); 
+            s_stagewidth_smaller(395
+                ,
+                    //trace('pantalla més petita 395');
+                    set(layer[logo].scale,0.50); 
+                    s_stagewidth_smaller(350
+                        ,
+                        // trace('pantalla més petita de 350');
+                            set(layer[logo].alpha,0);
+                        ,
+                        // trace('pantalla més gran de 350');    
+                            set(layer[logo].alpha,1);
+                        );
+                ,
+                   // trace('pantalla més gran de 395');
+                    set(layer[logo].scale,0.75);
+                );
+      );   
+);
+    
+</action> -->
+
+    <action name="s_stagewidth_bigger" scope="local" args="biggerthan,actions,elseactions">
+
+        if (stagewidth GT calc(biggerthan)
+        ,
+      scope(global,calc(actions));
+       
+        ,
+      scope(global,calc(elseactions));
+        );
+    
+    </action>
+
+     <action name="s_stagewidth_smaller" scope="local" args="smallerthan,actions,elseactions">
+
+        if (stagewidth LT calc(smallerthan)
+        ,
+      scope(global,calc(actions));
+       
+        ,
+      scope(global,calc(elseactions));
+        );
+    
+    </action>
+    
+</krpano>

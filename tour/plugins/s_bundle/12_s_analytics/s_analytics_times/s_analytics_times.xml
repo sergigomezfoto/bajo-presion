@@ -1,0 +1,123 @@
+<krpano >
+
+// TODO INCTIVE TEMP ES DISPARA EN ALGUN MOMENT I DONA VOLORS ERRONIS CREC COMPROVAR
+
+<s_analytics_times_config
+inactive_seconds_flag="3"
+interval_delay_write_times="0.1"
+
+/>
+
+
+
+<action autorun="onstart">
+//s_datenow(,ca,initdate);
+  s_current_timestamp(init);
+
+  s_setinterval_write_running_away_times();
+  s_detect_inactivity(get(s_analytics_times_config.inactive_seconds_flag),s_popup_open|s_mouse_out); //THIS FUNCTION GENERATE: s_useractive = boolean
+  s_detect_mouse_out();
+  actions_active_inactive();
+</action>
+  
+    
+    //BUCLE CALL OF ACTION
+    <action name="s_setinterval_write_running_away_times">
+
+        setinterval(s_setinterval_write_running_away_times,get(s_analytics_times_config.interval_delay_write_times),     
+              s_manual_write_running_away_times();
+        );
+
+    </action>
+
+    //MANUAL CALL OF ACTION
+    <action name="s_manual_write_running_away_times">
+              //running
+              s_get_running_time(); 
+              s_write_running_time();
+              //away
+              s_get_away_time(); 
+              s_write_away_time();
+              //inactive
+              s_write_inactive_time();
+              
+    </action>
+ 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//RUNNING TIME
+                // GET THE  RUNNING TIME
+                <action name="s_get_running_time">       
+                    //DEPENDENCY: TIME/S_CURRENT_TIMESTAMP
+                    s_current_timestamp(now);               
+                    calc(current_elapsed_time_in_ms,s_current_timestampnow - s_current_timestampinit );
+                    //DEPENDENCY: TIME/S_REDABLE_MILLIS_IN_HMSMS
+                    s_redeable_milli_in_hmsms(get(current_elapsed_time_in_ms),totalruning);   
+                </action>
+
+                //WRITE IN JS EXISTING OBJECT (running time)
+                <action name="s_write_running_time" type="Javascript" >                    
+                  <![CDATA[
+                    s_analytics.times.running = krpano.get('current_elapsed_time_in_ms');
+                    s_analytics.times.running_readable = krpano.get('s_elapsed_timetotalruning');
+                  ]]>  
+                </action>
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//AWAY TIME
+
+<s_events name="s_events_away_times" onwindowvisible="" onwindowinvisible=""/> 
+                // GET TOTAL AWAY TIME (action called in s_events name="s_events_away_times", s_noview_elapsed_total default variable of the s_events )
+                <action name="s_get_away_time">      
+                  s_redeable_milli_in_hmsms(get(s_noview_elapsed_total),away);
+                </action>
+                //WRITE IN JS EXISTING OBJECT (away time)
+                <action name="s_write_away_time" type="Javascript" >             
+                  <![CDATA[
+                    s_analytics.times.away = krpano.get('s_noview_elapsed_total');
+                    s_analytics.times.away_readable = krpano.get('s_elapsed_timeaway');
+                  ]]>  
+                </action>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//INACTIVE TIME
+ 
+ <action name="vars_init__active_inactive" autorun="onstart">
+ 
+def(s_inactivity_totaltime,number,0);
+ s_redeable_milli_in_hmsms(get(s_inactivity_totaltime),inactive);
+   
+ 
+ </action>
+<action name="actions_active_inactive"> // contains the equivalent to s_get_inactive_time
+  //INACTIVE
+  s_callwhen(s_active,!s_useractive,
+            s_current_timestamp(initialize_inactivity);
+  ,true);
+  //RETURN TO ACTIVE
+  s_callwhen(s_inactive,s_useractive,
+              if(notatbegining_11222233,
+                    s_current_timestamp(return_to_activity);
+                    calc(s_inactivity_period,(s_current_timestampreturn_to_activity - s_current_timestampinitialize_inactivity) + (s_analytics_times_config.inactive_seconds_flag * 1000) ); 
+                    if (!s_inactivity_totaltime,
+                    def(s_inactivity_totaltime,number,0);
+                    );
+                    inc(s_inactivity_totaltime,get(s_inactivity_period));
+                    s_redeable_milli_in_hmsms(get(s_inactivity_totaltime),inactive);
+                  
+              );
+              set(notatbegining_11222233,true);
+  ,true);
+</action>
+
+
+                //WRITE IN JS EXISTING OBJECT (inactive time)
+                <action name="s_write_inactive_time" type="Javascript" >             
+                  <![CDATA[
+                    s_analytics.times.inactive = krpano.get('s_inactivity_totaltime');
+                    s_analytics.times.inactive_readable = krpano.get('s_elapsed_timeinactive');
+                  ]]>  
+                </action>
+
+</krpano>

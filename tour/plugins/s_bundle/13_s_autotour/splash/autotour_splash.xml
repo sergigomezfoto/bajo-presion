@@ -1,0 +1,7 @@
+<krpano>
+<include url="styles/styles.xml" />
+//NECESSARY TO ACTIVATE SOUND AFTER USER GESTURE
+
+    <layer name="s_autotour_splash" keep="true" style="s_autotour_splash" onclick="s_autotour_player_setup_sound(); removelayer(get(name));"/>
+
+</krpano>

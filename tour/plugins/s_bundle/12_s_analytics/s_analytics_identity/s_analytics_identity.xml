@@ -1,0 +1,103 @@
+<krpano>
+
+    //TODO S_ANALYTICS_IP_LOCATION
+    <action name="s_analytics_identity" autorun="onstart">
+
+        s_analytics_ip_location();
+        s_analytics_device_info();
+    </action>
+    <action name="s_analytics_ip_location" type="javascript">
+    <![CDATA[
+    fetch('http://www.geoplugin.net/json.gp')
+    .then( res => res.json())
+    .then(response => {
+        
+        // console.log(response.geoplugin_request);
+        // console.log(response.geoplugin_continentName);
+        // console.log(response.geoplugin_continentCode);
+        // console.log(response.geoplugin_countryName);
+        // console.log(response.geoplugin_countryCode);
+        // console.log(response.geoplugin_region);
+        // console.log(response.geoplugin_regionName);
+        // console.log(response.geoplugin_city);
+
+        s_analytics.identity.ip = response.geoplugin_request;
+        s_analytics.identity.location.continent = response.geoplugin_continentName;
+        s_analytics.identity.location.continent_code = response.geoplugin_continentCode;
+        s_analytics.identity.location.country = response.geoplugin_countryName;
+        s_analytics.identity.location.country_code = response.geoplugin_countryCode;
+        s_analytics.identity.location.region = response.geoplugin_region;
+        s_analytics.identity.location.region_name = response.geoplugin_regionName;
+        s_analytics.identity.location.city = response.geoplugin_city;
+
+    })
+    .catch((data, status) => {
+        console.log('Request failed');
+    })
+    ]]>     
+    
+    </action>
+    <action name="s_analytics_device_info">
+        def(s_analytics_device,string,'unknown');
+        def(s_analytics_sistem,string,'unknown');
+        def(s_analytics_browser,string,'unknown');
+        def(s_analytics_iframe_viewing,boolean,false);
+        def(s_analytics_fullscreensupport,boolean,false);
+
+        //check desktop mobile o tablet
+       if ( device.desktop OR device.iosdesktop,
+            set(s_analytics_device,'desktop');
+            ,device.tablet,
+            set(s_analytics_device,'tablet');
+            ,device.mobile,
+            set(s_analytics_device,'mobile');
+       );
+       jscall(s_analytics.identity.device = krpano.get('s_analytics_device'););
+        //check sistem
+       if(   device.windows,
+                set(s_analytics_sistem,'Windows');
+            ,device.mac,
+                set(s_analytics_sistem,'Mac OSX');
+            ,device.linux,
+                set(s_analytics_sistem,'Linux');
+            ,device.ios,
+                set(s_analytics_sistem,'ios');
+            ,device.android,
+                set(s_analytics_sistem,'Android');
+
+        );
+       jscall(s_analytics.identity.opsistem = krpano.get('s_analytics_sistem'););
+        //check browser
+       if(   device.mobilevr,
+            set(s_analytics_browser,'VR browser');
+            ,device.androidstock,
+            set(s_analytics_browser,'Androidstock');
+            ,device.chrome,
+            set(s_analytics_browser,'Chrome');
+            ,device.chromemobile,
+            set(s_analytics_browser,'Chromemobile');
+            ,device.firefox,
+            set(s_analytics_browser,'Firefox');
+            ,device.ie,
+            set(s_analytics_browser,'Internet Explorer');
+            ,device.edge,
+            set(s_analytics_browser,'Edge');
+            ,device.newedge,
+            set(s_analytics_browser,'New edge');
+            ,device.safari,
+            set(s_analytics_browser,'Safari');
+            ,device.opera,
+            set(s_analytics_browser,'Opera');
+
+        );
+       jscall(s_analytics.identity.browser = krpano.get('s_analytics_browser'););
+        //check iframeviewing
+        if(device.iframe, set(s_analytics_iframe_viewing,true););
+       jscall(s_analytics.identity.iframe_viewing = krpano.get('s_analytics_iframe_viewing'););
+        //check fullscreen suport
+        if(device.fullscreensupport,set(s_analytics_fullscreensupport,true););
+       jscall(s_analytics.identity.fullscreen_support = krpano.get('s_analytics_fullscreensupport'););
+
+    </action>
+
+</krpano>

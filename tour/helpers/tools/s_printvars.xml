@@ -1,0 +1,95 @@
+<krpano>
+
+
+
+<!-- <printvars 
+    value="cotxe|consumir|ran_cotxe|ent_conegut|crop_y_pos_ent_conegut|randomsexe|colorfinal"
+
+    sdummy1
+    hes1
+/> -->
+
+<printvars 
+    value="s_usable_ganzua_unit|s_thing_repeated_note|s_thing_note_1|s_thing_vacacega|s_gadget_cesar"
+  
+/>
+
+ // value="s_sdummy1_inix|s_sdummy1_iniy|s_sdummy1_moving|s_sdummy1_movingx|s_sdummy1_movingy|s_sdummy1_finalx|s_sdummy1_finaly|s_hes1_iniath|s_hes1_iniatv|s_hes1_moving|s_hes1_movingath|s_hes1_movingatv|s_hes1_finalath|s_hes1_finalatv|s_current_dragging|s_last_dragging"
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CORE
+//CORE
+
+
+<action autorun="onstart">
+
+if (printvars.value,
+s_printvars(get(printvars.value)); 
+);
+
+</action>
+
+
+    <action name="s_printvars" scope="local" args="variables">
+
+    txtsplit(variables,'|',var_arr);
+     if (!layer[s_reducer_log],
+        addlayer('s_reducer_log', s_reducer_logvar);
+        s_reducer_logvar.loadstyle('s_reducer_log');
+    );
+    setinterval(s_logger,,
+        for(set(i, 0), i LT var_arr.count , inc(i),           
+            copy(svar,calc('var_arr[calc(i)].value'));
+            set(svalue,get(var_arr[calc(i)].value));
+            if (calc(svalue)
+            ,
+                txtadd(s_logtext,calc(s_logtext?s_logtext:''),calc(svar),' : ' ,calc(calc(svalue)), '[BR]');                
+            ,
+                txtadd(s_logtext,calc(s_logtext?s_logtext:''),calc(svar),' : ', calc(calc(string(svalue)) == '0'?'0':'null') ,'[BR]'); 
+            );
+        );
+            calc(layer[s_reducer_log].html,'[U]GLOBAL VARS[/U] [BR][BR]' + s_logtext);
+                delete(s_logtext); 
+    );
+
+    </action>
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//STYLES AND LOG
+
+
+
+
+<style name="s_reducer_log"
+keep="true"
+type="text"
+align="left"
+padding="30"
+autowidth="auto"
+autoheight="auto"
+bg="true"
+bgcolor="0xe5d48a"
+bgalpha="1.0"
+bgborder="0"
+alpha="1"
+zorder="30000"
+enabled="false"
+/>
+
+
+</krpano>

@@ -1,0 +1,136 @@
+<krpano>
+	
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+// INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT//   
+////////////////////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////////////////// 
+
+// in webpack
+ 
+
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+// TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS TEXTS//   
+////////////////////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////////////////// 
+
+      <data name="pass_title"> Password protected </data>
+      <data name="wrong_password"> Wrong password </data>
+      <data name="pass_button"> ENTER </data>
+
+
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+// STYLE CONFIG STYLE CONFIG STYLE CONFIG STYLE CONFIG STYLE CONFIG STYLE CONFIG//   
+////////////////////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////////////////// 
+
+//initial blurr
+ <passinitialblur
+   range="80"
+ /> 
+
+
+//theme config
+<passscheme
+	passboxcolor="0xEC7357"
+	passtitlecss="color:#FBFFB9; text-align:center;"
+	passbuttoncss="color:#E1CE7A; text-align:center;"
+	passbuttonbgcolor="0x754F44"
+/>
+
+//overlay layer
+<passinitialoverlayer
+	color="0x000000"
+	alpha="0.8"
+/>
+
+
+<!-- 
+<layer name="passwrapper" keep="true" style="passwrapper">
+                      
+      <layer name="passbox" style="passbox" >
+
+		      <layer name="passtitle" style="passtitle"/>
+
+		      <layer name="passinput" style="passinput"  />
+
+		      <layer name="passbutton" style="passbutton" />
+
+      </layer>
+
+</layer> 
+-->
+
+
+
+<style name="passwrapper"
+type="container"
+bgcolor="get:passinitialoverlayer.color"
+bgalpha="get:passinitialoverlayer.alpha"
+width="100%"
+height="100%"
+zorder="2000000000000000000"	
+/>
+
+	
+			<style name="passbox"
+				type="container" 
+				keep="true" 
+				align="center"  
+				y="-60"
+				width="300" 
+				height="150" 
+				bgcolor="get:passscheme.passboxcolor"
+				bgalpha="1"
+				bgroundedge="4" 
+				autoalpha="true" 
+				alpha="1"
+				bgshadow="2 2 10 0x000000 0.5"
+
+				/>
+
+						<style name="passtitle"
+							type="text" 
+							x="0" 
+							y="25" 
+							width="100%"
+							html="data:pass_title" 
+							css="get:passscheme.passtitlecss" 
+							enabled="false" 
+							bg="true"
+							bgcolor="0x333333"
+							bgalpha="0" 
+						/>
+
+
+						<style name="passinput"
+							keep="true" 
+							devices="html5" 
+							url="%FIRSTXML%/plugins/s_bundle/s_textinput/s_textinput.js" 
+							align="center" 
+							y="-5"
+							width="200" 
+							height="20" 
+							text="" 			
+						/>
+
+						<style name="passbutton"
+							type="text" 
+							align="centerbottom" 
+							x="0" 
+							y="25" 
+							width="100" 
+							height="20" 
+							html="data:pass_button" 
+							css="get:passscheme.passbuttoncss"
+							bg="true"
+							vcenter="true"
+							bgcolor="get:passscheme.passbuttonbgcolor"
+							bgalpha="1.0"
+							bgborder="0"
+							bgroundedge="5" 			 
+						/>
+				
+</krpano>

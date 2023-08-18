@@ -3,53 +3,129 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
     <title>Bajo presión</title>
+    <script>
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+    </script>
+    <script src="./js/perfect_scrollbar.js"></script>
     <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="components/homeui/homeui.css">
+    <link rel="stylesheet" href="styles/perfect-scrollbar.css">
+    <link rel="stylesheet" href="components/tour/style.css">
     <link rel="stylesheet" href="components/general_loader/style.css">
-    <link rel="stylesheet" href="components/intro_black_logos/style.css">
-    <link rel="stylesheet" href="components/intro_first_littleplanet/style.css">
-    <link rel="stylesheet" href="components/intro_form/style.css">
+    <link rel="stylesheet" href="components/intro/intro_black_logos/style.css">
+    <link rel="stylesheet" href="components/intro/intro_first_littleplanet/style.css">
+    <link rel="stylesheet" href="components/intro/intro_form/style.css">
     <link rel="stylesheet" href="components/youtube_api/style.css">
-    <link rel="stylesheet" href="components/homeui/counter_home/styles.css">
-    <link rel="stylesheet" href="components/homeui/littleplanet/styles.css">
+    <link rel="stylesheet" href="components/home/style.css">
+    <link rel="stylesheet" href="components/home/counter_home/style.css">
+    <link rel="stylesheet" href="components/home/littleplanet/style.css">
+    <link rel="stylesheet" href="components/tour/tour_timer/style.css">
+    <link rel="stylesheet" href="components/tour/tour_user/style.css">
+    <link rel="stylesheet" href="components/tour/tour_help/style.css">
+    <link rel="stylesheet" href="components/tour/tour_place_title/style.css">
+    <link rel="stylesheet" href="components/tour/tour_logo/style.css">
+    <link rel="stylesheet" href="components/tour/tour_mini_video/style.css">
+    <link rel="stylesheet" href="components/tour/tour_next/style.css">
+    <link rel="stylesheet" href="components/tour/tour_pano_text/style.css">
+    <link rel="stylesheet" href="components/popup/style.css">
+    <script src="data/data.js"></script>
 
 </head>
 
+
 <body>
-    <div class="overlay-flash"></div>
+
     <div id="home-interface" class="fullscreen" style="display:none;"></div>
     <div id="startcontainer">
-
 
 
         <div id="loader">
             <div class="loader-spinner"></div>
             <div class="loadingtext">loading...</div>
         </div>
-        <div id="videoplayerCanvas" class="videoBorderInitial">
-            <div id="videoPlayerWraper" class="videoBorderInitial">
-                <div id="youtubePlayer"></div>
-            </div>
-            <div id="videoControlsWraper" class="videoBorderInitial">
-                <div id="playPause"></div>
-                <div id="replay">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="reloadImg"
-                        class="svgReplay" viewBox="0 0 63 63">
-                        <path class="svgReplayBg" fill-rule="evenodd" fill="rgb(173, 173, 173)"
-                            d="M31.499,62.231 C14.554,62.231 0.767,48.445 0.767,31.499 C0.767,14.554 14.554,0.768 31.499,0.768 C48.444,0.768 62.231,14.554 62.231,31.499 C62.231,48.445 48.444,62.231 31.499,62.231 Z" />
-                        <path class="svgReplayPath" fill-rule="evenodd" fill="rgb(248, 243, 237)"
-                            d="M31.341,50.501 C24.686,50.501 18.574,46.631 15.771,40.641 C15.331,39.701 15.736,38.581 16.677,38.141 C17.617,37.701 18.736,38.106 19.177,39.047 C21.364,43.721 26.139,46.740 31.341,46.740 C38.728,46.740 44.737,40.794 44.737,33.484 C44.737,26.176 38.728,20.230 31.341,20.230 C29.167,20.230 27.055,20.758 25.161,21.733 L31.183,24.016 C32.154,24.384 32.643,25.470 32.275,26.441 C31.990,27.192 31.275,27.655 30.516,27.655 C30.295,27.655 30.070,27.616 29.850,27.533 L20.529,23.999 C20.474,23.978 20.434,23.932 20.381,23.906 C20.335,23.885 20.296,23.850 20.252,23.825 C20.100,23.734 19.957,23.641 19.837,23.512 C19.811,23.486 19.776,23.476 19.751,23.448 C19.668,23.354 19.632,23.240 19.571,23.136 C19.545,23.090 19.501,23.056 19.479,23.007 C19.472,22.992 19.475,22.975 19.469,22.960 C19.220,22.406 19.252,21.783 19.559,21.260 L23.071,12.163 C23.445,11.194 24.534,10.711 25.503,11.086 C26.471,11.460 26.954,12.548 26.579,13.517 L24.966,17.695 C26.976,16.898 29.134,16.469 31.341,16.469 C40.801,16.469 48.498,24.102 48.498,33.484 C48.498,42.867 40.801,50.501 31.341,50.501 Z" />
-                    </svg>
 
+        <script src="./tour/tour.js"></script>
+        <!-- <div id="panoContainer"> -->
+
+        <div id="pano" style="width:100%;height:100%;display:none;opacity:0;" class="tour">
+
+            <noscript>
+                <table style="width:100%;height:100%;">
+                    <tr style="vertical-align:middle;">
+                        <td>
+                            <div style="text-align:center;">ERROR:<br /><br />Javascript not activated<br /><br />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </noscript>
+            <div id="TourUiContainer">
+                <div id="tourTopMask"></div>
+                <div id="tourUi">
+                    <div id="tourLogo"></div>
+                    <div id="tourPanoText">
+                        <div id="tourPanoTextNumber">1/8</div>
+                        <div id="tourPanoTextContent">
+                        </div>
+                    </div>
+                    <div id="tourUiPlace">Centro cívico</div>
+                    <div id="tourUiPlaceTime"></div>
+                    <div id="tourUser">
+                        <div id="tourUserWrapper">
+                            <img src="./assets/img/user_home_ui.png" alt="" id="userImagetour"
+                                style="margin-top: -1px;margin-left: -1px;">
+                            <div class="tourCircle">
+                                <div class="tourCounterPortion" data-value="20"></div>
+                                <div class="tourCounterPortion" data-value="40"></div>
+                                <div class="tourCounterPortion" data-value="60"></div>
+                                <div class="tourCounterPortion" data-value="80"></div>
+                                <div class="tourCounterPortion" data-value="100"></div>
+                            </div>
+                        </div>
+                        <div id="niknameTour">@anonimus</div>
+                    </div>
+                    <div id="tourHelp">?</div>
+                    <div id="tourNext" class="button">SIGUIENTE ACTIVIDAD</div>
+                    <div id="randomPlayerCanvasWrapper">
+                        <div id="randomPlayerCanvas" class="randomBorderInitial">
+                            <div id="randomPlayerWrapper" class="randomBorderInitial">
+                                <div id="randomPlayer"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div id="miniVideo"><img src="./assets/img/mini_etna.png" alt="me" width="100%" height="100%"></div> -->
                 </div>
             </div>
-            <div id="videoOutsideButtons">
-                <button id="skipVideoButton" class="button">
-                    continuar
-                </button>
+        </div>
+        <!-- </div> -->
+        <div id="videoPlayerCanvasWrapper">
+
+            <div id="videoPlayerCanvas" class="videoBorderInitial">
+                <div id="videoPlayerWrapper" class="videoBorderInitial">
+                    <div id="youtubePlayer"></div>
+                </div>
+                <div id="videoControlsWrapper" class="videoBorderInitial">
+                    <div id="playPause"></div>
+                    <div id="replay">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            id="reloadImg" class="svgReplay" viewBox="0 0 63 63">
+                            <path class="svgReplayBg" fill-rule="evenodd" fill="rgb(173, 173, 173)"
+                                d="M31.499,62.231 C14.554,62.231 0.767,48.445 0.767,31.499 C0.767,14.554 14.554,0.768 31.499,0.768 C48.444,0.768 62.231,14.554 62.231,31.499 C62.231,48.445 48.444,62.231 31.499,62.231 Z" />
+                            <path class="svgReplayPath" fill-rule="evenodd" fill="rgb(248, 243, 237)"
+                                d="M31.341,50.501 C24.686,50.501 18.574,46.631 15.771,40.641 C15.331,39.701 15.736,38.581 16.677,38.141 C17.617,37.701 18.736,38.106 19.177,39.047 C21.364,43.721 26.139,46.740 31.341,46.740 C38.728,46.740 44.737,40.794 44.737,33.484 C44.737,26.176 38.728,20.230 31.341,20.230 C29.167,20.230 27.055,20.758 25.161,21.733 L31.183,24.016 C32.154,24.384 32.643,25.470 32.275,26.441 C31.990,27.192 31.275,27.655 30.516,27.655 C30.295,27.655 30.070,27.616 29.850,27.533 L20.529,23.999 C20.474,23.978 20.434,23.932 20.381,23.906 C20.335,23.885 20.296,23.850 20.252,23.825 C20.100,23.734 19.957,23.641 19.837,23.512 C19.811,23.486 19.776,23.476 19.751,23.448 C19.668,23.354 19.632,23.240 19.571,23.136 C19.545,23.090 19.501,23.056 19.479,23.007 C19.472,22.992 19.475,22.975 19.469,22.960 C19.220,22.406 19.252,21.783 19.559,21.260 L23.071,12.163 C23.445,11.194 24.534,10.711 25.503,11.086 C26.471,11.460 26.954,12.548 26.579,13.517 L24.966,17.695 C26.976,16.898 29.134,16.469 31.341,16.469 C40.801,16.469 48.498,24.102 48.498,33.484 C48.498,42.867 40.801,50.501 31.341,50.501 Z" />
+                        </svg>
+
+                    </div>
+                </div>
+                <div id="videoOutsideButtons">
+                    <button id="skipVideoButton" class="button">
+                        continuar
+                    </button>
+                </div>
             </div>
         </div>
         <div id="intro">
@@ -90,8 +166,8 @@
                     </div>
                 </div>
                 <div id="intro_gradient_first" class="fullscreen">
-                    <div id="first_little_planet_super_wraper">
-                        <div id="first_little_planet_wraper">
+                    <div id="first_little_planet_super_wrapper">
+                        <div id="first_little_planet_wrapper">
                             <div id="first_little_planet">
                             </div>
                         </div>
@@ -111,43 +187,58 @@
         <div id="homeInterface">
             <div id="homeLittlePlanet">
                 <div id="home-planet-wrapper">
-                    <div id="hlp-label-1" class="hlp-label home-planet-label-active"></div>
-                    <div id="hlp-label-2" class="hlp-label home-planet-label-active"></div>
-                    <div id="hlp-label-3" class="hlp-label home-planet-label-active"></div>
-                    <div id="hlp-label-4" class="hlp-label home-planet-label-active"></div>
-                    <div id="hlp-label-5" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-1" class="hlp-label home-planet-label-active" data-value="casa"></div>
+                    <div id="hlp-label-2" class="hlp-label home-planet-label-active" data-value="polideportivo"></div>
+                    <div id="hlp-label-3" class="hlp-label home-planet-label-active" data-value="instituto"></div>
+                    <div id="hlp-label-4" class="hlp-label home-planet-label-active" data-value="centro"></div>
+                    <div id="hlp-label-5" class="hlp-label home-planet-label-active" data-value="parque"></div>
                     <div id="home-littleplanet"></div>
                 </div>
                 <div class="circle">
                     <span class="homeCounterPercentage">0%</span>
-                    <div class="homeCounterportion" data-value="20"></div>
-                    <div class="homeCounterportion" data-value="40"></div>
-                    <div class="homeCounterportion" data-value="60"></div>
-                    <div class="homeCounterportion" data-value="80"></div>
-                    <div class="homeCounterportion" data-value="100"></div>
+                    <div class="homeCounterPortion" data-value="20"></div>
+                    <div class="homeCounterPortion" data-value="40"></div>
+                    <div class="homeCounterPortion" data-value="60"></div>
+                    <div class="homeCounterPortion" data-value="80"></div>
+                    <div class="homeCounterPortion" data-value="100"></div>
                 </div>
             </div>
             <div id="homeTitle">BAJO<br>PRESIÓN</div>
             <div id="homeUser">
-                <img src="./assets/img/user_home_ui.png" alt="" id="userImageHome">
+                <div id="homeUserWrapper">
+                    <img src="./assets/img/user_home_ui.png" alt="" id="userImageHome"
+                        style="margin-top: -1px;margin-left: -1px;">
+                </div>
                 <div id="nikname">@anonimus</div>
             </div>
             <div id="homeHelp">?</div>
             <div id="homeCredits">CRÉDITOS</div>
 
         </div>
+
+
     </div>
 
     <script src="js/helpers.js"></script>
-    <script src="js/js.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/krpano_actions.js"></script>
+    <script src="js/enter_place_pano.js"></script>
     <script src="components/youtube_api/youtube_api.js"></script>
-    <script src="components/intro_first_littleplanet/intro_first_littleplanet.js"></script>
-    <script src="components/intro_form/intro_form.js"></script>
-    <script src="components/homeui/littleplanet/littleplanet.js"></script>
-    <script src="components/homeui/counter_home/counter_home.js"></script>
-    <script src="components/homeui/homeui.js"></script>
+    <script src="components/intro/intro_first_littleplanet/intro_first_littleplanet.js"></script>
+    <script src="components/intro/intro_form/intro_form.js"></script>
+    <script src="components/home/littleplanet/littleplanet.js"></script>
+    <script src="components/home/counter_home/counter_home.js"></script>
+    <script src="components/home/home.js"></script>
     <script src="js/intro.js"></script>
-    <script src="js/home.js"></script>
+    <script src="components/tour/tour_timer/tour_timer.js"></script>
+    <script src="components/tour/tour_user/tour_user.js"></script>
+    <script src="components/tour/tour_help/tour_help.js"></script>
+    <script src="components/tour/tour_place_title/tour_place_title.js"></script>
+    <script src="components/tour/tour_mini_video/tour_mini_video.js"></script>
+    <script src="components/tour/tour_next/tour_next.js"></script>
+    <script src="components/tour/tour_pano_text/tour_pano_text.js"></script>
+    <script src="components/popup/popup.js"></script>
+    <!-- LAST -->
     <script src="components/general_loader/general_loader.js"></script>
 
 </body>

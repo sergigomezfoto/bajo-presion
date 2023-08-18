@@ -1,0 +1,68 @@
+/*------------------------------------------ LITTLE PLANET -------------------------------------  */
+#homeLittlePlanet {
+    position: relative;
+    top: 110%;
+    left: 0;
+    height: 100%;
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    transition: all 1s ease-in-out;
+}
+
+
+.home-planet-margin-right {
+    display: none;
+    margin-right: 100px;
+}
+
+#home-planet-wrapper {
+    display: block;
+    transition: transform .2s;
+}
+
+#home-littleplanet {
+    position: relative;
+    width: 650px;
+    height: 650px;
+    background: url(../../../assets/img/home_lp.png) no-repeat center center;
+    background-size: cover;
+    margin: auto;
+    display: block;
+    top: 1px;
+    right: 1px;
+    z-index: 1;
+ 
+}
+
+.hlp-label {
+    position: absolute;
+    display: inline-block;
+    white-space: nowrap;
+    font-family: 'bw_regular';
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 16px;
+    transform-origin: bottom center;
+    will-change: transform;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.home-planet-label-active {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    pointer-events:auto;
+}
+.home-planet-label-active:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+.home-planet-label-disabled {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    opacity:0.25;
+    pointer-events:none;
+}

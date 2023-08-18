@@ -1,0 +1,47 @@
+<krpano>
+	
+	<!-- DISTORCIÓ IMATGES -->
+
+	<action name="calc_pos_from_hfov_yaw_pitch_roll">
+
+	  div(hfov,%1,57.295779);
+	  div(yaw,%2,-57.295779);
+	  div(pitch,%3,57.295779);
+	  div(roll,%4,-57.295779);
+	  mul(hfov,0.5);Math.tan(hfov);mul(width,hfov,1000);set(height,'prop');
+	  Math.cos(ch,yaw);Math.sin(sh,yaw);
+	  Math.cos(ca,pitch);Math.sin(sa,pitch);
+	  Math.cos(cb,roll);Math.sin(sb,roll);
+	  mul(m0,ca,ch);
+	  mul(tmp,cb,sa);mul(tmp,ch);mul(tmp2,sb,sh);add(m3,tmp,tmp2);
+	  mul(m4,cb,ca);
+	  mul(tmp,cb,sa);mul(tmp,sh);mul(tmp2,sb,ch);sub(m5n,tmp,tmp2);mul(m5n,-1);
+	  mul(tmp,sb,sa);mul(tmp,ch);mul(tmp2,cb,sh);sub(m6n,tmp,tmp2);mul(m6n,-1);
+	  Math.atan2(yaw,m6n,m0);
+	  Math.atan2(roll,m5n,m4);
+	  Math.asin(pitch,m3);
+	  mul(ath,yaw,57.295779);
+	  mul(atv,pitch,57.295779);
+	  mul(rotate,roll,57.295779);
+	</action>
+<!-- COLORS: -->
+<!-- yuv a rgb -->
+<action name="yuv_to_rgb_color" scope="local" args="ret_varname, y, u ,v">
+		calc(cr, (y*1.164 + 1.596*(v-128)) BOR 0);
+		calc(cg, (y*1.164 - 0.813*(v-128) - 0.391*(u-128)) BOR 0);
+		calc(cb, (y*1.164 + 2.018*(u-128)) BOR 0);
+		clamp(cr, 0, 255);
+		clamp(cg, 0, 255);
+		clamp(cb, 0, 255);
+		parentscopeset(get(ret_varname), calc((cr LSHT 16) BOR (cg LSHT 8) BOR cb));
+	</action>
+
+	<plugin name="s_pp_blur" 
+    keep="true" 
+    url="%FIRSTXML%/plugins/pp_blur.js" 
+    enabled="true" range="0.0" 
+    linearrgb="false" 
+    order="1" 
+    phase="2" />
+	
+</krpano>

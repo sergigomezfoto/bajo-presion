@@ -1,0 +1,58 @@
+
+<krpano>
+  
+  /////////////////////////////////////////////////////////inside layout
+
+<style name="fakeLayer"
+type="text"
+bg="true"
+bgcolor="0x125235"	
+bgalpha="0"
+capture="false"
+/>
+
+
+
+<style name="tourUser"
+width="100px"
+height="100px"
+align="righttop"
+x="40"
+y="40"
+onhover="js:niknameTourClassAdd();"
+onout="js:niknameTourClassRemove();"
+onclick="js:niknameTourClick();"	
+/>
+
+<style name="tourHelp"
+width="45px"
+height="45px"
+align="rightbottom"
+x="40"
+y="40"
+onhover="js:helpTourClassAdd();"
+onout="js:helpTourClassRemove();"
+onclick="js:helpTourClick();"	
+/>
+
+<style name="tourNext"
+width="223px"
+height="45px"
+align="rightbottom"
+x="110"
+y="40"
+enabled="true"
+onhover="js:nextTourClassAdd();"
+onout="js:nextTourClassRemove();"
+onclick="js:nextTourClick();"	
+/>
+
+
+<layer name="niknameTour" keep="true" style="fakeLayer|tourUser"/>
+<layer name="helpTour" keep="true" style="fakeLayer|tourHelp"/>
+<layer name="nextTour" keep="true" style="fakeLayer|tourNext"/>
+
+	
+  
+</krpano>
+

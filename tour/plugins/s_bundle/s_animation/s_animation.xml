@@ -1,0 +1,14 @@
+<krpano>
+
+<include url="s_listen_actions.xml" /> 
+<include url="s_animation_bucle.xml" />
+<include url="s_animation_bounce.xml" />
+<include url="s_animation_continuous.xml" />
+<include url="s_animation_rotation.xml" />
+
+
+
+
+
+	
+</krpano>

@@ -1,0 +1,33 @@
+<krpano>
+//common
+ <s_events name="s_autotour_sounds"  onwindowvisible="pauseallsounds(); " onwindowinvisible="pauseallsounds();" />
+<s_autotour_common_config
+    init_prefix="i|"
+    scene_prefix="s|"
+    view_cahnged_prefix="v|"
+    hs_clicks_prefix="h|"
+    layer_clicks_prefix="l|"
+    pause_clicks_prefix="p|"
+    fullround_prefix="f|"
+/>
+//play
+<s_autotour_play_config
+
+/>
+//record
+<s_autotour_record_config
+    register_init="true"
+    register_scenes="true"
+    register_view="true"
+    register_hs_clicks="true"
+    register_lay_clicks="true"
+
+    ui_rec_button_recording="PAUSE"
+    ui_rec_button_paused="[span style=[dq]color:red;font-weight:bold;[dq]]&#8226; [/span] RECORD"
+    ui_delete_all_pieces="DELETE ALL"
+    ui_delete_last_piece="DELETE LAST"
+    ui_show_array="SHOW ARRAY"
+
+/>
+
+</krpano>

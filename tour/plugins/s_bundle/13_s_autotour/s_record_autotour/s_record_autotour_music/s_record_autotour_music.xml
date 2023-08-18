@@ -1,0 +1,98 @@
+<krpano>
+
+    <include url="design/design.xml" />
+
+
+<!-- <plugin name="soundinterface_s_autotour"
+url.html5="assets/soundinterface.js"
+preload="true"
+keep="true"
+volume="1"
+autounlock="false"
+/> -->
+
+
+
+<action name="s_autotour_add_main_sound">
+    
+    s_destroy_current_sound();
+    
+    set(s_autotour_general_audio_name,get(%1));
+    //trace('::::::::::::::::::::::::: ',get(s_autotour_general_audio_name) );
+    txtsplit(get(s_autotour_general_audio_name),'.mp3',s_autotour_general_audio_name_single,s_________);
+    if (!s_sound_autoid,
+        def(s_sound_autoid,number,1);
+    );
+    calc(s_autotour_general_sound,s_autotour_general_audio_name_single + '_' + s_sound_autoid); inc(s_sound_autoid);
+    
+    createsound(get(s_autotour_general_sound),calc('%FIRSTXML%/plugins/s_bundle/13_s_autotour/media/' + s_autotour_general_audio_name));
+
+    playsound(get(s_autotour_general_sound)); 
+
+    asyncloop(!sound[get(s_autotour_general_sound)].duration AND s_autotour_general_sound ,trace('--loading soundinterface--'),
+
+        pausesound(get(s_autotour_general_sound)); 
+        addlayer('s_main_sound',s_main_sound);
+            s_main_sound.loadstyle('s_main_sound');
+            set(s_main_sound
+                ,
+                keep="true"
+                ,
+                html=calc(s_autotour_general_audio_name + ' - ' + roundval(sound[get(s_autotour_general_sound)].duration /60 ,2) + '[sq]');
+                ,
+                onloaded=""
+            );
+      
+    );
+ s_autotour_sound_insert_ini();
+
+</action>
+           
+<action name="s_destroy_current_sound">
+
+    if (s_autotour_general_sound,
+        s_autotour_pause_general_sound(0,get(s_autotour_general_sound));
+        delete(s_main_sound,s_autotour_general_audio_name,s_autotour_general_sound,s_________rest);
+        removelayer(s_main_sound,true); 
+
+    );
+</action>
+
+<action name="s_autotour_sound_insert_ini" type="javascript">
+<![CDATA[
+
+        if (s_autotour.recorded[0]){
+            var s_sound = s_autotour.recorded[0];
+            var s_soundplited = s_sound.split('|');
+            var s_sound_name = s_soundplited[3];
+            //console.log(s_autotour.recorded[0]);
+
+            var uploaded_sound = krpano.get('s_autotour_general_sound');
+
+                s_soundplited.splice(3,1,uploaded_sound);
+                //console.log('a ' + s_soundplited);
+                var s_new_ini = s_soundplited.join('|');
+                //console.log('b ' + s_new_ini);
+                s_autotour.recorded.splice(0, 1,s_new_ini);
+
+                var show_array = '*' + s_autotour.recorded.join('*');
+                krpano.set("s_set_just_recorded_autotour_cassette",show_array);
+                krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+                krpano.call("s_spui_piece_autogenerate()");
+      
+        }  
+]]>
+</action>
+
+<action name="s_autotour_play_general_sound" scope="local" args="seek,soundname">
+    //trace(get(soundname));
+    seeksound(get(soundname), get(seek));playsound(get(soundname));
+
+</action>
+<action name="s_autotour_pause_general_sound" scope="local" args="seek,soundname">
+
+    seeksound(get(soundname), get(seek)); pausesound(get(soundname));
+
+</action>
+
+</krpano>

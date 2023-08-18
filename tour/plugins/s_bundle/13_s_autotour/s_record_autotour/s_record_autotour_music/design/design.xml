@@ -1,0 +1,8 @@
+<krpano>
+
+<include url="styles/styles.xml" /> 
+
+<layer name="s_input_sound_button" keep="true" style="s_input_sound_button"/>
+<layer name="s_input_general_sound" keep="true" style="s_input_general_sound" onchanged="s_autotour_add_main_sound(get(file)) "/>
+
+</krpano>

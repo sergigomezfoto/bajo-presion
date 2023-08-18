@@ -1,0 +1,202 @@
+<krpano>
+
+
+//[0] GENERAL CONFIG
+	<s_popup_general_settings   
+  width="1024" 
+  height="900" 
+
+  bgcolor="0x72adda"
+  bgalpha="0.2"
+  bgalphatweentime="0.5"
+
+
+  mainbgcolor="0x485378"
+  mainbgroundedge=""
+  mainbgborder="12 0x485378 1"
+
+  xcloseurl="%FIRSTXML%/skin/img/closex.png"
+  xclosecrop="0|0|54|54"
+  xcloseonovercrop="54|0|54|54"
+  xcloseonoutcrop="0|0|54|54"
+  xcloseonover=""
+  xcloseonout=""
+  xclosealign="righttop"
+  xcloseedge="lefttop"
+  xclosex="-12px"
+  xclosey="-12px"
+  xclosescale="1"
+  />
+
+    
+
+//[1] DEFINE BEFORE MIDDLE AND AFTER PREDEFINED ACTIONS
+
+<!--GENERAL ACTIONS POPUP 	 -->
+
+<!-- dependency -->
+<plugin name="s_pp_blur" 
+    keep="true" 
+    url="%FIRSTXML%/plugins/pp_blur.js" 
+    enabled="true" range="0.0" 
+    linearrgb="false" 
+    order="1" 
+    phase="2" />
+
+
+<!-- BEFORE POPUP OPENS ACTION -->
+	<action name="s_popup_before_open">
+		set(popup_normal,true);
+		set(popupobert,true);
+		if (device.desktop,
+			js(window.app.jitsiHideShow(0););
+			
+		);
+		set(control.usercontrol,off);	
+		trace('default open popup');
+		tween(plugin[s_pp_blur].range, 40.0);
+	    tween(layer[root].alpha,0,0.3);		
+	</action>
+<!-- MIDDLE ACTIONS (WHEN IS OPPENED)  -->
+	<action name="s_popup_middle_action">
+		trace('default middle popup');
+		// add layer to iframe for example!		
+	</action>
+<!-- AFTER AFTER POPUP CLOSE ACTIONS -->
+	<action name="s_popup_after_close">
+		
+		if (device.desktop,
+			js(window.app.jitsiHideShow(1););
+			
+		);
+		set(control.usercontrol,all);	
+		trace('default close popup');
+		tween(plugin[s_pp_blur].range, 0.0);
+		tween(layer[root].alpha,1,1,,delete(popup_normal);set(popupobert,false););
+	</action>
+
+//[2] CHANGE AND IMPORT STYLES IN INDEX (PLACEHOLDER) ./css_must_be_in_index/styles.css
+
+
+
+<!-- ADBANCED CONFIGURATION DON'T TOUCH IF YOU DON'T KNOW -->
+
+<style name="s_popup_bg"
+		    type="container"
+		    align="lefttop" 
+		    width="100%" 
+		    height="100%"
+		    zorder="99"
+		    handcursor="false"
+		    bgcapture="true"
+		    capture="true"
+		    enabled="true"  
+		    onloaded="tween(bgalpha,get(s_popup_general_settings.bgalpha),get(s_popup_general_settings.bgalphatweentime));" 
+	      bgcolor="get:s_popup_general_settings.bgcolor"
+/>
+
+
+						  
+				<style name="s_popup_main"
+					    type="container"
+					    parent="s_popup_bg"
+					    align="center"
+					    bgalpha="1"
+					    bgcapture="true"
+					    maskchildren="false"
+					    capture="true"
+					    handcursor="false"
+					    alpha="0"
+							bgcolor="get:s_popup_general_settings.mainbgcolor"
+							bgroundedge="get:s_popup_general_settings.mainbgroundedge"
+							bgborder="get:s_popup_general_settings.mainbgborder"
+							enabled="true"
+				/>
+				
+			
+				
+				<style name="s_popup_close_x"
+							type="image"
+				      url="get:s_popup_general_settings.xcloseurl"
+				      crop="get:s_popup_general_settings.xclosecrop"
+              onovercrop="get:s_popup_general_settings.xcloseonovercrop"
+              onoutcrop="get:s_popup_general_settings.xcloseonoutcrop"
+					    parent="s_popup_main"
+					    align="get:s_popup_general_settings.xclosealign"
+					    edge="get:s_popup_general_settings.xcloseedge"
+					    x="get:s_popup_general_settings.xclosex"
+					    y="get:s_popup_general_settings.xclosey"
+					    scale="get:s_popup_general_settings.xclosescale"
+              onover="get:s_popup_general_settings.xcloseonover"
+              onout="get:s_popup_general_settings.xcloseonout"
+					    zorder="99"
+					    alpha="1"					    
+					    onloaded.addevent="scope(private:SPOPUPCORE,delayedcall(0.3,tween(global.layer[s_popup_main].alpha, 1)));"				   
+				/>
+
+
+
+
+<action name="s_iframe" type="Javascript">
+  <![CDATA[
+ //definitions 
+  var s_iframe_container = document.createElement("div");
+  var container_placeholder_s_iframe = document.createElement("div");
+  var placeholder_s_iframe = document.createElement("div");
+      var dot1 = document.createElement("div");
+      var dot2 = document.createElement("div");
+  var s_iframe = document.createElement("iframe");
+//S_IFRAME_CONTAINER 
+  s_iframe_container.style.overflow = args[2] == "true" ? "auto" : "hidden";
+  s_iframe_container.className="s_popup_container";
+                      function stopPropagation(e){ e.stopPropagation(); }
+                      function preventDefault(e){ e.preventDefault(); }
+
+// enable browsed-based mouse-wheel and touch-scrolling support:
+  s_iframe_container.addEventListener("wheel", stopPropagation, true);
+  s_iframe_container.addEventListener("mousewheel", stopPropagation, true);
+  s_iframe_container.addEventListener("DOMMouseScroll", stopPropagation, true);
+  s_iframe_container.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("gesturestart", preventDefault, true);
+
+//PLACEHOLDER
+container_placeholder_s_iframe.className="container_placeholder_s_iframe";
+placeholder_s_iframe.className="spinner_s_iframe";
+dot1.className="dot1_s_iframe";
+dot2.className="dot2_s_iframe";
+
+//S_IFRAME
+s_iframe.className="s_iframe";
+s_iframe.src = args[1];
+s_iframe.frameBorder=0;
+s_iframe.setAttribute('allowFullScreen', 'true');
+
+//FADE FORM PLACEHOLDER TO S_IFRAME CONTENT
+const funcs_Iframe=()=> {
+  s_iframe.style.opacity="1";
+  container_placeholder_s_iframe.style.display="none";
+};
+s_iframe.addEventListener('load', funcs_Iframe, true);
+
+//APPEND  OF THE DIFERENT ELEMENTS
+placeholder_s_iframe.appendChild(dot1);
+placeholder_s_iframe.appendChild(dot2);
+container_placeholder_s_iframe.appendChild(placeholder_s_iframe);
+s_iframe_container.appendChild(container_placeholder_s_iframe);
+s_iframe_container.appendChild(s_iframe);
+caller.sprite.appendChild(s_iframe_container);
+
+]]>
+    </action>
+
+
+
+
+
+
+
+
+
+	
+</krpano>

@@ -1,0 +1,65 @@
+<krpano>
+
+<style name="s_input_sound_button"
+    type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(!s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(!s_autotour_recording,s_out_action_rec_tools);"
+        html="INSERT SOUND"  
+        height="get:s_config_spui_buttons.height"
+        width="get:s_config_spui_buttons.width + 20"
+        ox="calc:(s_config_spui_buttons.width * 3 ) + ( s_config_spui_buttons.separation * 4 )"
+        oy="-1"
+        padding="6"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;cursor: pointer;"
+        align="leftbottom" 
+        alpha="1"  
+        s_autotour_excluded="true"
+        parent="s_spui_tools"
+        enabled="false"
+        capture="false"
+        zorder="2"
+        
+    />
+    <style name="s_input_general_sound"
+     url="../../assets/s_textinput_audio.js"
+     align="lefttop"
+     width="100"
+     height="18"
+     css="text-align:left;border: 0px solid #ccc; outline:0px solid lightgray; cursor: pointer;"
+     parent="s_spui_tools" 
+     ox="calc:(s_config_spui_buttons.width * 3 ) + ( s_config_spui_buttons.separation * 4 )"
+     oy="1"
+     inputtype="file"
+     visible="true"   
+     text=""
+     s_autotour_excluded="true"
+     zorder="1"
+     onhover="if(!s_autotour_recording,callwith(layer[s_input_sound_button],s_hover_action_rec_tools));"
+     onout="if(!s_autotour_recording,callwith(layer[s_input_sound_button],s_out_action_rec_tools));"
+     
+    />
+ //LAYER ALS PIECES
+
+ <style name="s_main_sound"
+ type="text"
+ width="100%"
+ height="20"
+ parent="stage"
+ align="bottom"
+ y="110"
+ bg="true"
+ bgalpha="1"
+ bgcolor="0xb778aa"
+ enabled="true"
+ css="text-align:left;font-size:12px;color:#ffffff;"    
+ />       
+    
+
+</krpano>

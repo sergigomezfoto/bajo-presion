@@ -1,0 +1,61 @@
+<krpano>
+
+<include url="core.xml" />
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////// desktop
+<s_flying_arrow_config name="config_shape" keep="true" devices="normal">
+
+   <arrow> 
+   // FORMA FLETXA
+   <point name="p0" x="0" y="50" /> //pic fletxa
+   <point name="p1" x="-10" y="30" /> //esquerra fletxa
+   <point name="p3" x="0" y="35" />  // hendidura fletxa
+   <point name="p5" x="10" y="30" /> // dreta fletxa
+      // EFECTE PERSPECTIVA FLYING I DISTÀNCA AL CENTRE
+      <center dist="90"   > // dist = profunditat de ram de fletxes
+
+         <functionv> 
+
+            <point name="p0" vlookat="0" posv="35" /> //Z -> vlookat = -90  (quan es posa plana amb l'horitzó.) posv= (posició del ram de fletxes a z) -20 
+            <point name="p1" vlookat="90" posv="90" /> // Y -> vlookat = 90  (quan es posa plana amb l'horitzó.) posv= (posició del ram de fletxes a z) 90 
+
+         </functionv> 
+
+      </center>
+
+   </arrow>
+
+</s_flying_arrow_config>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////mobIL
+<s_flying_arrow_config name="config_shape" keep="true" devices="mobile">
+
+   <arrow> 
+   // FORMA FLETXA
+   <point name="p0" x="0" y="70" /> //pic fletxa
+   <point name="p1" x="-20" y="40" /> //esquerra fletxa
+   <point name="p3" x="0" y="50" />  // hendidura fletxa
+   <point name="p5" x="20" y="40" /> // dreta fletxa
+      // EFECTE PERSPECTIVA FLYING I DISTÀNCA AL CENTRE
+      <center dist="190"   > // dist = profunditat de ram de fletxes
+
+         <functionv> 
+
+            <point name="p0" vlookat="0" posv="45" /> //Z -> vlookat = -90  (quan es posa plana amb l'horitzó.) posv= (posició del ram de fletxes a z) -20 
+            <point name="p1" vlookat="90" posv="90" /> // Y -> vlookat = 90  (quan es posa plana amb l'horitzó.) posv= (posició del ram de fletxes a z) 90 
+
+         </functionv> 
+
+      </center>
+
+   </arrow>
+
+</s_flying_arrow_config>
+
+
+</krpano>

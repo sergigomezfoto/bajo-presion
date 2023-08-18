@@ -1,0 +1,388 @@
+<krpano>
+	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bounce_v(width,height,frames x second)
+<hotspot name="s_animation_bounce_v" style="test_title_s_actions" ath="60" atv="-8" html="s_animation_bounce_v[BR](framewidth,frameheight,fps)"/>	
+     
+<hotspot name="test_anim_bounce_vert" style="test_hotspot_image"
+	 ath="60" atv="0"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/bounce_vert.png"			
+	 onclick=""
+	 onloaded="s_animation_bounce_v(104,102,15)"	
+	 />
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bounce_v(width,height,frames x second)
+<hotspot name="s_animation_bounce_h" style="test_title_s_actions" ath="60" atv="7" html="s_animation_bounce_h[BR](framewidth,frameheight,fps)"/>	
+     
+<hotspot name="test_anim_bounce_hor" style="test_hotspot_image"
+	 ath="60" atv="15"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/bounce_hor.png"			
+	 onclick=""
+	 onloaded="s_animation_bounce_h(102,104,4)"	
+	 />
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v s_animation_bounce_v
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_boounce_v(width,height,frames x second,  frame to pause|time paused|action to call , varname to use as alias*, initial pos, initial frame)
+// set(alias,clear)->clear,play; pause,resume;
+<hotspot name="test_title_s_animation_bounce_vertical" style="test_title_s_actions" ath="90" atv="5" 
+html="EXTENDED[BR]s_animation_bounce_v[BR](framewidth,frameheight,fps,alias,ini position,frame,direction)"
+/>	
+     
+<hotspot name="test_animation_bounce_vertical" style="test_hotspot_image"
+	 ath="90" atv="14"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/bounce_vert_num.png"			
+	 onclick=""
+	 enabled="true" 
+	 crop="0|408|104|102"
+		
+	 
+	 />// onloaded="test_animation_bounce_vertical"
+			<action name="test_animation_bounce_vertical">
+			s_animation_bounce_v(104,102,3,macarena,306,3);
+			set(macarena,'clear');	
+			</action>
+
+//LLUM ACCIONS
+<hotspot name="test_light_action_animation_bounce_vertical" style="test_hotspot_square|test_hs_light_action"
+ ath="100" atv="14"  rx="0" ry="0" rz="0"
+/>
+
+//CLEAR
+<hotspot name="test_animation_bounce_vertical_controler_clear" style="test_hotspot_square|test_hs_button_controler" ath="82" atv="21.5"
+html="clear"
+onclick="test_animation_bounce_vertical_controler_clear "
+/>
+			<action name="test_animation_bounce_vertical_controler_clear">
+
+			set(macarena,'clear');
+			delayedcall(0.5,set(hotspot[test_animation_bounce_vertical].crop, '0|408|104|102') );
+
+			</action>
+
+//PLAY:
+<hotspot name="test_animation_bounce_vertical_controler_play" style="test_hotspot_square|test_hs_button_controler" ath="88" atv="21.5"
+html="play"
+onclick="test_animation_bounce_vertical_controler_play"
+/>
+			<action name="test_animation_bounce_vertical_controler_play">
+            set(macarena,'resume');
+			callwith(hotspot[test_animation_bounce_vertical],s_animation_bounce_v(104,102,3,macarena,408,4,-1););
+			test_animation_bounce_vertical_controler_play_all_actions(); 
+				
+			</action>
+//PAUSE: PARA LA SEGUENT FRAME!!!!! NO PARA AL ACTUAL.
+<hotspot name="test_animation_bounce_vertical_controler_pause" style="test_hotspot_square|test_hs_button_controler" ath="94" atv="21.5"
+
+html="pause"
+onclick="test_animation_bounce_vertical_controler_pause"
+/>
+
+<action name="test_animation_bounce_vertical_controler_pause">
+
+	set(macarena,'pause');
+	
+</action>
+//RESUME:
+<hotspot name="test_animation_bounce_vertical_controler_resume" style="test_hotspot_square|test_hs_button_controler" ath="100" atv="21.5"
+
+html="resume"
+onclick="test_animation_bounce_vertical_controler_resume"
+/>
+<action name="test_animation_bounce_vertical_controler_resume">
+
+	set(macarena,'resume');
+	
+</action>
+
+//PAUSE ONE ACTION:
+<hotspot name="test_animation_bounce_vertical_controler_pause_one_action" style="test_hotspot_square|test_hs_button_controler" ath="86" atv="32"
+
+html="pause one action"
+width="55"
+height="45"
+onclick="test_animation_bounce_vertical_controler_pause_one_action"
+/>
+
+<action name="test_animation_bounce_vertical_controler_pause_one_action">
+
+set(macarena_actions_4,'pause');
+	
+</action>
+
+//PLAY ONE ACTION:
+<hotspot name="test_animation_bounce_vertical_controler_play_one_action" style="test_hotspot_square|test_hs_button_controler" ath="96" atv="32"
+html="play one action"
+width="55"
+height="45"
+onclick="test_animation_bounce_vertical_controler_play_one_action"
+/>
+
+
+//PAUSE ALL ACTIONS:
+<hotspot name="test_animation_bounce_vertical_controler_pause_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="86" atv="26"
+
+html="pause all actions"
+width="55"
+height="40"
+onclick="test_animation_bounce_vertical_controler_pause_all_actions"
+/>
+
+<action name="test_animation_bounce_vertical_controler_pause_all_actions">
+
+set(macarena_actions_all,'pause');
+	
+</action>
+
+//PLAY ALL ACTIONS:
+<hotspot name="test_animation_bounce_vertical_controler_play_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="96" atv="26"
+html="play all actions"
+width="55"
+height="40"
+onclick="test_animation_bounce_vertical_controler_play_all_actions"
+/>
+
+				<action name="test_animation_bounce_vertical_controler_play_all_actions">
+
+	set(ant,get(macarena_listen));		
+	asyncloop(ant == macarena_listen
+		,
+
+		, 		
+
+               s_anim_frame(macarena,0,
+
+					callwith(hotspot[test_light_action_animation_bounce_vertical],s_bgcolor_blink(0xff3cff,0.1); );
+					set(macarena,'pause');
+					delayedcall(3,set(macarena,'resume'););	
+				);	
+                  s_anim_frame(macarena,1,
+					callwith(hotspot[test_light_action_animation_bounce_vertical],s_bgcolor_blink(0xfffcff,0.1); );	 
+				);
+                s_anim_frame(macarena,2,
+					callwith(hotspot[test_light_action_animation_bounce_vertical],s_bgcolor_blink(0x250cf0,0.1); );
+						
+				);
+                s_anim_frame(macarena,3,
+					callwith(hotspot[test_light_action_animation_bounce_vertical],s_bgcolor_blink(0xffffff,0.1); );	
+				
+				);
+
+
+				test_animation_bounce_vertical_controler_play_one_action();						
+			   );
+				</action>
+							<action name="test_animation_bounce_vertical_controler_play_one_action">
+							set(ant,get(macarena_listen));			
+							asyncloop(ant == macarena_listen
+								,
+								, 			
+														s_anim_frame(macarena,4,
+														callwith(hotspot[test_light_action_animation_bounce_vertical],s_bgcolor_blink(0xff8c77,0.1); );
+														set(macarena,'pause');
+														delayedcall(3,set(macarena,'resume'););							
+													);		
+								);						
+							</action>
+	
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h s_animation_bounce_h
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_boounce_h(width,height,frames x second,  frame to pause|time paused|action to call , varname to use as alias*, initial pos, initial frame)
+// set(alias,clear)->clear,play; pause,resume;
+<hotspot name="test_title_s_animation_bounce_horizontal" style="test_title_s_actions" ath="130" atv="5" 
+html="EXTENDED[BR]s_animation_bounce_h[BR](framewidth,frameheight,fps,alias,ini position,frame,direction)"
+/>	
+     
+<hotspot name="test_animation_bounce_horizontal" style="test_hotspot_image"
+	 ath="130" atv="14"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/bounce_hor_num.png"			
+	 onclick=""
+	 enabled="true" 
+	 crop="408|0|102|104"
+		
+	 
+	 />// onloaded="test_animation_bounce_horizontal"
+			<action name="test_animation_bounce_horizontal">
+			s_animation_bounce_h(102,104,3,damian,306,3);
+			set(damian,'clear');	
+			</action>
+
+//LLUM ACCIONS
+<hotspot name="test_light_action_animation_bounce_horizontal" style="test_hotspot_square|test_hs_light_action"
+ ath="140" atv="14"  rx="0" ry="0" rz="0"
+/>
+
+//CLEAR
+<hotspot name="test_animation_bounce_horizontal_controler_clear" style="test_hotspot_square|test_hs_button_controler" ath="122" atv="21.5"
+html="clear"
+onclick="test_animation_bounce_horizontal_controler_clear "
+/>
+			<action name="test_animation_bounce_horizontal_controler_clear">
+
+			set(damian,'clear');
+			delayedcall(0.5,set(hotspot[test_animation_bounce_horizontal].crop, '408|0|104|102') );
+
+			</action>
+
+//PLAY:
+<hotspot name="test_animation_bounce_horizontal_controler_play" style="test_hotspot_square|test_hs_button_controler" ath="128" atv="21.5"
+html="play"
+onclick="test_animation_bounce_horizontal_controler_play"
+/>
+			<action name="test_animation_bounce_horizontal_controler_play">
+            set(damian,'resume');
+			callwith(hotspot[test_animation_bounce_horizontal],s_animation_bounce_h(102,104,3,damian,408,4,-1););
+			test_animation_bounce_horizontal_controler_play_all_actions(); 
+				
+			</action>
+//PAUSE: PARA LA SEGUENT FRAME!!!!! NO PARA AL ACTUAL.
+<hotspot name="test_animation_bounce_horizontal_controler_pause" style="test_hotspot_square|test_hs_button_controler" ath="134" atv="21.5"
+
+html="pause"
+onclick="test_animation_bounce_horizontal_controler_pause"
+/>
+
+<action name="test_animation_bounce_horizontal_controler_pause">
+
+	set(damian,'pause');
+	
+</action>
+//RESUME:
+<hotspot name="test_animation_bounce_horizontal_controler_resume" style="test_hotspot_square|test_hs_button_controler" ath="140" atv="21.5"
+
+html="resume"
+onclick="test_animation_bounce_horizontal_controler_resume"
+/>
+<action name="test_animation_bounce_horizontal_controler_resume">
+
+	set(damian,'resume');
+	
+</action>
+
+//PAUSE ONE ACTION:
+<hotspot name="test_animation_bounce_horizontal_controler_pause_one_action" style="test_hotspot_square|test_hs_button_controler" ath="126" atv="32"
+
+html="pause one action"
+width="55"
+height="45"
+onclick="test_animation_bounce_horizontal_controler_pause_one_action"
+/>
+
+<action name="test_animation_bounce_horizontal_controler_pause_one_action">
+
+set(damian_actions_4,'pause');
+	
+</action>
+
+//PLAY ONE ACTION:
+<hotspot name="test_animation_bounce_horizontal_controler_play_one_action" style="test_hotspot_square|test_hs_button_controler" ath="136" atv="32"
+html="play one action"
+width="55"
+height="45"
+onclick="test_animation_bounce_horizontal_controler_play_one_action"
+/>
+
+
+//PAUSE ALL ACTIONS:
+<hotspot name="test_animation_bounce_horizontal_controler_pause_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="126" atv="26"
+
+html="pause all actions"
+width="55"
+height="40"
+onclick="test_animation_bounce_horizontal_controler_pause_all_actions"
+/>
+
+<action name="test_animation_bounce_horizontal_controler_pause_all_actions">
+
+set(damian_actions_all,'pause');
+	
+</action>
+
+//PLAY ALL ACTIONS:
+<hotspot name="test_animation_bounce_horizontal_controler_play_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="136" atv="26"
+html="play all actions"
+width="55"
+height="40"
+onclick="test_animation_bounce_horizontal_controler_play_all_actions"
+/>
+
+				<action name="test_animation_bounce_horizontal_controler_play_all_actions">
+
+	set(ant,get(damian_listen));		
+	asyncloop(ant == damian_listen
+		,
+
+		, 		
+
+               s_anim_frame(damian,0,
+
+					callwith(hotspot[test_light_action_animation_bounce_horizontal],s_bgcolor_blink(0xff3cff,0.1); );
+					set(damian,'pause');
+					delayedcall(3,set(damian,'resume'););	
+				);	
+                  s_anim_frame(damian,1,
+					callwith(hotspot[test_light_action_animation_bounce_horizontal],s_bgcolor_blink(0xfffcff,0.1); );	 
+				);
+                s_anim_frame(damian,2,
+					callwith(hotspot[test_light_action_animation_bounce_horizontal],s_bgcolor_blink(0x250cf0,0.1); );
+						
+				);
+                s_anim_frame(damian,3,
+					callwith(hotspot[test_light_action_animation_bounce_horizontal],s_bgcolor_blink(0xffffff,0.1); );	
+				
+				);
+
+
+				test_animation_bounce_horizontal_controler_play_one_action();						
+			   );
+				</action>
+							<action name="test_animation_bounce_horizontal_controler_play_one_action">
+							set(ant,get(damian_listen));			
+							asyncloop(ant == damian_listen
+								,
+								, 			
+														s_anim_frame(damian,4,
+														callwith(hotspot[test_light_action_animation_bounce_horizontal],s_bgcolor_blink(0xff8c77,0.1); );
+														set(damian,'pause');
+														delayedcall(3,set(damian,'resume'););							
+													);		
+								);						
+							</action>
+	
+
+
+
+
+</krpano>

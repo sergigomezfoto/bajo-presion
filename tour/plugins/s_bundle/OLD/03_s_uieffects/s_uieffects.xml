@@ -1,0 +1,70 @@
+<krpano>
+	
+<include url="config/s_blockall.xml" />		
+<include url="config/s_changepointer.xml" />		
+	<!-- TODO CINEMATIC EFFECT -->
+	 
+	
+<!-- sf_blockall(true|false,*zorder of the blocking layer); no mouse no buttons no nothing but cursor custom:
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
+  -->
+<action name="s_blockall" args="bool,s_cursor" scope="local">
+
+if (s_cursor == null
+ 	,   
+ 	    set(layer[s_invisible-bloking-layer].handcursor,'false');
+ 		set(layer[s_invisible-bloking-layer].cursor,'default');
+	,
+		if (bool
+			,
+			set(layer[s_invisible-bloking-layer].handcursor,'true');
+			set(layer[s_invisible-bloking-layer].cursor,get(s_cursor));
+			,
+			set(layer[s_invisible-bloking-layer].handcursor,'false');
+			set(layer[s_invisible-bloking-layer].cursor,'default');
+		);
+); 
+
+if (bool
+	,
+	set(layer[s_invisible-bloking-layer].alpha,1);
+	set(control.usercontrol,"off");
+	,
+	set(control.usercontrol,"all");
+    set(layer[s_invisible-bloking-layer].alpha,0);
+);
+</action>
+ 
+
+<!-- SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER -->
+<!-- s-changepointer('cursor-key layer') ||reset-> s-changepointer('cursor-key',off)  -->
+
+<!-- onover="s-changepointer('cursor-key')" onout="s-changepointer('cursor-key',off)" -->
+
+  <action name="s_changepointer" args="picture,second" scope="local">
+
+ if (second === null
+ ,
+			set(layer[calc(picture)].alpha,1);
+			copy(global.s-var-changepointer,cursors.standard);
+			set(cursors.standard,'none');
+            tween(layer[calc(picture)].alpha,1); 
+             
+			setinterval(calc(caller.name + picture), 0, 
+						copy(layer[calc(picture)].y, mouse.y);
+						copy(layer[calc(picture)].x, mouse.x);	
+						
+
+				);
+,
+			set(layer[calc(picture)].alpha,0); 
+			set(cursors.standard,get(global.s-var-changepointer));	
+			clearinterval(calc(caller.name + picture));
+
+
+			
+);		
+  </action>
+
+
+</krpano>

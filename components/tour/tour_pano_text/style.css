@@ -1,0 +1,35 @@
+#tourPanoText {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 245px;
+    padding-left: var(--margin);
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* background-color: aqua; */
+    transition: all 0.3s;
+}
+
+#tourPanoTextNumber {
+    font-family: 'untitled_sansmedium';
+    font-size: 19px;
+}
+
+#tourPanoTextContent {
+    position: relative;
+    /* background-color: black; */
+    width: 209px;
+    height: 100%;
+    overflow: hidden;
+    /* height: 387px; */
+    /* overflow-y: auto; */
+    pointer-events: auto;
+    font-family: 'untitled_sansregular';
+    font-size: 14px;
+    line-height: 1.4em;
+    padding-right: 26px;
+    -webkit-mask: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 94%, transparent 100%);
+    mask: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 94%, transparent 100%);
+}

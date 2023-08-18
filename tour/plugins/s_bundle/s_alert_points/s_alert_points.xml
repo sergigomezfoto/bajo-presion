@@ -1,0 +1,6 @@
+<krpano>
+
+<include url="styles/styles.xml" />
+<include url="core/core.xml" />
+
+</krpano>

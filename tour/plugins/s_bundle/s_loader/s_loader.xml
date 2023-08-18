@@ -1,0 +1,266 @@
+﻿<krpano>
+  
+
+<!-- 
+
+
+HTML index:
+
+    <div id="wrapper_spinner" class="wrapper_spinner">
+                <div class="pong-loader"></div>
+                <div class="loadingtext">cargando...</div>
+    </div>
+
+
+    <div id="pano" style="width:100%;height:100%;"> 
+    .
+    .
+    .
+
+CSS:
+.wrapper_spinner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 200;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+
+    opacity: 1;
+    transition: opacity 1000ms linear;
+
+}
+
+
+KRPANO:
+                                                                 action on start
+<scene name="scene_05_cafeteria" title="05_cafeteria" onstart="generalloader();" thumburl="panos/05_cafeteria.tiles/thumb.jpg" lat="" lng="" heading="">
+
+        <view hlookat="-25" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview="auto" />
+
+        <preview url="panos/05_cafeteria.tiles/preview.jpg" />
+
+        <image>
+            <cube url="panos/05_cafeteria.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
+        </image>
+
+    <action name="generalloader">
+        s_imagelevel_loaded_0(trace('level 0')); // controls imagelevel 1 and trigger action when is in its level
+        s_imagelevel_loaded_1(trace('level 1')); // controls imagelevel 1 and trigger action when is in its level
+        s_imagelevel_loaded_2(trace('level 2')); // controls imagelevel 2 and trigger action when is in its level
+        s_imagelevel_loaded_3(s_loaded_elements_render('tetris1|steve|poison','start_panel|start_button',all_loaded();););
+                                                        hotspots                     layers             custom action
+    </action>
+
+    <action name="all_loaded" type="javascript">
+        <![CDATA[
+        var loadedd = document.getElementById("loader");
+        loadedd.style.opacity = '0';
+        setTimeout(function(){loadedd.parentNode.removeChild(loadedd);}, 1000);
+        ]]>
+    </action>
+
+</scene>
+
+
+ -->
+
+
+
+
+// DIFERENT IMAGE LEVELS
+<action name="s_imagelevel_loaded_0" scope="local" args="actions">
+
+            asyncloop(image.loadstate !== 0
+                    ,
+                    ,
+                    trace('not loaded');
+                    scope(global,calc(actions));    
+                );
+</action>
+
+<action name="s_imagelevel_loaded_1" scope="local" args="actions">
+
+            asyncloop(image.loadstate !== 1
+                    ,
+                    ,
+                    trace('loading');
+                    scope(global,calc(actions));    
+                );
+</action>
+
+
+<action name="s_imagelevel_loaded_2" scope="local" args="actions">
+
+            asyncloop(image.loadstate !== 2
+                    ,
+                    ,
+                    trace('low resolution loaded');
+                    scope(global,calc(actions));    
+                );
+</action>
+
+<action name="s_imagelevel_loaded_3" scope="local" args="actions">
+
+            asyncloop(image.loadstate !== 3
+                    ,
+                    ,
+                    trace('high resolution loaded');
+                    scope(global,calc(actions));    
+                );
+</action>
+<!-- 
+//COUNTER OF ELEMENTS LOADED
+//TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ¿¿¿¿¿¿JAVASCRIPT????
+
+<action name="s_wait_elements_loaded" scope="local" args="hotspotes,layeres,loadedaction" >
+set(global.s_loaded_count,0);
+if (hotspotes,
+        txtsplit(get(hotspotes),'|',hotspots_array);
+        copy(numberofhotspots,hotspots_array.count);
+        ,
+        set(numberofhotspots,0);
+);
+if(layeres,
+        txtsplit(get(layeres),'|',layers_array);
+        copy(numberoflayers,layers_array.count);
+        ,
+        set(numberoflayers,0);
+);
+
+calc(numberofelements,numberofhotspots + numberoflayers);
+
+//LAYERS
+
+asyncloop(global.s_loaded_count LT numberofelements
+    , 
+    if(numberoflayers GT 0,
+        for(set(f,0 ), f LT layers_array.count , inc(f),
+            if(layer[get(layers_array[get(f)].value)].loaded == true
+                ,
+                               
+                set(layer[calc(layers_array[get(f)].value)].s_alpha_loader,get(layer[calc(layers_array[get(f)].value)].alpha));
+                set(layer[calc(layers_array[get(f)].value)].alpha,1);
+                tween(layer[calc(layers_array[get(f)].value)].alpha,get(layer[calc(layers_array[get(f)].value)].s_alpha_loader),1);  
+                if (layer[calc(layers_array[get(f)].value)].s_onloaded
+                ,         
+                        callwith(layer[calc(layers_array[get(f)].value)],calc(layer[calc(layers_array[get(f)].value)].s_onloaded));                  
+                );
+                layers_array.removearrayitem(get(layers_array[get(f)].index));
+                delayedcall(0.1,
+                            inc(global.s_loaded_count); 
+                );                
+            );
+        );
+    );
+    if(numberofhotspots GT 0,
+
+        for(set(i,0 ), i LT hotspots_array.count , inc(i),
+            if(hotspot[get(hotspots_array[get(i)].value)].loaded == true
+                ,
+                trace('hs carregatis');
+                set(hotspot[calc(hotspots_array[get(i)].value)].s_alpha_loader,get(hotspot[calc(hotspots_array[get(i)].value)].alpha));
+                set(hotspot[calc(hotspots_array[get(i)].value)].alpha,1);                
+                tween(hotspot[calc(hotspots_array[get(i)].value)].alpha,get(hotspot[calc(hotspots_array[get(i)].value)].s_alpha_loader));
+                hotspots_array.removearrayitem(get(hotspots_array[get(i)].index));
+                delayedcall(0.1,
+                                inc(global.s_loaded_count); 
+                );
+            );
+        );
+    );
+    ,
+
+    set(global.s_loaded_finish,true);
+    trace('tot carregat');
+    delayedcall(1,scope(global,calc(loadedaction)));
+    break();
+);
+
+        
+</action>    -->
+
+
+//LOADER PANOS NO DOCUMENTAT
+<action name="s_load_pano" scope="local" args="pano,obj,pre,post,svars"> 
+
+if (isset(obj)
+,
+    copy(vars,calc(obj + '.var') );
+    copy(flags,calc(obj + '.flags'));
+    copy(blend,calc(obj + '.blend'));
+    copy(preaction_allways,calc(obj + '.preaction_allways'));
+    copy(global.s_l654321684,calc(obj + '.level'));
+    copy(global.s_a654321684,calc(obj + '.postaction_allways'));
+,
+    set(vars,'null');
+    set(flags,'MERGE');
+    set(blend,'COLORBLEND(0.5,0xffffff,easeinoutquad)');
+    set(preaction_allways,'');
+    set(global.s_l654321684,0);
+    set(global.s_a654321684,'');
+);
+
+if (pre,
+scope(global,calc(pre));
+);
+if (post,
+copy(global.s_08029547523546,post);
+,
+copy(global.s_08029547523546,'');
+);
+
+scope(global,calc(preaction_allways));
+	loadscene(get(pano), calc(svars?svars:vars),get(flags),get(blend)
+    ,
+
+
+            scope(global,calc(s_08029547523546));
+            asyncloop(image.loadstate !== s_l654321684
+                    ,
+                    ,
+                    scope(global,calc(s_a654321684));    
+                );
+    );
+</action>
+
+
+//AVISADOR DE QUAN TOTES LES IMATGES DE LAYER I HOTSPOTS ESTAN RENDERITZADES  NO DOCUMENTAT
+<action name="s_image_wait_render" type="javascript" scope="local"><![CDATA[
+
+	var src = caller.ishotspot ? '' : caller.sprite.style.backgroundImage.slice(4, -1).replace(/"/g, "");                        
+	var image = new Image();
+	image.addEventListener('load', function() {
+		if(!caller.ishotspot){
+			caller.sprite.style.backgroundImage = 'url(' + src + ')';
+		}
+		image.decode().then(callkp());
+	});
+
+	image.src = caller.ishotspot ? caller.loadedurl : src;  
+
+
+	function callkp(){
+			krpano.call(args[1]);
+			image = null;
+			if(!krpano.get('s_image_wait_rendered')){
+				krpano.set('s_image_wait_rendered',0);
+			}
+			krpano.call('calc(s_image_wait_rendered,number(s_image_wait_rendered) + 1)');
+			if(args[2]){	
+				krpano.actions.trace('imatges totals:','s_image_wait_rendered');
+			}
+	}
+
+]]></action>
+
+    
+   
+</krpano>

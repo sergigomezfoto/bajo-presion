@@ -1,0 +1,104 @@
+<krpano>
+
+<s_way_config
+    id_atribute="s_id"
+    register_scenes="true"
+    register_hs_clicks="true"
+    register_lay_clicks="true"
+    scene_word_to_replace="scene_"
+    scene_word_replaced_by="s_"
+    hs_clicks_prefix="hsc_"
+    layer_clicks_prefix="lay_"
+/>
+
+//ACCIONS AUTOMÀTICA PER PODER SEGUIR A TOTS ELS LAYERS I HOTSPOTS SENSE POSAR EN DUR onclick="" tota la estona.
+
+<!-- 
+<events name="s_propagate_s_get_hs_clicks_way" keep="true" onnewscene=" s_propagate_s_get_hs_clicks_way(); "/>
+    <action name="s_propagate_s_get_hs_clicks_way">
+
+    for(set(i,0 ), i LT hotspot.count , inc(i),
+    
+    if (hotspot[get(i)].enabled AND !hotspot[get(i)].s_onclick_s_way_event_added,
+            hotspot[get(i)].addevent(onclick,s_get_hs_clicks_way);
+            set(hotspot[get(i)].s_onclick_s_way_event_added,true);
+    ); 
+    ); 
+
+    </action>
+
+<events name="s_propagate_s_get_layer_clicks_way" keep="true" onnewscene=" s_propagate_s_get_layer_clicks_way(); "/>
+    
+    <action name="s_propagate_s_get_layer_clicks_way">
+
+    for(set(i,0 ), i LT layer.count , inc(i),
+
+    if (layer[get(i)].enabled AND !layer[get(i)].s_onclick_s_way_event_added,
+            layer[get(i)].addevent(onclick,s_get_hs_clicks_way);
+            set(layer[get(i)].s_onclick_s_way_event_added,true);
+    ); 
+    ); 
+
+    </action> -->
+
+
+
+//scene way
+<events name="s_write_scene_way" keep="true" onnewscene="s_get_scene_way();"/>
+
+<action name="s_get_scene_way">
+if (s_way_config.register_scenes,
+    if(s_write_scene_way_begining
+    ,
+        calc(s_calc_scene_way,replace(get(xml.scene),get(s_way_config.scene_word_to_replace),get(s_way_config.scene_word_replaced_by) ));
+        s_write_in_analytics_way(get(s_calc_scene_way));
+    ); 
+    set(s_write_scene_way_begining,true);
+);
+</action>
+
+
+<action name="s_get_hs_clicks_way">
+
+
+set(s_calc_click_way,'noferpush');
+
+if (!ishotspot AND s_way_config.register_lay_clicks,
+
+            calc(s_calc_click_way, s_way_config.layer_clicks_prefix +  (calc(s_way_config.id_atribute)?calc(s_way_config.id_atribute):name));            
+
+, ishotspot AND s_way_config.register_hs_clicks,
+
+            calc(s_calc_click_way, s_way_config.hs_clicks_prefix +  (calc(s_way_config.id_atribute)?calc(s_way_config.id_atribute):name)); 
+
+);
+
+s_write_in_analytics_way(get(s_calc_click_way));
+</action>
+
+    <action name="s_write_in_analytics_way" type="Javascript" >
+    
+            <![CDATA[
+                console.log(args[1]);
+             if (args[1] !== 'noferpush') {
+                s_analytics.navigation_way.push(args[1]); 
+             }
+              
+            ]]>  
+    </action>
+<!--
+<action name="s_get_layer_clicks_way">
+if (s_way_config.register_layer_clicks,
+    calc(s_calc_layer_click_way, s_way_config.layer_clicks_prefix +  s_way_config.id_atribute);
+    s_write_layer_clicks_way();
+);
+</action>
+
+    <action name="s_write_layer_clicks_way" type="Javascript" >
+            <![CDATA[
+              s_analytics.navigation_way.push(krpano.get('s_calc_layer_click_way')); 
+            ]]>  
+    </action> -->
+
+
+</krpano>

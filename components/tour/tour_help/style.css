@@ -1,0 +1,26 @@
+
+
+#tourHelp {
+    position: absolute;
+
+    bottom: var(--margin);
+    right: var(--margin);
+    width: 40px;
+    height: 40px;
+    border: 2px solid #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'untitled_sansmedium';
+    font-size: 18px;
+    pointer-events: none;
+}
+
+
+.tourHelpHover {
+    background-color: #FFFFFF !important;
+    color: #f5005d !important;
+    cursor: pointer !important;
+}

@@ -1,0 +1,99 @@
+<krpano>
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<!--linia	-->	
+<style name="s_slider_line"
+type="container" 
+keep="true" 
+width="get:s_setters_config.linewidth"
+height="get:s_setters_config.lineheight"
+edge="left"
+align="center"
+bg="true"
+bgcolor="calc:'0x' + s_setters_config.mainbgcolor"
+bgalpha="get:s_setters_config.mainbgalpha"
+bgborder="calc:'0,' + (s_setters_config.thumbwidth /2) + ' 0x' + s_setters_config.mainbgcolor + ( ' ' + '0.0')"
+x="0"
+y="0"
+/>	
+	<!--thumb de la linia-->
+	<style name="s_slider_thumb"
+	type="container"
+	keep="true"
+	bgcapture="true"
+	bgcolor="calc:'0x' + s_setters_config.thumbcolor"
+	bgalpha="1.0"
+	align="left"
+	edge="center"
+	width="get:s_setters_config.thumbwidth"
+	height="get:s_setters_config.thumbheight"
+	enabled="true"
+	x="0"
+	/>
+	<!-- min value -->
+	<style name="s_slider_minvalue"
+	type="text"
+	html="tag text"
+	alpha="0.5"
+	bg="false"
+	css="calc:'font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:9px;color:#' + s_setters_config.minmaxcolor + ';'"
+	enabled="false"
+	align="left"
+	edge="left"
+	autowidth="auto"
+	height="15"
+	x="-1"	
+	y="0"						       
+	/>
+	<!-- max value -->
+	<style name="s_slider_maxvalue"
+	type="text"
+	alpha="0.5"
+	bg="false"
+	css="calc:'font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:9px;color:#' + s_setters_config.minmaxcolor + ';'"
+	enabled="false"
+	align="right"
+	edge="right"
+	autowidth="auto"
+	height="15"
+	x="-1"	
+	y="0"						       
+	/>
+	<!-- title tag -->
+	<style name="s_slider_title"
+	type="text"
+	bg="true"
+	bgcolor="calc: '0x' + s_setters_config.mainbgcolor"
+	bgalpha="get:s_setters_config.mainbgalpha"
+	bgshadow="calc:((s_setters_config.thumbwidth /2) * -1) + ' 0 0 0x' + s_setters_config.mainbgcolor + ' 1'"
+	css="calc:'font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:12px; color:#' + s_setters_config.titlecolor + ';'"
+	enabled="false"
+	align="left"
+	autowidth="auto"
+	height="20"
+	x="0"	
+	y="-20"	
+	/>
+		<!-- current value  -->
+		<style name="s_slider_currentvalue"
+		type="text"
+		bg="true"
+		bgcolor="calc: '0x' + s_setters_config.mainbgcolor"
+		bgalpha="get:s_setters_config.mainbgalpha"
+		css="calc:'font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:12px; font-weight:bold; color:#' + s_setters_config.currentvaluecolor + ';'"
+		enabled="false"
+		align="right"
+		edge="left"
+		autowidth="auto"
+		height="20"
+		x="0"	
+		y="0"					       
+		/>
+
+
+
+</krpano>

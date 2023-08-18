@@ -1,0 +1,17 @@
+#tourNext{
+    position: absolute;
+    bottom: var(--margin);
+    right: calc(var(--margin) + 70px);
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tourNextHover {
+    opacity: 1 !important;
+    background-color: #ffffff !important;
+    color: #f5005d !important;
+    /* color: #d304c1; */
+
+}

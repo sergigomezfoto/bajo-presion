@@ -1,0 +1,77 @@
+<krpano>
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_tragaperras s_tragaperras s_tragaperras s_tragaperras s_tragaperras s_tragaperras s_tragaperras s_tragaperras
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//EXXTERNAL BUTTON onclick=" s_tragaperras(framewidth, frameheight,accelerate_to,acceleration_time,varname);
+//to start-> s_tragaperras(framewidth, frameheight,accelerate_to,acceleration_time,varname);
+//to stop-> set(stopitvarname,true), as global var so in anywhere. (set to false first, and to stop set it to true).
+//if called onloaded itself, don't put crop value. If called with callwith, put crop on tragaperras and clear it in callwith function.
+
+//REAL EXAMPLE:
+<hotspot name="s_animation_tragaperras_v" style="test_title_s_actions" ath="-90" atv="-12" html="s_tragaperras[BR](framewidth, frameheight,accelerate_to,acceleration_time,stopitvarname)"/>	
+
+<hotspot name="test_tragaperras" style="test_hotspot_image"
+
+	 ath="-90" atv="0"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/money.png"	
+	 enabled="false"	
+crop="0|0|100|100"
+	 />
+	
+<!-- BUTTON TRAGAPERRAS -->
+<hotspot name="test_button_tragaperras" style="test_hotspot_square|test_hs_button" 
+ath="-90" atv="11" 
+enabled="true"
+bgcolor="0x981616"
+html="click"
+flagclick="false"
+onclick="test_action_tragaperras_example();"
+/>
+<!-- ACTION CALLED FROM BUTTON -->
+<action name="test_action_tragaperras_example">
+//first action start machine 
+set(bgcolor,"0x505050");
+set(enabled,false);
+
+if (!flagclick,
+				//avoid click in acceleration time
+				delayedcall (1.1,
+					set(enabled,true);
+					set(bgcolor,"0x098114");
+					set(html,"stop");	
+				);
+				//callwith to test_anim_tragaperras
+				callwith(hotspot[test_tragaperras],
+					// set the same var of the the action to false
+					set(maricarmen,false); 
+					// set crop of the tragaperras to nothing 
+					
+		            set(crop,'');
+					//launch the action refered to test_anim_tragaperras
+					s_tragaperras(100,100,50,1,maricarmen);
+					);				
+				set(flagclick,true);
+,flagclick,									
+				set(flagclick,false);
+				set(maricarmen,true);
+				set(enabled,false);
+				set(bgcolor,"0x505050");
+				delayedcall (1,
+					set(enabled,true);
+					set(bgcolor,"0x981616");
+					set(html,"click");
+				);
+				delayedcall(0.5,
+				trace('valor de la jugada: ',test_tragaperras_price);
+				);
+			
+);	
+</action>
+
+	
+</krpano>

@@ -1,0 +1,77 @@
+<action name="s_animation_projector_tween_v" scope="local" args="framewidth, frameheight,accelerate_to,acceleration_time,suspense_time">
+        calc(numberofframes, caller.imageheight / frameheight);
+                  <!-- trace('numberofframes ', numberofframes);
+                  trace('caller.imageheight ', caller.imageheight);
+                  trace('frameheight ', frameheight); -->
+def(stay_places,array);
+                  for(set(i, 0), i LT numberofframes , inc(i),
+                  set(stay_places[calc(i)],calc(i * frameheight ));
+                  );
+trace(stay_places);
+        def(frame, integer, 0);
+        <!-- fica el primer tall crop -->
+        calc(caller.crop, '0|0|' + framewidth + '|' + frameheight);
+
+        //acceleració
+        set(acceleration_value,1);
+        tween(acceleration_value,calc(accelerate_to),calc(acceleration_time),, set(endacceleration,true); );
+        setinterval(calc('s_animation_projector_acceleration' + caller.name), 0.01, 
+            inc(frame,calc(roundval(acceleration_value)));    
+            if(
+              endacceleration  AND frame GE caller.imageheight * (numberofframes-1) 
+              ,  
+                clearinterval(calc('s_animation_projector_acceleration' + caller.name));
+                set(frame,0);
+            
+                //suspens
+                  setinterval(calc('s_animation_projector_suspense' + caller.name), 0.01,
+                      inc(frame,calc(roundval(acceleration_value)));
+                      if(frame GE caller.imageheight * (numberofframes-1), set(frame,0); );
+                      copy(ypos,frame);
+                      calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);     
+                  );
+                  //desacceleracio 
+                      delayedcall(calc(suspense_time),
+                      clearinterval(calc('s_animation_projector_suspense' + caller.name));
+                            tween(acceleration_value,0,calc(acceleration_time),easeoutquint,
+                              //Fi
+                              clearinterval(calc('s_animation_projector_deceleration' + caller.name));
+                              trace('fi posicio: ',frame);
+
+                              );
+                      setinterval(calc('s_animation_projector_deceleration' + caller.name), 0.01,
+                          inc(frame,calc(roundval(acceleration_value)));
+                          if(frame GE caller.imageheight * (numberofframes-1), set(frame,0); );
+                          copy(ypos,frame);
+                          calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+
+                      );
+                  );
+              , frame GE caller.imageheight * (numberofframes-1), 
+                set(frame,0);              
+             );    
+            copy(ypos,frame);
+            calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+   
+        );
+
+    </action>
+
+
+
+                              if (frame !== min(stay_places[get(f)],frame),
+                              trace('el numero final, [',frame,'] es MÉS GRAN que',stay_places[get(f)]);
+                              );
+
+/* trace('  ');
+                              trace('----------------');
+                              trace('POSICIO FINAL: ',frame);
+                              trace('STAY PLACES: ',stay_places[get(f)]);
+                              trace('POSICIO MÍNIMA RELATIVA: ',calc(min(stay_places[get(f)],frame)));
+                               trace('el numero final, [',frame,'] ',
+                                calc(
+
+                                frame === calc(min(stay_places[get(f)],frame))? 'MÉS PETIT':'MÉS GRAN'
+
+                                ),
+                              ' que [', stay_places[get(f)],']');*/

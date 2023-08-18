@@ -2,6 +2,7 @@ html {
     height: 100%;
     user-select: none;
     --margin:40px;
+    --thumb_color: rgba(255, 255, 255, 0.5);
 
 }
 
@@ -80,6 +81,9 @@ body {
 .button:hover {
     opacity: 1;
     background-color: #ffffff;
-    color: #d304c1;
+    color: #f5005d;
+    /* color: #d304c1; */
 
 }
+
+

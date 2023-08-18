@@ -1,0 +1,24 @@
+<krpano>
+
+    
+<sectret_code_start
+keycode="83"
+/>//S
+// ENTER ···> CHECK CODE
+// SUPR ···> RESET
+
+<secret_code name="s1"
+code="3514608"
+action="trace('ENTRO s1')"
+/>
+
+<secret_code name="s2"
+code="222"
+action="trace('ENTRO s2');"
+/>
+<secret_code name="s3"
+code="SSS"
+action="trace('ENTRO s3');"
+/>
+
+</krpano>

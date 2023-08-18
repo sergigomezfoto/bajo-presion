@@ -1,0 +1,162 @@
+<krpano>
+
+// {0}
+<action name="s_flying_arrows" scope="local"> 
+
+addlayer(flying_arrow_container); 
+for(set(i,0), i LT hotspot.count, inc(i),
+
+   if (hotspot[get(i)].style == 'arrow_hs_style' OR hotspot[get(i)].style == 'external_arrow_hs_style', 
+      set(layer[flying_arrow_container].flying_arrow_suplantator[get(i)].name, get(hotspot[get(i)].name)); 
+      set(layer[flying_arrow_container].flying_arrow_suplantator[get(i)].horizontal_direction, get(hotspot[get(i)].ath)); 
+      set(layer[flying_arrow_container].flying_arrow_suplantator[get(i)].shape, 'config_shape');
+   );
+); 
+   
+</action>
+
+//{1}
+<action name="s_update_flying_arrow_container" scope="local">
+
+for(set(i,0),i LT layer[flying_arrow_container].flying_arrow_suplantator.count,inc(i),
+
+        copy(shape,layer[flying_arrow_container].flying_arrow_suplantator[get(i)].shape);
+
+        s_draw_flying_arrow(get(layer[flying_arrow_container].flying_arrow_suplantator[get(i)].name),get(layer[flying_arrow_container].flying_arrow_suplantator[get(i)].horizontal_direction),get(shape));
+);
+
+</action>
+
+// {2}
+<action name="s_draw_flying_arrow" scope="local" args="aname,hpos,ashape">
+
+copy(functionv_points_count,s_flying_arrow_config[get(ashape)].arrow.center.functionv.point.count);
+
+for(set(k,0),k LT functionv_points_count,inc(k),
+
+    copy(vlookatn,s_flying_arrow_config[get(ashape)].arrow.center.functionv.point[get(k)].vlookat);
+    copy(posvn,s_flying_arrow_config[get(ashape)].arrow.center.functionv.point[get(k)].posv);
+  
+    if(vlookatn LT view.vlookat
+    ,
+        if(!isvalue(ltv) OR vlookatn GT ltv
+        ,
+            copy(ltv,vlookatn);
+            copy(ltposv,posvn);
+        );
+    ,
+        if(!isvalue(gtv) OR vlookatn LT gtv
+        ,
+            copy(gtv,vlookatn);
+            copy(gtposv,posvn);
+        );
+    );
+);
+
+if(!isvalue(gtv)
+,
+    copy(posv,ltposv);
+,
+    if(!isvalue(ltv)
+    ,
+        copy(posv,gtposv);
+    ,
+
+         calc(posv,((gtposv - ltposv) / (gtv - ltv) * (view.vlookat - ltv)) + ltposv);
+    );
+);
+
+copy(cdist,s_flying_arrow_config[get(ashape)].arrow.center.dist);
+
+calc(basev,(sin(posv * (Math.PI / 180.0))) * cdist );
+
+copy(arrow_points_count,s_flying_arrow_config[get(ashape)].arrow.point.count);
+
+for(set(f,0),f LT arrow_points_count ,inc(f),
+
+    calc(arrow_x,s_flying_arrow_config[get(ashape)].arrow.point[get(f)].x );
+    
+    calc(arrow_y,s_flying_arrow_config[get(ashape)].arrow.point[get(f)].y );
+  
+    
+    calc(distc,
+        sqrt(
+                pow(
+                        (arrow_y * cos((view.hlookat - hpos) * (Math.PI / 180.0)))
+                                            + 
+                        (arrow_x * sin((view.hlookat - hpos) * (Math.PI / 180.0)))                 
+                                            + 
+                        (cos(posv * (Math.PI / 180.0)) * cdist)
+                    ,2) 
+
+                    + 
+
+                pow(
+                    (arrow_x * cos((view.hlookat - hpos) * (Math.PI / 180.0))) - (arrow_y * sin((view.hlookat - hpos) * (Math.PI / 180.0)))
+                    ,2)
+            )
+    );
+
+    calc(hotspot[get(aname)].point[get(f)].ath,
+        (
+            atan2(
+                arrow_x * cos((view.hlookat - hpos) * (Math.PI / 180.0)) 
+                                    - 
+                arrow_y * sin((view.hlookat - hpos) * (Math.PI / 180.0))
+                ,      
+
+                arrow_y * cos((view.hlookat - hpos) * (Math.PI / 180.0)) 
+                                    + 
+                arrow_x * sin((view.hlookat - hpos) * (Math.PI / 180.0)) 
+                                    + 
+                cos(posv * (Math.PI / 180.0)) 
+                                    * 
+                cdist
+            ) 
+                                    / 
+            (Math.PI / 180.0)
+        ) 
+        + 
+        view.hlookat
+    );
+
+    calc(hotspot[get(aname)].point[get(f)].atv,
+        atan2(
+            basev
+            ,
+            distc
+            ) 
+                                    / 
+            (Math.PI / 180.0)
+    );
+    
+);
+
+</action>
+                                                       
+
+
+
+
+
+<events 
+    name="s_flying_arrows" 
+    onloadcomplete="s_update_flying_arrow_container(); "
+    onviewchange="realview_changed();" 
+    keep="true" 
+/> //onviewchange="realview_changed();" == només quan realment hi ha moviment s_update_flying_arrow_container();
+
+<action name="realview_changed" >
+
+if(view.hlookat != last_view_hlookat OR view.vlookat != last_view_vlookat,
+		
+		copy(last_view_hlookat, view.hlookat);
+		copy(last_view_vlookat, view.vlookat);
+        s_update_flying_arrow_container();
+   );
+</action>
+
+
+</krpano>
+ 
+

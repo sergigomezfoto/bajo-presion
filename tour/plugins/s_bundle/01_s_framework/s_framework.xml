@@ -1,0 +1,185 @@
+<krpano>
+
+
+ 
+
+<!-- SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG-->
+<!-- TODO NO FUNCIONA AMB LOCAL -->
+<action name="s_log" scope="local" args="" >
+
+	
+	for(set(i, 0), i LT args.length , inc(i),
+	
+		trace('[ ',args[get(i)],' ]: ', calc(args[get(i)]));
+
+	);
+
+</action>
+
+
+
+<action name="s_logaction" scope="local" args="actions">
+
+trace(calc(contains(calc('action[' + actions + '].scope'),'[') ?'': 'action[' + actions + '].scope' ));
+		trace('<action name="', actions ,
+			calc(contains(calc('action[' + actions + '].scope'),'[') ?'">': '" scope="' + calc('action[' + actions + '].scope') + '" args="' + calc('action[' + actions + '].args') + '" ' + unescape('%%3E')),
+			 calc('action[' + actions + '].content') ,
+			  '</action>' 
+			 ); 
+
+
+	
+</action>
+
+<action name="s_arrlog">
+
+	
+	
+</action>
+ 
+<!-- SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM -->
+<action name="s_random" scope="local" args="bottomval,topval,destvar">
+	calc(calc('global.'+ destvar),roundval((random * (topval - bottomval)) + bottomval ));
+	<!-- ERROR AL POSAR QUE SIGUI UN VALOR NUMBER -->
+	<!-- calc(calc('global.'+ destvar),number(roundval((random * (topval - bottomval)) + bottomval ))); -->
+</action>
+
+<!-- ARRAY ANALISIS-->
+<action name="s_number_array_analisis" scope="local" args="n_array,var_n,publicbartoken">
+
+	txtsplit(get(n_array),'|',numb_array);
+	def(bigger_numbers_array,array);
+	def(lower_numbers_array,array);
+	def(coincident_numbers_array,array);
+	def(bn,number,0);
+	def(ln,number,0);
+	def(cn,number,0);
+	calc(calc('global.s_' + publicbartoken + '_given'),var_n);
+	 for(set(f, 0), f LT numb_array.count, inc(f),
+	 	if (
+	 		var_n LT numb_array[get(f)].value,
+	 				calc(calc('global.s_' + publicbartoken + '_bigger[' + calc(bn) + '].value'), numb_array[get(f)].value);
+	 				inc(bn); 	
+
+	 		,var_n GT numb_array[get(f)].value,		
+	 				calc(calc('global.s_' + publicbartoken + '_lower[' + calc(ln) + '].value'),numb_array[get(f)].value);
+	 		        inc(ln);
+	 		 		
+	 		,var_n == numb_array[get(f)].value,
+	 				calc(calc('global.s_' + publicbartoken + '_coincident[' + calc(cn) + '].value'),numb_array[get(f)].value);
+	 		   		inc(cn);
+	 				
+	 	);         
+	  );
+
+</action>
+
+ <action name="s_uniqueid" type="Javascript">
+<![CDATA[
+const generateId = () => {
+return Math.random().toString(36).substr(2, 18)
+};	
+
+//console.log(generateId());
+
+krpano.set('s_uniqueid_var',generateId());
+
+]]>	
+</action>
+
+<action name="s_set" scope="local" args="vars,svalue">
+
+txtsplit(vars,'|',var_arr);
+txtsplit(svalue,'|',val_arr);
+trace(var_arr.count,val_arr.count);
+if ( val_arr.count GT 1 AND var_arr.count != val_arr.count ,
+    trace('ERROR S_SET: IF MORE THAN ONE VALUE, IT MUST BE EXACTLY THE SAME AMOUNT OF VARS TO CHANG!!');
+,
+ 
+    for(set(i,0 ), i LT var_arr.count, inc(i),
+
+    set(calc('global.' + trim(var_arr[get(i)].value )),calc(val_arr.count GT 1 ? val_arr[get(i)].value : svalue ));
+
+    );
+);
+
+</action>
+
+<action name="s_callwhen" scope="local" args="id,condition,actions,once,frequenci" >
+
+calc(calc('global.s_callwhen' + id),'nothing');
+setinterval(calc('s_callwhen' + id) ,calc(frequenci?frequenci:0.05),
+
+if (once,
+	if (!calc(condition) AND calc('global.s_callwhen' + id) !== 'clear',
+		if (calc('global.s_callwhen' + id) !== 'run'
+		,
+			set(calc('global.s_callwhen' + id), 'run');	
+		);
+	);
+);
+
+if (calc('global.s_callwhen' + id) !== 'pause' AND calc('global.s_callwhen' + id) !== 'clear',
+	if (calc(condition),
+	scope(global,calc(actions));
+	if (once,
+		set(calc('global.s_callwhen' + id), 'pause');
+		);
+	);
+);
+if (calc('global.s_callwhen' + id) === 'clear',
+
+		clearinterval(calc('s_callwhen' + id));
+
+		delete(calc('global.' + id));
+);
+);
+
+
+
+</action>
+	
+
+<action name="s_capture_html_element" type="javascript">
+<![CDATA[
+    if(args[1] === 'c'){
+    var element_itself = caller //.children[0];
+    } else if(args[1] === 's'){
+      var element_itself = caller.sprite   
+    }
+
+	if(args[2]){
+		element_itself.id ='kp_s_' + args[2];
+	}
+    if(args[3] === 'true'){
+    console.log(element_itself);
+	}
+]]>
+</action>
+
+<action name="s_addlayer" scope="local" args="namelayer,lkeep">
+	if (!isset(lkeep),
+	set(keep,true);	
+	,
+	set(keep,get(lkeep));
+	);
+
+	addlayer(get(namelayer));
+	layer[get(namelayer)].loadstyle(get(namelayer));	
+	set(layer[get(namelayer)],keep=get(keep),);
+	
+</action>
+<action name="s_addhotspot" scope="local" args="namelayer">
+	if (!isset(lkeep),
+	set(keep,true);	
+	,
+	set(keep,get(lkeep));
+	);
+	addhotspot(get(namelayer));
+	hotspot[get(namelayer)].loadstyle(get(namelayer));	
+	set(hotspot[get(namelayer)],keep=get(keep),);
+	
+</action>
+
+
+</krpano>

@@ -1,0 +1,66 @@
+<krpano>
+
+<action name="extendkrpano" type="Javascript" autorun="preinit">
+  
+  krpano.inlinefunctions.capitalize = function(s)
+  {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  //s_textlength: return the length
+  krpano.inlinefunctions.s_textlength = function(s)
+  {
+    return s.length;
+  }
+
+  krpano.inlinefunctions.s_return = function(s)
+  {
+    krpano.call(s);
+    var ret = krpano.get('global.s_return');
+    //console.log(ret);
+    return ret;
+  }
+
+</action>
+
+
+//TODO S_RETURN retorn de accions string no funciona NAN
+//get return in caller action: 
+// s_setreturn(get(sum));
+//to use it inside a calc or in if:
+// s_return(test_return(calc(prim + sec)))
+
+<action name="test_return" scope="local" args="un,dos">
+            calc(sum, un + dos);
+            s_setreturn(get(sum));
+        
+</action>
+<action name="test_return2" scope="local" args="un,dos">
+            txtadd(paraula,get(un),'|',get(dos));          
+            s_setreturn(get(paraula));
+        
+</action>
+                <action name="" autorun="onstart">
+                      set(prim,5);
+                      set(sec,2);
+                      calc(variable_result,s_return(test_return(calc(prim + sec))) + 3);
+                      calc(variable_result2,s_return(test_return(18,2)) + 3);
+                      calc(variable_result3,s_return(test_return2('mama','papa')));
+                          trace(get(variable_result));
+                          trace(get(variable_result2));
+                          trace(get(variable_result3));
+                </action>
+
+/////CORE ACTION S_RETURN
+
+        <action name="s_setreturn" scope="local" args="var">
+            if (isNaN(var)
+            ,
+            delete(global.s_return);
+            txtadd(global.s_return,get(var));
+            ,
+            set(global.s_return,get(var));  
+            );
+            //trace(get(var));
+        
+        </action>
+</krpano>

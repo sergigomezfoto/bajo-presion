@@ -1,0 +1,202 @@
+<krpano>
+
+////////////////////////////////////////////////////////////////////////////////
+    
+
+// TWIN ANIMATIONS
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//STYLES TO CALL IN MAIN HP
+
+<style name="twin_anim_pulse_default"
+    onloaded.addevent="create_twin_animation_hs(get(name),s_twin_animation_pulse_default);"
+/>
+
+<style name="twin_anim_pulse_fast_and_red"
+    onloaded.addevent="create_twin_animation_hs(get(name),s_twin_animation_pulse_fast_and_red);"
+/>
+<style name="twin_anim_border_pulse_default"
+    onloaded.addevent="create_twin_animation_hs(get(name),s_twin_animation_border_pulse_default);"
+/>
+<style name="twin_anim_inf"
+    onloaded.addevent="create_twin_animation_hs(get(name),s_twin_animation_inf);"
+/>
+<style name="twin_influence_area"
+    onloaded.addevent="s_localize_twin_influence_no_animation(get(name),twin_noanimation_influence_area);"
+/>
+
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////STYLES TO CONFIGURE////////////////////////////////////////////////////////////////////////
+
+                    <style name="s_twin_animation_pulse_default"
+                        REAL_ATRIBUTES_OF_TWIN_ELEMENT=""
+                        bgcolor="0xffffff"
+        
+
+                        USED_IN_ANIMATION_ACTION=""
+                        anim_time="0.8"
+                        initial_bgalpha="1"
+                        final_bgalpha="0"
+                        initial_scale="0.5"
+                        final_scale="3"
+                        onloaded="s_twin_animation_pulse()"
+                        
+                        CALLED_IN_MAIN_ACTION_TO_HIDE_THE_TWIN=""                        
+                        action_localized_alpha="0"
+                        action_unlocalized_alpha="1"
+                    />
+                    <style name="s_twin_animation_pulse_fast_and_red"
+                        REAL_ATRIBUTES_OF_TWIN_ELEMENT=""
+                        bgcolor="0xF8333C"
+        
+
+                        USED_IN_ANIMATION_ACTION=""
+                        anim_time="0.6"
+                        initial_bgalpha="1"
+                        final_bgalpha="0"
+                        initial_scale="0.5"
+                        final_scale="3"
+                        onloaded="s_twin_animation_pulse_fast_red()"
+                        
+                        CALLED_IN_MAIN_ACTION_TO_HIDE_THE_TWIN=""                        
+                        action_localized_alpha="0"
+                        action_unlocalized_alpha="1"
+                    />
+
+                    <style name="s_twin_animation_border_pulse_default"
+                        REAL_ATRIBUTES_OF_TWIN_ELEMENT=""
+                        bgcolor="0xffffff"     
+                        bgalpha="0"
+                        bgborder="2 0xffffff 0.8"
+                        alpha="1"
+                       
+                        USED_IN_ANIMATION_ACTION=""
+                        anim_time="1.2"
+                        initial_scale="1"
+                        onloaded="s_twin_animation_border_pulse()"
+                        
+                        CALLED_IN_MAIN_ACTION_TO_HIDE_THE_TWIN=""                        
+                        action_localized_alpha="0"
+                        action_unlocalized_alpha="1"
+                    />
+                    <style name="s_twin_animation_inf"
+                        REAL_ATRIBUTES_OF_TWIN_ELEMENT=""
+                        bgcolor="0xffffff"     
+                        bgalpha="0"
+                        bgborder="2 0xffffff 0.8"
+                        alpha="1"
+                       
+                        USED_IN_ANIMATION_ACTION=""
+                        anim_time="1.2"
+                        initial_scale="1"
+                        onloaded="s_twin_animation_inf()"
+                        
+                        CALLED_IN_MAIN_ACTION_TO_HIDE_THE_TWIN=""                        
+                        action_localized_alpha="0"
+                        action_unlocalized_alpha="1"
+                    />
+                    <style name="twin_noanimation_influence_area"
+                        REAL_ATRIBUTES_OF_TWIN_ELEMENT=""
+                        bg="true"
+                        bgcolor="0xff0000"
+                        bgalpha="0"
+                        scale="7"
+
+                        handcursor="false"
+                       
+             
+                        CALLED_IN_MAIN_ACTION_TO_HIDE_THE_TWIN=""                        
+                        action_localized_alpha="0"
+                        action_unlocalized_alpha="0.6"
+                    />
+
+                    <!-- 
+                     onover.addevent="if(!calc('s_localized_' + name) AND over_out_active,s_onlocalize();)"
+	                 onout.addevent="if(!calc('s_localized_' + name) AND over_out_active,s_onunlocalize();)"
+     -->
+                    
+                        <action name="create_twin_animation_hs" scope="local" args="twin,anim_style">
+
+                            addhotspot(calc(twin + '_twin' ), twin_animation_hs);
+                            copyattributes(get(hotspot[calc(twin + '_twin')]),get(hotspot[get(twin)]));
+                            twin_animation_hs.loadstyle(get(anim_style));
+                            set(twin_animation_hs
+                            ,
+                            scale=get(twin_animation_hs.initial_scale)
+                            ,
+                            zorder="1"
+                            ,
+                            onclick=calc('callwith(hotspot[' + twin + '],onclick);');
+
+                            );
+                            calc(calc('global.s_localize_' + twin + '_twin_delete'), true);
+                            set(hotspot[get(twin)].zorder,2);
+                            
+                        </action>
+
+                                <action name="s_twin_animation_pulse">
+                                    tween(scale,get(final_scale),get(anim_time));
+                                    tween(bgalpha,0,get(anim_time),,
+                                    set(bgalpha,get(final_bgalpha));
+                                    set(scale,get(initial_scale));
+                                    set(bgalpha,get(initial_bgalpha));
+                                    onloaded();
+                                    );
+                                </action>
+                                <action name="s_twin_animation_pulse_fast_red">
+                                    tween(scale,get(final_scale),get(anim_time));
+                                    tween(bgalpha,0,get(anim_time),,
+                                    set(bgalpha,get(final_bgalpha));
+                                    set(scale,get(initial_scale));
+                                    set(bgalpha,get(initial_bgalpha));
+                                    onloaded();
+                                    );
+                                </action>
+
+                                <action name="s_twin_animation_border_pulse">
+                                    //set(scale,1);
+                                    tween(bgroundedge|height|width|bgalpha,27|50|50|0,get(anim_time),easeinbounce,
+                                        tween(bgroundedge|height|width|bgalpha,7|10|10|0.8,calc(anim_time/2),easeoutback,
+                                        onloaded();
+                                        );
+                                    );
+
+                                </action>
+                                <action name="s_twin_animation_inf">
+                                    //set(scale,1);
+                                    <!-- tween(bgroundedge|height|width|bgalpha,27|50|50|0,get(anim_time),easeinbounce,
+                                        tween(bgroundedge|height|width|bgalpha,7|10|10|0.8,calc(anim_time/2),easeoutback,
+                                        onloaded();
+                                        );
+                                    ); -->
+
+                                </action>
+
+                        <action name="s_localize_twin_influence_no_animation" scope="local" args="twin,anim_style">
+
+                            addhotspot(calc(twin + '_twin' ), twin_influence_hs);
+                            copyattributes(get(hotspot[calc(twin + '_twin')]),get(hotspot[get(twin)]));
+                            ///s_localizable="false"
+                            twin_influence_hs.loadstyle(get(anim_style));
+                            set(twin_influence_hs
+                            ,
+                            zorder="1"
+                            ,
+                            onclick=calc('callwith(hotspot[' + twin + '],onclick);');
+                            ,                            ,
+                            onover=calc('if(!s_localized_' + twin + ' AND hotspot[' + twin + '].over_out_active,callwith(hotspot[' + twin + '],s_onlocalize););');
+                            ,
+                            onout=calc('if(!s_localized_' + twin + ' AND hotspot[' + twin + '].over_out_active,callwith(hotspot[' + twin + '],s_onunlocalize););');
+                            );
+                            calc(calc('global.s_localize_' + twin + '_twin_delete'), true);
+                            set(hotspot[get(twin)].zorder,2);
+                            
+                        </action>    
+
+</krpano>

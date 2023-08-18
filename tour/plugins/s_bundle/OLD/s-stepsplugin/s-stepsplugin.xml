@@ -1,0 +1,103 @@
+<krpano>
+
+
+
+
+<!-- <walk
+stepspairs="4"
+intensitybounce="3"
+intensityup="2"
+duration="0.45"
+factorreprise="1"
+tweentipes="easeinoutsine"
+reprise="false"
+onend=""
+/> -->
+
+
+<action name="steps-pluguin" args="font" scope="local">
+set(view.camroll,0.0);
+set(counter,0);
+<!-- PASSES -->
+
+setinterval(calc(font), calc(calc(font + '.duration') * 2.1), 
+	//trace('interval-----------------------------------------');
+	<!-- cononeig -->
+	tween(view.camroll,calc(calc(font + '.intensitybounce') * 1),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+	tween(view.camroll,calc(calc(font + '.intensitybounce') * -1),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+	inc(counter); finalcounterr(get(counter),calc(font));
+	)	
+	);
+
+	<!-- tilt -->
+	tween(view.vlookat,calc(calc(font + '.intensityup') * -1),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+	tween(view.vlookat,calc(calc(font + '.intensityup') * 1),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+
+	) 
+	);
+);
+<!-- MOVIMET FOV -->
+
+
+</action>
+
+<action name="finalcounterr" args="counter, font" scope="local" >
+//trace(calc(counter));
+calc(counte, calc(calc(font + '.stepspairs') *1));
+
+//trace(counte);
+if (counter GE  counte
+	,
+
+	if (calc(font + '.reprise') == "true"
+		,
+	//trace('hi ha reprise');
+		clearinterval(calc(font));
+		camrollreprise(calc(font));
+		vlookatreprise(calc(font));
+		,
+	//trace('NO hi ha reprise');
+		clearinterval(calc(font));
+		tween(view.camroll,-0,calc(calc(calc(font + '.duration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentipes')),
+		onendaction(calc(font))
+		);
+		tween(view.vlookat,0,calc(calc(calc(font + '.duration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentipes')),
+		);
+		
+
+	);	
+);
+</action>
+
+
+<action name="camrollreprise"  args="font" scope="local">
+
+tween(view.camroll,calc(calc(font + '.intensitybounce') / 2),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+tween(view.camroll,calc(calc(font + '.intensitybounce') / -2),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+tween(view.camroll,calc(calc(font + '.intensitybounce') / 4),calc(calc(font + '.duration')*0.75),calc(calc(font + '.tweentipes')),
+tween(view.camroll,-0,calc(calc(calc(font + '.duration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentipes')),
+	onendaction(calc(font))
+)
+)
+) 
+);		
+</action>
+
+<action name="vlookatreprise"  args="font" scope="local">
+
+tween(view.vlookat,calc(calc(font + '.intensityup') / 2),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+tween(view.vlookat,calc(calc(font + '.intensityup') / -2),calc(calc(font + '.duration')),calc(calc(font + '.tweentipes')),
+tween(view.vlookat,calc(calc(font + '.intensityup') / 4),calc(calc(font + '.duration')*0.75),calc(calc(font + '.tweentipes')),
+tween(view.vlookat,0,calc(calc(calc(font + '.duration')) / calc(font + '.factorreprise')),calc(calc(font + '.tweentipes')),
+)
+)
+)	
+);	
+</action>
+
+<action name="onendaction" args="font" scope="local">
+
+scope(global, calc(calc(font + '.onend')));
+</action>
+	
+</krpano>

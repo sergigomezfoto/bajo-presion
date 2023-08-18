@@ -1,0 +1,52 @@
+<krpano>
+
+ <include url="s_analytics_identity/s_analytics_identity.xml" />   
+ <include url="s_analytics_dates/s_analytics_dates.xml" />   
+ <include url="s_analytics_times/s_analytics_times.xml" />   
+ <include url="s_analytics_way/s_analytics_way.xml" />   
+ <include url="s_analytics_detection/s_analytics_detection.xml" />   
+ <include url="s_analytics_ui_clciks/s_analytics_ui_clciks.xml" />   
+
+//TODO ABSTRACT OBJECT
+<s_analytics_config
+
+name_of_main_object="s_behabiour_object"
+
+/>
+
+<!-- 
+
+INIT IN MAIN
+
+var behabiour_object = {
+  general_behabiour: {
+    total_navigation_time: 0,
+    total_navigation_away_time: 0,
+    navigation_way: [],
+    ui_buttons_click: {
+      navigation: {
+        zoom_in: 0,
+        zoom_out: 0,
+        sound: 0,
+        fullscreen: 0,
+        help: 0
+      },
+      core: {
+        home: 0,
+        map: 0,
+        top_stands: 0,
+        vr: 0,
+        media: 0
+      }
+    }
+  }
+  ,
+  exhibitors_behabiour: {
+
+  }
+
+};
+
+ -->
+
+</krpano>

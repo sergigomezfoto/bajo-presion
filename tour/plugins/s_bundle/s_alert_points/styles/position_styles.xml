@@ -1,0 +1,261 @@
+<krpano>
+
+
+////////////////////////////////////////////////////////////////////////////////
+    
+
+//  POSITION STYLES
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+<style name="s_loc_ap_pos_top"
+
+    CONTENT=""
+    content_edge="bottom"
+    content_ox="0"
+    content_oy="-60"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="0"
+    line_height="35"  
+    onloaded.addevent=""
+/>
+
+
+<style name="s_loc_ap_pos_topright"
+
+    CONTENT=""
+    content_edge="leftbottom"
+    content_ox="25"
+    content_oy="-50"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="45"
+    line_height="45"
+/>
+<style name="s_loc_ap_pos_right"
+
+    CONTENT=""
+    content_edge="left"
+    content_ox="60"
+    content_oy="0"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="90"
+    line_height="35"  
+/>
+<style name="s_loc_ap_pos_bottomright"
+
+    CONTENT=""
+    content_edge="lefttop"
+    content_ox="25"
+    content_oy="50"
+
+    LINE=""
+    line_oy="-23 "
+    line_rotate="135"
+    line_height="45"  
+/>
+<style name="s_loc_ap_pos_bottom"
+
+    CONTENT=""
+    content_edge="top"
+    content_ox="0"
+    content_oy="60"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="180"
+    line_height="35"  
+/>
+
+                       
+<style name="s_loc_ap_pos_bottomleft"
+
+    CONTENT=""
+    content_edge="righttop"
+    content_ox="25"
+    content_oy="50"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="225"
+    line_height="45"  
+/>
+
+
+ <style name="s_loc_ap_pos_left"
+
+    CONTENT=""
+    content_edge="right"
+    content_ox="60"
+    content_oy="0"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="270"
+    line_height="35"  
+/>
+
+<style name="s_loc_ap_pos_topleft"
+
+    CONTENT=""
+    content_edge="bottomright"
+    content_ox="-25"
+    content_oy="-50"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="315"
+    line_height="45"  
+/> 
+                           
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+///CUSTOM
+
+<style name="s_loc_ap_pos_bottom_custom"
+
+    CONTENT=""
+    content_edge="top"
+    content_ox="0"
+    content_oy="40"
+
+    LINE=""
+    line_oy="-23"
+    line_rotate="180"
+    line_height="35"  
+/>
+
+<style name="s_loc_ap_pos_right_distorted_giga"
+
+    CONTENT=""
+    content_edge="left"
+    content_ox="0.29"
+    content_oy="0"
+
+    LINE=""
+    line_oy="0"
+    line_rotate="90"
+    line_height="35"  
+/>
+
+//ROTATE POINT
+//45
+<style name="rotate_45"
+    rotate="45"
+/>
+<style name="rotate_90"
+    rotate="90"
+/>
+<style name="rotate_135"
+    rotate="135"
+/>
+<style name="rotate_135"
+    rotate="180"
+/>
+<style name="rotate_minus_45"
+    rotate="-45"
+/>
+<style name="rotate_minus_90"
+    rotate="-90"
+/>
+<style name="rotate_minus_135"
+    rotate="-135"
+/>
+<style name="rotate_minus_180"
+    rotate="-180"
+/>
+//20
+<style name="rotate_20"
+    rotate="20"
+/>
+<style name="rotate_40"
+    rotate="40"
+/>
+<style name="rotate_60"
+    rotate="60"
+/>
+<style name="rotate_80"
+    rotate="80"
+/>
+<style name="rotate_100"
+    rotate="100"
+/>
+<style name="rotate_120"
+    rotate="120"
+/>
+<style name="rotate_140"
+    rotate="140"
+/>
+<style name="rotate_160"
+    rotate="160"
+/>
+<style name="rotate_180"
+    rotate="180"
+/>
+<style name="rotate_minus_20"
+    rotate="-20"
+/>
+<style name="rotate_minus_40"
+    rotate="-40"
+/>
+<style name="rotate_minus_60"
+    rotate="-60"
+/>
+<style name="rotate_minus_80"
+    rotate="-80"
+/>
+<style name="rotate_minus_100"
+    rotate="-100"
+/>
+<style name="rotate_minus_120"
+    rotate="-120"
+/>
+<style name="rotate_minus_140"
+    rotate="-140"
+/>
+<style name="rotate_minus_160"
+    rotate="-160"
+/>
+<style name="rotate_minus_180"
+    rotate="-180"
+/>
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+///HELPER STYLES
+
+<style name="left_helper"
+
+    content_ox="-60"
+    content_css="text-align: center; color:#ffffff; font-size:14px; border-right: 2px solid #ffffff"    
+/>
+<style name="right_helper"
+   
+    content_css="text-align: center; color:#ffffff; font-size:14px; border-left: 2px solid #ffffff"    
+/>
+<style name="topleft_helper"
+   
+    content_css="text-align: center; color:#ffffff; font-size:14px; border-bottom: 2px solid #ffffff"    
+/>
+<style name="bottomright_helper"
+   
+    content_css="text-align: center; color:#ffffff; font-size:14px; border-top: 2px solid #ffffff"    
+/>
+<style name="general_rounded_helper"
+   
+       content_ox="0.60"
+       content_oy="93"   
+/>
+
+
+</krpano>

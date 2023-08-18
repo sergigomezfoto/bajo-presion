@@ -1,0 +1,65 @@
+<krpano>
+
+    
+
+<!--linia	-->	
+<style name="s_boolean_line"
+type="container" 
+keep="true" 
+width="get:s_setters_config.booleanlinewidth"
+height="get:s_setters_config.booleanlineheight"
+edge="left"
+align="center"
+bg="true"
+bgcolor="calc:'0x' + s_setters_config.mainbgcolor"
+bgalpha="get:s_setters_config.mainbgalpha"
+bgborder="calc:'0,' + (s_setters_config.booleanthumbwidth /2) + ' 0x' + s_setters_config.mainbgcolor + ( ' ' + '0.0')"
+x="0"
+y="0"
+enabled="true"
+/>	
+	<!--thumb de la linia-->
+	<style name="s_boolean_thumb"
+	type="container"
+	keep="true"
+	bgcapture="true"
+	bgcolor="calc:'0x' + s_setters_config.booleanthumbcolor"
+	bgcolor1="calc:'0x' + s_setters_config.booleanthumbcolor"
+	bgcolor0="calc:'0x' + s_setters_config.booleanthumbcolorinactive"
+	bgalpha="1.0"
+	align="left"
+	edge="center"
+	width="get:s_setters_config.booleanthumbwidth"
+	height="get:s_setters_config.booleanthumbheight"
+	enabled="true"
+	x="0"
+	/>
+	<style name="s_boolean_title"
+	type="text"
+	bg="true"
+	bgcolor="calc: '0x' + s_setters_config.mainbgcolor"
+	bgalpha="get:s_setters_config.mainbgalpha"
+	bgshadow="calc:((s_setters_config.booleanthumbwidth /2) * -1) + ' 0 0 0x' + s_setters_config.mainbgcolor + ' 1'"
+	css="calc:'font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:12px; color:#' + s_setters_config.titlecolor + ';'"
+	enabled="false"
+	align="left"
+	autowidth="auto"
+	height="20"
+	x="0"	
+	y="-20"	
+	/>
+<style name="s_boolean_line_hover"
+    type="container"
+	keep="true"
+	bgcapture="true"
+	bgcolor="0x667788"
+	bgalpha="0"
+	align="bottomleft"
+	edge="bottomleft"
+	width="100"
+	height="calc:s_setters_config.booleanlineheight * 2"
+	enabled="true"
+	x="0"
+/>
+
+</krpano>

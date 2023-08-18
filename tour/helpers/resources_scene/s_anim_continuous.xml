@@ -1,0 +1,314 @@
+<krpano>
+	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_continuous_v_down s_animation_continuous_v_down s_animation_continuous_v_down s_animation_continuous_v_down
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_continuous_v(framewidth, frameheight,framerate,moovesize)
+<hotspot name="s_animation_continuous_v_down" style="test_title_s_actions" ath="170" atv="-42" html="s_animation_continuous_v_down[BR](framewidth, frameheight,fps,moovesize)"/>	
+
+
+<hotspot name="test_anim_continuous_vert_background_down" style="test_hotspot_image"
+		 ath="170" atv="-34"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/fall_vertical_bucle.png"			
+	 onclick=""
+     onloaded="s_animation_continuous_v_down(104,102,30,15)"
+     zorder="1"
+	 />
+	 					<hotspot name="bomb" style="test_hotspot_image"
+							 ath="170" atv="-32"  rx="0" ry="0" rz="0"
+						 url="%FIRSTXML%/helpers/img/meteor.png"			
+						 onclick=""
+					     onloaded=""
+					     zorder="2"
+						 />
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_continuous_v_up s_animation_continuous_v_up s_animation_continuous_v_up s_animation_continuous_v_up
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_continuous_v(framewidth, frameheight,framerate,moovesize)
+<hotspot name="s_animation_continuous_v_up" style="test_title_s_actions" ath="170" atv="-26" html="s_animation_continuous_v_up[BR](framewidth, frameheight,fps,moovesize)"/>	
+
+
+<hotspot name="test_anim_continuous_vert_background_up" style="test_hotspot_image"
+		 ath="170" atv="-18"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/fall_vertical_bucle.png"			
+	 onclick=""
+     onloaded="s_animation_continuous_v_up(104,102,30,15)"
+     zorder="1"
+	 />
+	 					<hotspot name="rocket" style="test_hotspot_image"
+							 ath="170" atv="-19"  rx="180" ry="0" rz="0"
+						 url="%FIRSTXML%/helpers/img/bomb.png"			
+						 onclick=""
+					     onloaded=""
+					     zorder="2"
+						 />
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_continuous_h_right
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_continuous_h_left(framewidth, frameheight,framerate,moovesize)
+<hotspot name="s_animation_continuous_h_right" style="test_title_s_actions" ath="170" atv="-10" html="s_animation_continuous_h_right[BR](framewidth, frameheight,fps,moovesize)"/>	
+
+
+<hotspot name="test_anim_continuous_hor_background_right" style="test_hotspot_image"
+		 ath="170" atv="-2"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/hor_5_projector_100x100.png"			
+	 onclick=""
+     onloaded="s_animation_continuous_h_right(100,100,30,15)"
+     zorder="1"
+	 />
+	 					<hotspot name="carright" style="test_hotspot_image"
+							 ath="170" atv="-1"  rx="0" ry="0" rz="0"
+						 url="%FIRSTXML%/helpers/img/moto.png"			
+						 onclick=""
+					     onloaded=""
+					     zorder="2"
+						 />
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_continuous_h_left
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_continuous_h_left(framewidth, frameheight,framerate,moovesize)
+<hotspot name="s_animation_continuous_h_left" style="test_title_s_actions" ath="170" atv="6" html="s_animation_continuous_h_left[BR](framewidth, frameheight,fps,moovesize)"/>	
+
+
+<hotspot name="test_anim_continuous_hor_background_left" style="test_hotspot_image"
+		 ath="170" atv="14"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/hor_5_projector_100x100.png"			
+	 onclick=""
+     onloaded="s_animation_continuous_h_left(100,100,30,15);"
+     zorder="1"
+
+	 />
+	 					<hotspot name="carleft" style="test_hotspot_image"
+							 ath="170" atv="17"  rx="0" ry="0" rz="0"
+						 url="%FIRSTXML%/helpers/img/car.png"			
+						 onclick=""
+					     onloaded=""
+					     zorder="2"
+						 />
+
+	
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED EXTENDED
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_continuous_h_right
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_continuous_h_left(framewidth, frameheight,framerate,moovesize)
+<hotspot name="s_animation_continuous_h_right_ext" style="test_title_s_actions" ath="170" atv="-10" html="s_animation_continuous_h_right[BR](framewidth, frameheight,fps,moovesize)"/>	
+
+
+<hotspot name="test_anim_continuous_hor_background_right_ext" style="test_hotspot_image"
+		 ath="-150" atv="-2"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/hor_5_projector_100x100.png"			
+	 onclick=""
+    
+     zorder="1"
+     crop="215|0|100|100"
+	 /> //onloaded="s_animation_continuous_h_right(100,100,25,10,yayaleo,0)"
+	 					<hotspot name="carright_ext" style="test_hotspot_image"
+							 ath="-150" atv="-1"  rx="0" ry="0" rz="0"
+						 url="%FIRSTXML%/helpers/img/moto.png"			
+						 onclick=""
+					     onloaded=""
+					     zorder="2"
+						 />
+
+
+
+
+
+
+//LLUM ACCIONS
+<hotspot name="test_light_action_animation_continuous_right" style="test_hotspot_square|test_hs_light_action"
+ ath="-150" atv="-18"  rx="0" ry="0" rz="0"
+/>
+
+//PAUSE TWEEN
+<hotspot name="test_animation_continuous_right_controler_clear_tween" style="test_hotspot_square|test_hs_button_controler" ath="-133" atv="-27"
+html="pause tween"
+width="100"
+onclick="test_animation_continuous_right_controler_clear_tween "
+/>
+			<action name="test_animation_continuous_right_controler_clear">
+
+			set(yayaleo,'clear');
+			delayedcall(0.5,set(hotspot[test_anim_continuous_hor_background_right_ext].crop, '215|0|100|100') );
+
+			</action>
+
+//PLAY TWEEN:
+<hotspot name="test_animation_continuous_right_controler_play_tween" style="test_hotspot_square|test_hs_button_controler" ath="-133" atv="-30"
+html="play tween"
+width="100"
+onclick="test_animation_continuous_right_controler_play_tween"
+/>
+			<action name="test_animation_continuous_right_controler_play_tween">
+			def(yayaleo_tween,number ,0 );
+			tween(yayaleo_tween,10,3);
+
+            set(yayaleo,'resume');
+			callwith(hotspot[test_anim_continuous_hor_background_right_ext],s_animation_continuous_h_right(100,100,45,10,yayaleo,215,yayaleo_tween););
+	<!-- 		test_animation_continuous_right_controler_play_all_actions();  -->
+				
+			</action>
+
+
+
+//CLEAR
+<hotspot name="test_animation_continuous_right_controler_clear" style="test_hotspot_square|test_hs_button_controler" ath="-145" atv="-30"
+html="clear"
+onclick="test_animation_continuous_right_controler_clear "
+/>
+			<action name="test_animation_continuous_right_controler_clear">
+
+			set(yayaleo,'clear');
+			delayedcall(0.5,set(hotspot[test_anim_continuous_hor_background_right_ext].crop, '215|0|100|100') );
+
+			</action>
+
+//PLAY:
+<hotspot name="test_animation_continuous_right_controler_play" style="test_hotspot_square|test_hs_button_controler" ath="-155" atv="-30"
+html="play"
+onclick="test_animation_continuous_right_controler_play"
+/>
+			<action name="test_animation_continuous_right_controler_play">
+            set(yayaleo,'resume');
+			callwith(hotspot[test_anim_continuous_hor_background_right_ext],s_animation_continuous_h_right(100,100,45,10,yayaleo,215););
+			test_animation_continuous_right_controler_play_all_actions(); 
+				
+			</action>
+//PAUSE: PARA LA SEGUENT FRAME!!!!! NO PARA AL ACTUAL.
+<hotspot name="test_animation_continuous_right_controler_pause" style="test_hotspot_square|test_hs_button_controler" ath="-155" atv="-26"
+
+html="pause"
+onclick="test_animation_continuous_right_controler_pause"
+/>
+
+<action name="test_animation_continuous_right_controler_pause">
+
+	set(yayaleo,'pause');
+	
+</action>
+//RESUME:
+<hotspot name="test_animation_continuous_right_controler_resume" style="test_hotspot_square|test_hs_button_controler" ath="-145" atv="-26"
+
+html="resume"
+onclick="test_animation_continuous_right_controler_resume"
+/>
+<action name="test_animation_continuous_right_controler_resume">
+
+	set(yayaleo,'resume');
+	
+</action>
+
+//PAUSE ONE ACTION:
+<hotspot name="test_animation_continuous_right_controler_pause_one_action" style="test_hotspot_square|test_hs_button_controler" ath="-145" atv="-15"
+
+html="pause one action"
+width="55"
+height="45"
+onclick="test_animation_continuous_right_controler_pause_one_action"
+/>
+
+<action name="test_animation_continuous_right_controler_pause_one_action">
+
+set(yayaleo_actions_220,'pause');
+	
+</action>
+
+//PLAY ONE ACTION:
+<hotspot name="test_animation_continuous_right_controler_play_one_action" style="test_hotspot_square|test_hs_button_controler" ath="-145" atv="-21"
+html="play one action"
+width="55"
+height="45"
+onclick="test_animation_continuous_right_controler_play_one_action"
+/>
+
+
+//PAUSE ALL ACTIONS:
+<hotspot name="test_animation_continuous_right_controler_pause_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="-155" atv="-15"
+
+html="pause all actions"
+width="55"
+height="40"
+onclick="test_animation_continuous_right_controler_pause_all_actions"
+/>
+
+<action name="test_animation_continuous_right_controler_pause_all_actions">
+
+set(yayaleo_actions_all,'pause');
+	
+</action>
+
+//PLAY ALL ACTIONS:
+<hotspot name="test_animation_continuous_right_controler_play_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="-155" atv="-21"
+html="play all actions"
+width="55"
+height="40"
+onclick="test_animation_continuous_right_controler_play_all_actions"
+/>
+
+				<action name="test_animation_continuous_right_controler_play_all_actions">
+
+	set(ant,get(yayaleo_listen));		
+	asyncloop(ant == yayaleo_listen
+		,
+
+		, 		
+
+               s_anim_frame(yayaleo,0,
+
+					callwith(hotspot[test_light_action_animation_continuous_right],s_bgcolor_blink(0xff3cff,0.1); );
+					set(yayaleo,'pause');
+					delayedcall(3,set(yayaleo,'resume'););	
+				);	
+
+
+
+				test_animation_continuous_right_controler_play_one_action();						
+			   );
+				</action>
+							<action name="test_animation_continuous_right_controler_play_one_action">
+							set(ant,get(yayaleo_listen));			
+							asyncloop(ant == yayaleo_listen
+								,
+								, 			
+					                s_anim_frame(yayaleo,220,
+									callwith(hotspot[test_light_action_animation_continuous_right],s_bgcolor_blink(0xfffcff,0.1); 
+										);	 
+								     );
+								);						
+							</action>
+	
+
+
+ -->
+
+
+
+	
+</krpano>

@@ -1,0 +1,34 @@
+<krpano>
+
+    	<include url="s_slider_setters/s_slider_setters.xml" />
+    	<include url="s_boolean_setters/s_boolean_setters.xml" />
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// CONFIG
+
+<s_setters_config
+	mainbgcolor="717171"
+	mainbgalpha="1"
+	linewidth="200"
+	lineheight="15"
+	thumbwidth="10"
+	thumbheight="15"
+	thumbcolor="ffffff"
+	titleheight=""
+	titlecolor="c0c0c0"
+	minmaxcolor="c0c0c0"
+	currentvaluecolor="ffffff"
+
+	booleanlinewidth="50"
+	booleanlineheight="15"
+	booleanthumbcolor="ff6600"
+	booleanthumbcolorinactive="a8a8a8"
+	booleanthumbwidth="10"
+	booleanthumbheight="15"
+/>
+
+
+
+</krpano>

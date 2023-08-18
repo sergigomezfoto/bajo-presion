@@ -1,0 +1,69 @@
+<krpano>
+
+<action autorun="onstart">
+
+  s_check_if_new_hs();  
+  s_check_if_new_layer();
+
+</action>    
+<action name="s_actions_record_propagation">
+
+  s_propagate_s_get_hs_clicks_recordautotour();  
+    
+  s_propagate_s_get_layer_clicks_recordautotour();
+    
+
+</action>
+
+
+//LAYER RECORD 
+<action name="s_propagate_s_get_layer_clicks_recordautotour">
+
+    for(set(i,0 ), i LT layer.count , inc(i),
+        if (layer[get(i)].enabled AND !layer[get(i)].s_onclick_s_recordautotour_event_added,
+                layer[get(i)].addevent(onclick,s_get_clicks_recordautotour);
+                set(layer[get(i)].s_onclick_s_recordautotour_event_added,true);
+        );    
+    ); 
+    set(s_old_layer_count,get(layer.count));
+
+</action>
+
+<action name="s_check_if_new_layer">
+//dependency s_callwhen
+ s_callwhen (s_check_if_new_layer, layer.count !== s_old_layer_count,
+ //trace('canvi en nº de layers:');
+ //trace('old:', get(s_old_layer_count));
+ //trace('new:', get(layer.count));
+ s_propagate_s_get_layer_clicks_recordautotour();     
+ );
+
+</action>
+
+//HOTSPOT RECORD
+<action name="s_propagate_s_get_hs_clicks_recordautotour">
+
+    for(set(i,0 ), i LT hotspot.count , inc(i),   
+        if (hotspot[get(i)].enabled AND !hotspot[get(i)].s_onclick_s_recordautotour_event_added,
+                hotspot[get(i)].addevent(onclick,s_get_clicks_recordautotour);
+                set(hotspot[get(i)].s_onclick_s_recordautotour_event_added,true);
+        ); 
+    ); 
+    set(s_old_hs_count,get(hotspot.count));
+
+</action>
+
+<action name="s_check_if_new_hs">
+//dependency s_callwhen
+ s_callwhen (s_check_if_new_hs, hotspot.count !== s_old_hs_count,
+ //trace('canvi en nº de hs:');
+ //trace('old:', get(s_old_hs_count));
+ //trace('new:', get(hotspot.count));
+ s_propagate_s_get_hs_clicks_recordautotour();
+ set(s_old_layer_count,get(hs.count));
+ );
+
+</action>
+
+
+</krpano>

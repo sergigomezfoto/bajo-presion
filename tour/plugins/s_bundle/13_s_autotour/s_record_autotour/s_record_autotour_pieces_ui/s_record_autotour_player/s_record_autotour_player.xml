@@ -1,0 +1,13 @@
+<krpano>
+
+    <include url="styles/styles.xml" />
+
+
+<layer name="s_autotour_ui_player_background" keep="true" style="s_autotour_ui_player_background">
+    <layer name="s_autotour_ui_play_pause_recorded_autotour" keep="true" style="s_autotour_ui_play_pause_recorded_autotour"/>
+    <layer name="s_autotour_ui_stop_recorded_autotour" keep="true" style="s_autotour_ui_stop_recorded_autotour"/>
+    <layer name="s_autotour_ui_eject_recorded_autotour" keep="true" style="s_autotour_ui_eject_recorded_autotour"/>
+        
+</layer>
+
+</krpano>

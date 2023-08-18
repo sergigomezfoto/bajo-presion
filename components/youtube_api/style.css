@@ -1,24 +1,49 @@
-#videoplayerCanvas {
+#videoPlayerCanvasWrapper {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  display: none;
+  height: 100%;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+#videoPlayerCanvas {
   position: absolute;
   pointer-events: auto;
   background-color: black;
   width: 312px;
   height: 600px;
-  z-index: 1000;
-  display: none;
-  opacity:0;
-  transition:opacity 0.3s ease-in-out;
-  transition:transform 0.3s ease-in-out;
+  display: block;
+  opacity: 1;
   transform: translateX(0%);
 }
+.tourvideo{
+  pointer-events:all !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); 
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(209, 209, 209, 0.1));
+}
+.panovideo{
+  pointer-events:all !important;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px); 
+  background-image: none !important;
+}
 
-#videoPlayerWraper {
+#videoPlayerWrapper {
   overflow: hidden;
   pointer-events: none;
   /* cursor: pointer; */
-  position:relative;
+  position: relative;
   width: 100%;
   height: 100%;
+  filter: drop-shadow(10px 20px 20px rgba(0,0,0,0.6))
 }
 
 
@@ -32,13 +57,14 @@
   /* transform: translateX(-24%); */
   transform: translateX(-33.5%);
 
+
 }
 
 .videoBorderInitial {
   border-radius: 10px;
 }
 
-#videoControlsWraper {
+#videoControlsWrapper {
   position: relative;
   background-color: rgba(0, 0, 0, 0.0);
   bottom: 100%;
@@ -49,8 +75,9 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  transition:background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
+
 #playPause {
   width: 100%;
   height: 100%;
@@ -63,7 +90,7 @@
   width: 60px;
   height: 60px;
   cursor: pointer;
-  opacity:0;
+  opacity: 0;
   display: none;
 }
 
@@ -82,9 +109,9 @@
 }
 
 
-#skipVideoButton{
+#skipVideoButton {
   position: absolute;
-    bottom: -70px;
-    left: 50%;
-    transform: translateX(-50%);
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
 }

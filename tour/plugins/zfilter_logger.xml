@@ -1,0 +1,66 @@
+<krpano>
+
+	<!-- +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ -->
+	<!-- ZFILTER LOGGER -->
+	<!-- +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ +++++ -->
+
+	<!-- global settings -->
+	<set var="zfilter_logger_trace" val="81" /><!-- keycode Q to log all attributes  -->
+	<set var="zfilter_logger_target" val="plugin[zfilter]" /><!-- logger target -->
+
+	<!--
+	note: the logger can work on the plugin and on a given layer or hotspot
+	if set, zfilter_editor_target is used, otherwise zfilter_logger_target is used
+	-->
+
+	<events name="zfilter_logger" keep="true" onkeydown="zfilter_logger_keydown();" />
+	<action name="zfilter_logger_keydown" scope="local">
+		if(keycode == zfilter_logger_trace,
+			zfilter_logger();
+		);
+	</action>
+
+	<action name="zfilter_logger" scope="local">
+		// if set, use zfilter_editor_target, otherwise use zfilter_logger_target
+		calc(local.target, zfilter_editor_target !== null ? zfilter_editor_target : zfilter_logger_target);
+		// ensure target to be a string, not an object
+		if(target._type !== null, calc(target, target._type + '[' + target.name + ']'););
+
+		trace('----- ', target, ' -----');
+
+		copy(local.targetobj, get(target));
+		if(targetobj.iorder === null,
+			// get target attributes (layer/hotspot mode)
+			set(local.filters, 'brightness|contrast|hue|saturation|sepia|blur');
+		,
+			// get plugin attributes (postprocessing/plugin mode)
+			copy(local.filters, plugin[zfilter].iorder);
+			txtreplace(filters, 'adjust', 'gamma|brightness|contrast|exposure|hue|saturation|vibrance|sepia');
+			txtreplace(filters, 'fblur', 'fquality|fblur');
+			txtreplace(filters, 'blendcolor', 'blendmode|blendcolor');
+
+			// trace phase and order information
+			trace('phase="', plugin[zfilter].phase, '" order="', plugin[zfilter].order, '"');
+			trace('iorder="', plugin[zfilter].iorder, '"');
+		);
+
+		// trace plugin attributes
+		txtsplit(get(filters), '|', local.arr);
+		def(local.out, string, '');
+		for(set(local.i,0), i LT arr.count, inc(i),
+			copy(local.attr, arr[get(i)].value);
+			calc(local.varname, target + '.' + attr);
+			def(local.value, string);
+			copy(local.value, get(varname));
+			txtadd(out, get(out), get(attr), '="', get(value), '" ');
+			// trace if character width is reached
+			if(out.length GT 80,
+				trace(out);
+				def(out, string, '');
+			);
+		);
+		// trace the remaining characters
+		if(out.length GT 0, trace(out));
+	</action>
+
+</krpano>

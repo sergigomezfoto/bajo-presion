@@ -1,0 +1,27 @@
+<krpano>
+
+    //desapear and appear if mouse enter or leave screen
+	//s_detect_mouse_out(action_in,action_out);
+	//variable created: s_mouse_out = boolean
+								<action name="s_detect_mouse_out" type="javascript">
+
+									<![CDATA[
+										
+											document.addEventListener('mouseleave', function(evt) {
+											  if (evt.toElement == null && evt.relatedTarget == null) {
+											   krpano.set('s_mouse_out',true);
+											   krpano.call('scope(global,' + args[2]?args[2]:'' + ')');
+											  }
+											});
+
+											document.addEventListener('mouseenter', function(e) {
+											 
+											   krpano.set('s_mouse_out',false);
+											   krpano.call('scope(global,' + args[1]?args[1]:'' +')');
+											  
+											});
+									]]>	
+
+								</action>
+
+</krpano>

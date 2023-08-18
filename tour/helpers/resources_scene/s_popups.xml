@@ -1,0 +1,130 @@
+<krpano>
+	
+	 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ // s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+ //  onclick="s_popup_iframe(url);
+ <hotspot name="title_s_popup_iframe" style="test_title_s_actions" ath="0" atv="-43" html="s_popup_iframe"/>
+
+//s_popup_iframe   
+	   <hotspot name="test_s_popup_normal" style="test_hotspot_text"
+            html="s_popup_iframe(http://sergigomez.com);"    
+            ath="0" atv="-31"           
+            onclick="s_popup_iframe(http://sergigomez.com);"
+            css="color:white; font-size:1em;"
+        />
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ // s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe s_popup_iframe
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+ //   onclick="s_popup_iframe_custom(url,width,height,bg_style or off | main_popup_style or off | close_button_style or off , before_action or off | middle_action or off | on_close_action or off);"
+     
+      <hotspot name="test_s_popup_custom" style="test_hotspot_text"
+            html="s_popup_iframe(http://miniminim.com,get(spc.width),get(spc.height),get(spc.styles),get(spc.actions));"    
+            ath="0" atv="-38"           
+            css="color:white; font-size:1em;"
+            bgcolor="0xff7722"
+             onclick="s_popup_iframe(http://miniminim.com,get(test_spc.width),get(test_spc.height),get(test_spc.styles),get(test_spc.actions));"
+        />
+
+
+													//Array config:
+														<test_spc
+															width="400"
+															height="600"
+															styles="test_custom_bg | test_custom_main | test_custom_close"
+															actions="test_before_s_pupup | test_middle_s_pupup | test_after_s_pupup"
+														/>
+													//Estils:
+														<style name="test_custom_bg"
+															bgcolor="0xffffff"
+														/>
+														<style name="test_custom_main"
+															bgcolor="0x005533"
+															bgborder="0"
+														/>
+														<style name="test_custom_close"
+															url="%FIRSTXML%/helpers/closex.png"
+															crop=""
+															onovercrop=""
+															onoutcrop=""
+															width="128"
+															height="prop"
+															scale="0.25"
+															edge="center"
+															x="30"
+															y="30"
+															onover="tween(layer[get(name)].rotate,90);"
+															onout="tween(layer[get(name)].rotate,0);"
+														/>
+													//Accions:
+														<action name="test_before_s_pupup">
+															trace('custom before');   
+														</action>
+														<action name="test_middle_s_pupup">
+															trace('custom midle');
+														</action>
+														<action name="test_after_s_pupup">
+															trace('custom after');
+														</action>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_popup_layers_custom s_popup_layers_customs_popup_layers_customs_popup_layers_customs_popup_layers_customs_popup_layers_custom
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+<hotspot name="title_s_popup_layers" style="test_title_s_actions" ath="0" atv="-26" html="s_popup_layers"/>
+
+<hotspot name="test_s_popup_layers" style="test_hotspot_text"
+            html="s_popup_layers(test_create_s_popup_layers,get(test_spc.width),get(test_spc.height),get(test_spc.styles),get(test_spc.actions));"    
+            ath="0" atv="-21"           
+            css="color:white; font-size:1em;"
+            bgcolor="0xBCCA22"
+            onclick="s_popup_layers(test_create_s_popup_layers,get(test_spc.width),get(test_spc.height),get(test_spc.styles),get(test_spc.actions));"
+/>
+
+<action name="test_create_s_popup_layers">
+	addlayer('test_bgcontent'); 
+	set(layer[test_bgcontent].parent,s_popup_main );
+	layer[test_bgcontent].loadstyle('test_s_popup_layers_bgcontent');
+	addlayer('test_bgcontent-inside'); 
+	layer[test_bgcontent-inside].loadstyle('test_s_popup_layers_bgcontent-inside');  
+</action>
+
+					<style name="test_s_popup_layers_bgcontent"
+					type="text"
+					html="Layer wrapp"
+					alpha="1"
+					width="100%"
+					height="100%"
+					align="center"
+					x="0"
+					y="0"
+					bgcolor="0xfff555"
+					bgalpha="1" 
+					/>
+					      <style name="test_s_popup_layers_bgcontent-inside"  parent="test_bgcontent"
+					      type="text" 
+					      html="layer inside"              
+					      alpha="1"
+					      width="90%"
+					      height="90%"
+					      align="center"
+					      x="0"
+					      y="0"
+					      bgcolor="0xff7fff"
+					      bgalpha="1" 
+					      />
+
+
+	
+</krpano>

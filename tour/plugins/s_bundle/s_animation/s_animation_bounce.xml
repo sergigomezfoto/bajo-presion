@@ -1,0 +1,144 @@
+<krpano>
+	
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// S_ANIMATION_BOUNCE S_ANIMATION_BOUNCE S_ANIMATION_BOUNCE S_ANIMATION_BOUNCE S_ANIMATION_BOUNCE S_ANIMATION_BOUNCE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+//VERTICAL
+//s_animation_bounce_v(framewidth, frameheight, framerate)
+<action name="s_animation_bounce_v" scope="local" args="framewidth, frameheight, framerate,extended_varname,inipos,sframe,dir"> 
+set(caller.crop,'');
+
+calc(local.frames, caller.imageheight / frameheight);
+def(local.frame, integer, calc(!sframe
+                              ? 0 
+                              : sframe
+                              )
+);
+
+calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames); 
+
+//fica el primer tall crop
+calc(caller.crop,
+          !inipos
+          ? '0|0|' + framewidth + '|' + frameheight 
+          :  '0|' + inipos + '|' + framewidth + '|' + frameheight 
+          );
+
+//aminacio
+if(!dir,
+	def(go,boolean ,true );
+  ,
+	if (dir LT 0
+		,
+		def(go,boolean ,false );
+		,
+		def(go,boolean ,true );
+		);
+);
+
+setinterval(calc('crop_anim_' + caller.name), calc(1.0 / framerate),
+if ((calc('global.' + extended_varname) !== 'pause' AND calc('global.' + extended_varname) !== 'clear') OR calc('global.' + extended_varname) === 'resume' ,
+			if (go
+			,   
+			    inc(frame);  
+			    if(frame === frames - 1, set(go,false));  
+			    copy(ypos,frame);
+			    mul(ypos, frameheight);
+			    if(extended_varname != null,calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames););
+			    calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+			,
+			    dec(frame);                    
+			    copy(ypos,frame);
+			    mul(ypos, frameheight);
+			    if(extended_varname != null,calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames););
+			    calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+			    if(frame LE 0, set(go,true)); 
+			); 
+
+			
+     
+
+      );  
+
+   if(!caller.loaded OR calc('global.' + extended_varname) === 'clear', 
+					clearinterval(calc('crop_anim_' + caller.name));
+					delete(calc('global.' + extended_varname));
+	  );
+);
+</action>
+
+//HORIZONTAL
+//s_animation_bounce_h(framewidth, frameheight, framerate)
+<action name="s_animation_bounce_h" scope="local" args="framewidth, frameheight, framerate,extended_varname,inipos,sframe,dir"> 
+
+set(caller.crop,'');
+
+calc(local.frames, caller.imagewidth / framewidth);
+def(local.frame, integer, calc(!sframe
+                              ? 0 
+                              : sframe
+                              )
+);
+
+calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames); 
+
+//fica el primer tall crop
+calc(caller.crop,
+          !inipos
+          ? '0|0|' + framewidth + '|' + frameheight 
+          : inipos +'|0|' + framewidth + '|' + frameheight 
+          );
+//trace(calc(caller.crop));
+//aminacio
+if(!dir,
+	def(go,boolean ,true );
+  ,
+	if (dir LT 0
+		,
+		def(go,boolean ,false );
+		,
+		def(go,boolean ,true );
+		);
+);
+
+setinterval(calc('crop_anim_' + caller.name), calc(1.0 / framerate),
+
+if ((calc('global.' + extended_varname) !== 'pause' AND calc('global.' + extended_varname) !== 'clear') OR calc('global.' + extended_varname) === 'resume' ,
+			if (go
+			,   
+			    inc(frame);  
+			    if(frame === frames - 1, set(go,false));  
+			    copy(xpos,frame);
+			    mul(xpos, framewidth);
+			    if(extended_varname != null,calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames););
+			    calc(caller.crop, xpos + '|0|' + framewidth + '|' + frameheight);
+			,
+			    dec(frame);                    
+			    copy(xpos,frame);
+			    mul(xpos, framewidth);
+			    if(extended_varname != null,calc(calc('global.' + extended_varname + '_listen'), frame + '|' + frames););
+			    calc(caller.crop, xpos + '|0|' + framewidth + '|' + frameheight);
+			    if(frame LE 0, set(go,true)); 
+			); 
+
+			
+     
+      );  
+
+ 	if(!caller.loaded OR calc('global.' + extended_varname) === 'clear', 
+					clearinterval(calc('crop_anim_' + caller.name));
+					delete(calc('global.' + extended_varname));
+	  );
+
+  
+);
+</action>
+
+	
+</krpano>

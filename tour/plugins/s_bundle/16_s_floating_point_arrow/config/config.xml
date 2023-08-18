@@ -1,0 +1,82 @@
+<krpano>
+
+
+// EXAMPLE TO CALL IT
+<!-- 
+
+<hotspot name="sdummyhs1"  ath="-70" atv="0"  style="target" distorted="true" 
+s_instuctions="sóc una instrucció [br] i molo molt molt [br] a part sóc una layer, no un hotspot"
+onloaded="s_arrow_pointer(get(name),get(s_instuctions));" />
+
+
+<hotspot name="sdummyhs2"  ath="-30" atv="0"  style="target" distorted="true" 
+s_instuctions="sóc unalayer [br] un layer!!"
+onloaded="s_arrow_pointer(get(name),get(s_instuctions),'s_point_arrow_custom|s_point_arrow_instruction_custom');" />//CUSTOM CLOSE POPUP ACTION at end of document
+
+
+
+ -->
+
+
+
+
+/////////////////////////////////////////////////////////////////////////DEFAULT STYLES
+
+<style name="s_point_arrow"
+    url="s_arrow.png"
+    align="topleft" 
+    edge="center" 
+    scale="0.5"
+    oy="90" 
+    NECESSARIS____________________________________=""
+    autoalpha="true"
+    alpha="0"
+    finalalpha="1"
+/>
+
+<style name="s_point_arrow_instruction"
+    type="text" 
+    autowidth="true"
+    autoheight="true"
+    bgcolor="0x00ff00" 
+    align="bottom" 
+    edge="top"  
+    padding="5" 
+    css="text-align:center;"
+    NECESSARIS____________________________________=""
+    oyinitial="40" 
+    oyfinal="-40" 
+
+/>
+
+////////////////////////////////// CUSTOM STYLES example
+
+<style name="s_point_arrow_custom"
+    url="s_arrow2.png"
+    align="topleft" 
+    edge="center" 
+    scale="0.8"
+    oy="120" 
+    NECESSARIS____________________________________=""
+    autoalpha="true"
+    alpha="0"
+    finalalpha="0.5"
+/>
+
+<style name="s_point_arrow_instruction_custom"
+    type="text" 
+    autowidth="true"
+    autoheight="true"
+    bgcolor="0x00ffff" 
+    align="bottom" 
+    edge="top"  
+    padding="10" 
+    css="text-align:center;"
+    NECESSARIS____________________________________=""
+    oyinitial="20" 
+    oyfinal="-20" 
+
+/>
+
+
+</krpano>

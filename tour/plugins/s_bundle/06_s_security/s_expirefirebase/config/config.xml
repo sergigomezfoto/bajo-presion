@@ -1,0 +1,112 @@
+<krpano>
+	
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+// INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT INIT//   
+////////////////////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////////////////// 
+
+<action name="initializeexpiration080273344" autorun="preinit" type="javascript" protect="true">
+
+
+<![CDATA[
+		krpano.call('s_expiration_beginning_state_action();');
+		//////////MODIFY THAT/////////////
+		//this name and database collection must match.
+		  const KRPANOSITE ='test_s_expiration';	
+
+		//firestore config
+		  const firebaseConfig = {
+		    apiKey: "AIzaSyCoMbmiSeRHxu0r6LX8XZgAz5pBZc9pV58",
+		    authDomain: "caducitats.firebaseapp.com",
+		    projectId: "caducitats",
+		    storageBucket: "caducitats.appspot.com",
+		    messagingSenderId: "565430855242",
+		    appId:  "1:565430855242:web:7338b5cb6bda036973a8b3"
+		  };
+
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+	
+
+//////////NEVER TOUCH///////////////NEVER TOUCH///////////////////NEVER TOUCH/////////////
+		const db = firebase.firestore();
+		//reed expire
+		const getexpdate = async()=>{
+	    const s_exp_collection = await db.collection(KRPANOSITE).doc('exp').get();
+	    const s_exp_time = await s_exp_collection.data().exp;    
+	    krpano.set("s_expdate",s_exp_time);
+	    krpano.call("next_s_expire(get(s_expdate))");	   
+	    }
+		getexpdate();
+]]> 
+</action>
+
+
+<!-- FREQUENCY IN SECONDS OF CHEKING EXPIRATION -->
+<s_expiration_check
+	seconds="3"
+/>
+		<!-- EXPIRATION ADVICE -->
+
+
+<data name="s_expiration_advice "><![CDATA[
+
+	El periode de visualització</br> ha caducat amb data:</br></br>
+
+]]></data>
+
+<data name="s_expiration_contact "><![CDATA[
+</br>
+	<span style="font-size:12px;">contacteu amb: <a style="color:#ffffff" href="mailto:sergi@sergigomez.com"> sergi@sergigomez.com</span>
+
+]]></data>
+
+<!-- DESIGN -->
+<layer name="s_blackout" keep="true" style="s_blackout"/>
+
+<style name="s_blackout"
+	width="100%" 
+	height="100%" 
+	type="text" 
+	html="checking expiration date..." 
+	css="color:white;text-align:center;font-size:3em;" 
+	bgcolor="0x332244" 
+	bgalpha="1" 
+	alpha="0" 
+	autoalpha="true" 
+	zorder="20000000000000000000000000000"
+	vcenter="true"
+/>
+		<!-- ACTION WHEN EXPIRATE  -->
+
+		<!-- BEGINNING STATE ACTION BEFORE TOUR IS COMPLETLY RENDERED -->
+
+<action name="s_expiration_beginning_state_action">
+
+	set(layer[s_blackout].alpha,1);
+
+	
+	
+</action>
+
+	<!-- AFTER EXPIRATION CHECK AND NOT EXPIRED ACTION -->
+
+<action name="s_expiration_aftercheck_ok_action">
+
+	tween(layer[s_blackout].alpha,0,0.2);
+	
+</action>
+
+		<!-- ACTION WHEN EXPIRATE  -->
+
+<action name="s_expiration_action">
+
+	//HERE YOUR ACTION
+	calc(layer[s_blackout].html,data[s_expiration_advice].content + s_expdate + data[s_expiration_contact].content  );
+	tween(layer[s_blackout].alpha,1,0.2);
+	
+</action>
+	
+
+</krpano>

@@ -1,0 +1,793 @@
+﻿<krpano version="1.20.7">
+		<!-- <include url="%FIRSTXML%/arxiussergi/accions.xml"/> -->
+		<include url="%FIRSTXML%/plugins/showtext.xml" />
+		<include url="styles/styles.xml" />
+		<include url="test_scene.xml" />
+		<include url="provacodis.xml" />
+		<include url="toolbox/toolbox.xml" />
+		<include url="fps.xml" />
+		<!-- <include url="tools/s_printvars.xml" /> -->
+
+		<!-- <videocall creada dianmicament a videocall.xml videocallin();/> -->
+		<!-- CONTENIDOR ARROSSEGABLE parent="STAGE"-->
+		<layer name="test_contenidor" keep="true" type="container" maskchildren="false" align="right" edge="left"  width="250" height="500" visible="true" bgcolor="get:testdisseny.colordefons" bgalpha="1" bgcapture="true" zorder="1000000000000" x="10" y="0" ondown="draglayer2();">
+				<!-- TITOL -->
+				<layer name="test_titol" style="text_nomes" html="[B]OPTION DESTROYER 2.0[/B]" align="righttop" width="100%" height="calc:testdisseny.midatitol" y="get:testdisseny.margesuperior" css="calc: testdisseny.colortextos + 'text-align:center;' " bg="true" bgcolor="get:testdisseny.bgtitol" bgalpha="1" edge="rightop" padding="10 0 10 0" />
+				<!-- INFO ESCENA -->
+				<layer name="test_infoescena1" style="text_nomes" html="[B]infogeneral[/B]" align="righttop" width="100%" height="calc:(testdisseny.midatitol)*3" y="calc:testdisseny.margesuperior + testdisseny.midatitol " css="calc: testdisseny.colortextos + 'text-align:center;' " bg="true" bgcolor="get:testdisseny.bgtitol" bgalpha="0.8" edge="rightop" padding="10 0 10 0" />
+				<!-- TEXT 1 -->
+				<layer name="test_textos1" type="text" bg="true" bgcolor="0xeedd99" ondown="set(bgcolor,0xffffff);" onup="set(bgcolor,0xeedd99);" css="" enabled="true" edge="lefttop" align="lefttop" y="calc:( testdisseny.midatextos * 2 ) + testdisseny.margesuperior + testdisseny.midatitol" width="100%" height="calc:testdisseny.midatextos" html="" onclick="test_copy_1(); " />
+				<!-- TEXT 2 -->
+				<layer name="test_textos2" type="text" bg="true" bgcolor="0xeedd99" ondown="set(bgcolor,0xffffff);" onup="set(bgcolor,0xeedd99);" css="" enabled="true" edge="lefttop" align="lefttop" y="calc:( testdisseny.midatextos * 3 ) + testdisseny.margesuperior + testdisseny.midatitol" width="100%" height="calc:testdisseny.midatextos" html="" onclick="test_copy_2(); " />
+				<!-- BOTO 1 -->
+				<layer name="test_b1" style="text_boto" y="calc:( testdisseny.midatextos * 2) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]marca centre[/b]" onhover="" onclick="test_click(); marca_centre();" /> onup
+				<!-- BOTO 2 -->
+				<layer name="test_b2" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 3 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]guies[/b]" onclick=" guiesinterficie(); test_click();" />
+				<!-- BOTO 3 -->
+				<layer name="test_b3" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 4 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]mostra els noms[/b]" onclick=" mostra_noms(); test_click();" />
+				<!-- BOTO 4 -->
+				<layer name="test_b4" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 5 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]videocallin();[/b]" onclick="videocallin();" />
+				<!-- BOTO 5 -->
+				<layer name="test_b5" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 6 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]posa max size a sdummy2 i 4[/b]" onclick="set(hotspot[text_sdummyhs2].width,get(hotspot[text_sdummyhs2].max_width));set(hotspot[text_sdummyhs4].width,get(hotspot[text_sdummyhs4].max_width));" />
+				<!-- BOTO 6 -->
+				<layer name="test_b6" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 7 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]s_manual_write_in_behabiour_object_general_behabiour_times[/b]" onclick="s_manual_write_running_away_times();" />
+
+				<layer name="test_b7" style="text_boto" align="lefttop" y="calc:( testdisseny.midatextos * 8 ) + testdisseny.margesuperior + (testdisseny.midatitol)*3" click="false" html="[b]log_behabiour_object[/b]" onclick="js(log(););" />
+
+				<layer name="test_infoshortcuts" style="text_nomes" html="data:teclat" align="rightbottom" width="100%" height="calc:(testdisseny.midatitol)*3" y="0" css="calc: testdisseny.colortextos" bg="true" bgcolor="get:testdisseny.bgtitol" bgalpha="0.8" edge="rightbottom" padding="2 0 2 0" />
+				<layer name="test_ressolucions" type="text" align="rightbottom" x="10" y="6" bg="false" vcenter="true" html="|RES|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="toggle(layer[test_contenidor_ressolucions].visible);" />
+				<layer name="test_mobil" type="text" align="rightbottom" x="50" y="6" bg="false" vcenter="true" html="|MOB|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="test_obrefinestra_mob();" />
+				<layer name="test_escena_ant" type="text" align="leftbottom" x="10" y="6" bg="false" vcenter="true" html="|ant|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="loadscene(calc(scene[calc(scene[get(xml.scene)].index  - 1)].name),null, MERGE );" />
+				<layer name="test_escena_seg" type="text" align="leftbottom" x="40" y="6" bg="false" vcenter="true" html="|seg|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="loadscene(calc(scene[calc(scene[get(xml.scene)].index  + 1)].name),null, MERGE );" />
+
+
+
+				<!-- CONTENIDOR ARROSSEGABLE RES -->
+				<layer name="test_contenidor_ressolucions" keep="true" type="container" maskchildren="false" align="topright" edge="topleft" width="100" height="300" visible="false" bgcolor="get:testdisseny.colordefons" bgalpha="1" bgcapture="true" zorder="1000000000000" x="-10" y="0" ondown="draglayer2();">
+						<layer name="test_titol_ressolucions" style="text_nomes" html="[B]RES[/B]" children="true" align="righttop" width="100%" height="calc:testdisseny.midatitol" y="get:testdisseny.margesuperior" css="calc: testdisseny.colortextos + 'text-align:center;' " bg="true" bgcolor="get:testdisseny.bgtitol" bgalpha="1" enabled="false" edge="rightop" padding="10 0 10 0" />
+						<layer name="test_tanca_test_contenidor_ressolucions" keep="true" type="text" align="topright" y="0" x="0" edge="topright" html="[B]x[/B]" css="color:#ffffff;" onup="" visible="true" bgcolor="0x3311ff" bgalpha="0" enabled="true" onclick="set(layer[test_fletxa_res].parent,test_res1); set(layer[test_contenidor_ressolucions].visible,false);" />
+						<!-- RES 1 -->
+						<layer name="test_res1" style="text_boto" alpha="0.6" y="calc:( testdisseny.midatextos * 0) + (testdisseny.midatitol)*1" click="false" html="[b]1920 x 1080 [/b]" onhover="" areawidth="get:stagewidth" areaheight="get:stageheight" onclick="" enabled="false">
+								<layer name="test_fletxa_res" type="container" width="10" height="10" keep="true" y="1" x="5" visible="true" align="left" edge="left" alpha="1" bgcolor="get:testdisseny.bgtitol" bgroundedge="10" bgalpha="1" />
+						</layer>
+						<!-- RES 2 -->
+						<layer name="test_res2" style="text_boto" y="calc:( testdisseny.midatextos * 1) + (testdisseny.midatitol)*1" click="false" html="[b]1600 x 900[/b]" onhover="" areawidth="1600" areaheight="900" onclick="test_boleta_res();test_obrefinestra();test_resizefinestra_res(1616,968);" />
+						<!-- RES 3 -->
+						<layer name="test_res3" style="text_boto" y="calc:( testdisseny.midatextos * 2) + (testdisseny.midatitol)*1" click="false" html="[b]1440 x 900[/b]" onhover="" areawidth="1440" areaheight="900" onclick="test_boleta_res();test_obrefinestra();test_resizefinestra_res(1456,968);" />
+						<!-- RES 4 -->
+						<layer name="test_res4" style="text_boto" y="calc:( testdisseny.midatextos * 3) + (testdisseny.midatitol)*1" click="false" html="[b]1366 x 768[/b]" onhover="" areawidth="1360" areaheight="768" onclick="test_boleta_res(); test_obrefinestra();test_resizefinestra_res(1382,836);" />
+						<!-- RES 5 -->
+						<layer name="test_res5" style="text_boto" y="calc:( testdisseny.midatextos * 4) + (testdisseny.midatitol)*1" click="false" html="[b]1280 x 1024[/b]" onhover="" areawidth="1280" areaheight="1024" onclick="test_boleta_res(); test_obrefinestra();test_resizefinestra_res(1296,1092);" />
+						<!-- RES 6 -->
+						<layer name="test_res6" style="text_boto" y="calc:( testdisseny.midatextos * 5) + (testdisseny.midatitol)*1" click="false" html="[b]1024 x 768 [/b]" onhover="" areawidth="1024" areaheight="768" onclick="test_boleta_res(); test_obrefinestra();test_resizefinestra_res(1040,854);" />
+						<!-- RES 7 -->
+						<layer name="test_res7" style="text_boto" y="calc:( testdisseny.midatextos * 6) + (testdisseny.midatitol)*1" click="false" html="[b]800 x 600[/b]" onhover="" areawidth="800" areaheight="600" onclick="test_boleta_res(); test_obrefinestra();test_resizefinestra_res(816,668);" />
+				</layer>
+		</layer>
+		<data name="teclat">
+				<![CDATA[
+<dl>
+	<dd>'M' => mesures => CLICK: crea guia </dd>
+</dl>
+]]>
+		</data>
+		<!-- <layer name="provasvg" keep="true" url="%FIRSTXML%/helpers/botonets/close-button.svg" align="center" width="30" height="prop" onovercrop="150|0|150|150" crop="0|0|150|150"/>
+
+<layer name="provasvg2" keep="true" url="%FIRSTXML%/helpers/botonets/backtohome-button.svg" align="center" y="150" width="500" height="prop" onovercrop="150|0|150|111" crop="0|0|150|111"/> -->
+		<!-- CORE -->
+		<!-- CORE -->
+		<!-- CORE -->
+		<marges esquerra="30px" dreta="30" dalt="30" sota="30" colorguies="0xe6035e" alpha="0.8" ampleguies="1" colorguiesextra="0xe603b9" el1="" el2="" er1="" er2="" et1="" et2="" eb1="" eb2="" />
+		<style name="marge" alpha="get:marges.alpha" type="container" edge="center" visible="true" enabled="false" bgcolor="get:marges.colorguies" bgalpha="1" zorder="99" />
+		<layer name="guiesinter" keep="true" type="container" visible="false" enabled="false" zorder="99" align="center" edge="center" width="100%" height="100%">
+				<layer name="leftgui"   keep="true" style="marge" align="left" width="get:marges.ampleguies" height="100%"
+				x="get:marges.esquerra"/>
+				<layer name="rightgui"  keep="true" style="marge" align="right" width="get:marges.ampleguies" height="100%"
+				x="get:marges.dreta"/>
+				<layer name="topg"  keep="true" style="marge" align="top" width="100%" height="get:marges.ampleguies"
+				y="get:marges.dalt"/>
+				<layer name="bottgui"   keep="true" style="marge" align="bottom" width="100%" height="get:marges.ampleguies"
+				y="get:marges.sota"/>
+
+				<layer name="el1"   keep="true" style="marge" align="left" width="get:marges.ampleguies" height="100%" bgcolor="get:marges.colorguiesextra"
+				x="get:marges.el1"/>
+				<layer name="el2"   keep="true" style="marge" align="left" width="get:marges.ampleguies" height="100%" bgcolor="get:marges.colorguiesextra"
+				x="get:marges.el2"/>
+
+				<layer name="er1"   keep="true" style="marge" align="right" width="get:marges.ampleguies" height="100%" bgcolor="get:marges.colorguiesextra"
+				x="get:marges.er1"/>
+				<layer name="er2"   keep="true" style="marge" align="right" width="get:marges.ampleguies" height="100%" bgcolor="get:marges.colorguiesextra"
+				x="get:marges.er2"/>
+
+				<layer name="extratop1"   keep="true" style="marge" align="top" width="100%" height="get:marges.ampleguies" bgcolor="get:marges.colorguiesextra"
+				y="get:marges.et1"/>
+				<layer name="extratop2"   keep="true" style="marge" align="top" width="100%" height="get:marges.ampleguies" bgcolor="get:marges.colorguiesextra"
+				y="get:marges.et2"/>
+
+				<layer name="extrabott1"   keep="true" style="marge" align="bottom" width="100%" height="get:marges.ampleguies" bgcolor="get:marges.colorguiesextra"
+				y="get:marges.eb1"/>
+				<layer name="extrabott2"   keep="true" style="marge" align="bottom" width="100%" height="get:marges.ampleguies" bgcolor="get:marges.colorguiesextra"
+				y="get:marges.eb2"/>
+</layer>
+
+<action name="guiesinterficie">
+toggle(layer[guiesinter].visible);
+</action>
+<!-- DISSENY -->
+
+											<testdisseny
+												bgtitol="0xd82e2e"
+												margesuperior="0"
+												colordefons="0x403838"
+												colortextos="color:#ffffff;"
+												colortextosover="color:#ffffff; text-decoration: underline;"
+												midatextos="30"
+												midatitol="30"
+												colordefonsbotons="0xffffff"
+												colordefonsbotons2="0xff3344"
+												colordeltextbotons="color:#545252;"
+
+
+												/>
+
+
+
+<events
+
+onviewchange="test_viewchange();"
+onresize=""
+onkeydown="test_keys(); html5_keydown();"
+onkeyup="html5_keyup();"
+onnewscene="test_newscene();"
+
+/>
+<action name="test_finestrajavascript_res" type="javascript" autorun="preinit"><![CDATA[
+	var myWindow;
+
+
+	krpano.actions.test_obrefinestra = function openWin() {
+		myWindow = window.open(document.URL, "", "width=0, height=0");
+
+	}
+
+	krpano.actions.test_resizefinestra_res = function resizeWinTo(arg1, arg2) {
+		myWindow.resizeTo(arg1 ,arg2);
+		myWindow.focus();
+	}
+	function openWin() {
+		myWindow = window.open("", "", "width=250, height=250");
+	}
+
+
+]]></action>
+
+<action name="test_finestrajavascript_mob" type="javascript" autorun="preinit"><![CDATA[
+	var myWindow;
+
+
+	krpano.actions.test_obrefinestra_mob = function openWin() {
+		myWindow = window.open(document.URL + '?fakedevice=mobile', "", "width=100, height=100");
+		myWindow.resizeTo(616 ,1148);
+		myWindow.focus();
+
+	}
+
+
+]]></action>
+
+<action name="test_boleta_res">
+
+	calc(layer[test_fletxa_res].zorder, layer[get(name)].zorder - 1 );
+set(layer[test_fletxa_res].parent,get(name));
+</action>
+
+<action name="mostrar_nom">
+	showtext(get(name),hola);
+</action>
+<action name="mostra_noms">
+if(click
+,
+		for(set(i,0), i LT layer.count, inc(i)
+		,
+
+				if(layer[get(i)].onhover2 !== null
+				,
+						set(layer[get(i)].onhover, get(layer[get(i)].onhover2));
+				,
+						set(layer[get(i)].onhover,);
+				);
+
+				if(layer[get(i)].enabled2 !== null
+				,
+						set(layer[get(i)].enabled, get(layer[get(i)].enabled2));
+				);
+
+ <!-- BGCAPTURE -->
+				<!-- if(layer[get(i)].bgcapture2 !== null
+				,
+						set(layer[get(i)].bgcapture, get(layer[get(i)].bgcapture2));
+				);-->
+
+		);
+
+		for(set(i,0), i LT hotspot.count, inc(i)
+		,
+				if(hotspot[get(i)].onhover2 !== null
+				,
+						set(hotspot[get(i)].onhover, get(hotspot[get(i)].onhover2));
+				,
+						set(hotspot[get(i)].onhover,);
+				);
+				if(hotspot[get(i)].enabled2 !== null
+				,
+						set(hotspot[get(i)].enabled, get(hotspot[get(i)].enabled2));
+				);
+		);
+,
+
+			for(set(i,0), i LT layer.count, inc(i)
+			,
+					if(layer[get(i)].enabled !== true AND layer[get(i)].alpha !== 0
+					,
+
+							set(layer[get(i)].enabled2, get(layer[get(i)].enabled));
+							set(layer[get(i)].enabled,true);
+
+
+					);
+					 <!-- BGCAPTURE -->
+					<!-- if(layer[get(i)].bgcapture !== true
+					,
+							set(layer[get(i)].bgcapture2, get(layer[get(i)].bgcapture));
+							set(layer[get(i)].bgcapture,true);
+					); -->
+
+					if(layer[get(i)].onhover !== null
+					,
+							set(layer[get(i)].onhover2, get(layer[get(i)].onhover));
+							set(layer[get(i)].onhover, showtext(calc(layer[get(name)].parent !== null ? name + ' | fill de ==> ' + layer[get(name)].parent : name),STYLE5););
+					,
+							set(layer[get(i)].onhover, showtext(calc(layer[get(name)].parent !== null ? name + ' | fill de ==> ' + layer[get(name)].parent : name),STYLE5););
+					);
+
+			);
+
+			for(set(i,0), i LT hotspot.count, inc(i)
+			,
+					if(hotspot[get(i)].enabled !== true AND hotspot[get(i)].alpha !== 0
+					,
+							set(hotspot[get(i)].enabled2, get(hotspot[get(i)].enabled));
+							set(hotspot[get(i)].enabled, true);
+					);
+					if(hotspot[get(i)].onhover !== null
+					,
+							set(hotspot[get(i)].onhover2, get(hotspot[get(i)].onhover));
+							set(hotspot[get(i)].onhover, showtext(calc(hotspot[get(name)].parent !== null ? name + ' | fill de ==> ' + hotspot[get(name)].parent : name),STYLE1););
+					,
+							set(hotspot[get(i)].onhover, showtext(calc(hotspot[get(name)].parent !== null ? name + ' | fill de ==> ' + hotspot[get(name)].parent : name),STYLE1););
+					);
+
+			);
+
+);
+
+</action>
+
+<action name="test_keys">
+
+	if(keycode == 79, showlog(toggle) );                  <!-- Home/Pos1 - first scene -->
+</action>
+<action name="test_viewchange">
+
+	copy(cur_hlookat,view.hlookat);
+	mod(cur_hlookat,360);
+	roundval(cur_hlookat,2);
+	copy(cur_vlookat,view.vlookat);
+	roundval(cur_vlookat,2);
+	copy(cur_fov,view.fov);
+	roundval(cur_fov,2);
+
+	<!-- roundval(view.hlookat,2);
+	roundval(view.vlookat,2); -->
+	set( plugin[test_textos1].html, calc:' ath="' + cur_hlookat  + '" atv="' + cur_vlookat + '"');
+	set( plugin[test_textos2].html, calc:' stagewidth="' + stagewidth  + '" stageheight"' + stageheight + '"');
+
+
+</action>
+<action name="test_newscene">
+
+set(tescenanom, get(scene[get(xml.scene)].name) );
+set(tescenatitol,get(scene[get(xml.scene)].title) );
+set(tescenaindex, get(scene[get(xml.scene)].index) );
+set(layer[test_infoescena1].html, calc('nom: '+ tescenanom + '[/br] titol: ' + tescenatitol + '[/br] index: ' + tescenaindex ) );
+
+</action>
+<action name="marca_centre">
+
+if (layer[test_b1].click
+,
+	 set(layer[marcador_centre].visible,true);
+	 ,
+	 set(layer[marcador_centre].visible,false);
+
+);
+</action>
+
+<!--marca boto del centre -->
+<layer name="marcador_centre"
+
+align="center" edge="center" width="29" height="29" keep="true" enabled="false" visible="false" url="%FIRSTXML%/helpers/botonets/centre.png"
+/>
+
+<!--marca la linia del centre -->
+<layer name="linia"
+
+align="bottomcenter" edge="center" width="100%" height="3" alpha="0.7" keep="true" y="150"  enabled="false" distorted="true" visible="false" url="%FIRSTXML%/helpers/botonets/botons_accions/linia.png"
+/>
+
+
+<action name="test_copy_1">
+	txtadd(ttext,get(html));
+	<!-- trace(get(layer[test_textos1].html)); -->
+plugin[c2c].copy2clipboard(get(html));
+</action>
+<action name="test_copy_2">
+	txtadd(ttext,get(html));
+	<!-- trace(get(layer[test_textos1].html)); -->
+plugin[c2c].copy2clipboard(get(html));
+</action>
+				<plugin name="c2c"
+				url="copy2clipboard.js"
+				keep="true"
+				devices="html5"
+				/>
+
+<action name="test_out">
+if(click,
+,
+	tween(bgalpha,1,distance(0.3,0.2));
+	);
+<!-- trace(click); -->
+</action>
+
+<action name="test_over">
+	if(click,
+	,
+	tween(bgalpha,0.8,distance(0.3,0.2));
+);
+</action>
+
+
+<action name="test_click">
+
+toggle(click);
+tween(bgalpha,0.4,distance(0.3,0.2));
+</action>
+
+
+<!--...........................-->
+<!--...........guies...........-->
+<!--...........................-->
+
+<action name="html5_keydown">
+<!--GUIES-->
+
+if(keycode == 77 <!--m-->
+,
+	guia_horit(); guia_verti();
+	for(set(i,0), i LT layer.count, inc(i)
+		,
+
+				txtsplit(get(layer[get(i)].name),'uia__',anter2,desp2);
+				set(nominicial2,get(anter2));
+				if(nominicial2 === 'g'
+				,
+
+
+
+								set(layer[get(i)].visible,true);
+
+				);
+
+
+		);
+);
+if(keycode == 73 <!--i-->
+,
+if(layer[midageneral].visible
+,
+	set(layer[midageneral].visible,false);
+	,
+		set(layer[midageneral].visible,true);
+);
+);
+</action>
+<action name="html5_keyup">
+
+	if(keycode == 27 <!--esq-->
+	,
+		refrescar();
+
+	);
+if(keycode == 77 <!--m-->
+,
+
+		removeplugin(skin_guia_horit);
+		removeplugin(skin_guia_verti);
+		for(set(i,0), i LT layer.count, inc(i)
+		,
+
+				txtsplit(get(layer[get(i)].name),'uia__',anter2,desp2);
+				set(nominicial2,get(anter2));
+				if(nominicial2 === 'g'
+				,
+
+
+
+								set(layer[get(i)].visible,false);
+
+				);
+
+
+		);
+);
+</action>
+<action name="guia_horit">
+addplugin(skin_guia_horit);
+plugin[skin_guia_horit].loadstyle(guia);
+set(plugin[skin_guia_horit].height,2);
+set(plugin[skin_guia_horit].width,100%);
+set(plugin[skin_guia_horit].bgborder,'1 ,0,0,0 0x0000ff');
+follow_horit();
+
+</action>
+
+<action name="follow_horit">
+copy(plugin[skin_guia_horit].y, mouse.y);
+delayedcall(horit1,0
+,
+	follow_horit()
+);
+</action>
+
+
+<action name="guia_verti">
+addplugin(skin_guia_verti);
+plugin[skin_guia_verti].loadstyle(guia);
+set(plugin[skin_guia_verti].height,100%);
+set(plugin[skin_guia_verti].width,2);
+set(plugin[skin_guia_verti].bgborder,'0,0,0,1 0x0000ff');
+
+follow_verti();mostra_posicio_cursor();
+
+</action>
+
+<action name="follow_verti">
+copy(plugin[skin_guia_verti].x, mouse.x);
+delayedcall(verti1,0
+,
+	follow_verti();
+
+);
+</action>
+<action name="creaguies">
+addplugin(guia__verti);
+plugin[guia__verti].loadstyle(guia);
+set(plugin[guia__verti].height,100%);
+set(plugin[guia__verti].width,2);
+set(plugin[guia__verti].bgborder,'0,0,0,1 0xff0000');
+set(plugin[guia__verti].x, get(mouse.x));
+set(plugin[guia__verti].y, 0);
+set(plugin[guia__verti].onckick, );
+set(plugin[guia__verti].enabled, false);
+
+
+
+addplugin(guia__hori);
+plugin[guia__hori].loadstyle(guia);
+set(plugin[guia__hori].height,2);
+set(plugin[guia__hori].width,100%);
+set(plugin[guia__hori].bgborder,'1,0,0,0 0xff0000');
+set(plugin[guia__hori].x, 0);
+set(plugin[guia__hori].y, get(mouse.y));
+set(plugin[guia__hori].onckick, );
+set(plugin[guia__hori].enabled, false);
+
+calc(perpantampesct,(mouse.x/stagewidth)*100);
+calc(perpantampescrevest,100 - perpantampesct);
+
+calc(perpantcentxt,(((((stagewidth/2 - mouse.x)/(stagewidth/2))*100))*-1)/2);
+calc(perpantcentyt,(((((stageheight/2 - mouse.y)/(stageheight/2))*100))*-1)/2);
+
+roundval(percentpantallaampesct,perpantampesct, 1);
+roundval(percentpantallaampescrevest,perpantampescrevest, 1);
+
+roundval(percentpantallacentxt,perpantcentxt, 1);
+roundval(percentpantallacentyt,perpantcentyt, 1);
+
+calc(perpantaltesct,(mouse.y/stageheight)*100);
+calc(perpantaltescrevest, 100 - perpantaltesct );
+
+roundval(percentpantallaaltesct,perpantaltesct, 1);
+roundval(percentpantallaaltescrevest,perpantaltescrevest, 1);
+
+ fromcharcode(fletxadreta,8592);
+ fromcharcode(fletxaesquerra,8594);
+ fromcharcode(fletxadalt,8595);
+ fromcharcode(fletxabaix,8593);
+ fromcharcode(ffcentre,8865);
+
+
+addplugin(guia__text_x_esq);
+plugin[guia__text_x_esq].loadstyle(guia_text);
+set(plugin[guia__text_x_esq].html,
+	calc('X: ' + mouse.x + ' || ' + percentpantallaampesct + ' % ' + fletxaesquerra
+	)
+);
+set(plugin[guia__text_x_esq].x, get(plugin[guia__hori].x));
+set(plugin[guia__text_x_esq].y, get(plugin[guia__hori].y));
+set(plugin[guia__text_x_esq ].edge, bottomleft);
+
+addplugin(guia__text_x_dret);
+plugin[guia__text_x_dret].loadstyle(guia_text);
+set(plugin[guia__text_x_dret].html,
+	calc(fletxadreta + ' X: ' + (stagewidth - mouse.x) + ' || ' + percentpantallaampescrevest + ' % '
+	)
+);
+set(plugin[guia__text_x_dret].x, get(stagewidth));
+set(plugin[guia__text_x_dret].y, get(plugin[guia__hori].y));
+set(plugin[guia__text_x_dret].edge, bottomright);
+
+addplugin(guia__text_x_dalt);
+plugin[guia__text_x_dalt].loadstyle(guia_text);
+set(plugin[guia__text_x_dalt].html,
+	calc(fletxadalt + ' Y: ' + mouse.y + ' || ' + percentpantallaaltesct + ' % '
+	)
+);
+set(plugin[guia__text_x_dalt].x, get(plugin[guia__verti].x));
+set(plugin[guia__text_x_dalt].y, 0);
+set(plugin[guia__text_x_dalt].edge, topleft);
+
+addplugin(guia__text_x_baix);
+plugin[guia__text_x_baix].loadstyle(guia_text);
+set(plugin[guia__text_x_baix].html,
+	calc(fletxabaix + ' Y: ' + (stageheight - mouse.y) + ' || ' + percentpantallaaltescrevest + ' % '
+	)
+);
+set(plugin[guia__text_x_baix].x, get(plugin[guia__verti].x));
+set(plugin[guia__text_x_baix].y, get(stageheight));
+set(plugin[guia__text_x_baix].edge, bottomleft);
+
+addplugin(guia__text_centre);
+plugin[guia__text_centre].loadstyle(guia_text);
+set(plugin[guia__text_centre].html,
+	calc(ffcentre + '[br]X: ' + ((stagewidth/2 - mouse.x)*-1) + ' || ' + percentpantallacentxt + ' % [br]'
+	+ ' Y: ' + ((stageheight/2 - mouse.y)*-1) + ' || ' + percentpantallacentyt + ' % '
+	)
+);
+set(plugin[guia__text_centre].x, 0);
+set(plugin[guia__text_centre].y, 0);
+set(plugin[guia__text_centre].edge, center);
+set(plugin[guia__text_centre].align, center);
+
+
+
+
+</action>
+<style name="guia"
+edge="topleft"
+bgcapture="true"
+visible="true"
+enabled="true"
+keep="true"
+align="topleft"
+type="container"
+bgcolor="0xFF0000"
+bgalpha="0"
+y="0"
+x="0"
+handcursor="false"
+onclick="creaguies();"
+zorder="99"
+/>
+<style name="guia_text"
+								 type="text"
+
+
+								 html=""
+								 css="font-family:roboto; font-size:15px; color:#ffffff; font-weight: bold;"
+								 vcenter="false"
+								 padding="2"
+								 wordwrap="true"
+								 bg="true"
+								 bgcolor="0x000000"
+								 bgalpha="0.8"
+								 bgborder="0"
+								 bgroundedge="0"
+								 bgshadow=""
+								 txtshadow=""
+								 mergedalpha="true"
+								 interactivecontent="false"
+								 onautosized=""
+								 enabled="false"
+								 visible="true"
+								 keep="true"
+								 zorder="99"
+								 />
+
+
+<!--mostra les informacions a dalt a la dreta del layer que està a sota del mouse-->
+<action name="mostra_posicio_cursor">
+ fromcharcode(ftopesc,8600);fromcharcode(ftopdret,8601);
+
+ fromcharcode(fbotesc,8599);fromcharcode(fbotdret,8598);
+ fromcharcode(fcentre,8865);
+calc(perpantampesc,(mouse.x/stagewidth)*100);
+calc(perpantampescreves,100 - perpantampesc);
+
+calc(perpantcentx,(((((stagewidth/2 - mouse.x)/(stagewidth/2))*100))*-1)/2);
+calc(perpantcenty,(((((stageheight/2 - mouse.y)/(stageheight/2))*100))*-1)/2);
+
+roundval(percentpantallaampesc,perpantampesc, 1);
+roundval(percentpantallaampescreves,perpantampescreves, 1);
+
+roundval(percentpantallacentx,perpantcentx, 1);
+roundval(percentpantallacenty,perpantcenty, 1);
+
+calc(perpantaltesc,(mouse.y/stageheight)*100);
+calc(perpantaltescreves, 100 - perpantaltesc );
+
+roundval(percentpantallaaltesc,perpantaltesc, 1);
+roundval(percentpantallaaltescreves,perpantaltescreves, 1);
+
+showtext(
+		calc(
+			 ftopesc + '[b][u] Top-left[/u][/b][br]' +
+			'X: ' + mouse.x + ' || ' + percentpantallaampesc  + '%' +
+			'[br]Y: ' + mouse.y + ' || ' + percentpantallaaltesc  + '%[br][br]' +
+			 fbotesc + '[b][u] Bottom-left[/u][/b][br]' +
+			'X: ' + mouse.x + ' || ' + percentpantallaampesc  + '%' +
+			'[br]Y: ' + (stageheight - mouse.y)  + ' || ' + percentpantallaaltescreves  + '%[br][br]' +
+			ftopdret + '[b][u] Top-right[/u][/b][br]' +
+			'X: ' + (stagewidth -mouse.x) + ' || ' + percentpantallaampescreves  + '%' +
+			'[br]Y: ' +  mouse.y  + ' || ' + percentpantallaaltesc  + '%[br][br]' +
+			fbotdret + '[b][u] Bottom-right[/u][/b][br]' +
+			'X: ' + (stagewidth - mouse.x) + ' || ' + percentpantallaampescreves  + '%' +
+			'[br]Y: ' +  (stageheight -mouse.y)  + ' || ' + percentpantallaaltescreves  + '%[br][br]' +
+			fcentre + '[b][u] Center[/u][/b][br]' +
+			'X: ' + ((stagewidth/2 - mouse.x)*-1) + ' || ' + percentpantallacentx + '%' +
+			'[br]Y: ' +  ((stageheight/2 - mouse.y)*-1)  + ' || ' + percentpantallacenty + '%'
+		)
+,
+<!--estil del showtext-->
+default2
+);
+
+
+</action>
+<!--acció per refrescar la pantalla -->
+<action name="refrescar">
+jsget(pagina, 'location.href');
+openurl(get(pagina),_self);
+</action>
+<!--estil topleft-->
+		<textstyle name="default2"
+					 origin="cursor"
+					 edge="topleft"
+					 xoffset="20"
+					 yoffset="20"
+					 fadeintime="0.0"
+					 showtime="0.2"
+					 fadetime="0.0"
+					 font="Times"
+					 fontsize="12.0"
+					 bold="true"
+					 italic="false"
+					 textcolor="0x000000"
+					 textalign="none"
+					 padding="3"
+					 css="font-family:roboto; font-size:14px; color:#ffffff;"
+					 width=""
+					 height=""
+					 vcenter=""
+					 background="true"
+					 backgroundcolor="0x000000"
+					 backgroundalpha="0.3"
+					 bgborder="true"
+					 bordercolor="0xff0000"
+					 borderalpha="0.5"
+					 borderwidth="2.0"
+					 roundedge="0"
+					 shadow="0.0"
+					 shadowrange="4.0"
+					 shadowangle="45"
+					 shadowcolor="0x000000"
+					 shadowalpha="1.0"
+					 textshadow="0.0"
+					 textshadowrange="4.0"
+					 textshadowangle="45"
+					 textshadowcolor="0x000000"
+					 textshadowalpha="1.0"
+					 alpha="0.7"
+					 parent=""
+					 noclip="true"
+					 zorder="99"
+					 />
+
+
+
+
+<!-- estils -->
+<!-- DRAGGABLE    -->
+<textstyle name="STYLE5"
+origin="center"
+font="Arial" fontsize="16" bold="false"
+xoffset="120"
+yoffset="0"
+fadeintime="0.0"
+showtime="0.2"
+fadetime="0.0"
+roundedge="0"
+background="true" backgroundcolor="0xf1b06b" backgroundalpha="0.9"
+bgborder="false"
+textcolor="0xFFFFFF"
+textalign="none" vcenter="true"
+padding="2 25"
+edge="left"   zorder="100"
+parent="test_b3"
+noclip="true"
+/>
+<textstyle name="STYLE1"
+origin="cursor"
+font="Arial" fontsize="16" bold="false"
+roundedge="0"
+background="true" backgroundcolor="0x22b0ff" backgroundalpha="0.9"
+bgborder="false"
+textcolor="0xFFFFFF"
+textalign="left" vcenter="true"
+padding="2 25"
+edge="left" xoffset="40" yoffset="0"  zorder="1000000000000000000000"
+/>
+<textstyle name="STYLE4"
+origin="cursor"
+font="Arial" fontsize="16" bold="false"
+roundedge="0"
+background="true" backgroundcolor="0xf1b0ff" backgroundalpha="0.9"
+bgborder="false"
+textcolor="0xFFFFFF"
+textalign="left" vcenter="true"
+padding="2 25"
+edge="left" xoffset="40" yoffset="0"  zorder="1000000000000000000000"
+/>
+<!-- a style for a simple textfield element -->
+<style name="text_nomes"
+type="text"
+bg="false"
+css="calc: testdisseny.colortextos + 'text-align:center;'"
+enabled="false"
+edge="lefttop"
+/>
+
+
+<style name="text_boto"
+	 type="text"
+	bg="true"
+	 css="calc: testdisseny.colordeltextbotons + 'text-align:center;'"
+	 bgcolor="calc:testdisseny.colordefonsbotons"
+	 bgcolor2="calc:testdisseny.colordefonsbotons2"
+	 enabled="true"
+	 edge="lefttop"
+	 width="100%"
+	 height="get:testdisseny.midatextos"
+	 align="lefttop"
+	 padding="10"
+	 onover="test_over();" onout="test_out();"
+
+	 />
+
+
+<!--...................................-->
+<!--....estils de text showtext.xml....-->
+<!--...................................-->
+
+</krpano>

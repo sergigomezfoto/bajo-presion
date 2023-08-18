@@ -1,0 +1,31 @@
+<krpano>
+
+ <include url="styles/styles.xml" /> 
+
+<action name="s_floating_text_constructor" scope="local" args="textcontent,textname,layerstyle,layerparent,layeralign,layeredge,layerox,layeroy">
+
+txtadd(txt,get(textcontent));
+	addlayer(calc(textname + 's_ft'),textlayer);
+	textlayer.loadstyle(calc(layerstyle?layerstyle:'s_floating_text_constructor'));
+	set(textlayer,
+		keep="true"
+		,
+		parent=calc(layerparent?layerparent:calc('style[' + layerstyle + '].parent'));
+		,
+		align=calc(layeralign?layeralign:calc('style[' + layerstyle + '].align'));
+		,
+		edge=calc(layeredge?layeredge:calc('style[' + layerstyle + '].edge'));
+		,
+		ox=calc(layerox?layerox:'');
+		,
+		oy=calc(layeroy?layeroy:'');
+		,
+		html=get(txt);
+
+	);
+
+
+</action>
+
+
+</krpano>

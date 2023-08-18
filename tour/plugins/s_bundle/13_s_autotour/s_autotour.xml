@@ -1,0 +1,9 @@
+<krpano>
+    <include url="s_autotour_config/s_autotour_config.xml" />
+    <include url="s_record_autotour/s_record_autotour.xml" />
+    <include url="s_play_autotour/s_play_autotour.xml" />
+    <include url="splash/autotour_splash.xml" />
+    
+    <!-- <include url="s_play_autotour/s_autotour_player_ui/design.xml" /> -->
+</krpano>
+

@@ -1,0 +1,22 @@
+<krpano>
+
+<action name="s_analytics_dates" autorun="onstart">
+
+s_datenow(,cat,localdate);   
+s_datenow(get(s_timestamp_varlocaldate),cat,utcdate,utc); 
+s_write_dates();
+</action>  
+
+    <action name="s_write_dates" type="javascript">
+    <![CDATA[
+    s_analytics.dates.timestamp = krpano.get('s_timestamp_varlocaldate');
+    s_analytics.dates.calendar_local = krpano.get('s_calendar_varlocaldate');
+    s_analytics.dates.clock_local = krpano.get('s_clock_varlocaldate');
+    s_analytics.dates.calendar_utc = krpano.get('s_calendar_varutcdate');
+    s_analytics.dates.clock_utc = krpano.get('s_clock_varutcdate');
+    ]]>     
+    
+    </action>
+
+
+</krpano>

@@ -1,0 +1,21 @@
+<krpano>
+
+<action name="s_get_ui_clicks">
+
+          
+    s_write_in_analytics_ui_clicks(get(s_category),get(s_id));
+
+</action>
+
+<action name="s_write_in_analytics_ui_clicks" type="javascript" >
+<![CDATA[
+if(args[1] in s_analytics.ui_clicks === false){s_analytics.ui_clicks[args[1]] = {};}
+if(args[2] in s_analytics.ui_clicks[args[1]] === false){s_analytics.ui_clicks[args[1]][args[2]] = 0;}
+
+s_analytics.ui_clicks[args[1]][args[2]] ++;
+
+
+]]>
+</action>
+
+</krpano>

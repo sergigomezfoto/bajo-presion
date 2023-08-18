@@ -1,0 +1,167 @@
+<krpano>
+	
+/*
+
+S_POPUP_IFRAME
+---------------
+llença un iframe amb una mida, disseny, i propietats predissenyades.
+canvis:
+-url
+*/
+
+//Exemple:
+<hotspot name="exemple"	
+		onclick="s_popup_iframe(http://sergigomez.com);"
+		/>
+/*
+
+S_POPUP_IFRAME_CUSTOM
+----------------------
+llença un iframe custom: 
+canvis:
+-url
+-ample (sempre té una mida màxima per no sobrepassar la pantalla no superarà mai el 80%de la mida de pantalla)
+-alt (sempre té una mida màxima per no sobrepassar la pantalla no superarà mai el 80%de la mida de pantalla)
+-estils*: estilBackround | estilPopup | estilBotox
+-accions**: accioPrevia | accióDelmitj | accióFinal
+
+* Si algún del estils no es posa, sha de posar off -> [estilBackround | off | estilBotox] o [off | off | estilBotox]. Tots els estils en off agafen lestil preestablert.
+ ** Si alguna acció no existeix es posa off ->[accioPrevia | off | acció Final] o [off | off | accioFinal]
+ 	accioPrevia: exemple-> fer desenfoc general i amagar interfície  
+    accióDelmitj:  exemple-> affegir layer al popup o alguna cosa al matix temps que el popup apareix (parents: s_popup_bg, s_popup_main, s_close_x)
+    accióFinal: exeple-> tornar a enfocar i mostrar interfície
+*/
+//Exeple:
+		<hotspot name="exemple"	
+		onclick="s_popup_iframe_custom(recursos/text/a01/index.html,get(spc.width),get(spc.height),get(spc.styles),get(spc.actions));"
+		/>
+		//Array config:
+			<spc
+				width="400"
+				height="200"
+				styles="custom_bg | custom_main | custom_close"
+				actions="before_s_pupup |middle_s_popup | after_s_pupup"
+			/>
+		//Estils:
+			<style name="custom_bg"
+				bgcolor="0xffffff"
+			/>
+			<style name="custom_main"
+				bgcolor="0x005533"
+				bgborder="0"
+			/>
+			<style name="custom_close"
+				url="%FIRSTXML%/helpers/closex.png"
+				crop=""
+				onovercrop=""
+				onoutcrop=""
+				width="128"
+				height="prop"
+				scale="0.25"
+				edge="center"
+				x="30"
+				y="30"
+				onover="tween(layer[get(name)].rotate,90);"
+				onout="tween(layer[get(name)].rotate,0);"
+			/>
+		//Accions:
+			<action name="before_s_pupup">
+				trace('custom before');   
+			</action>
+			<action name="midle_s_pupup">
+				trace('custom midle');
+			</action>
+			<action name="after_s_pupup">
+				trace('custom after');
+			</action>
+		
+//S_MOOVING_HS
+
+/*S_MOOVE_AND TRIGGER
+--------------------
+quan es clicka hs, aquest es mou a una posició i es fa una acció,, després es torna a moure i fa una acció. quan s ha mogut tantes vegades com posicions es donen en els args,no es mou, però fa una acció final.
+
+canvis:
+-posicions *
+-temps de tween
+-típus de tween
+ 
+ * 14·-13|14·13|-14·13 ===> 14= posició h, ·= geminació separador de posicions, -13= posició v, | =separador de parells de posició [h,v] 
+
+!! el nom del hotspot està relacionat amb les accions. 
+Si el hotpost es diu pepa_pig, les accións s han de dir: pepa_pig_1 (primera acció), pepa_pig_2 (segona acció) ...
+Sempre ha d haber una última acció que es diría pepa_pig_last
+*/
+//Exemple:
+	   <hotspot name="test_canvas_h1" style="test_canvas_dummy_hs" ath="0" atv="0"/>
+       <hotspot name="test_canvas_h2" style="test_canvas_dummy_hs" ath="14" atv="-13"/>
+       <hotspot name="test_canvas_h3" style="test_canvas_dummy_hs" ath="14" atv="13"/>
+       <hotspot name="test_canvas_h4" style="test_canvas_dummy_hs" ath="-14" atv="13"/>
+       <hotspot name="test_canvas_h5" style="test_canvas_dummy_hs" ath="-14" atv="-13"/>
+       
+
+       <hotspot name="s_mt_01" style="test_dist_hot_base"
+        url="img/greenplus.png"
+        ath="0" atv="0" scale="0.5" rx="0" ry="0" rz="0"
+        onclick="s_moove_and_trigger(14·-13|14·13|-14·13|-14·-13,0.5,linear);"
+         />	
+
+				        <action name="s_mt_01_1"> 
+					        trace('accio 1');
+					        tween(hotspot[test_canvas_h1].bgcolor,0x55ff55);       	
+				        </action>
+				        <action name="s_mt_01_2"> 
+					        trace('accio 2');
+					        tween(hotspot[test_canvas_h2].bgcolor,0x55ff55);      	
+				        </action>
+				        <action name="s_mt_01_3"> 
+				            trace('accio 3');
+				        	tween(hotspot[test_canvas_h3].bgcolor,0x55ff55);        	
+				        </action>
+				        <action name="s_mt_01_4"> 
+				            trace('accio 4');
+				        	tween(hotspot[test_canvas_h4].bgcolor,0x55ff55);        	
+				        </action>
+				        <action name="s_mt_01_5"> 
+				            trace('accio 5');
+				        	tween(hotspot[test_canvas_h5].bgcolor,0x55ff55);               	
+				        </action>
+				        <action name="s_mt_01_last"> 
+				            tween(hotspot[s_mt_01].alpha,0);
+				        	trace('finalaction may be disapear?');       	
+				        </action>
+
+										<style name="test_dist_hot_base"
+												 capture="false"
+										         distorted="true"
+										         handcursor="true"      
+										         enabled="true"
+										         onover=""
+										         visible="true"
+										         alpha="1"
+										         autoalpha="true"
+										         zorder="30"
+										         bgcapture="false"
+										         crop="0|0|100|100"
+										         onovercrop="100|0|100|100"
+										         ondowncrop="200|0|100|100"
+											/>
+										<style name="test_canvas_dummy_hs"
+												 type="text"	
+												 capture="false"
+											     distorted="true" 
+											     enabled="false"
+											     visible="true"
+											     alpha="1"
+											     autoalpha="true"
+											     zorder="30"
+											     bgcapture="false"
+											     width="100"
+											     height="100"
+											     bgcolor="0x123654"
+											     bgalpha="1"
+										/>
+
+
+</krpano>
+

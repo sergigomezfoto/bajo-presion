@@ -1,0 +1,48 @@
+<krpano>
+
+//MUST BE A SPRITE WITH THE FIRST BLOCK TRANSPARENT!! CHANGE IN ACTION THE CROP, EX: 
+//set(layer[sdummy1].onover, 's_changepointer(s_cursor); set(layer[s_cursor].crop,26|0|26|27)');
+//set(layer[sdummy1].onout, 's_changepointer(s_cursor,off); set(layer[s_cursor].crop,0|0|26|27)');
+<layer name="s_cursor" keep="true" style="s_cursor_bundle"/> 
+<style name="s_cursor_bundle"
+type="image"
+url="cursor.png"
+crop="0|0|26|27"
+alpha="1"
+enabled="false"
+edge="center"
+/>
+
+//desapear and appear if mouse enter or leave screen uncoment if needed
+								<!-- <action name="js_s_cursor" type="javascript" autorun="onstart">
+
+									<![CDATA[
+											document.addEventListener('mouseleave', function(evt) {
+											  if (evt.toElement == null && evt.relatedTarget == null) {
+											   krpano.call('set(layer[s_cursor].alpha,0)');
+											  }
+											});
+
+											document.addEventListener('mouseenter', function(e) {
+											 
+											   krpano.call('set(layer[s_cursor].alpha,1);');
+											  
+											});
+									]]>	
+
+								</action> -->
+<!-- s_cursor1
+crop="26|0|26|27"
+
+s_cursor2
+crop="52|0|26|27"
+
+s_cursor3
+crop="78|0|26|27"
+ -->
+
+<!-- 
+IN THE PROJECT!! CAREFUL WITH Z-ORDER THINGS!!!!!!!!!
+<layer name="s_cursor" keep="true" style="s_cursor_bundle"/> 
+-->
+</krpano>

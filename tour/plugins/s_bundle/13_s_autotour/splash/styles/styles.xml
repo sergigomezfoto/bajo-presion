@@ -1,0 +1,18 @@
+<krpano>
+
+    <style name="s_autotour_splash"
+    type="text"
+    html="THIS SI TO BE ABLE TO LOAD THE MUSIC"
+    css="color:#ffffff; font-size:20px;text-align:center; "
+    vcenter="true"
+    width="100%"
+    height="100%"
+    bg="true"
+    bgcolor="0x654987"
+    alpha="0.5"
+    mergedalpha="false"
+    parent="OVERLAY"
+    align="center"
+    />
+
+</krpano>

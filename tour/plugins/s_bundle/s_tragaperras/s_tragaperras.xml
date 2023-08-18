@@ -1,0 +1,134 @@
+<krpano>
+	
+	
+<action name="s_tragaperras" scope="local" args="framewidth, frameheight,accelerate_to,acceleration_time,varname">
+///////DEFINICIONS//////// 
+calc(numberofframes, caller.imageheight / frameheight);
+        def(stay_places,array);
+                  for(set(i, 0), i LT numberofframes , inc(i),
+                  set(stay_places[calc(i)],calc(i * frameheight ));
+ 
+
+
+copy(initialposition,calc(caller.name + '_price'));                  );
+if (initialposition !== null
+  ,
+ def(frame, integer, get(initialposition));
+ calc(caller.crop, !global.caller.crop? '0|'+initialposition+'|' + framewidth + '|' + frameheight : global.caller.crop);
+ ,
+ def(frame, integer, 0);
+ calc(caller.crop, !global.caller.crop? '0|0|' + framewidth + '|' + frameheight : global.caller.crop);
+);
+        
+       
+
+
+       
+
+
+//acceleració
+set(acceleration_value,1);
+mul(val_random_add, random, 20);
+add(val_random_add, 1);
+roundval(val_random_add);
+tween(acceleration_value,calc(accelerate_to + val_random_add),calc(acceleration_time),, set(endacceleration,true); );
+  setinterval(calc('s_animation_projector_acceleration' + caller.name), 0.01, 
+     if(caller.loaded,
+            inc(frame,calc(roundval(acceleration_value)));    
+            if(
+              endacceleration  AND frame GE caller.imageheight * (numberofframes-1) 
+              ,  
+
+                clearinterval(calc('s_animation_projector_acceleration' + caller.name));
+                set(frame,0);
+                //suspens
+                  setinterval(calc('s_animation_projector_suspense' + caller.name), 0.01,
+                      inc(frame,calc(roundval(acceleration_value)));
+                      if(frame GE caller.imageheight * (numberofframes-1), set(frame,0); );
+                      copy(ypos,frame);
+                      calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);     
+                  );
+                  //desacceleracio 
+<!--              mul(desaccel, random, 2);
+                  add(desalccel, 2);
+                  roundval(desaccel,1); -->
+                  <!-- trace('random value=',desaccel);  -->
+                 
+                 callwhen(calc(varname) === true,
+                      clearinterval(calc('s_animation_projector_suspense' + caller.name));
+                            tween(acceleration_value,0,0.2,,
+                              //Fi
+                             <!--  clearinterval(calc('s_animation_projector_deceleration' + caller.name)); -->               
+////////////FINAL///////////////////////////FINAL//////////TODO CONVERTIR EN S_FRAMEWORK////////////////////////////FINAL///////////////////
+
+                            def(bigger_stay_places,array);        
+                            for(set(f, 0), f LT stay_places.length, inc(f),
+                                 if (frame !== min(stay_places[get(f)],get(frame)),                                
+                                 <!--  trace('el numero final, [',calc(forsanumero),'] es MÉS GRAN que ',stay_places[get(f)]); -->
+                                  set(bigger_stay_places[calc(f)],calc(stay_places[get(f)]));
+                                  );                                 
+                            );
+                            calc(nearest_stay_point_down,bigger_stay_places[calc(bigger_stay_places.length - 1)]?bigger_stay_places[calc(bigger_stay_places.length - 1)]:0);
+                            calc(nearest_stay_point_up,nearest_stay_point_down + frameheight );
+                           if (abs(calc(frame - nearest_stay_point_down)) LT abs(calc(frame - nearest_stay_point_up)),
+                                    copy(final_reposition,nearest_stay_point_down);
+                                    copy(fra,frame);
+                                    tween(fra,calc(final_reposition),0.1,linear,
+                                          clearinterval(calc('s_animation_projector_final' + caller.name));
+                                          calc(caller.crop, '0 |' + final_reposition + '|' + framewidth + '|' + frameheight);
+
+                                              calc(calc('global.'+caller.name + '_price'),number(final_reposition)); 
+                                               calc(calc('global.'+caller.name + '_finalpos'),number(final_reposition));                                                                                   
+                                          
+                                    );
+                                    setinterval(calc('s_animation_projector_final' + caller.name),0.01,
+                                         calc(caller.crop, '0 |' + fra + '|' + framewidth + '|' + frameheight);
+
+                                    );
+                            ,
+                                   copy(final_reposition,nearest_stay_point_up);
+                                   copy(fra,frame);
+                                   tween(fra,calc(final_reposition),0.1,easeinoutback,
+                                         clearinterval(calc('s_animation_projector_final2' + caller.name));
+                                         calc(caller.crop, '0 |' + final_reposition + '|' + framewidth + '|' + frameheight);  
+                                         
+                                         calc(calc('global.'+caller.name + '_price'),number(final_reposition));
+                                         calc(calc('global.'+caller.name + '_finalpos'),number(final_reposition)); 
+                                                                                    
+                                                                                     
+                                    );
+                                   setinterval(calc('s_animation_projector_final2' + caller.name),0.01,
+                                        calc(caller.crop, '0 |' + fra + '|' + framewidth + '|' + frameheight);
+
+
+                                   );
+
+                           );                                              
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        );
+
+<!--                       setinterval(calc('s_animation_projector_deceleration' + caller.name), 0.01,
+                          inc(frame,calc(roundval(acceleration_value)));
+                          if(frame GE caller.imageheight * (numberofframes-1), set(frame,0); );
+                          copy(ypos,frame);
+                          calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+
+                      ); -->
+                  );
+              , frame GE caller.imageheight * (numberofframes-1), 
+                set(frame,0);              
+             );    
+            copy(ypos,frame);
+            calc(caller.crop, '0 |' + ypos + '|' + framewidth + '|' + frameheight);
+          ,
+          clearinterval(calc('s_animation_projector_acceleration' + caller.name));
+          clearinterval(calc('s_animation_projector_suspense' + caller.name));
+          clearinterval(calc('s_animation_projector_final' + caller.name));
+          clearinterval(calc('s_animation_projector_final2' + caller.name));
+          );
+        );
+
+    </action>
+
+	
+</krpano>

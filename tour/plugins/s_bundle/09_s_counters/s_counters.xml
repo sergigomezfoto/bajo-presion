@@ -1,0 +1,110 @@
+<krpano>
+
+
+//TODO: NUMERO DE PUNTS AL TEXTFIELD DE MÉS DE 3 XIFERS: 001 ... 010 ... 100, ETC...
+    <action name="s_counter" scope="local" args="points,id,zeros" > 
+        
+calc(id,id?id:'s_globalpoints');
+
+//txtadd(initial,get(id),'.initial');
+//calc(initial,isvalue(initial)?'si':'no');
+        //trace(calc(initial));
+if (calc(id + '.initial'),
+copy(init,calc(id + '.initial'));
+,
+set(init,0);
+);
+indexoftxt(imul,get(points),'*'); 
+indexoftxt(idiv,get(points),'/'); 
+indexoftxt(iequ,get(points),'='); 
+
+
+if (imul LT 0 AND idiv LT 0 AND iequ LT 0
+,
+
+        if (calc('global.s_counter' + id) !== null
+        ,
+            calc(calc('global.s_counter' + id), calc('global.s_counter' + id) + points );
+        ,
+            calc(calc('global.s_counter' + id), init + points);
+        );
+, imul GE 0,
+    subtxt(points, get(points), 1, 1000);
+    calc(points,number(points));
+
+       if (calc('global.s_counter' + id) !== null
+        ,
+            calc(calc('global.s_counter' + id), calc('global.s_counter' + id) * points );
+        ,
+            calc(calc('global.s_counter' + id), init * points );
+        );
+, idiv GE 0,
+    subtxt(points, get(points), 1, 1000);
+    calc(points,number(points));
+
+       if (calc('global.s_counter' + id) !== null
+        ,
+            calc(calc('global.s_counter' + id), calc('global.s_counter' + id) / points );
+
+        ,
+            calc(calc('global.s_counter' + id), init / points);
+        );
+,iequ GE 0,
+    subtxt(points, get(points), 1, 1000);
+    calc(points,number(points));
+
+        if (calc('global.s_counter' + id) !== null
+        ,
+            calc(calc('global.s_counter' + id),  points );
+        ,
+            calc(calc('global.s_counter' + id),  points);
+        );
+);
+
+//LIMITS
+copy(minimcheck,calc(id + '.minimum'));
+
+if (isvalue(minimcheck)
+    ,
+        copy(minim,calc(id + '.minimum'));
+        if ( calc('global.s_counter' + id) LE minim ,
+            calc(calc('global.s_counter' + id),minim);
+            scope(global,calc(calc(id + '.actionminimum')));
+        );
+        
+);
+
+copy(maximcheck,calc(id + '.maximum'));
+
+if (isvalue(maximcheck)
+    ,
+        copy(maxim,calc(id + '.maximum'));
+        if ( calc('global.s_counter' + id) GE maxim ,
+            calc(calc('global.s_counter' + id),maxim);
+            scope(global,calc(calc(id + '.actionmaximum')));
+        );
+        
+
+);
+/* txtadd(minimum,get(id),'.minimum');
+        trace(minimum);
+        trace(calc(minimum));
+txtadd(minimum,get(id),'.minimum');
+        trace(minimum);
+        trace(calc(minimum));
+txtadd(minimum,get(id),'.minimum');
+        trace(minimum);
+        trace(calc(minimum)); */
+calc(txtvalue, string(calc('global.s_counter' + id) LT 10 AND zeros != 'null' ? string(calc(zeros)) + calc('global.s_counter' + id) : calc('global.s_counter' + id)));
+
+        if (layer[calc(id)].name !== null,
+            set(layer[calc(id)].html,get(txtvalue));
+        );
+
+        if (hotspot[calc(id)].name !== null,
+            set(hotspot[calc(id)].html,get(txtvalue));
+        );
+     
+    </action>
+
+</krpano>

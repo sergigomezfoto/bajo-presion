@@ -1,0 +1,41 @@
+
+<krpano>
+  
+  <control mode="drag"
+         usercontrol="all"
+         draginertia="0.1"
+         dragfriction="0.9"
+         movetoaccelerate="1.0"
+         movetospeed="10.0"
+         movetofriction="0.8"
+         keybaccelerate="0.5"
+         keybspeed="10.0"
+         keybfriction="0.9"
+         keybinvert="false"
+         keybfovchange="0.75"
+         keycodesleft="37"
+         keycodesright="39"
+         keycodesup="38"
+         keycodesdown="40"
+         keycodesin=""
+         keycodesout=""
+         keydownrepeat="true"
+         mousefovchange="1.0"
+         zoomtocursor="false"
+         zoomoutcursor="true"
+         disablewheel="false"
+         panomousebuttons="1"
+         layermousebuttons="1"
+         eventmousebuttons="7"
+         touchzoom="true"
+         trackpadzoom="true"
+         capturetouch="true"
+         fovspeed="3.0"
+         fovfriction="0.9"
+         frictionstop="0.01"
+         invert="false"
+         bouncinglimits="false"
+         />
+  
+</krpano>
+

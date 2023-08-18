@@ -1,0 +1,534 @@
+<krpano>
+
+
+	
+	// COUNTER HOURS MIN AND SECONDS 
+	<action name="s_looking_countdown" scope="local" args="argtime,ticktime,finalaction">
+	txtsplit(argtime,':',timer_array);
+	trace('timer_array-count: ',timer_array.count);
+	if (
+		timer_array.count == 1
+		,
+			copy(seconds, timer_array[0].value);
+			txtadd(totaltime,calc(seconds LT 10? '0' : ''),calc(seconds));
+			set(cd,'s');
+		,timer_array.count == 2
+		,
+			copy(minutes, timer_array[0].value);
+			copy(seconds, timer_array[1].value);
+			txtadd(totaltime,calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+			set(cd,'ms');
+		,timer_array.count == 3
+		,
+			copy(hours, timer_array[0].value);
+			copy(minutes, timer_array[1].value);
+			copy(seconds, timer_array[2].value);
+			txtadd(totaltime,calc(hours LT 10 ? '0' : ''),calc(hours),':',calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+			
+			set(cd,'hms');
+	);
+	
+	copy(caller.html,totaltime);
+	setinterval(calc('s_looking_countdown' + caller.name), calc(ticktime? ticktime :1) , 
+
+		 if(calc('global.s_looking_countdown' + caller.name + '_pause')
+		 	,
+		 	,
+
+		 	if (cd === 's',
+						 	 calc(seconds, seconds - 1);
+						 	 if (seconds == 0 
+						 	 ,
+								 set(totaltime,'00');
+								 scope(global, calc(finalaction));
+						     	 clearinterval(calc('s_looking_countdown' + caller.name));
+								 
+						     ,
+						     	txtadd(totaltime,calc(seconds LT 10 ? '0' : ''),calc(seconds));
+						      );
+		     , cd === 'ms',
+		     				//minuts segons
+		     			     calc(seconds,seconds == 0 AND minutes != 0 ? 59 : seconds - 1);
+						 	 calc(minutes,seconds == 59 ? minutes - 1 : minutes);
+
+						 	 if (minutes == 0 AND seconds == 0 
+						 	 ,
+								set(totaltime,'00:00');
+								scope(global, calc(finalaction));
+						     	clearinterval(calc('s_looking_countdown' + caller.name));
+
+						     ,
+						     	txtadd(totaltime,calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10 ? '0' : ''),calc(seconds));
+						     );
+		     , cd === 'hms',
+ 			   		         
+
+ 			   		         calc(hours, minutes == 0 AND seconds == 0 ? hours - 1 : hours);
+ 			   		         calc(minutes, minutes == 0 AND seconds == 0 ? 59 : ( minutes != 0 AND seconds == 0 ? minutes - 1 : minutes ) );
+ 			   		         calc(seconds,seconds == 0 AND (minutes != 0 OR hours != 0) ? 59 : seconds - 1);
+
+						 	if (hours == 0 AND minutes == 0 AND seconds LE 0 
+						 	 ,
+
+						 	 	set(totaltime,'00:00:00');
+						 	 	scope(global, calc(finalaction));
+						     	clearinterval(calc('s_looking_countdown' + caller.name));
+						     ,
+							 	txtadd(totaltime,calc(hours LT 10 ? '0' : ''),calc(hours),':',calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+						     );
+		 	 );
+		 copy(caller.html,totaltime);
+         );
+    	if(!caller.loaded OR calc('global.s_looking_countdown' + caller.name + '_clear') 
+    		,
+      		clearinterval(calc('s_looking_countdown' + caller.name));
+      	); 
+	);	 
+</action>
+
+
+<action name="s_countdown_to_date" scope="local" args="date,pitch,finalaction,text_expiration,cn">
+  
+    calc(iscn,cn?true:false);
+	calc(cn,cn?cn:caller.name);
+	s_countdown_to_date_helper(calc('s_countdown_to_date' + cn),get(date));
+	//calc(caller.html,s_countdown_to_datesd GT 0ummy4);
+
+	txtsplit(calc('s_countdown_to_date' + cn),'|',timearr);
+	calc(isdays,number(timearr[0].value) GT 0 ? true : false);
+	calc(ishours,number(timearr[1].value) GT 0 ? true : false);
+	calc(isminutes,number(timearr[2].value) GT 0 ? true : false);
+	
+	setinterval(calc('s_countdown_to_date' + cn), calc(pitch? pitch :0.05) , 
+
+		s_countdown_to_date_helper(calc('s_countdown_to_date' + cn),get(date));
+		//calc(caller.html,s_countdown_to_datesdummy4);
+
+		txtsplit(calc('s_countdown_to_date' + cn),'|',timearr);
+		calc(days,number(timearr[0].value));
+		calc(hours,number(timearr[1].value));
+		calc(minutes,number(timearr[2].value));
+		calc(seconds,number(timearr[3].value));
+
+		if (days LE 0 AND hours LE 0 AND minutes LE 0 AND seconds LE 0
+			,
+				if (iscn
+				,
+				if(layer[get(cn)].name === null
+					,
+					set(hotspot[get(cn)].html,calc(text_expiration ? text_expiration : 'EXPIRED'));
+					,
+					set(layer[get(cn)].html,calc(text_expiration ? text_expiration : 'EXPIRED'));
+				  );
+				
+				,
+				set(caller.html,calc(text_expiration ? text_expiration : 'EXPIRED'));
+				);
+			
+			scope(global, calc(finalaction));
+			clearinterval(calc('s_countdown_to_date' + cn));
+			,
+			
+			if (isdays
+				,
+				//trace(gt);
+				txtadd(totaltime,calc(days),calc('d '),calc(hours LT 10 ? '0' : ''),calc(hours),':',calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+				,
+			  	if(ishours
+			  		,
+					txtadd(totaltime,calc(hours LT 10 ? '0' : ''),calc(hours),':',calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds)); 
+			    	,
+			    	if (isminutes
+			    		,
+			    		txtadd(totaltime,calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds)); 
+			    		,
+			    		txtadd(totaltime,calc(seconds LT 10? '0' : ''),calc(seconds));
+			    		);
+			    	);
+			    );
+
+			if (iscn
+				,
+				if(layer[get(cn)].name === null
+					,
+					calc(hotspot[get(cn)].html,totaltime);
+					,
+					calc(layer[get(cn)].html,totaltime);
+				  );
+				,
+				calc(caller.html,totaltime);
+				);
+		);
+
+		if(!caller.loaded OR calc('global.s_countdown_to_date' + caller.name + '_clear') 
+    		,
+      		clearinterval(calc('s_countdown_to_date' + caller.name));
+      	); 
+	);
+</action>
+
+
+															<action name="s_countdown_to_date_helper" type="Javascript">
+															<![CDATA[
+																	// Set the date we're counting down to
+																	let countDownDate = new Date(args[2]).getTime();
+																	let volatile_var = args[1];
+																	
+															        
+															const s_checkdate = () => {
+
+																	  // Get today's date and time
+																	  let now = new Date().getTime();
+
+																	  // Find the distance between now and the count down date
+																	  let distance = countDownDate - now;
+
+																	  // Time calculations for days, hours, minutes and seconds
+																	  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+																	  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+																	  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+																	  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+																	 
+																	  let cd = days + "|" + hours + "|"
+																	  + minutes + "|" + seconds;
+																	  //console.log(papa);
+																	  //'s_countdown_to_date+caller.name'
+																	  krpano.set(volatile_var,cd);
+
+															}
+															s_checkdate();
+																
+															]]>	
+															</action>
+
+
+<action name="s_real_countdown" scope="local" args="time,pitch,finalaction,text_expiration,cn" >
+//1m_> 60
+//1h-> 3600
+//1d-> 86400
+calc(cn,cn?cn:caller.name);
+s_real_countdown_helper(calc('s_real_countdown' + cn),get(time));
+
+//trace(calc(s_real_countdownsdummy6));
+txtadd(newtime,calc(calc('s_real_countdown' + cn)));
+s_countdown_to_date('Tue Sep 14 2021 18:05:15 GMT+0200 (hora de verano de Europa central)',,trace('final action countdown to date'),"sha acabat",get(cn));
+
+s_countdown_to_date(get(newtime),calc(pitch ? pitch :''),calc(finalaction ? finalaction :''),calc(text_expiration ? text_expiration :''),get(cn));	
+	
+</action>
+
+												<action name="s_real_countdown_helper" type="Javascript">
+												<![CDATA[
+
+												let volatile_var = args[1];
+												function s_get_date() {
+
+												   let now = new Date(); 
+												   let newtemps = new Date(now.getTime() + (args[2] * 1000));
+												   //'s_real_countdown+caller.name'
+												   krpano.set(volatile_var,newtemps);
+
+												 // return temp;
+												}
+												s_get_date();
+													
+												]]>	
+												</action>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CLOCKS AND CALENDARS CLOCKS AND CALENDARS CLOCKS AND CALENDARS CLOCKS AND CALENDARS CLOCKS AND CALENDARS CLOCKS AND CALENDARS
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+<action name="s_calendar" scope="local" args="mode,lan,pitch,date,utc">
+
+calc(utcvar,utc ? utc : '' );
+
+if (!mode OR mode === "simple",
+		s_datenow(calc(date ? date : ''),,calc(caller.name),calc(utcvar));
+		calc(caller.html,calc('s_calendar_var' + caller.name));
+
+	,mode ==='text',
+		s_datenow(calc(date ? date : ''), calc(lan === 'en' ? 'en' : (lan === 'es' ?  'es' : (lan === 'ca' ? 'ca' : '' ) ) ),calc(caller.name),calc(utcvar));
+	    copy(wd,calc('s_weekday_var' + caller.name));
+	    copy(d,calc('s_day_var' + caller.name));
+	    copy(mn,calc('s_monthname_var' + caller.name));
+	    copy(y,calc('s_year_var' + caller.name));
+		calc(caller.html,wd + ', ' + d + (lan === 'en' ? ' of ' : (lan === 'es' ?  ' de ' : (lan === 'ca' ? ' de ' : '' ) )) + mn + (lan === 'en' ? ' of ' : (lan === 'es' ?  ' de ' : (lan === 'ca' ? ' de ' : '' ) )) + y );
+	
+);
+setinterval(calc('s_calendar'), calc(pitch? pitch :1) , 
+
+	if (!mode OR mode === "simple",
+			s_datenow(calc(date ? date : ''),,calc(caller.name),calc(utcvar));
+			calc(caller.html,calc('s_calendar_var' + caller.name));
+
+		,mode ==='text',
+			s_datenow(calc(date ? date : ''), calc(lan === 'en' ? 'en' : (lan === 'es' ?  'es' : (lan === 'ca' ? 'ca' : '' ) ) ),calc(caller.name),calc(utcvar));
+		    copy(wd,calc('s_weekday_var' + caller.name));
+		    copy(d,calc('s_day_var' + caller.name));
+		    copy(mn,calc('s_monthname_var' + caller.name));
+		    copy(y,calc('s_year_var' + caller.name));
+			calc(caller.html,wd + ', ' + d + (lan === 'en' ? ' of ' : (lan === 'es' ?  ' de ' : (lan === 'ca' ? ' de ' : '' ) )) + mn + (lan === 'en' ? ' of ' : (lan === 'es' ?  ' de ' : (lan === 'ca' ? ' de ' : '' ) )) + y );
+		
+	);
+	if(!caller.loaded OR calc('global.s_calendar' + caller.name + '_clear') 
+    		,
+      		clearinterval(calc('s_calendar' + caller.name));
+  	); 	
+);
+</action>
+
+
+<action name="s_time" scope="local" args="pitch,utc">
+
+calc(utcvar,utc ? utc : '' );
+
+		s_datenow(,,calc(caller.name),calc(utcvar));
+		calc(caller.html,calc('s_clock_var' + caller.name));
+
+
+setinterval(calc('s_time'), calc(pitch? pitch :1) , 
+
+	s_datenow(,,calc(caller.name),calc(utcvar));
+	calc(caller.html,calc('s_clock_var' + caller.name));
+
+	if(!caller.loaded OR calc('global.s_time' + caller.name + '_clear') 
+    		,
+      		clearinterval(calc('s_time' + caller.name));
+  	); 	
+);
+</action>
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GENERAL CLOCK ACTION HELPER GENERAL CLOCK ACTION HELPER GENERAL CLOCK ACTION HELPER GENERAL CLOCK ACTION HELPER GENERAL CLOCK ACTION HELPER
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TODO UTC
+<!-- SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW SDATENOW -->
+<!-- possible args: (date in javascript sintax,language(en,es,ca),token to create single variables) -->
+<action name="s_datenow" scope="local" type="Javascript" >
+<![CDATA[
+let s_timestamp;
+let s_timestampsec;
+let s_calendar;
+let s_year;
+let s_month;
+let s_day;
+let s_dayname;
+let s_hour;
+let s_ampmhour;
+let s_ampm;
+let s_minute;
+let s_second;
+let s_millisecond;
+let s_clock;
+
+
+const s_js_calendar = () => {
+
+let weekday = [];
+let weekdayabrlong = [];
+let weekdayabrshort = [];
+let monthname = [];
+if (args[2] == 'en') {
+
+		weekday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		weekdayabrlong=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+		weekdayabrshort=["Su","M","Tu","W","Th","F","Sa"];
+        monthname=["","January","February","March","April","May","June","July","August","September","Octover","November","December"]
+
+    } else if (args[2] == 'es') {
+		weekday=["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado"];
+		weekdayabrlong=["Do","Lu","Ma","Mi","Ju","Vi","Sá"];
+		weekdayabrshort=["D","L","M","X","J","V","S"];
+		monthname=["","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+
+    } else if (args[2] == 'ca') {
+
+		weekday=["Diumenge","Dilluns","Dimarts","Dimecres","Dijous","Divendre","Dissabte"];
+		weekdayabrlong=["Dmg","Dll","Dmt","Dmc","Djs","Dvd","Dss"];
+		weekdayabrshort=["Dg","Dl","Dt","Dc","Dj","Dv","Ds"];
+        monthname=["","Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Setembre","Octubre","Novembre","Desembre"]
+    
+
+    }
+
+let c = args[1] ? new Date(args[1]) : new Date();
+	s_timestamp = c.getTime();
+	s_timestampsec =  s_timestamp / 1000 ;
+	s_year = !args[4] ? c.getFullYear() : c.getUTCFullYear();
+	s_month = !args[4] ? c.getMonth() +1 : c.getUTCMonth() +1;
+	s_monthname =args[2] ? monthname[s_month] : 'tipe the language: s_datenow(\'DATE\',en, or es, or cat)';
+	s_day = !args[4] ? c.getDate() : c.getUTCDate();
+	s_dayname = !args[4] ? c.getDay() : c.getUTCDay();
+
+	s_weekday = args[2] ? weekday[s_dayname] : 'tipe the language: s_datenow(\'DATE\',en, or es, or cat)';
+	s_weekdayabrlong = args[2] ? weekdayabrlong[s_dayname] : 'tipe the language: s_datenow(\'DATE\',en, or es, or cat)';
+	s_weekdayabrshort = args[2] ? weekdayabrshort[s_dayname] : 'tipe the language: s_datenow(\'DATE\',en, or es, or cat)';
+	s_calendar = s_year + "/" + s_month + "/" + s_day;
+	
+	s_hour = !args[4] ? c.getHours() : c.getUTCHours();
+	s_ampmhour =  s_hour % 12;
+    s_ampmhour = s_ampmhour ? s_ampmhour : 12; 
+	s_minute = !args[4] ? c.getMinutes() : c.getUTCMinutes();
+	s_second = !args[4] ? c.getSeconds() : c.getUTCSeconds();
+	s_millisecond = !args[4] ? c.getMilliseconds() : c.getUTCMilliseconds();
+	s_clock = '' +  s_hour;
+ 	// if (hour == 0)s_clock = '12';
+  	s_clock += ((s_minute < 10) ? ':0' : ':') + s_minute;
+ 	s_clock += ((s_second < 10) ? ':0' : ':') + s_second;
+  	//s_clock += (hour >= 12) ? ' P.M.' : ' A.M.'; 
+
+
+
+
+}; 
+s_js_calendar();
+let token = args[3] ? args[3] : '';
+
+
+krpano.set('global.s_timestamp_var' + token,s_timestamp);
+krpano.set('global.s_timestamp_sec_var' + token,s_timestampsec);
+krpano.set('global.s_calendar_var' + token,s_calendar);
+krpano.set('global.s_year_var' + token,Number(s_year));
+krpano.set('global.s_month_var' + token,Number(s_month));
+krpano.set('global.s_monthname_var' + token,s_monthname);
+krpano.set('global.s_day_var' + token,Number(s_day));
+krpano.set('global.s_weekday_var' + token,s_weekday);
+krpano.set('global.s_weekdayabrlong_var' + token,s_weekdayabrlong);
+krpano.set('global.s_weekdayabrshort_var' + token,s_weekdayabrshort);
+
+krpano.set('global.s_hour_var' + token,Number(s_hour));
+krpano.set('global.s_ampmhour_var' + token,Number(s_ampmhour));
+
+
+
+
+krpano.set('global.s_minute_var' + token,Number(s_minute));
+krpano.set('global.s_second_var' + token,Number(s_second));
+krpano.set('global.s_millisecond_var' + token,Number(s_millisecond));
+krpano.set('global.s_clock_var' + token,s_clock);
+
+
+
+]]>
+
+</action>
+
+		<action name="s_days_in_month" type="Javascript" scope="local">
+		<![CDATA[	 
+		let s_m = args[1];
+		let s_y = args[2];
+		const s_daysinmonth = (month,year) => new Date(year, month, 0).getDate();
+		const s_firstweekday =(year,month,day) =>new Date(year +'/'+ month +'/'+ day).getDay();
+		let token = args[3] ? args[3] : '';
+		krpano.set('s_days_in_current_month_var' + token,s_daysinmonth(s_m,s_y));
+		krpano.set('s_first_weekday_current_month_var' + token,s_firstweekday(s_y,s_m,1));
+		]]>	
+</action>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TIME DELAY AND CHRONOMETER TIME DELAY AND CHRONOMETER TIME DELAY AND CHRONOMETER TIME DELAY AND CHRONOMETER TIME DELAY AND CHRONOMETER
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<action name="s_elapsed_time" scope="local" args="cn" >
+
+calc(cn,cn?cn:caller.name);
+s_current_timestamp(calc(cn));
+if (!calc('global.s_485758965210258685_tgglr' + cn)
+	,
+	
+	//delete(calc('global.s_elapsed_timems' + cn));
+	//delete(calc('global.s_elapsed_time' + cn));
+	//get value	
+	calc(calc('global.s_elapsed_time_first' + cn),calc('global.s_current_timestamp' + cn));
+	calc(calc('global.s_485758965210258685_tgglr' + cn),true);
+	,
+	//get value	
+	calc(calc('global.s_elapsed_timems' + cn),calc( calc('global.s_current_timestamp' + cn) - calc('global.s_elapsed_time_first' + cn)) );
+	calc(calc('global.s_485758965210258685_tgglr' + cn),false);
+	s_redeable_milli_in_hmsms(calc(number(calc('global.s_elapsed_timems' + cn))),calc(cn));
+
+ );
+
+//calc(calc('global.s_time_delay_second' + cn)) - calc(calc('global.s_time_delay_first' + cn))
+	
+</action>
+
+
+<action name="s_current_timestamp" type="Javascript">
+<![CDATA[
+	let s_my_time_stamp = new Date().getTime();  // date object 
+	let token = args[1] ? args[1] : '';
+	krpano.set('global.s_current_timestamp' + token, s_my_time_stamp);
+
+]]>		
+</action>
+
+
+
+<action name="s_redeable_milli_in_hmsms" scope="local" type="Javascript">
+<![CDATA[
+
+function s_redeable_ms(t) {
+	// Pad to 2 or 3 digits, default is 2
+  function pad(n, z) {
+    z = z || 2;
+    return ('00' + n).slice(-z);
+  }
+
+  var ms = t % 1000;
+  t = (t - ms) / 1000;
+  var secs = t % 60;
+  t = (t - secs) / 60;
+  var mins = t % 60;
+  var hrs = (t - mins) / 60;
+
+  return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' +  pad(ms, 3)  ;
+}
+let s_elapsed = s_redeable_ms(args[1])
+// hh:mm:ss.sss
+//console.log(s_elapsed);
+let token = args[2] ? args[2] : '';
+//console.log( s_redeable_ms(args[1]));
+krpano.set('global.s_elapsed_time' + token,s_elapsed);
+]]>		
+</action>
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////NO FUNCIONA BE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//MILLISECONDS STOP WATCH // if ms passed as parameter start from that parameter.
+
+<!-- <action name="s_show_ms" type="javascript" autorun="onstart">
+<![CDATA[
+var s_show_ms_time = args[1] ? args[1] : 0;
+var s_show_ms = setInterval(s_showmilliseconds,10);
+function s_showmilliseconds() {
+s_show_ms_time = s_show_ms_time + 10;
+krpano.set('global.s_show_ms',s_show_ms_time);
+}
+]]>	
+</action>
+
+<action name="s_show_ms_stop" type="javascript">
+<![CDATA[
+clearInterval(s_show_ms);
+]]>	
+</action> -->
+
+
+</krpano>

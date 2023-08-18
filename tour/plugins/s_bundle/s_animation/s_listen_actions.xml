@@ -1,0 +1,106 @@
+<krpano>
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ACCIONS LISTEN ANIMATION ACCIONS LISTEN ANIMATION ACCIONS LISTEN ANIMATION ACCIONS LISTEN ANIMATION ACCIONS LISTEN ANIMATION
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+//CONTROL GLOBAL VARIABLE:
+// 'varname_listen' : contains the current frame | total number of frames it constantly update wen animation runs.
+
+//CONTROLER VARIABLE (the varibale is optional, and set in the 4r argument in the s_anim_action):
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// S_ANIM_LISTEN_FRAME S_ANIM_LISTEN_FRAME S_ANIM_LISTEN_FRAME S_ANIM_LISTEN_FRAME S_ANIM_LISTEN_FRAME S_ANIM_LISTEN_FRAME
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//s_anim_listen_frame(varname , frame to do, pause time, action todo);
+  //S HAN DE VEURE ELS INTERVALS QUAN ES MATEN, S'HA DE MODIFICAR LA ACCIÓ A VERTICAL I MIRAR DE FER ALGO SEMBLANT A LES ALTRES ANIMACIONS
+<action name="s_anim_frame" scope="local" args="varname,sframe,laction"> 
+                                    delete(calc('global.' + varname + '_actions_all'));
+                                    delete(calc('global.' + varname + '_actions_' + sframe));
+txtadd(varnameglobal,get(varname));
+copy(actual_scene,xml.scene);
+setinterval(calc('interval_s_anim_listen_frame_'  + varname + sframe),, 
+//trace(varname);
+    txtsplit(calc('global.' + varname + '_listen') ,'|',frame,frames);
+    //mata interval
+    if ( xml.scene != actual_scene, 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe)); 
+      );
+    if(calc('global.' + varname + '_actions_' + sframe) === 'pause', 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+
+      );
+    if(calc('global.' + varname + '_actions_all') === 'pause', 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+     
+      );
+
+    if(calc('global.' + varname) === 'clear',
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+      delete(calc('global.' + extended_varname));
+      );
+        
+                                if (frame  == sframe,
+                                        if (!onlyonce,                           
+                                              scope(global,
+                                      //accio que es crida, és global.
+                                                      calc(laction)
+                                                );   
+                                              set(onlyonce,true );
+                                           );
+                                  ,
+                                    set(onlyonce,false);  
+                                  );     
+);    
+</action>
+
+
+<!-- <action name="s_anim_frame" scope="local" args="varname,sframe,laction"> 
+                                    delete(calc('global.' + varname + '_actions_all'));
+                                    delete(calc('global.' + varname + '_actions_' + sframe));
+txtadd(varnameglobal,get(varname));
+copy(actual_scene,xml.scene);
+setinterval(calc('interval_s_anim_listen_frame_'  + varname + sframe),, 
+//trace(varname);
+    txtsplit(calc('global.' + varname + '_listen') ,'|',frame,frames);
+    //mata interval
+    if ( xml.scene != actual_scene, 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe)); 
+      );
+    if(calc('global.' + varname + '_actions_' + sframe) === 'pause', 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+
+      );
+    if(calc('global.' + varname + '_actions_all') === 'pause', 
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+     
+      );
+
+    if(calc('global.' + varname) === 'clear',
+      clearinterval(calc('interval_s_anim_listen_frame_' + varname + sframe));
+      delete(calc('global.' + extended_varname));
+      );
+        
+                                if (frame  == sframe,
+                                        if (!onlyonce,                           
+                                              scope(global,
+                                      //accio que es crida, és global.
+                                                      calc(laction)
+                                                );   
+                                              set(onlyonce,true );
+                                           );
+                                  ,
+                                    set(onlyonce,false);  
+                                  );     
+);    
+</action> -->
+
+
+
+	
+</krpano>

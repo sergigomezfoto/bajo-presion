@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Naamloos document</title>
+</head>
+
+<body bgcolor="#333333">
+
+		<font face="courier" size="5px" color="#ffffff">LOADSCENE</font>
+		<font face="courier" size="2px" color="#ffffff">
+        <ul>
+			<li>LOADSCENE</li>
+            <br>
+                loadscene(scene1); <br> 
+                loadscene(scene1, null, MERGE, BLEND(1)); <br>  
+                <br> <br> 
+            <li>OTHER LOAD ACTIONS</li>    
+                <br>
+                loadpano(tullips.xml, null, MERGE, BLEND(1)); <br>  
+                loadxml(get(data[xml].content), null, KEEPALL); <br>
+                loadxml('&lt;krpano&gt;&lt;image&gt;&lt;sphere url="pano.jpg"/&gt;&lt;/image&gt;&lt;/krpano&gt;'); <br>
+                loadpano('%FIRSTXML%/pano.xml', null, MERGE, BLEND(2)); <br>
+                loadpano(sphere.xml, image.hfov=1.0&view.limitview=fullrange); <br>
+            <br>  <br>  <br>  
+            
+            <a href="https://krpano.com/docu/actions/#loadpano" target="_blank" style="color:#FFFFFF;">Reference</a>            
+		</ul>
+        </font>
+</body>
+</html>

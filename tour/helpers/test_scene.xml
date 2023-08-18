@@ -1,0 +1,25 @@
+<krpano>
+	          
+	   <scene name="scene_tests_1" title="tests" onstart=""  lat="" lng="" heading="">  
+ 
+       <preview type="grid(CYLINDER,128,128,1024,0xe8f1f0,0xc4e1dd,0xA20A0A);" />
+
+       <view hlookat="-170" vlookat="0.0" fov="100" fovmin="1.0" fovmax="179.0" maxpixelzoom="" />
+
+
+
+<include url="resources_scene/s_moove_and_trigger.xml" />
+<include url="resources_scene/s_popups.xml" />
+<include url="resources_scene/s_anim_bucle.xml" />
+<include url="resources_scene/s_anim_bounce.xml" />
+<include url="resources_scene/s_anim_continuous.xml" />
+<include url="resources_scene/s_anim_tragaperras.xml" />
+
+
+
+
+
+ </scene>
+
+
+ </krpano>

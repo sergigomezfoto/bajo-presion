@@ -1,0 +1,57 @@
+<krpano>
+	
+	 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ // s_moove_and_trigger s_moove_and_trigger s_moove_and_trigger s_moove_and_trigger s_moove_and_trigger s_moove_and_trigger
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 														
+ //onclick="s_moove_and_trigger(ath1·atv1|ath2·atv2|ath3·atv3|ath4·atv4,time of moove,tween type);"
+ // [hostspotname]->[actionsname_1,actionsname_2,...,actionsname_last]
+
+<hotspot name="title_s_moove_and_trigger" style="test_title_s_actions" ath="180" atv="-78" rotate="180" html="s_moove_and_trigger[BR](h1·v1|h2·v2,0.3,linear)"/>
+       
+       <hotspot name="test_canvas_h1" style="test_hotspot_square" ath="0" atv="-90"/>
+       <hotspot name="test_canvas_h2" style="test_hotspot_square" ath="90" atv="-75"/>
+       <hotspot name="test_canvas_h3" style="test_hotspot_square" ath="90" atv="-60"/>
+       <hotspot name="test_canvas_h4" style="test_hotspot_square" ath="-90" atv="-60"/>
+       <hotspot name="test_canvas_h5" style="test_hotspot_square" ath="-90" atv="-75"/>
+       
+
+       <hotspot name="test_s_mt_01" style="test_hotspot_text"
+        html="moume"
+        ath="0" atv="-90" scale="0.5" rx="0" ry="0" rz="0"
+        onclick="s_moove_and_trigger(90·-75|90·-60|-90·-60|-90·-75,0.5,linear);"
+         />	
+
+				        <action name="test_s_mt_01_1"> 
+					        trace('accio 1');
+					        tween(hotspot[test_canvas_h1].bgcolor,0x55ff55);       	
+				        </action>
+				        <action name="test_s_mt_01_2"> 
+					        trace('accio 2');
+					        tween(hotspot[test_canvas_h2].bgcolor,0x897844);      	
+				        </action>
+				        <action name="test_s_mt_01_3"> 
+				            trace('accio 3');
+				        	tween(hotspot[test_canvas_h3].bgcolor,0x442244);        	
+				        </action>
+				        <action name="test_s_mt_01_4"> 
+				            trace('accio 4');
+				        	tween(hotspot[test_canvas_h4].bgcolor,0x5511ff);        	
+				        </action>
+				        <action name="test_s_mt_01_5"> 
+				            trace('accio 5');
+				        	tween(hotspot[test_canvas_h5].bgcolor,0x772288);               	
+				        </action>
+
+				        <action name="test_s_mt_01_last"> 
+				            tween(hotspot[test_s_mt_01].alpha,0);
+				        	trace('finalaction may be disapear?');       	
+				        </action>
+				        
+
+
+	
+</krpano>

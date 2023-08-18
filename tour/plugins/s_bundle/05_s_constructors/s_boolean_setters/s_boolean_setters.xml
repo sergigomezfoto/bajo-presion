@@ -1,0 +1,71 @@
+<krpano>
+
+    
+
+ <action name="s_boolean_constructor" scope="local" args="elementtochanche,atributetochange,lowervalue,higgervalue,tagtexts,xpos,ypos,barwidth,parentname">
+
+
+
+
+//DEFINICIONS
+calc(s_boolean_line, elementtochanche + atributetochange + '_l');
+calc(s_boolean_thumb,elementtochanche + atributetochange + '_b');
+calc(s_boolean_tagtext, elementtochanche + atributetochange + '_t');
+
+//SETTING TO CHANGE
+set(krp,false);
+if (
+	layer[get(elementtochanche)].name,
+		calc(settingtochange, 'layer[' + elementtochanche + '].' + atributetochange);
+		def(eltype,string,'layer{ ');
+	,hotspot[get(elementtochanche)].name,
+		calc(settingtochange, 'hotspot[' + elementtochanche + '].' + atributetochange);
+		def(eltype,string,'hotspot{ ');
+		
+	,
+		calc(settingtochange,elementtochanche + '.' + atributetochange );
+		def(eltype,string,'');
+		set(krp,true);
+); 
+
+//LINIA MARE
+addlayer(get(s_boolean_line), line);
+line.loadstyle('s_boolean_line');
+set(line
+	,
+	ox=get(xpos)
+	,
+	oy=get(ypos)
+	,
+	width=calc(barwidth?barwidth:calc(style[s_boolean_line].width))
+	,
+	parent=calc(parentname?parentname:calc(style[s_boolean_line].parent))
+);
+//THUMB
+addlayer(get(s_boolean_thumb),thumb);
+thumb.loadstyle('s_boolean_thumb');
+
+ set(thumb	
+	//ondown="s_drag(x,preaction,whileaction,postaction,layerwhat)"
+	,
+	parent=get(s_boolean_line)
+    ,
+    onclick="trace('click')"
+ );
+//dependency s_floating_text_constructor
+//ETIQUETA GENERAL
+if (texttag[0].value !== 'off',
+s_floating_text_constructor(calc(texttag[0].value ? texttag[0].value : get(eltype) + elementtochanche + (krp ? '' : ' }' ) + '.' + atributetochange + ': ' ),get(s_boolean_tagtext),s_boolean_title,get(s_boolean_line));
+
+//VALOR ACTUAL
+if (texttag[3].value === 'on',
+	s_floating_text_constructor(calc(roundval(calc(settingtochange),2)),calc(s_boolean_tagtext + 'actual'),s_boolean_currentvalue,calc(texttag[0].value !== 'off' ? s_boolean_tagtext + 's_ft' : s_boolean_line),,,calc(texttag[0].value !== 'off' ? '' : 5));
+);
+//fi dependency s_floating_text_constructor
+//CALCUL DELS STEPS
+
+
+</action>
+
+
+</krpano>

@@ -1,0 +1,30 @@
+<krpano>
+<!-- NO DEPENDENCES -->
+	    <action name="s_moove_and_trigger" scope="local" args="array,timetween,tweentype">
+	    if (!caller.s_moove_and_trigger_counter,
+	    set(caller.s_moove_and_trigger_counter,0);
+	    );
+        calc(pos_arr,trim(array));
+
+        txtsplit(pos_arr, '|', pairs_arr);
+        for(set(i,0), i LT pairs_arr.count, inc(i),
+        	txtsplit(pairs_arr[get(i)].value, '·',calc('h' + i),calc('v' + i));
+		);	
+        copy(posh,calc('h' + caller.s_moove_and_trigger_counter ));
+        copy(posv,calc('v' + caller.s_moove_and_trigger_counter ));      
+        calc(s_mt_actions,caller.name + '_' + (caller.s_moove_and_trigger_counter + 1));
+        calc(s_mt_actions_last,caller.name + '_last');     
+        if(caller.s_moove_and_trigger_counter LT pairs_arr.count   
+	        ,
+	        set(caller.enabled,false);
+	        tween(caller.ath,get(posh),get(timetween),get(tweentype));
+            tween(caller.atv,get(posv),get(timetween),get(tweentype),set(caller.enabled,true);); 
+            scope(global,calc(s_mt_actions));       
+	        ,	       
+	        scope(global,calc(s_mt_actions));
+	        scope(global,calc(s_mt_actions_last)); 
+        );
+        inc(caller.s_moove_and_trigger_counter);
+        </action>
+
+</krpano>

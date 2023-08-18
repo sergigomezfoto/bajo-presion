@@ -1,0 +1,63 @@
+#randomPlayerCanvasWrapper {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    display: none;
+    height: 100%;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: left;
+    align-items: end;
+    opacity: 0;
+    transition: all 0.4s linear;
+    pointer-events: auto;
+  }
+
+  
+#randomPlayerCanvas {
+    position: absolute;
+    pointer-events: auto;
+    background-color: black;
+    /* width: 312px;
+    height: 600px; */
+    width: 201px;
+    height: 296px;
+    display: block;
+    opacity: 1;
+    transform: translateX(0%);
+    margin-left: var(--margin);
+    margin-bottom: var(--margin);
+    cursor:pointer;
+  }
+  /* .tourvideo{
+    pointer-events:all !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px); 
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(209, 209, 209, 0.1));
+  } */
+  #randomPlayerWrapper {
+    overflow: hidden;
+    pointer-events: none;
+    /* cursor: pointer; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* filter: drop-shadow(10px 20px 20px rgba(0,0,0,0.6)) */
+  }
+  
+  
+  .randomBorderInitial {
+    border-radius: 0px;
+  }
+  
+  
+  #randomPlayer {
+    position: absolute;
+    width: 608px;
+    height: 364px;
+    top: -41px;
+    border-radius: 0px;
+    transform: translateX(-33.5%);
+  
+  
+  }

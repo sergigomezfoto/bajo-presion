@@ -1,0 +1,72 @@
+<krpano>
+
+//VAREVENT_LAYER_OR_HOTSPOT
+// call a action (two actions, falsde actions and true actions) in element itself (onloaded="s_varevent...") dependindg of a global variable, if is set to true or to false.
+
+//LAYERS	
+	<action name="s_varevent_layer" scope="local" args="trueactions,falseactions">
+		def(only1,boolean,false);
+		def(only12,boolean,false);
+		
+		setinterval(calc('s_varevent_' + caller.name),0.05,
+				if (calc('global.s_varevent_' + caller.name)
+					,
+						if (!only1,
+							set(only12,false);
+							callwith(layer[get(caller.name)], calc(trueactions));
+							set(only1,true);
+					);
+					,	
+						if (!only12,
+							set(only1,false);
+							callwith(layer[get(caller.name)],  calc(falseactions));
+							set(only12,true);
+						);
+				);
+
+		 if(!caller.loaded OR calc('global.s_varevent_' + caller.name) === 'clear'
+		 	, 
+					clearinterval(calc('s_varevent_' + caller.name));
+					delete(calc('s_varevent_' + caller.name));
+	       );
+
+
+		);	
+	</action>
+
+//HOTSPOTS
+	<action name="s_varevent_hotspot" scope="local" args="trueactions,falseactions">
+			def(only1,boolean,false);
+			def(only12,boolean,false);
+			
+			setinterval(calc('s_varevent_' + caller.name),0.05,
+					if (calc('global.s_varevent_' + caller.name)
+						,
+							if (!only1,
+								set(only12,false);
+								callwith(hotspot[get(caller.name)], calc(trueactions));
+								set(only1,true);
+						);
+						,	
+							if (!only12,
+								set(only1,false);
+								callwith(hotspot[get(caller.name)],  calc(falseactions));
+								set(only12,true);
+							);
+					);
+
+			 if(!caller.loaded OR calc('global.s_varevent_' + caller.name) === 'clear'
+			 	, 
+						clearinterval(calc('s_varevent_' + caller.name));
+						delete(calc('s_varevent_' + caller.name));
+		       );
+
+
+			);
+		
+	</action>
+
+//TODO
+
+	
+</krpano>

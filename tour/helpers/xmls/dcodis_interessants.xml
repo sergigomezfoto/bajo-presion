@@ -1,0 +1,73 @@
+
+
+
+
+<!-- LOADER tant per cent amb barreta -->
+<!-- carrega tant per cent -->
+  <layer name="carregapercent_text" keep="true"
+         type="text"
+         align="center"
+         y="0%"
+         background="false"
+         css="color:#FFFFFF; font-family:Arial; font-weight:bold; font-size:22px; font-style:italic;" textshadow="2"
+         html=""
+         />
+
+
+  <!-- carrega barra -->
+  <layer name="barradecarrega" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="center" y="4%" width="33%" height="20" enabled="false" visible="false"   bgroundedge="10">
+    <layer name="loadingbar_space" type="container" align="left" x="4" width="-8" height="12" bgroundedge="10">
+      <layer name="barracarrega_omplert" type="container" bgcolor="0xFFFFFF" bgalpha="0.8" align="lefttop" width="0" height="100%" bgroundedge="10"/>
+    </layer>
+  </layer>
+
+
+  <!-- accions de carrega-->
+  <action name="carregadepanoaltaressolucio"  autorun="onstart">
+set(global.popupobert,true);
+tween(layer[contenidor_total].y,-300,1);
+if(layer[videocall] !== null
+,
+      copy(layer[videocall].posicioactual, layer[videocall].x );
+      tween(layer[videocall].x,-150,1);
+,
+);
+    set(global.plugin[pp_blur].range, 40.0);
+    set(layer[carregapercent_text].visible, true);
+    set(carregantbarra_estacarregant, true);
+    set(layer[barradecarrega].visible, true);
+    asyncloop(image.loadstate !== 3
+    ,
+
+      mul(pv, progress.progress, 100);
+      mul(pvdibuix, progress.progress, 100);
+      roundval(pv,0);
+          if(pv !== 100
+          ,
+              txtadd(layer[carregapercent_text].html, 'Carregant ', get(pv), '%');
+          ,
+              set(layer[carregapercent_text].html, 'Tot a punt!');
+          );
+      txtadd(pvdibuix, '%');
+      copy(layer[barracarrega_omplert].width, pvdibuix);
+    ,
+    carregadepanoaltaressolucio_stop();
+   );
+  </action>
+
+  <action name="carregadepanoaltaressolucio_stop">
+    set(global.popupobert,false);
+    tween(layer[contenidor_total].y,0,1);
+    if(layer[videocall] !== null
+    ,
+
+            tween(layer[videocall].x,get(layer[videocall].posicioactual),1);
+
+    ,
+
+    );
+    tween(global.plugin[pp_blur].range, 0,1);
+    set(carregantbarra_estacarregant, false);
+    set(layer[barradecarrega].visible, false);
+    set(layer[carregapercent_text].visible, false);
+  </action>

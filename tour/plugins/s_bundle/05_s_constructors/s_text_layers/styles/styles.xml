@@ -1,0 +1,99 @@
+<krpano>
+	
+	//DEFAULT STYLES
+
+                    <style name="s_p_text_bg"
+                       keep="false"
+                        type="container"
+                        alpha="1"
+                        width="100%"
+                        height=""
+                        align="center"
+                        x="0"
+                        y="0"
+                        bgcolor="0xf333ff"
+                        bgalpha="0" 
+                    />
+                      
+                               <style name="s_p_text_bg_scrollarea"
+                                    keep="false"
+                                     url="%FIRSTXML%/plugins/scrollarea.js"
+                                     align="top" 
+                                     width="100%" 
+                                     direction="v"
+                                     draggable="true"
+                                     parentmaskchildren="true"
+                                     capturechildren="true"
+                                     mwheel="true"
+                                     onhover_autoscrolling="false"
+                                     overscroll="1.0"
+                                     friction="0.95"
+                                     acceleration="0.38"
+                                     returnacceleration="0.15"
+                                     momentum="0.06"
+                                />
+
+                                          <style name="s_p_text_bg_scrollarea_content"
+                                             keep="false"
+                                              type="text"
+                                              html=""
+                                              css="font-family:Arial; font-size:16px; color:#FFFFFF; line-height:2;"
+                                              width="100%"
+                                              autoheight="auto"
+                                              padding="0 30 30 30"
+                                              wordwrap="true"
+                                              vcenter="false"
+                                              bg="false"
+                                              bgcolor="0xFFFFFF"
+                                              bgalpha="1.0"
+                                              interactivecontent="true"
+                                              handcursor="false"
+                                              
+                                          />
+//SLIDERS
+
+
+<s_construct_textslider_config
+	mainbgcolor="000000"
+	mainbgalpha=".1"
+	linewidth="10"
+    linetopdownmargin="60"
+	thumbwidth="8"
+	thumbheight="50"
+	thumbcolor="ff6600"
+/>
+
+
+
+
+<style name="s_construct_textslider_line"
+type="container" 
+keep="false" 
+width="get:s_construct_textslider_config.linewidth"
+edge="right"
+align="right"
+bg="true"
+bgcolor="calc:'0x' + s_construct_textslider_config.mainbgcolor"
+bgalpha="get:s_construct_textslider_config.mainbgalpha"
+x="5"
+y="0" 
+maskchildren="true"  
+/>
+
+<style name="s_construct_textslider_thumb"
+type="container"
+keep="false"
+bgcapture="true"
+bgcolor="calc:'0x' + s_construct_textslider_config.thumbcolor"
+bgalpha="1.0"
+align="top"
+edge="top"
+width="get:s_construct_textslider_config.thumbwidth"
+height="get:s_construct_textslider_config.thumbheight"
+bgroundedge="10"
+enabled="true"
+capture="true"
+x="0"   
+/>
+	
+</krpano>

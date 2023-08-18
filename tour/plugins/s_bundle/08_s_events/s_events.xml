@@ -1,0 +1,55 @@
+<krpano>
+	
+<include url="s_detect_inactivity/s_detect_inactivity.xml" />
+<include url="s_detect_mouse_out/s_detect_mouse_out.xml" />
+
+<!-- 
+<s_events onwindowvisible="visibleaction();" onwindowinvisible="invisibleaction();"/> 
+-->
+
+<action autorun="onstart">
+
+def(s_noview_elapsed,number,0);
+def(s_noview_elapsed_total,number,0);
+
+//if (s_events.count GT 1
+//	,
+
+
+		for(set(i,0 ), i LT s_events.count , inc(i),
+
+		s_noview_event(get(s_events[get(i)].name));	
+
+			);	
+//	,
+//	s_noview_event(0);
+//);
+</action>
+
+<action name="s_noview_event" type="Javascript">
+<![CDATA[
+
+		const s_action_visible =  resolve('s_events[' + args[1] + '].onwindowvisible');
+		const s_action_invisible = resolve('s_events[' + args[1] +'].onwindowinvisible');
+		let s_time_return = 0;
+		let s_timeabsent_elapsed = 0;
+		let s_time_goout = 0;
+		let s_timeabsent_elapsed_total = 0;
+
+document.addEventListener("visibilitychange", event => {
+	  if (document.visibilityState == "visible") {    
+	     s_time_return = new Date().getTime(); 	     
+	     s_timeabsent_elapsed = Number(s_time_return) - Number(s_time_goout) ;
+	     s_timeabsent_elapsed_total += s_timeabsent_elapsed ;          
+	           actions.set('s_noview_elapsed',s_timeabsent_elapsed);
+	           actions.set('s_noview_elapsed_total',s_timeabsent_elapsed_total);
+   	           actions.scope('global',s_action_visible);
+	  } else {
+	     s_time_goout = new Date().getTime();    
+	     	   actions.scope('global',s_action_invisible);	   
+	  }
+	})
+]]>	
+</action>
+	
+</krpano>

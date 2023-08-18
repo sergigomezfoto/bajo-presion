@@ -1,0 +1,309 @@
+<krpano>
+ 
+<include url="styles/styles.xml" />    AND !s_autotour_piece_clicked
+<include url="s_record_autotour_pieces_click/s_record_autotour_pieces_click.xml" />
+
+<area mode="align"
+      align="lefttop"
+      x="0"
+      y="0"
+      width="100%"
+      height="get:stageheight"
+      cliplayers="false"
+      />
+<action name="s_show_pieces_onstart" autorun="onstart">
+    s_show_pieces_ui();
+</action>   
+    <action name="s_show_pieces_ui">
+    tween(area.height,calc(area.height - 212));   
+    </action>
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+//DESIGN
+
+<layer name="s_show_pieces_ui_bg" keep="true" style="s_show_pieces_ui_bg">
+
+    <layer name="s_spui_tools" keep="true" style="s_spui_tools">
+
+            <layer name="s_spui_tools_rec_pause" keep="true" style="s_spui_tools_rec_pause" onclick="if(!s_autotour_piece_clicked,s_autotout_ui_rec_pause_action(););" />
+            <layer name="s_spui_tools_delete_all_pieces" keep="true" style="s_spui_tools_delete_all_pieces" onclick="if(!s_autotour_recording AND !s_autotour_piece_clicked,s_autotout_ui_delete_all_action();seeksound(get(s_autotour_general_sound),0););" />
+            <layer name="s_spui_tools_delete_last_piece" keep="true" style="s_spui_tools_delete_last_piece" onclick="if(!s_autotour_recording AND !s_autotour_piece_clicked,s_autotout_ui_delete_last_action(););"/>
+      
+    </layer>
+    <layer name="s_spui_info" keep="true" style="s_spui_info">
+
+            <layer name="ui_spui_info_text_total_time" keep="true" style="ui_spui_info_text_total_time"/>
+          
+    </layer>
+    <layer name="s_spui_visual_pieces_bg" keep="true" style="s_spui_visual_pieces_bg">
+
+            <layer name="ui_spui_visual_line_scrollarea" keep="true" style="ui_spui_visual_line_scrollarea">
+            </layer>
+    </layer>
+
+</layer>
+
+<layer name="ui_spui_info_text_time_since_last" keep="true" style="ui_spui_info_text_time_since_last"/>
+<layer name="s_spui_tools_rec_advicer" keep="true" style="s_spui_tools_rec_advicer"/>
+//////////////////////////////////////////////////////////////////////////////////////////////////////ç
+//ACTION
+<s_config_spui_pieces_color
+i="0x006633"
+v="0xcc6600"
+s="0x990099"
+l="0x003399"
+h="0x333399"
+P="0X7c7c7c"
+f="0x495318"
+/>
+<s_config_spui_pieces_type
+i="INI"
+v="VIEW"
+s="SCENE"
+l="CLICK L"
+h="CLICK H"
+P="P.TIME"
+f="FULL ROUND"
+/>
+
+
+<action name="s_spui_piece_autogenerate" scope="local">
+//refreshment
+//trace(s_spui_piece_autogenerate);
+removelayer(ui_spui_visual_line_scrollarea,true);
+addlayer('ui_spui_visual_line_scrollarea');
+layer[ui_spui_visual_line_scrollarea].loadstyle('ui_spui_visual_line_scrollarea');
+set(layer[ui_spui_visual_line_scrollarea].keep,true);
+
+for(set(k,0 ), k LT s_number_autotour_pieces , inc(k),
+//LA PEÇA
+   addlayer(calc('ui_spui_piece_' + k),uispuipiece);
+    jscall(calc(      
+            'var s_piece_split = s_autotour.recorded[' + k + '].split("|");' +
+            's_piece_split.forEach(function (element){ 
+            krpano.set("s_aur_piece_type",s_piece_split[0]);  
+            krpano.set("s_aur_piece_content",s_piece_split[1]); 
+            krpano.set("s_aur_piece_delay",s_piece_split[2]);  
+            krpano.set("s_aur_piece_motion_time",s_piece_split[3]);  
+                });
+            krpano.set("s_aur_total_pieces",s_autotour.recorded.length);'       
+         )       
+    );
+    txtsplit(s_aur_piece_content,':',s_aur_piece_content_arr);
+    txtsplit(s_aur_piece_content,',',s_aur_piece_content_view_arr);
+        txtsplit(s_aur_piece_content_arr[1].value,',',s_aur_piece_content_arr_ini_arr);
+
+    uispuipiece.loadstyle('ui_spui_piece_n');
+    set(uispuipiece,
+        keep="true"
+        ,
+        ox=calc((k * s_config_spui_pieces.width) + (s_config_spui_pieces.separation * (k + 1)) )
+        ,
+        array_total_pieces=get(s_aur_total_pieces)
+        ,
+        array_piece_index=get(k)
+        ,
+        array_piece_type=get(s_aur_piece_type)
+        ,
+        array_piece_content=get(s_aur_piece_content)
+        ,
+        array_piece_delay=get(s_aur_piece_delay)
+        ,
+        array_piece_motion_time=get(s_aur_piece_motion_time)
+        ,
+        bgcolor=calc(calc('s_config_spui_pieces_color.' + s_aur_piece_type))  
+        ,
+        onclick="s_spui_piece_click();"
+        ,
+        html=
+        calc(
+           
+            '[span style=display:table;position:absolute;bottom:0px;right:4px;font-size:8px;]' + k + '[/span]' + 
+            calc('s_config_spui_pieces_type.' + s_aur_piece_type ) + 
+            '[br][span style=font-size:12px;]' + (s_aur_piece_type == 'i' ? '0.00[dq][br][span style=font-size:10px;]' : roundval(s_aur_piece_delay,2) + '[dq][/span][br][span style=font-size:10px;]' ) + 
+            (s_aur_piece_type == 'i' ? 
+                s_aur_piece_content_arr[0].value + 
+                '[br]' +
+                'h: ' + roundval(s_aur_piece_content_arr_ini_arr[0].value,2) + '[br]v: ' + roundval(s_aur_piece_content_arr_ini_arr[1].value,2) + '[br]f: ' + roundval(s_aur_piece_content_arr_ini_arr[2].value,2)                     
+                : 
+                (s_aur_piece_type == 'v' ? 
+                '[span style=font-size:14px;]&#8594; ' + roundval(s_aur_piece_motion_time,2) + '[dq][/span]' +
+                '[br]' +
+                'h: ' + roundval(s_aur_piece_content_view_arr[0].value,2) + '[br]v: ' + roundval(s_aur_piece_content_view_arr[1].value,2) + '[br]f: ' + roundval(s_aur_piece_content_view_arr[2].value,2) 
+                    
+                :
+                    (s_aur_piece_type == 'l' ?
+                    'click layer: [br] ' + s_aur_piece_content  
+                    :
+                        (s_aur_piece_type == 'h' ?
+                        'click hotspot: [br] ' + s_aur_piece_content  
+                        :
+                            (s_aur_piece_type == 's' ?
+                            'go to: [br]' + s_aur_piece_content
+                            :
+                                (s_aur_piece_type == 'p' ?
+                                '' 
+                                :
+                                    (s_aur_piece_type == 'f' ?
+                                    s_aur_piece_content + '[br]' +
+                                    'in ' + roundval(s_aur_piece_motion_time,2) + '[dq]'
+                                    :
+                                    'ERROR'
+                                    ) 
+                                )    
+                            )    
+                        )    
+                    )
+                )  
+            )                                                     
+        )   
+        ,                
+    );// 'i' ho transforma en '3' no sé per què.
+    // TEMPS TRANSCORREGUT ENTRE PEÇA I PEÇA
+    if (k GT 0,
+        addlayer(calc('ui_spui_piece_elapsed' + k),uispuipiece_elapsed);
+        uispuipiece_elapsed.loadstyle(calc('ui_spui_piece_elapsed'));  
+        set(uispuipiece_elapsed,
+                    keep="true"
+                    ,
+                    parent=calc('ui_spui_piece_' + k)
+                    , 
+                    html= calc(roundval(s_aur_piece_delay - 
+                        (layer[calc('ui_spui_piece_' + (k - 1))].array_piece_delay + 
+                        (
+                        layer[calc('ui_spui_piece_' + (k - 1))].array_piece_type !== 'v' AND layer[calc('ui_spui_piece_' + (k - 1))].array_piece_type !== 'f' 
+                        ? 0 
+                        : layer[calc('ui_spui_piece_' + (k - 1))].array_piece_motion_time 
+                        )
+                        )
+                        ,2
+                        ));
+                    ,
+                    
+                    onclick=calc('s_change_intertimes(' + k + ')');
+        );
+        if (layer[calc('ui_spui_piece_elapsed' + k)].html LT 0.2,
+            set(uispuipiece_elapsed
+                ,
+                bgcolor="0x860322"   
+                ,    
+            );
+        );
+    );
+);
+if (s_aur_piece_type !== 'v' AND s_aur_piece_type !== 'f'
+,
+    set(layer[ui_spui_info_text_total_time].html,calc('total pieces: ' + s_number_autotour_pieces +  ' total time: ' + roundval(s_aur_piece_delay,2) + '[dq]'));
+,
+    set(layer[ui_spui_info_text_total_time].html,calc('total pieces: ' + s_number_autotour_pieces +  ' total time: ' + roundval(s_aur_piece_delay + s_aur_piece_motion_time ,2) + '[dq]'));
+);
+calc(layer[ui_spui_visual_line_scrollarea].width,s_number_autotour_pieces * (s_config_spui_pieces.width + s_config_spui_pieces.separation));
+if (layer[ui_spui_visual_line_scrollarea].width GT stagewidth
+,
+    set(layer[ui_spui_visual_line_scrollarea].align,'topright');
+);
+</action>
+
+<action name="s_spui_piece_click">
+//en carpeta pròpia inclosa aqui.
+s_record_autotour_pieces_click();
+</action>
+
+//DELETE ALL BUTTON
+
+<action name="s_autotout_ui_delete_all_action" type="javascript">
+<![CDATA[
+    krpano.call('delete(s_current_timestampinit_time);');
+    s_autotour.recorded=[];
+    var show_array = '*' + s_autotour.recorded.join('*');
+    //console.log("_______________________________");
+    //console.log("RECORDED_AUTOTOUR");
+    //console.log(show_array);
+    //console.log('REAL ARRAY');
+    //console.log(s_autotour.recorded);
+    krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+    krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+    krpano.call("s_spui_piece_autogenerate()");
+    krpano.call('set(s_last_timestamptick,0);'); 
+
+    krpano.call('set(layer[ui_spui_info_text_total_time].html,"total pieces: 0 total time: 0.00[dq]  ");');
+]]>
+</action>
+
+//DELET LAST 
+
+<action name="s_autotout_ui_delete_last_action" type="javascript">
+<![CDATA[
+   
+if (s_autotour.recorded.length > 1){
+    var s_lrai = s_autotour.recorded[s_autotour.recorded.length - 2];
+
+        var s_lraiplited = s_lrai.split('|');
+            var s_lrai_type = s_lraiplited[0];
+            var s_lrai_content = s_lraiplited[1];
+            var s_lrai_delay = Number(s_lraiplited[2]);
+            var s_lrai_mtime = Number(s_lraiplited[3]);
+   
+    s_autotour.recorded.splice(-1,1);
+    var show_array = '*' + s_autotour.recorded.join('*');
+    //console.log("_______________________________");
+    //console.log("RECORDED_AUTOTOUR");
+    //console.log(show_array);
+    //console.log('REAL ARRAY');
+    //console.log(s_autotour.recorded);
+    krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+    krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+    krpano.call("s_spui_piece_autogenerate()");
+
+    if(s_autotour.recorded.length >= 1){
+        if(s_lrai_type !== 'v' && s_lrai_type !== 'f'){
+        krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay) * 1000 + ');');
+        }else{
+            krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay + s_lrai_mtime) * 1000 + ');');
+        }
+        
+    };
+    
+};
+]]>
+</action>
+
+//CHRONOMETER SINCE LAST TICK
+        <action name="s_ui_record_stopwatch_tick">
+        clearinterval(s_stch);
+        def(s_stch,string,0.0);
+        txtadd(layer[ui_spui_info_text_time_since_last].html,get(s_stch),'[dq]');
+        setinterval(s_stch,0.5 ,
+            inc(s_stch,0.5); 
+            txtadd(layer[ui_spui_info_text_time_since_last].html,calc(!contains(s_stch,'.') ? s_stch + '.0' : s_stch),'[dq]');
+        );  	
+        </action>
+        <action name="s_ui_record_stopwatch_tick_kill">
+        clearinterval(s_stch);
+        set(s_stch,0);
+        calc(layer[ui_spui_info_text_time_since_last].html,'');
+
+        </action>
+
+       //EJECT AUTOTOUR
+<action name="s_eject_autotour">
+
+    jscall(
+         var show_array = '*' + s_autotour.recorded.join('*');
+         krpano.set("s_autotour_ejected_tape", show_array);
+    );
+
+    addlayer('s_autotour_tape_ejected',s_autotour_tape_ejected);
+    s_autotour_tape_ejected.loadstyle('s_autotour_tape_ejected');
+    set(s_autotour_tape_ejected
+        ,
+        keep="true"
+        ,
+        html=get(s_autotour_ejected_tape)
+    );
+</action>
+
+
+</krpano>

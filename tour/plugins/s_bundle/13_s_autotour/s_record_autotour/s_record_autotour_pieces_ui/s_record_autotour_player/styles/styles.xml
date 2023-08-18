@@ -1,0 +1,57 @@
+<krpano>
+
+    <style name="s_autotour_ui_player_background"
+    type="container"
+    bg="true"
+    bgcolor="0x8f8f8f"
+    bgalpha="1"
+    width="100"
+    height="27"
+    parent="STAGE"
+    align="rightbottom"
+    y="184"   
+    />
+
+        <style name="s_autotour_ui_play_pause_recorded_autotour"
+        type="image"
+        url="img/play_pause.png"
+        crop="0|0|25|25"  
+        align="left" 
+        bgcolor="0x589992" 
+        alpha="0.6" 
+        oy="0"  
+        onhover="set(alpha,1)"
+        onout="set(alpha,0.6)"
+        onclick="if(!s_button_stopped,set(crop,25|0|25|25);set(s_button_stopped,true);,set(crop,0|0|25|25); delete(s_button_stopped););s_play_pause_autotour();"  
+        s_autotour_excluded="true"
+        />
+        <style name="s_autotour_ui_stop_recorded_autotour"
+        type="image"
+        url="img/stop.png"
+        crop="0|0|25|25"  
+        align="left" 
+        bgcolor="0x589992" 
+        alpha="0.6" 
+        ox="30"  
+        onhover="set(alpha,1)"
+        onout="set(alpha,0.6)"
+        onclick="set(layer[s_autotour_ui_play_pause_recorded_autotour].crop,0|0|25|25); delete(s_button_stopped);s_stop_autotour();"  
+        s_autotour_excluded="true"
+        />
+        <style name="s_autotour_ui_eject_recorded_autotour"
+        type="image"
+        url="img/eject.png"
+        crop="0|0|25|25"  
+        align="left" 
+        bgcolor="0x589992" 
+        alpha="0.6" 
+        ox="60"  
+        onhover="set(alpha,1)"
+        onout="set(alpha,0.6)"
+        onclick="set(layer[s_autotour_ui_play_pause_recorded_autotour].crop,0|0|25|25);s_eject_autotour();"  
+        s_autotour_excluded="true"
+        />
+
+ 
+
+</krpano>

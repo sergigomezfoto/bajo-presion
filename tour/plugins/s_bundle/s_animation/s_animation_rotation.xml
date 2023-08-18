@@ -1,0 +1,24 @@
+<krpano>
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////SROTATEINFINITE//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//s_rotateinfinite(-1 left -1 right , velocity from 0 to 360 , tween tweentypes,alias=true -> break );
+ <action name="s_rotateinfinite" scope="local" args="direction,velocity,tweentipe,alias">
+ 
+	if (calc('global.' + alias),
+		trace(calc('global.' + alias));
+		break();
+	);
+
+	tween(caller.rotate,calc(360 * direction),get(velocity),get(tweentipe)
+		,
+		set(caller.rotate,0);
+		callwith(calc(layer[calc(caller.name)].name ? 'layer[' + caller.name + ']' : 'hotspot[' + caller.name + ']' ),s_rotateinfinite(get(direction),get(velocity),get(tweentipe),get(alias)) );
+		);
+</action>
+
+ 
+
+	
+</krpano>

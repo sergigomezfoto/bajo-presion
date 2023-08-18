@@ -1,0 +1,7 @@
+<krpano>
+	
+	<include url="s_text_layers/s_text_layers.xml" />
+	<include url="s_floating_text/s_floating_text.xml" />
+	
+	
+</krpano>

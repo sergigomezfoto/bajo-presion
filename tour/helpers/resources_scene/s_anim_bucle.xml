@@ -1,0 +1,374 @@
+<krpano>
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bucle_v(width,height,frames x second)
+<hotspot name="test_title_s_animation_bucle_v_simple" style="test_title_s_actions" ath="60" atv="-38" html="s_animation_bucle_v[BR](framewidth,frameheight,fps)"/>	
+     
+<hotspot name="test_anim_bucle_v" style="test_hotspot_image"
+	 ath="60" atv="-30"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/vert_7_bucle_104x102.png"			
+	 onclick=""
+	 onloaded="s_animation_bucle_v(104,102,1);"
+
+	 />
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE SIMPLE//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bucle_h(width,height,frames x second)
+<hotspot name="test_title_s_animation_bucle_h" style="test_title_s_actions" ath="60" atv="-23" html="s_animation_bucle_h[BR](framewidth,frameheight,fps)"/>	
+     
+<hotspot name="test_animation_bucle_h" style="test_hotspot_image"
+	 ath="60" atv="-15"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/hor_5_bucle_101x103.png"			
+	 onclick=""
+	 onloaded="s_animation_bucle_h(101,103,1);"	
+	 />
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v s_animation_bucle_v EXTENDED USE EXTENDED USE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bucle_v(width,height,frames x second,  frame to pause|time paused|action to call , varname to use as alias*, initial pos, initial frame)
+// set(alias,clear)->clear,play; pause,resume;
+<hotspot name="test_title_s_animation_bucle_vertical" style="test_title_s_actions" ath="130" atv="-38" 
+html="EXTENDED[BR]s_animation_bucle_v[BR](framewidth,frameheight,fps,alias,i. position,frame)"
+/>	
+     
+<hotspot name="test_animation_bucle_vertical" style="test_hotspot_image"
+	 ath="130" atv="-29.5"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/vert_7_bucle_104x102_num.png"			
+	 onclick=""
+	 enabled="true" 
+	 crop="0|408|104|102"
+		
+	 
+	 />// onloaded="test_animation_bucle_vertical"
+			<action name="test_animation_bucle_vertical">
+			s_animation_bucle_v(104,102,3,mariajose,306,3);
+			set(mariajose,'clear');	
+			</action>
+
+//LLUM ACCIONS
+<hotspot name="test_light_action_animation_bucle_vertical" style="test_hotspot_square|test_hs_light_action"
+ ath="120" atv="-30"  rx="0" ry="0" rz="0"
+/>
+
+//CLEAR
+<hotspot name="test_animation_bucle_vertical_controler_clear" style="test_hotspot_square|test_hs_button_controler" ath="122" atv="-22"
+html="clear"
+onclick="test_animation_bucle_vertical_controler_clear "
+/>
+			<action name="test_animation_bucle_vertical_controler_clear">
+
+			set(mariajose,'clear');
+			delayedcall(0.5,set(hotspot[test_animation_bucle_vertical].crop, '0|306|104|102') );
+
+			</action>
+
+//PLAY:
+<hotspot name="test_animation_bucle_vertical_controler_play" style="test_hotspot_square|test_hs_button_controler" ath="128" atv="-22"
+html="play"
+onclick="test_animation_bucle_vertical_controler_play"
+/>
+			<action name="test_animation_bucle_vertical_controler_play">
+            set(mariajose,'resume');
+			callwith(hotspot[test_animation_bucle_vertical],s_animation_bucle_v(104,102,3,mariajose,408,4););
+			test_animation_bucle_vertical_controler_play_all_actions(); 
+				
+			</action>
+//PAUSE: PARA LA SEGUENT FRAME!!!!! NO PARA AL ACTUAL.
+<hotspot name="test_animation_bucle_vertical_controler_pause" style="test_hotspot_square|test_hs_button_controler" ath="134" atv="-22"
+
+html="pause"
+onclick="test_animation_bucle_vertical_controler_pause"
+/>
+
+<action name="test_animation_bucle_vertical_controler_pause">
+
+	set(mariajose,'pause');
+	
+</action>
+//RESUME:
+<hotspot name="test_animation_bucle_vertical_controler_resume" style="test_hotspot_square|test_hs_button_controler" ath="140" atv="-22"
+
+html="resume"
+onclick="test_animation_bucle_vertical_controler_resume"
+/>
+<action name="test_animation_bucle_vertical_controler_resume">
+
+	set(mariajose,'resume');
+	
+</action>
+
+//PAUSE ONE ACTION:
+<hotspot name="test_animation_bucle_vertical_controler_pause_one_action" style="test_hotspot_square|test_hs_button_controler" ath="126" atv="-12"
+
+html="pause one action"
+width="55"
+height="45"
+onclick="test_animation_bucle_vertical_controler_pause_one_action"
+/>
+
+<action name="test_animation_bucle_vertical_controler_pause_one_action">
+
+set(mariajose_actions_6,'pause');
+	
+</action>
+
+//PLAY ONE ACTION:
+<hotspot name="test_animation_bucle_vertical_controler_play_one_action" style="test_hotspot_square|test_hs_button_controler" ath="136" atv="-12"
+html="play one action"
+width="55"
+height="45"
+onclick="test_animation_bucle_vertical_controler_play_one_action"
+/>
+
+
+//PAUSE ALL ACTIONS:
+<hotspot name="test_animation_bucle_vertical_controler_pause_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="126" atv="-18"
+
+html="pause all actions"
+width="55"
+height="40"
+onclick="test_animation_bucle_vertical_controler_pause_all_actions"
+/>
+
+<action name="test_animation_bucle_vertical_controler_pause_all_actions">
+
+set(mariajose_actions_all,'pause');
+	
+</action>
+
+//PLAY ALL ACTIONS:
+<hotspot name="test_animation_bucle_vertical_controler_play_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="136" atv="-18"
+html="play all actions"
+width="55"
+height="40"
+onclick="test_animation_bucle_vertical_controler_play_all_actions"
+/>
+
+				<action name="test_animation_bucle_vertical_controler_play_all_actions">
+	set(ant,get(mariajose_listen));			
+	asyncloop(ant == mariajose_listen
+		,
+		, 			
+               s_anim_frame(mariajose,0,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0xff3cff,0.1); );
+					set(mariajose,'pause');
+					delayedcall(3,set(mariajose,'resume'););	
+				);	
+                  s_anim_frame(mariajose,1,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0xfffcff,0.1); );	 
+				);
+                s_anim_frame(mariajose,2,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0x250cf0,0.1); );
+						
+				);
+                s_anim_frame(mariajose,3,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0xffffff,0.1); );	
+				
+				);
+                s_anim_frame(mariajose,4,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0x259c11,0.1); );	
+				);
+                s_anim_frame(mariajose,5,
+					callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0x258cff,0.1); );	
+				);
+
+				test_animation_bucle_vertical_controler_play_one_action();						
+			   );
+				</action>
+							<action name="test_animation_bucle_vertical_controler_play_one_action">
+							set(ant,get(mariajose_listen));			
+							asyncloop(ant == mariajose_listen
+								,
+								, 			
+														s_anim_frame(mariajose,6,
+														callwith(hotspot[test_light_action_animation_bucle_vertical],s_bgcolor_blink(0xff8c77,0.1); );
+														set(mariajose,'pause');
+														delayedcall(3,set(mariajose,'resume'););							
+													);		
+								);						
+							</action>
+	
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED  EXTENDED 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h s_animation_bucle_h EXTENDED USE EXTENDED USE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//onloaded=" s_animation_bucle_h(width,height,frames x second,  frame to pause|time paused|action to call , varname to use as alias*, initial pos, initial frame)
+// set(alias,clear)->clear,play; pause,resume;
+<hotspot name="test_title_s_animation_bucle_horizontal" style="test_title_s_actions" ath="90" atv="-38" 
+html="EXTENDED[BR]s_animation_bucle_h[BR](framewidth,frameheight,fps,alias,i. position,frame)"
+/>	
+     
+<hotspot name="test_animation_bucle_horizontal" style="test_hotspot_image"
+	 ath="90" atv="-29.5"  rx="0" ry="0" rz="0"
+	 url="%FIRSTXML%/helpers/img/hor_5_bucle_101x103_num.png"			
+	 onclick=""
+	 enabled="true" 
+	 crop="202|0|101|103"
+		
+	 
+	 />// onloaded="test_animation_bucle_horizontal"
+			<action name="test_animation_bucle_horizontal">
+			s_animation_bucle_h(101,103,3,ramonet,303,3);
+			set(ramonet,'clear');	
+			</action>
+
+//LLUM ACCIONS
+<hotspot name="test_light_action_animation_bucle_horizontal" style="test_hotspot_square|test_hs_light_action"
+ ath="80" atv="-30"  rx="0" ry="0" rz="0"
+/>
+
+//CLEAR
+<hotspot name="test_animation_bucle_horizontal_controler_clear" style="test_hotspot_square|test_hs_button_controler" ath="82" atv="-22"
+html="clear"
+onclick="test_animation_bucle_horizontal_controler_clear "
+/>
+			<action name="test_animation_bucle_horizontal_controler_clear">
+
+			set(ramonet,'clear');
+			delayedcall(0.5,set(hotspot[test_animation_bucle_horizontal].crop, '202|0|101|103') );
+
+			</action>
+
+//PLAY:
+<hotspot name="test_animation_bucle_horizontal_controler_play" style="test_hotspot_square|test_hs_button_controler" ath="88" atv="-22"
+html="play"
+onclick="test_animation_bucle_horizontal_controler_play"
+/>
+			<action name="test_animation_bucle_horizontal_controler_play">
+            set(ramonet,'resume');
+			callwith(hotspot[test_animation_bucle_horizontal],s_animation_bucle_h(101,103,3,ramonet,303,3););
+			test_animation_bucle_horizontal_controler_play_all_actions(); 
+				
+			</action>
+//PAUSE: PARA LA SEGUENT FRAME!!!!! NO PARA AL ACTUAL.
+<hotspot name="test_animation_bucle_horizontal_controler_pause" style="test_hotspot_square|test_hs_button_controler" ath="94" atv="-22"
+
+html="pause"
+onclick="test_animation_bucle_horizontal_controler_pause"
+/>
+
+<action name="test_animation_bucle_horizontal_controler_pause">
+
+	set(ramonet,'pause');
+	
+</action>
+//RESUME:
+<hotspot name="test_animation_bucle_horizontal_controler_resume" style="test_hotspot_square|test_hs_button_controler" ath="100" atv="-22"
+
+html="resume"
+onclick="test_animation_bucle_horizontal_controler_resume"
+/>
+<action name="test_animation_bucle_horizontal_controler_resume">
+
+	set(ramonet,'resume');
+	
+</action>
+
+//PAUSE ONE ACTION:
+<hotspot name="test_animation_bucle_horizontal_controler_pause_one_action" style="test_hotspot_square|test_hs_button_controler" ath="86" atv="-12"
+
+html="pause one action"
+width="55"
+height="45"
+onclick="test_animation_bucle_horizontal_controler_pause_one_action"
+/>
+
+<action name="test_animation_bucle_horizontal_controler_pause_one_action">
+
+set(ramonet_actions_4,'pause');
+	
+</action>
+
+//PLAY ONE ACTION:
+<hotspot name="test_animation_bucle_horizontal_controler_play_one_action" style="test_hotspot_square|test_hs_button_controler" ath="96" atv="-12"
+html="play one action"
+width="55"
+height="45"
+onclick="test_animation_bucle_horizontal_controler_play_one_action"
+/>
+
+
+//PAUSE ALL ACTIONS:
+<hotspot name="test_animation_bucle_horizontal_controler_pause_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="86" atv="-18"
+
+html="pause all actions"
+width="55"
+height="40"
+onclick="test_animation_bucle_horizontal_controler_pause_all_actions"
+/>
+
+<action name="test_animation_bucle_horizontal_controler_pause_all_actions">
+
+set(ramonet_actions_all,'pause');
+	
+</action>
+
+//PLAY ALL ACTIONS:
+<hotspot name="test_animation_bucle_horizontal_controler_play_all_actions" style="test_hotspot_square|test_hs_button_controler" ath="96" atv="-18"
+html="play all actions"
+width="55"
+height="40"
+onclick="test_animation_bucle_horizontal_controler_play_all_actions"
+/>
+
+				<action name="test_animation_bucle_horizontal_controler_play_all_actions">
+	set(ant,get(ramonet_listen));			
+	asyncloop(ant == ramonet_listen
+		,
+		, 			
+               s_anim_frame(ramonet,0,
+					callwith(hotspot[test_light_action_animation_bucle_horizontal],s_bgcolor_blink(0xff3cff,0.1); );
+					set(ramonet,'pause');
+					delayedcall(3,set(ramonet,'resume'););	
+				);	
+                  s_anim_frame(ramonet,1,
+					callwith(hotspot[test_light_action_animation_bucle_horizontal],s_bgcolor_blink(0xfffcff,0.1); );	 
+				);
+                s_anim_frame(ramonet,2,
+					callwith(hotspot[test_light_action_animation_bucle_horizontal],s_bgcolor_blink(0x250cf0,0.1); );
+						
+				);
+                s_anim_frame(ramonet,3,
+					callwith(hotspot[test_light_action_animation_bucle_horizontal],s_bgcolor_blink(0xffffff,0.1); );	
+				
+				);
+               test_animation_bucle_horizontal_controler_play_one_action();
+        );      
+				</action>
+							<action name="test_animation_bucle_horizontal_controler_play_one_action">
+							set(ant,get(ramonet_listen));			
+							asyncloop(ant == ramonet_listen
+								,
+								, 			
+														s_anim_frame(ramonet,4,
+														callwith(hotspot[test_light_action_animation_bucle_horizontal],s_bgcolor_blink(0xff8c77,0.1); );
+														set(ramonet,'pause');
+														delayedcall(3,set(ramonet,'resume'););							
+													);		
+								);						
+							</action>
+
+
+</krpano>

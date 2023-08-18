@@ -1,0 +1,22 @@
+<krpano>
+
+
+<!-- -->
+<action name="s_atribute_blink" scope="local" args="thing,oldcolor,newcolor,blinkdelay,tweendelay,tweentype">
+txtadd(callerthing,'caller.',get(thing));
+tween(calc(callerthing),get(newcolor),calc(tweendelay?tweendelay:0),calc(tweentype?tweentype:''));
+
+delayedcall(get(blinkdelay)
+	,
+		tween(calc(callerthing),get(oldcolor),calc(tweendelay?tweendelay:0),calc(tweentype?tweentype:''));
+	);
+</action>
+
+<action name="s_atribute_change_once" args="thing,svalue,stime,tweentype,doneactions" scope="local">
+
+txtadd(callerthing,'caller.',get(thing));
+tween(calc(callerthing),get(svalue),calc(stime?stime:0),calc(tweentype?tweentype:''),calc(doneactions));
+
+</action>
+	
+</krpano>

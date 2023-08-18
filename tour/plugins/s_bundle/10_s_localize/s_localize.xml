@@ -1,0 +1,266 @@
+<krpano>
+
+<style name="s_localize_hotspot_phantom"
+	capture="false"
+	enabled="false"
+	fillalpha="0.20"
+	fillcolor="0x3bf303"
+	bordercolor="0xd30000"
+	borderwidth="2"
+	borderalpha="0.2"
+	distorted="true"
+	renderer="css3d"
+	keep="true"
+	onloaded="s_set_bg_random_color();"
+/>
+<events name="s_loc" keep="true" onviewchange="adjusthlookat(0);" />
+<action name="s_localize" scope="local" args="movile" >
+
+
+if (caller.s_localize_fov_range,
+
+	if (contains(caller.s_localize_fov_range,'('),
+	 	calc(frange,calc(caller.s_localize_fov_range));
+	,
+		copy(frange,caller.s_localize_fov_range);
+	);
+
+    txtsplit(get(frange),'|',minfov,maxfov);
+,
+	set(minfov,1000);
+	set(maxfov,0);
+);
+
+//trace(get(minfov),' | ',get(maxfov));
+
+
+if (caller.s_localize_radius
+,
+	txtsplit(caller.s_localize_radius,'|',radius_arr);
+	calc(radius,radius_arr[0].value LT 0.002 ? 0.002 : number(radius_arr[0].value));
+	calc(radius_v,radius_arr[1].value ? radius_arr[1].value : radius);	
+,
+	calc(radius,10);
+	calc(radius_v,10);
+);
+
+copy(phantomath,caller.ath);
+copy(phantomatv,caller.atv);
+copy(targetname,caller.name);
+
+if (caller.s_localize_group,
+	copy(groupname,caller.s_localize_group);
+	,
+	set(groupname,'rest');
+
+);
+
+	//trace(get(groupname));
+copy(targetname,caller.name);
+
+//correcció hotspots que s'escapen del '-180'
+if (phantomath LT 0 AND (abs(phantomath) + radius GT 180 ),
+		calc(difath, radius - abs((phantomath - radius) + 180));
+		calc(phantomath, 180 + difath);
+);
+
+//definicio de vaiables globals aplicades al target
+def(calc('global.s_localize_' + targetname + '_l'),number,calc(phantomath - radius));
+if (phantomath + radius LT 180
+	,
+		def(calc('global.s_localize_' + targetname + '_r'),number,calc(phantomath + radius));
+	,
+		def(calc('global.s_localize_' + targetname + '_r'),number,calc((phantomath + radius - 180) + 180));
+);
+def(calc('global.s_localize_' + targetname + '_u'),number,calc(phantomatv - radius_v));
+def(calc('global.s_localize_' + targetname + '_d'),number,calc(phantomatv + radius_v));
+
+////////////////////////////////////////////hotspot editmode//////////////////////////////////////////////////////////////////////////////
+if (caller.s_localize_editmode,
+				addhotspot(calc('s_localize_' + targetname + '_phantom'));
+				assignstyle(hotspot[calc('s_localize_' + targetname + '_phantom')], 's_localize_hotspot_phantom');
+
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[0].ath,calc('global.s_localize_' + targetname + '_l'));
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[0].atv,calc('global.s_localize_' + targetname + '_u'));
+
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[1].ath,calc(phantomath));
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[1].atv,calc('global.s_localize_' + targetname + '_u'));
+
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[2].ath,calc('global.s_localize_' + targetname + '_r'));
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[2].atv,calc('global.s_localize_' + targetname + '_u'));
+				
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[3].ath,calc('global.s_localize_' + targetname + '_r'));
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[3].atv,calc('global.s_localize_' + targetname + '_d'));
+
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[4].ath,calc(phantomath));		
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[4].atv,calc('global.s_localize_' + targetname + '_d'));
+
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[5].ath,calc('global.s_localize_' + targetname + '_l'));
+				calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[5].atv,calc('global.s_localize_' + targetname + '_d')); 
+);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+def(only1,boolean,false);
+def(comprovacio,number,0); // COMPROVACIO DE INTERVAL
+setinterval(calc("s_localize_" + targetname), calc(caller.s_localize_interval ? caller.s_localize_interval : 0.01)
+	,
+
+if(comprovacio LE 20,
+inc(comprovacio);
+,
+
+set(comprovacio,0);
+); // COMPROVACIO DE INTERVAL
+
+
+	calc(cur_hlookat,view.hlookat);
+	if (phantomath + radius GT 180
+		,
+	calc(cur_hlookat, view.hlookat LT 0 ? cur_hlookat + 360 : cur_hlookat );
+	);
+	calc(cur_vlookat,view.vlookat);
+
+/////////////////////////////////////////////////////////HOTSPOT EN MOVIMENT/////////////////////////////////////////////////////////////////////
+	if (movile,		
+				copy(phantomath,caller.ath);
+				copy(phantomatv,caller.atv);
+				copy(targetname,caller.name);
+				//correcció hotspots que s'escapen del '-180'
+				if (phantomath LT 0 AND (abs(phantomath) + radius GT 180 ),
+						calc(difath, radius - abs((phantomath - radius) + 180));
+						calc(phantomath, 180 + difath);
+				);
+
+				def(calc('global.s_localize_' + targetname + '_l'),number,calc(phantomath - radius));
+				if (phantomath + radius LT 180
+					,
+						def(calc('global.s_localize_' + targetname + '_r'),number,calc(phantomath + radius));
+					,
+						def(calc('global.s_localize_' + targetname + '_r'),number,calc((phantomath + radius - 180) + 180));
+				);
+				def(calc('global.s_localize_' + targetname + '_u'),number,calc(phantomatv - radius_v));
+				def(calc('global.s_localize_' + targetname + '_d'),number,calc(phantomatv + radius_v));
+
+				if (caller.s_localize_editmode,
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[0].ath,calc('global.s_localize_' + targetname + '_l'));
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[0].atv,calc('global.s_localize_' + targetname + '_u'));
+
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[1].ath,calc(phantomath));
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[1].atv,calc('global.s_localize_' + targetname + '_u'));
+
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[2].ath,calc('global.s_localize_' + targetname + '_r'));
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[2].atv,calc('global.s_localize_' + targetname + '_u'));
+						
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[3].ath,calc('global.s_localize_' + targetname + '_r'));
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[3].atv,calc('global.s_localize_' + targetname + '_d'));
+
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[4].ath,calc(phantomath));		
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[4].atv,calc('global.s_localize_' + targetname + '_d'));
+
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[5].ath,calc('global.s_localize_' + targetname + '_l'));
+						calc(hotspot[calc('s_localize_' + targetname + '_phantom')].point[5].atv,calc('global.s_localize_' + targetname + '_d')); 
+				);
+	);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//localitzat
+	if (calc('s_localize_'+ targetname + '_l')  LE cur_hlookat AND calc('s_localize_'+ targetname + '_r') GE cur_hlookat   AND calc('s_localize_'+ targetname + '_d') GE cur_vlookat AND calc('s_localize_'+ targetname + '_u') LE cur_vlookat AND view.fov LE minfov AND view.fov GE maxfov 
+	,	
+						
+		if (!only1,
+			set(caller.s_localized,true); 
+			set(only1,true);	
+			set(global.s_localized_any,true);
+			set(global.s_localized_now,get(targetname));
+			set(global.s_localized_last,get(targetname));
+			calc(calc('global.s_localized_' + targetname), true);
+			if (!global.s_localize_pause AND !calc('global.s_localize_' + targetname + '_pause') AND !calc('global.s_localize_' + groupname + '_pause') AND !global.s_localize_clear_all AND !calc('global.s_localize_' + groupname + '_clear') AND !calc('global.s_localize_' + targetname + '_clear')
+			,
+						if (caller.s_onlocalize,					    	
+								scope(global,calc(caller.s_onlocalize));
+									
+							);
+				
+				); 					    	
+		);
+
+	,
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//deslocalitzat
+					 	if (only1,
+							set(caller.s_localized,false); 
+					 		set(only1,false); 
+					 		set(global.s_localized_any,false); 
+					 		set(global.s_localized_now,'none');
+					 		calc(calc('global.s_localized_' + targetname), false);
+					 		if (!global.s_localize_pause AND !calc('global.s_localize_' + targetname + '_pause') AND !calc('global.s_localize_' + groupname + '_pause') AND !global.s_localize_clear_all AND !calc('global.s_localize_' + groupname + '_clear') AND !calc('global.s_localize_' + targetname + '_clear')
+							 ,
+								 		if (caller.s_onunlocalize,
+								 				scope(global,calc(caller.s_onunlocalize)); 
+								 		);	
+						 		);				 		
+					 		);
+
+	);
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//interval killers
+   
+	 if(!caller.loaded OR calc('global.s_localize_' + targetname + '_clear') OR  global.s_localize_clear_all OR calc('global.s_localize_' + groupname + '_clear')
+	 	,		
+	 			clearinterval(calc("s_localize_" + targetname));
+	 			set(global.s_localized_now,'none');
+				set(caller.s_localizable,true);
+			 	<!-- if (caller.s_localize_editmode
+			 		, -->
+			 	removehotspot(calc('s_localize_' + targetname + '_phantom'));
+		 			<!-- );  -->
+			 	
+	 	);	 
+);	
+</action>
+
+<!-- 
+LAUNCH:
+ 
+element static:
+onload="s_localize()"
+element movment:
+onload="s_localize(true)"
+
+IN ELEMENT (HS, OR PLUGIN):
+
+s_localize_editmode="true" / false: nothing , true: it apears a ghost canvas to localize , def: false
+s_localize_radius="30|5" / 30 on element : +30ath-30  +30atv-30 , 30|5 / +30ath-30 +5atv-5 ,  def: 10 
+s_localize_interval="0.1" /  interval refreshing time , def: 0.01
+s_onlocalize="general_localize();" / actions to throw when element localized
+s_onunlocalize="general_unlocalize();" / actions to throw when element unlocalized.
+s_localize_group="GROUPNAME" /define the pertinece to a group to be able to pause or clear all in one
+s_localize_fov_range="maxzoomOUT|maxzoomIN" /define the range where this hotspot have to react to s_localize or s_unlocalize
+GLOBAL VAIABLES THROWN:
+
+lecture:
+	s_loaclaizable /setted to true at the begining to be able to clear all and after restart localization filtering hs via for bucle.
+	s_localize_TARGETNAME_l / left point of localization area.  
+	s_localize_TARGETNAME_r / right point of localization area.
+	s_localize_TARGETNAME_u / upper point of localization area.
+	s_localize_TARGETNAME_d / lower point of localization area.
+	s_localized_any / when any element is localized i set to true, on unlocalize set to false. before any localization unset.
+    s_localized_TARGETNAME / true element localized, false element unlocalized, at the begining unset. 
+	hotspot[NAME].s_localized / true is localized, false is unlocalized.
+    s_localized_last / name of the last localized don't work well in bunch solapated.
+    s_localized_now / the current element localized. 'none' when nothing localized and unset at the beginnig .don't work well in bunch solapated.
+write:
+	s_localize_TARGETNAME_clear / when set to true clear interval ans sotop the acion.
+	s_localize_clear_all / when set to true clear interval ans sotop the acion of all hs.
+	s_localize_GROUPNAME_clear / when true clear all intervals for thos hs with this group name.
+    s_localize_pause / if true pause all localization actions (not vars) if false restart all localizations
+	s_localize_GROUPNAME_pause /s_localize_group="GROUPNAME" if true all of the group will be paused
+    s_localize_TARGETNAME_pause / if true pause target localization actions (not vars) if false restart target localization
+	
+				
+-->
+	
+</krpano>
+
+
+

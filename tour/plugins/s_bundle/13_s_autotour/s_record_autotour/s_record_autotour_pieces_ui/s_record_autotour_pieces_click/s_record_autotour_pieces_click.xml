@@ -1,0 +1,376 @@
+<krpano>
+<include url="styles/styles.xml" />
+
+<!-- <layer name="s_text_input" keep="true" style="s_text_input_def|s_text_input_name" /> -->
+
+
+
+
+
+<action name="s_record_autotour_pieces_click">
+if (!s_autotour_recording,
+
+    if (!s_autotour_piece_clicked
+    ,//primer cop
+
+        def(s_autotour_piece_clicked,boolean,true);
+        //trace("array_total_pieces::"  ,array_total_pieces);
+        //trace("array_piece_index::"  ,array_piece_index ); 
+        //trace("array_piece_type::"        ,array_piece_type);        
+        //trace("array_piece_content::"         ,array_piece_content);         
+        //trace("array_piece_delay::"         ,array_piece_delay );        
+        //trace("array_piece_motion_time::" ,array_piece_motion_time ); 
+        //trace(array_piece_motion_time);
+        addlayer('s_autotour_canvas_piece_clicked',s_autotour_canvas_piece_clicked);
+        s_autotour_canvas_piece_clicked.loadstyle('s_autotour_canvas_piece_clicked');
+        set(s_autotour_canvas_piece_clicked
+            ,
+            keep="true"     
+            ,
+           
+        );
+            addlayer('s_acpc_picture',s_acpc_picture);
+            s_acpc_picture.loadstyle('s_acpc_picture');
+                set(s_acpc_picture
+                    ,
+                    keep="true"
+                    ,
+                    html=calc(html);
+                    ,
+                    bgcolor=calc(bgcolor);
+                );
+            if (array_piece_index GT 0
+            ,           
+                addlayer(s_acpc_delete,'s_acpc_delete');
+                s_acpc_delete.loadstyle('s_acpc_delete');
+                    set(s_acpc_delete
+                        ,
+                        keep="true"
+                        ,
+                        array_piece_index=calc(array_piece_index);
+                        ,
+                        onclick="s_acpc_delete_action();"
+                        ,
+                    );
+                if (array_piece_index !== (array_total_pieces - 1) ,
+
+                    addlayer(s_acpc_delete_move_time,'s_acpc_delete_move_time');
+                    s_acpc_delete_move_time.loadstyle('s_acpc_delete_move_time');
+                        set(s_acpc_delete_move_time
+                            ,
+                            keep="true"
+                            ,
+                            array_piece_index=calc(array_piece_index);
+                            ,
+                            onclick="s_acpc_delete_move_time_action();"
+                            ,
+                        );
+                );
+            );
+            if (array_piece_type !== 'p' ,
+            //trace(get(array_piece_index));
+                            addlayer('s_acpc_change_content_lhs',s_acpc_change_content_lhs);
+                            s_acpc_change_content_lhs.loadstyle('s_text_input_def');
+                            set(s_acpc_change_content_lhs,
+                                ,
+                                keep="true"
+                                ,
+                                text=get(array_piece_content);
+                                ,
+                                width=calc(s_textlength(array_piece_content) * 8)
+                                ,
+                                onchanged=calc('if(!layer[s_acpc_change_content].name ,s_acpc_change_content_send(' + array_piece_index + '););');
+                                ,
+                            );
+                          if (array_piece_type === 'v' OR array_piece_type === 'f' ,
+
+                            addlayer('s_acpc_change_motion_time',s_acpc_change_motion_time);
+                            s_acpc_change_motion_time.loadstyle('s_text_input_def');
+                            set(s_acpc_change_motion_time,
+                                ,
+                                keep="true"
+                                ,
+                                text=get(array_piece_motion_time);
+                                ,
+                                ox=calc(layer[s_acpc_change_content_lhs].ox + layer[s_acpc_change_content_lhs].width + 9);
+                                ,
+                                width=calc(s_textlength(string(array_piece_motion_time)) * 8)
+                                ,
+                                onchanged=calc('if(!layer[s_acpc_change_content].name ,s_acpc_change_content_send(' + array_piece_index + '););');
+                                ,
+                            );
+                          );       
+                            
+            );
+    ,//tancar
+    s_record_autotour_pieces_click_close();
+    );
+);
+</action> 
+        <action name="s_record_autotour_pieces_click_close">
+
+            delete(s_autotour_piece_clicked);
+            removelayer(s_autotour_canvas_piece_clicked,true);
+
+        </action>
+//DELETE
+
+<action name="s_acpc_delete_action">
+
+s_acpc_delete_action_js(get(array_piece_index));
+</action>
+
+        <action name="s_acpc_delete_action_js" type="javascript">
+        <![CDATA[
+            
+           s_autotour.recorded.splice(args[1], 1); 
+            var show_array = '*' + s_autotour.recorded.join('*');
+            krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+            krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+            krpano.call("s_spui_piece_autogenerate(); s_record_autotour_pieces_click_close();");
+
+            // delay de la ultima peça
+            var s_lrai = s_autotour.recorded[s_autotour.recorded.length - 1];
+            var s_lraiplited = s_lrai.split('|');
+                var s_lrai_type = s_lraiplited[0];
+                var s_lrai_content = s_lraiplited[1];
+                var s_lrai_delay = Number(s_lraiplited[2]);
+                var s_lrai_mtime = Number(s_lraiplited[3]);
+            if(s_lrai_type !== 'v' && s_lrai_type !== 'f'){
+            krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay) * 1000 + ');');
+            }else{
+                krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay + s_lrai_mtime) * 1000 + ');');
+            }
+            
+             
+        ]]>
+        </action>
+
+<action name="s_acpc_delete_move_time_action">
+    s_acpc_delete_move_time_action_js(get(array_piece_index));
+</action>
+
+        <action name="s_acpc_delete_move_time_action_js" type="javascript">
+        <![CDATA[
+            //calcul de la diferencia de temps
+            var element_deleted_delay = s_autotour.recorded[args[1]].split("|")[2];
+            var element_deleted_delay_next = s_autotour.recorded[args[1] + 1].split("|")[2];
+            var element_delay_diference = element_deleted_delay_next - element_deleted_delay;
+
+            //assignacio del delay de la peça borrada a la seguent
+            s_autotour.recorded.splice(args[1], 1);
+            var new_element =  s_autotour.recorded[args[1]].split("|");
+            new_element.splice(2,1, element_deleted_delay);
+            var new_element_joined = new_element.join('|');
+            s_autotour.recorded.splice(args[1], 1,new_element_joined);
+
+            //assignacio dels delays de les seguents peces
+           s_autotour.recorded.forEach(function(element,index,array){                 
+                    if (index >= args[1] + 1 ){
+                        var s_piece_split = element.split("|");
+                        s_piece_split.splice(2,1, Number(s_piece_split[2]) - element_delay_diference );
+                        var s_piece_split_joined = s_piece_split.join('|');
+                        array.splice(index,1,s_piece_split_joined);               
+                    }             
+                });
+            // preparacio del array nou
+            var show_array = '*' + s_autotour.recorded.join('*');
+            krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+            krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+            krpano.call("s_spui_piece_autogenerate(); s_record_autotour_pieces_click_close();");
+            
+            // delay de la ultima peça
+            var s_lrai = s_autotour.recorded[s_autotour.recorded.length - 1];
+            var s_lraiplited = s_lrai.split('|');
+                var s_lrai_type = s_lraiplited[0];
+                var s_lrai_content = s_lraiplited[1];
+                var s_lrai_delay = Number(s_lraiplited[2]);
+                var s_lrai_mtime = Number(s_lraiplited[3]);
+            if(s_lrai_type !== 'v' && s_lrai_type !== 'f'){
+            krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay) * 1000 + ');');
+            }else{
+                krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay + s_lrai_mtime) * 1000 + ');');
+            }
+            
+
+             
+        ]]>
+        </action>
+
+/////////////////////////////////////////////TODO BOTO FINAL
+<action name="s_acpc_change_content_send" scope="local" args="inde">
+
+addlayer(s_acpc_change_content,'s_acpc_change_content');
+                      s_acpc_change_content.loadstyle('s_acpc_change_content');
+                        set(s_acpc_change_content
+                            ,
+                            keep="true"
+                            ,
+                            array_piece_index=calc(array_piece_index);
+                            ,
+                            onclick=calc('s_acpc_change_content_action(' + inde + ');');
+                            ,
+                        );
+    
+
+</action>
+
+        <action name="s_acpc_change_content_action" type="javascript">
+        <![CDATA[
+        
+        
+            var new_element =  s_autotour.recorded[args[1]].split("|");
+            new_element.splice(1,1,krpano.get('layer[s_acpc_change_content_lhs].text'));
+            var new_element_joined = new_element.join('|');  
+            s_autotour.recorded.splice(args[1],1,new_element_joined);
+            if(new_element[3]){
+                var new_element2 =  s_autotour.recorded[args[1]].split("|");
+                var diference_of_times = Number(krpano.get('layer[s_acpc_change_motion_time].text') - Number(new_element2[3]));
+                new_element2.splice(3,1,krpano.get('layer[s_acpc_change_motion_time].text'));
+                var new_element_motion_joined = new_element2.join('|'); 
+                s_autotour.recorded.splice(args[1],1,new_element_motion_joined);
+           
+            s_autotour.recorded.forEach(function(element,index,array){   
+                          
+                    if (index > Number(args[1]) ){    
+                        //console.log('això ho faig');                 
+                        var s_piece_split = element.split("|");
+                        s_piece_split.splice(2,1, Number(s_piece_split[2]) + Number(diference_of_times) );                                
+                        var s_piece_split_joined = s_piece_split.join('|');
+                        //console.log(s_piece_split_joined);  
+                        array.splice(index,1,s_piece_split_joined);               
+                    }             
+                });
+
+
+            }
+            
+            //console.log(s_autotour.recorded);
+             var show_array = '*' + s_autotour.recorded.join('*');
+            krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+            krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+            krpano.call("s_spui_piece_autogenerate(); s_record_autotour_pieces_click_close();");
+
+
+
+           if(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[0] !== 'v' && s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[0] !== 'f'){
+            krpano.call('calc(s_last_timestamptick,' + (s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[2]) * 1000 + ');');
+            
+            }else{
+               
+                krpano.call('calc(s_last_timestamptick,' + (Number(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[2]) + Number(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[3])) * 1000 + ');');
+            }
+        
+
+        
+        
+        ]]> 
+
+        </action>
+
+
+
+<action name="s_change_intertimes" scope="local" args="inde">
+if (!s_autotour_recording,
+
+    if (!s_autotour_piece_clicked
+    ,
+        def(global.s_autotour_piece_clicked,boolean,true);
+        
+        removelayer('s_autotour_intertimes_canvas',true);
+        addlayer('s_autotour_intertimes_canvas',s_autotour_intertimes_canvas);
+        s_autotour_intertimes_canvas.loadstyle('s_autotour_intertimes_canvas');
+        set(s_autotour_intertimes_canvas
+            ,
+            keep="true"
+            ,
+
+        );
+        set(global.s_autotour_intertime,get(caller.html)); 
+        set(global.old_s_autotour_intertime,get(caller.html));   
+        s_slider_setter(global,s_autotour_intertime,0,30,calc('change ' + (inde - 1) + ' to ' + inde + ' delay (' + s_autotour_intertime + ') |on|on|on'),10,-5,500,s_autotour_intertimes_canvas,left);
+        addlayer('s_autotour_intertimes_save',s_autotour_intertimes_save);
+        s_autotour_intertimes_save.loadstyle('s_autotour_intertimes_save');
+        set(s_autotour_intertimes_save
+            ,
+            keep="true"
+            ,
+            onclick=calc('s_autotour_intertimes_save(' + inde + ')');
+        );
+        addlayer('s_autotour_intertimes_close',s_autotour_intertimes_close);
+        s_autotour_intertimes_close.loadstyle('s_autotour_intertimes_close');
+        set(s_autotour_intertimes_close
+            ,
+            keep="true"
+            ,
+            onclick="s_autotour_intertimes_close();"
+
+        );
+    );
+);
+</action>
+        <action name="s_autotour_intertimes_close">
+            removelayer('s_autotour_intertimes_canvas',true);
+            delete(s_autotour_piece_clicked,s_autotour_intertime,old_s_autotour_intertime);    
+        </action>
+
+        <action name="s_autotour_intertimes_save" scope="local" args="inde">
+        calc(s_autotour_intertimes_diference,global.s_autotour_intertime - global.old_s_autotour_intertime);
+        copy(s_autotour_intertimes_index,inde);
+
+        s_autotour_intertimes_save_js(get(s_autotour_intertimes_index),get(s_autotour_intertimes_diference));
+        s_autotour_intertimes_close();  
+        </action>
+
+<action name="s_autotour_intertimes_save_js" type="javascript">
+<![CDATA[
+
+    var diference_times = args[2];
+    
+    if(diference_times !== 0){
+
+            s_autotour.recorded.forEach(function(element,index,array){                 
+                    if (index >= args[1] ){
+                        var s_piece_split = element.split("|");
+                        s_piece_split.splice(2,1, Number(s_piece_split[2]) + Number(diference_times) );                     
+                        var s_piece_split_joined = s_piece_split.join('|');
+                        array.splice(index,1,s_piece_split_joined);               
+                    }             
+                });
+                
+    var show_array = '*' + s_autotour.recorded.join('*');
+    krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+    krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+    krpano.call("s_spui_piece_autogenerate();");
+        if(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[0] !== 'v' && s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[0] !== 'f'){
+             krpano.call('calc(s_last_timestamptick,' + (s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[2]) * 1000 + ');');
+
+        }else{
+             krpano.call('calc(s_last_timestamptick,' + (Number(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[2]) + Number(s_autotour.recorded[s_autotour.recorded.length - 1].split("|")[3])) * 1000 + ');');
+        }
+    }
+
+]]>
+</action>
+<!-- 
+            //assignacio del delay de la peça borrada a la seguent
+            var new_element =  s_autotour.recorded[args[1]].split("|");
+            new_element.splice(args[1],1, element_update_delay);
+            var new_element_joined = new_element.join('|');
+            s_autotour.recorded.splice(args[1], 1,new_element_joined);
+
+            //assignacio dels delays de les seguents peces
+           s_autotour.recorded.forEach(function(element,index,array){                 
+                    if (index >= args[1] + 1 ){
+                        var s_piece_split = element.split("|");
+                        s_piece_split.splice(2,1, Number(s_piece_split[2]) - element_delay_diference );
+                        var s_piece_split_joined = s_piece_split.join('|');
+                        array.splice(index,1,s_piece_split_joined);               
+                    }             
+                });
+            // preparacio del array nou
+            var show_array = '*' + s_autotour.recorded.join('*');
+            krpano.set("s_set_just_recorded_autotour_cassette",show_array); 
+            krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+            krpano.call("s_spui_piece_autogenerate(); s_record_autotour_pieces_click_close();"); -->
+</krpano>

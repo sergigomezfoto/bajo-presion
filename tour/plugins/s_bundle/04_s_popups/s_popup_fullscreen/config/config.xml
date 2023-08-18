@@ -1,0 +1,352 @@
+<krpano>
+
+<!-- /////////////////////////////////COMUNICATION//////////////////////////////////////////
+/////////////////////////////////COMUNICATION//////////////////////////////////////////
+
+//main (this tour)
+
+Change the joker word 'tanca' in this case to whatever but it have to mach between the two pages.
+
+<action name="s_popup_fs_comunicator" type="Javascript" autorun="preinit">
+ <![CDATA[
+window.onmessage = function(ifrmaediu) {
+    if (ifrmaediu.data == 'tanca') {
+        krpano.call("popup_close_fs(off)");
+    }
+};
+]]> 
+</action>
+popup (the page loaded)
+
+<layer name="close" keep="true" type="text" html="TANCA EL POPUP" css="color:#ffffff; text-align:center; font-size:26px;" align="center" vcenter="true" width="200" height="200" bgcolor="0x336677" bgalpha="1" 
+onclick="s_close_popup_as_pano('tanca');"
+/>
+  
+<action name="s_close_popup_as_pano" type="javascript">
+    <![CDATA[
+    window.top.postMessage(args[1], '*');
+    ]]>
+</action>
+
+
+
+/////////////////////////////////COMUNICATION//////////////////////////////////////////
+/////////////////////////////////COMUNICATION////////////////////////////////////////// -->
+
+<action name="s_popup_fs_comunicator" type="Javascript" autorun="preinit">
+<![CDATA[
+    window.onmessage = function(ifrmaediu) {
+      //change the joker word 'tanca'
+        if (ifrmaediu.data == 'tanca') {
+          //chage the action after whe popup closes. it you want that the predefined action s_popup_after_close_fs(); trigger leave it like this. if you want a custo action, then you mut write like this: popup_close_fs(custom_action());
+            krpano.call("popup_close_fs(off)");
+        }
+    };
+]]>  
+</action>
+
+
+
+	
+	<s_popup_general_settings_fs 
+  width="750" 
+  height="600" 
+
+  bgcolor="0x3b3b3b"
+  bgalpha="0.7"
+  bgalphatweentime="0.5"
+
+
+  mainbgcolor="0x4e4e4e"
+  mainbgroundedge=""
+  mainbgborder="12 0xffffff 1"
+
+  xcloseurl="%FIRSTXML%/skin/img/closex.png"
+  xclosecrop="0|0|54|54"
+  xcloseonovercrop="54|0|54|54"
+  xcloseonoutcrop="0|0|54|54"
+  xcloseonover=""
+  xcloseonout=""
+  xclosealign="righttop"
+  xcloseedge="lefttop"
+  xclosex="calc:stagewidth * -2"
+  xclosey="-12px"
+  xclosescale="1"
+  />
+   //xclosex="calc:stagewidth * -2"  treure la x de la pantalla!
+
+//[1] CALL ACTION FROM HOTSPOT
+
+<!-- 
+
+    s_popup_fs('special-places/popupfs/index.html'); 
+
+            OR
+
+            
+    s_popup_fs('special-places/popupfs/index.html',get(sdummystyles.styles),get(sdummyactions.actions)));
+                              <sdummystyles styles="dummy_popup_bg|dummy_popup_main|dummy_popup_close_x" />
+                              <sdummyactions actions="dummy_before|dummy_midle|dummy_after"  />
+
+-->
+
+
+//[2] DEFINE BEFORE MIDDLE AND AFTER PREDEFINED ACTIONS
+
+<!--GENERAL ACTIONS POPUP 	 -->
+
+
+
+<!-- dependency -->
+<plugin name="s_pp_blur" 
+    keep="true" 
+    url="%FIRSTXML%/plugins/pp_blur.js" 
+    enabled="true" range="0.0" 
+    linearrgb="false" 
+    order="1" 
+    phase="2" />
+
+
+<!-- BEFORE POPUP OPENS ACTION -->
+	<action name="s_popup_before_open_fs">
+		trace('default open fs popup');
+		tween(plugin[s_pp_blur].range, 40.0);
+	    tween(layer[root].alpha,0,0.3);		
+	</action>
+<!-- MIDDLE ACTIONS (WHEN IS OPPENED)  -->
+	<action name="s_popup_middle_action_fs">
+		trace('default middle fs popup');
+		// add layer to iframe for example!		
+	</action>
+<!-- AFTER AFTER POPUP CLOSE ACTIONS -->
+	<action name="s_popup_after_close_fs">
+		trace('default close fs popup');
+		tween(plugin[s_pp_blur].range, 0.0);
+		tween(layer[root].alpha,1,1);
+	</action>
+
+
+//[3] CHANGE THE PREDEFINED STYLES IF NEEDED
+
+<style name="s_popup_bg_fs"
+		    type="container"
+		    align="lefttop" 
+		    width="100%" 
+		    height="100%"
+		    zorder="99"
+		    handcursor="false"
+		    bgcapture="true"
+		    capture="true"
+		    enabled="true"  
+		    onloaded="tween(bgalpha,get(s_popup_general_settings_fs.bgalpha),get(s_popup_general_settings_fs.bgalphatweentime));" 
+	      bgcolor="get:s_popup_general_settings_fs.bgcolor"
+/>
+
+
+						  
+				<style name="s_popup_main_fs"
+						    type="container"
+						    parent="s_popup_bg"
+						    align="center"
+						    bgalpha="1"
+						    bgcapture="true"
+						    maskchildren="false"
+						    capture="true"
+						    handcursor="false"
+						    alpha="0"
+							bgcolor="get:s_popup_general_settings_fs.mainbgcolor"
+							bgroundedge="get:s_popup_general_settings_fs.mainbgroundedge"
+							bgborder="get:s_popup_general_settings_fs.mainbgborder"
+						
+				/>
+				
+			
+				
+				<style name="s_popup_close_x_fs"
+							type="image"
+					      url="get:s_popup_general_settings_fs.xcloseurl"
+					      crop="get:s_popup_general_settings_fs.xclosecrop"
+                onovercrop="get:s_popup_general_settings_fs.xcloseonovercrop"
+                onoutcrop="get:s_popup_general_settings_fs.xcloseonoutcrop"
+						    parent="s_popup_main"
+						    align="get:s_popup_general_settings_fs.xclosealign"
+						    edge="get:s_popup_general_settings_fs.xcloseedge"
+						    x="get:s_popup_general_settings_fs.xclosex"
+						    y="get:s_popup_general_settings_fs.xclosey"
+						    scale="get:s_popup_general_settings_fs.xclosescale"
+                onover="get:s_popup_general_settings_fs.xcloseonover"
+                onout="get:s_popup_general_settings_fs.xcloseonout"
+						    zorder="99"
+						    alpha="1"					    
+						    onloaded.addevent="scope(private:SPOPUPCORE,delayedcall(0.3,tween(global.layer[s_popup_main].alpha, 1)));"
+						   
+				/>
+
+
+//[4] CHANGE IF NEEDED THE JS PLACEHOLDER AND IFRAME GENERATOR CAREFULLY!!!
+
+
+
+<action name="s_iframe_integrated" type="Javascript">
+  <![CDATA[
+ //definicions 
+  var s_iframe_container = document.createElement("div");
+  var container_placeholder_s_iframe = document.createElement("div");
+  var placeholder_s_iframe = document.createElement("div");
+    var dot1 = document.createElement("div");
+    var dot2 = document.createElement("div");
+  var s_iframe = document.createElement("iframe");
+//S_IFRAME_CONTAINER 
+  s_iframe_container.style.overflow = args[2] == "true" ? "auto" : "hidden";
+  s_iframe_container.className="s_popup_container";
+            function stopPropagation(e){ e.stopPropagation(); }
+            function preventDefault(e){ e.preventDefault(); }
+
+  // enable browsed-based mouse-wheel and touch-scrolling support:
+  s_iframe_container.addEventListener("wheel", stopPropagation, true);
+  s_iframe_container.addEventListener("mousewheel", stopPropagation, true);
+  s_iframe_container.addEventListener("DOMMouseScroll", stopPropagation, true);
+  s_iframe_container.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("gesturestart", preventDefault, true);
+
+//PLACEHOLDER
+container_placeholder_s_iframe.className="container_placeholder_s_iframe";
+placeholder_s_iframe.className="spinner_s_iframe";
+dot1.className="dot1_s_iframe";
+dot2.className="dot2_s_iframe";
+
+//S_IFRAME
+s_iframe.className="s_iframe";
+s_iframe.src = args[1];
+s_iframe.frameBorder=0;
+s_iframe.setAttribute('allowFullScreen', 'true');
+//FUNCIÓ FADE CONTINGUT S_IFRAME
+const funcs_Iframe=()=> {
+  s_iframe.style.opacity="1";
+  container_placeholder_s_iframe.style.display="none";
+};
+s_iframe.addEventListener('load', funcs_Iframe, true);
+
+//APPEND DELS DIFERENTS ELEMENTS
+placeholder_s_iframe.appendChild(dot1);
+placeholder_s_iframe.appendChild(dot2);
+container_placeholder_s_iframe.appendChild(placeholder_s_iframe);
+s_iframe_container.appendChild(container_placeholder_s_iframe);
+s_iframe_container.appendChild(s_iframe);
+caller.sprite.appendChild(s_iframe_container);
+
+]]>
+    </action>
+//[5] CHANGE AND IMPORT STYLES IN INDEX (PLACEHOLDER)
+
+<!-- SYLE CRIDAT A INDEX:			 -->
+
+<!-- 
+/*/////////////////////////////////////*/
+/*JAVASCRIPT create the iframe INSIDE TOUR IN JS ACTIONS in core.xml*/
+/*/////////////////////////////////////*/
+
+
+/*
+.s_popup_container
+                  |
+                  .container_placeholder_s_iframe
+                  |                              |
+                  |                              .spinner_s_iframe
+                  |                                             |
+                  |                                             .dot1_s_iframe
+                  |                                             .dot2_s_iframe
+                  |
+                  .s_iframe
+*/
+
+
+
+/*DIV S_POPUP_CONTAINER*/
+
+.s_popup_container{
+width : 100%;
+height : 100%;
+box-sizing : border-box;
+-moz-user-select: text;
+-webkit-user-select:text;
+-ms-user-select:text;
+user-select:text;
+}
+ 
+/*PLACEHOLDER S_IFRAME*/
+        .container_placeholder_s_iframe{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            align-content: center;
+            flex-wrap: wrap;
+            height: 100%;
+        }
+              .spinner_s_iframe {
+                width: 40px;
+                height: 40px;
+                -webkit-animation: sk-rotate 2.0s infinite linear;
+                animation: sk-rotate 2.0s infinite linear;
+              }
+
+                    .dot1_s_iframe, .dot2_s_iframe {
+                      width: 60%;
+                      height: 60%;
+                      display: inline-block;
+                      position: absolute;
+                      top: 0;
+                      background-color: #41ffc7;
+                      border-radius: 100%;
+                     
+                      -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+                      animation: sk-bounce 2.0s infinite ease-in-out;
+                    }
+
+                    .dot2_s_iframe {
+                      top: auto;
+                      bottom: 0;
+                      -webkit-animation-delay: -1.0s;
+                      animation-delay: -1.0s;
+                    }
+
+        @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+        @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+        @-webkit-keyframes sk-bounce {
+          0%, 100% { -webkit-transform: scale(0.0) }
+          50% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes sk-bounce {
+          0%, 100% { 
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+          } 50% { 
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+          }
+        }
+/*S_IFRAME*/
+        .s_iframe{
+          position:absolute;
+          width:100%;
+          height:100%;
+          top:0px;
+          opacity:0;
+          transition:opacity 1s ease-out;
+          left:0px;
+        /*  border-radius: 40px;*/
+        }
+
+ -->
+
+
+
+
+
+
+	
+</krpano>

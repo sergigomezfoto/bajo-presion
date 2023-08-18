@@ -1,0 +1,61 @@
+<krpano>
+ 
+ <include url="styles/styles.xml" />
+ <include url="actions/actions.xml" /> 
+
+//dont touch
+ <include url="actions/core.xml" /> 
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+// INITIAL INITIAL INITIAL INITIAL INITIAL INITIAL INITIAL INITIAL INITIAL////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+
+      <plugin name="pass_pp_blur" keep="true" url="%FIRSTXML%/plugins/pp_blur.js" enabled="true" range="get:passinitialblur.range" linearrgb="false" order="1" phase="2" />
+      
+      
+
+      //block al kind of interactions
+       <action autorun="onstart">
+        s-blockall(true,1999999999999999999); 
+        set(layer[s-invisible-bloking-layer],
+        cursor='',
+        handcursor='false' 
+        );                         
+       </action>
+ 
+ <action name="correctpass08027" protect="true">
+ if (var933514608 === "f0040",
+ 
+        tween(plugin[pass_pp_blur].range, 0.0); 
+        tween(layer[passbox].alpha,0,,,
+        tween(layer[passwrapper].bgalpha,0,,,removelayer(passwrapper, true); s-blockall(false);); 
+        ); 
+  ,
+  trace('Haking detect');
+  );
+ </action>
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+// DESIGN DESIGN DESIGN DESIGN DESIGN DESIGN DESIGN DESIGN DESIGN DESIGN///   
+////////////////////////////////////////////////////////////////////////////   
+////////////////////////////////////////////////////////////////////////////   
+
+                <layer name="passwrapper" keep="true" style="passwrapper">
+                      
+                      <layer name="passbox" style="passbox" >
+
+                		      <layer name="passtitle" style="passtitle"/>
+
+                		      <layer name="passinput" style="passinput" onchanged="passinput();" />
+
+                		      <layer name="passbutton" style="passbutton" onclick="passcheck();" />
+
+                      </layer>
+
+                </layer>
+
+	
+</krpano>

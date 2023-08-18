@@ -1,0 +1,112 @@
+
+/*/////////////////////////////////////*/
+/*JAVASCRIPT INSIDE TOUR IN JS ACTIONS*/
+/*/////////////////////////////////////*/
+
+/*////////////*/
+/*S_IFRAME*/
+/*////////////*/
+
+/*
+.s_popup_container
+                  |
+                  .container_placeholder_s_iframe
+                  |                              |
+                  |                              .spinner_s_iframe
+                  |                                             |
+                  |                                             .dot1_s_iframe
+                  |                                             .dot2_s_iframe
+                  |
+                  .s_iframe
+*/
+
+
+
+/*DIV S_POPUP_CONTAINER*/
+
+.s_popup_container{
+width : 100%;
+height : 100%;
+box-sizing : border-box;
+-moz-user-select: text;
+-webkit-user-select:text;
+-ms-user-select:text;
+user-select:text;
+}
+ 
+/*PLACEHOLDER S_IFRAME*/
+        .container_placeholder_s_iframe{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            align-content: center;
+            flex-wrap: wrap;
+            height: 100%;
+        }
+              .spinner_s_iframe {
+                width: 40px;
+                height: 40px;
+                -webkit-animation: sk-rotate 2.0s infinite linear;
+                animation: sk-rotate 2.0s infinite linear;
+              }
+
+                    .dot1_s_iframe, .dot2_s_iframe {
+                      width: 60%;
+                      height: 60%;
+                      display: inline-block;
+                      position: absolute;
+                      top: 0;
+                      background-color: #41ffc7;
+                      border-radius: 100%;
+                     
+                      -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+                      animation: sk-bounce 2.0s infinite ease-in-out;
+                    }
+
+                    .dot2_s_iframe {
+                      top: auto;
+                      bottom: 0;
+                      -webkit-animation-delay: -1.0s;
+                      animation-delay: -1.0s;
+                    }
+
+        @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+        @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+        @-webkit-keyframes sk-bounce {
+          0%, 100% { -webkit-transform: scale(0.0) }
+          50% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes sk-bounce {
+          0%, 100% { 
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+          } 50% { 
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+          }
+        }
+/*S_IFRAME*/
+        .s_iframe{
+          position:absolute;
+          width:100%;
+          height:100%;
+          top:0px;
+          opacity:0;
+          transition:opacity 1s ease-out;
+          left:0px;
+        /*  border-radius: 40px;*/
+        }
+
+/*        .s_iframe_custom{
+          position:absolute;
+          width:100%;
+          height:100%;
+          top:0px;
+          opacity:1;
+          left:0px;
+        border-radius: 40px;
+        }
+*/

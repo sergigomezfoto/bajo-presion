@@ -45,8 +45,16 @@ const getUserDeviceInfo = () => {
     isiPhone,
   };
 };
+const getRandomElement = (arr) => {
+  if (!arr || arr.length === 0) {
+    return null;
+  }
 
-const asyncLoopPositive = (condition, time = 300, maxAttempts = null) => {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+};
+
+const asyncLoopPositive = (condition, time = 300, maxAttempts = null, onMaxAttempts = () => {}) => {
   return new Promise((resolve, reject) => {
     let attempts = 0;
 
@@ -56,6 +64,7 @@ const asyncLoopPositive = (condition, time = 300, maxAttempts = null) => {
       // Logging the current attempt number
       if (Game.test) console.log(`bucleAsyncLoopPositive: ${attempts}`);
       if (maxAttempts !== null && attempts > maxAttempts) {
+        onMaxAttempts();
         resolve();
         throw new Error("Max attempts reached");
       }
@@ -67,7 +76,9 @@ const asyncLoopPositive = (condition, time = 300, maxAttempts = null) => {
           setTimeout(checkCondition, time);
         }
       } catch (error) {
-        reject(new Error(`Error in condition function: ${error.message}.`));
+        console.error(error);
+        resolve();
+        //reject(new Error(`Error in condition function: ${error.message}.`));
       }
     };
 
@@ -82,7 +93,8 @@ const cssToJsAttributes = (attribute) => {
   return attribute.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase();
 };
 
-const awaitStylecomplete = async (element, attribute, value) => {
+const awaitStylecomplete = async (element, attribute, value, time = null) => {
+
   if (!element || !(element instanceof HTMLElement)) {
     throw new Error("Invalid element provided.");
   }
@@ -91,13 +103,17 @@ const awaitStylecomplete = async (element, attribute, value) => {
     throw new Error("Invalid attribute type. Expected a string.");
   }
 
-  await asyncLoopPositive(() => {
-    try {
-      return window.getComputedStyle(element).getPropertyValue(cssToJsAttributes(attribute)).trim() === value;
-    } catch (error) {
-      throw new Error(`Error checking style completion: ${error.message}`);
-    }
-  }, 10);
+  await asyncLoopPositive(
+    () => {
+      try {
+        return window.getComputedStyle(element).getPropertyValue(cssToJsAttributes(attribute)).trim() === value;
+      } catch (error) {
+        throw new Error(`Error checking style completion: ${error.message}`);
+      }
+    },
+    10,
+    time
+  );
 
   return true;
 };
@@ -170,6 +186,14 @@ const proxyHandler = {
     return true;
   },
 };
+
+const toggleClass = (element, className, action) => {
+  if (action === "add" && !element.classList.contains(className)) {
+    element.classList.add(className);
+  } else if (action === "remove" && element.classList.contains(className)) {
+    element.classList.remove(className);
+  }
+};
 // const clonedGame = deepClone(Game);
 // const prxGame = createDeepProxy(clonedGame, proxyHandler);
 
@@ -236,3 +260,45 @@ function handleFirstClick(event) {
   }
 }
 document.addEventListener("click", handleFirstClick);
+
+////////////////////////////////////////////////////////////////////////////////////////CALCULS
+
+function calculateDimensions(originalWidth, originalHeight, newSize, dimension = "height") {
+  const aspectRatio = originalWidth / originalHeight;
+  let proportionalWidth, proportionalHeight;
+
+  if (dimension === "height") {
+    proportionalHeight = newSize;
+    proportionalWidth = aspectRatio * newSize;
+  } else {
+    proportionalWidth = newSize;
+    proportionalHeight = newSize / aspectRatio;
+  }
+
+  let nextWholeHeight = dimension === "height" ? newSize - 1 : proportionalHeight - 1;
+  let nextWholeWidth = aspectRatio * nextWholeHeight;
+
+  while (!Number.isInteger(nextWholeWidth)) {
+    nextWholeHeight--;
+    nextWholeWidth = aspectRatio * nextWholeHeight;
+  }
+
+  console.log("Proportional dimensions:");
+  console.log("Width:", proportionalWidth);
+  console.log("Height:", proportionalHeight);
+
+  console.log("\nNext whole number dimensions:");
+  console.log("Width:", Math.round(nextWholeWidth));
+  console.log("Height:", nextWholeHeight);
+
+  return {
+    proportional: {
+      width: proportionalWidth,
+      height: proportionalHeight,
+    },
+    nextWhole: {
+      width: Math.round(nextWholeWidth),
+      height: nextWholeHeight,
+    },
+  };
+}

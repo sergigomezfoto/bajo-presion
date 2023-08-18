@@ -1,0 +1,72 @@
+
+<krpano>
+  
+ 
+ <style name="speech_bubbles"
+    type="text"
+    bg="true"
+    bgalpha="1"
+    bgcolor="0xffffff"
+    bgshadow="4 4 3 0x000000 0.3"
+    width="230"
+    height="130"
+    
+    distorted="true"
+    zoom="true"
+    capture="false"
+    renderer="css3d"
+    handcursor="true"
+
+
+ />
+
+
+<style name="test2wrapper"
+    type="text"
+
+    bg="true"
+    bgcolor="0x000000"
+    bgalpha="1"
+    parent="hotspot[htest]"  
+    enabled="true"
+    onloaded="delayedcall(1,trace(pixelwidth));"
+    flowchildren="h"
+
+
+/>
+
+ 
+ <style name="test2"
+    url="%FIRSTXML%/assets/img/users/noi.jpg"
+    scale="0.25"
+    gridfit="true"
+    align="topleft"
+ />
+ 
+ <style name="test3"
+    type="text"
+    autowidth="true"
+    autoheight="true"
+    bg="false"
+    text="user"
+    css="color:white;font-family: 'untitled_sansregular'; font-size: 14px; "
+    align="left"
+    renderer="webgl"
+ />
+ 
+ <style name="test4"
+    type="text"
+    autowidth="true"
+    autoheight="true"
+    bg="false"
+    text="1w"
+    css="color:white;font-family: 'untitled_sansregular'; font-size: 14px; "
+    align="left"
+    renderer="webgl"
+ />
+ 
+  
+  
+  
+</krpano>
+

@@ -14,11 +14,10 @@ const introGradientVideo = document.getElementById("intro_gradient_video");
 const homeInterface = document.getElementById("homeInterface");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////FIRST INTRO
 
-const skipIntro = () => {
+const skipIntro = async () => {
   intro.remove();
   startcontainer.classList.add("rainbow_gradient");
-  homeInterface.style.display = "block";
-  homeInterface.style.opacity = "1";
+  startHome();
 };
 
 const generalIntro = async () => {
@@ -37,7 +36,7 @@ const generalIntro = async () => {
     await awaitStylecomplete(presentanIntro, "display", "none");
     introGradient.style.clipPath = "circle(100% at 50% 50%)";
     await sleep(timeShowIntroElements);
-    const introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wraper", "shadow_lp_intro"), 50); // activa el planeta bottant
+    const introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wrapper", "shadow_lp_intro"), 50); // activa el planeta bottant
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////lp + text
     firstTextIntro.style.width = "360px";
     await awaitStylecomplete(firstTextIntro, "width", "360px");
@@ -62,15 +61,24 @@ const generalIntro = async () => {
     await awaitStylecomplete(homeInterface, "display", "block");
     homeInterface.style.opacity = "1";
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////video etna
-    fadeinAndPlayNewVideo(videolist.smallTest);
+    fadeinAndPlayNewVideoIntro(videoList.introVideo);
     await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`);
     introGradientForm.style.display = "none";
     await waitForEventToTrigger(document.getElementById("skipVideoButton"), "click");
     //await sleep(1000);
     intro.remove();
     startHome();
-  } else  {
+  } else if (Game.test) {
+    console.log("this is test");
     skipIntro();
-    startHome();
+     hideHome();
+     await enterPlace("centro");
+    return true
+
+  } else if (!Game.intro) {
+    console.log("this is no intro");
+    skipIntro();
+    return true;
+
   }
 };

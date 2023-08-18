@@ -1,0 +1,214 @@
+<krpano>
+
+
+<!-- -->
+<action name="s_atribute_blink" scope="local" args="thing,oldcolor,newcolor,blinkdelay,tweendelay,tweentype,infinite">
+//debugvar(thing);
+txtadd(callerthing,'caller.',get(thing));
+tween(calc(callerthing),get(newcolor),calc(tweendelay?tweendelay:0),calc(tweentype?tweentype:''));
+delayedcall(get(blinkdelay)
+	,
+  if (infinite
+  ,
+  	tween(calc(callerthing),get(oldcolor),calc(tweendelay?tweendelay:0),calc(tweentype?tweentype:'')
+    ,
+      if (layer[get(caller.name)].name
+      ,
+        callwith(layer[get(caller.name)],s_atribute_blink(calc(thing),calc(oldcolor),calc(newcolor),calc(blinkdelay),calc(tweendelay),calc(tweentype),calc(infinite)));
+      ,
+        callwith(hotspot[get(caller.name)],s_atribute_blink(calc(thing),calc(oldcolor),calc(newcolor),calc(blinkdelay),calc(tweendelay),calc(tweentype),calc(infinite)));
+      );
+    );
+  ,
+	tween(calc(callerthing),get(oldcolor),calc(tweendelay?tweendelay:0),calc(tweentype?tweentype:''));
+  );
+	
+	);
+</action>
+
+<action name="s_set_bg_random_color" scope="local" args="tone" >
+
+  calc(calc(caller.name + 'rc'), random * 0xFFFFFF);
+  tohex(calc(caller.name + 'rc'), 0x, 6);
+  copy(rc,calc(caller.name + 'rc'));
+
+  if (layer[get(caller.name)].name,
+    calc(layer[get(caller.name)].bgcolor,rc);
+  ,
+    if (caller.fillcolor,
+      calc(hotspot[get(caller.name)].fillcolor,rc);
+    ,
+      calc(hotspot[get(caller.name)].bgcolor,rc);
+    );
+  ); 
+
+</action>
+
+
+
+
+<action name="s_moove_hs_as_group" scope="local" args="groupname">
+calc(ath,calc(groupname + '.ath') + caller.ath );
+calc(atv,calc(groupname + '.atv') + caller.atv );
+copy(caller.ath,ath);
+copy(caller.atv,atv);
+</action>
+<!-- <action name="s_atribute_change_once" args="thing,svalue,stime,tweentype,doneactions" scope="local">
+
+txtadd(callerthing,'caller.',get(thing));
+tween(calc(callerthing),get(svalue),calc(stime?stime:0),calc(tweentype?tweentype:''),calc(doneactions));
+
+</action> -->
+
+<action name="papa">
+
+  delayedcall (1,
+    set(s_drag_tools_bar_direction,'x');
+      delayedcall (1,
+        set(s_drag_tools_bar_direction,'y');        
+          delayedcall (1,
+            set(s_drag_tools_bar_direction,'xy');
+            
+          );
+      );
+  );
+
+</action>
+
+
+<action name="s_drag" scope="local" args="direction,preaction,whileaction,postaction">
+
+//papa();
+
+
+calc(calc('global.s_drag_' + caller.name + '_direction'),direction?direction:'xy');
+
+	if (layer[get(caller.name)].name
+	,
+      ////////////////////////PRE
+      calc(calc('global.s_' + caller.name + '_inix'),caller.x);
+      calc(calc('global.s_' + caller.name + '_iniy'),caller.y);
+      if (preaction,scope(global,calc(preaction)););
+      ////////////////////////
+      copy(s_element_drag_x, caller.x);
+      copy(s_element_drag_y, caller.y);
+      copy(s_mouse_position_x, mouse.stagex);
+      copy(s_mouse_position_y, mouse.stagey);
+      asyncloop(caller.pressed AND !calc('global.s_' + caller.name + '_stopdragging') ,
+        ////////////////////////WHILE
+        if (calc('global.s_' + caller.name + '_inix') != caller.x OR calc('global.s_' + caller.name + '_iniy') != caller.y,
+            calc(calc('global.s_' + caller.name + '_moving'),true);
+            calc(global.s_current_dragging,caller.name);
+            set(dr,true);
+
+        );
+        calc(calc('global.s_' + caller.name + '_movingx'),caller.x);
+        calc(calc('global.s_' + caller.name + '_movingy'),caller.y);
+        if (whileaction,scope(global,calc(whileaction)););
+        /////////////////////// DIRECTIONS
+        if (
+          calc('global.s_drag_' + caller.name + '_direction') === 'xy',
+                calc(caller.x, s_element_drag_x + (mouse.stagex - s_mouse_position_x) * (indexof(caller.align,right) GE 0 ?-1:+1));
+                calc(caller.y, s_element_drag_y + (mouse.stagey - s_mouse_position_y) * (indexof(caller.align,bottom) GE 0 ?-1:+1));
+          ,calc('global.s_drag_' + caller.name + '_direction') === 'x',
+                calc(caller.x, s_element_drag_x + (mouse.stagex - s_mouse_position_x) * (indexof(caller.align,right) GE 0 ?-1:+1));
+          ,calc('global.s_drag_' + caller.name + '_direction') === 'y',
+                calc(caller.y, s_element_drag_y + (mouse.stagey - s_mouse_position_y) * (indexof(caller.align,bottom) GE 0 ?-1:+1));
+         );
+      ,
+        ////////////////////POST
+        calc(calc('global.s_' + caller.name + '_finalx'),caller.x);
+        calc(calc('global.s_' + caller.name + '_finaly'),caller.y);
+        calc(calc('global.s_' + caller.name + '_moving'),false);
+        delete(global.s_current_dragging);
+        if (dr,
+        calc(global.s_last_dragging,caller.name);
+        );        
+        if (postaction,scope(global,calc(postaction)););
+        ///////////////////
+      );
+	,	
+      ////////////////////////PRE
+      calc(calc('global.s_' + caller.name + '_iniath'),caller.ath);
+      calc(calc('global.s_' + caller.name + '_iniatv'),caller.atv);
+      if (preaction,scope(global,calc(preaction)););
+      ////////////////////////
+      spheretoscreen(caller.ath, caller.atv, s_hsposx, s_hsposy, calc(mouse.stagex LT stagewidth/2 ? 'l' : 'r'));
+      sub(s_drx, mouse.stagex, s_hsposx);
+      sub(s_dry, mouse.stagey, s_hsposy);
+      asyncloop(caller.pressed
+      ,
+        ////////////////////WHILE
+        if (calc('global.s_' + caller.name + '_iniath') != caller.ath OR calc('global.s_' + caller.name + '_iniatv') != caller.atv,
+           calc(calc('global.s_' + caller.name + '_moving'),true);
+           calc(global.s_current_dragging,caller.name);
+           set(dr,true);
+        );
+        calc(calc('global.s_' + caller.name + '_movingath'),caller.ath);
+        calc(calc('global.s_' + caller.name + '_movingatv'),caller.atv);
+        if (whileaction,scope(global,calc(whileaction)););
+        ///////////////// DIRECTIONS
+        sub(s_dx, mouse.stagex, s_drx);
+        sub(s_dy, mouse.stagey, s_dry);
+
+        if (
+              calc('global.s_drag_' + caller.name + '_direction') === 'xy',
+                  screentosphere(s_dx, s_dy, caller.ath, caller.atv);
+              ,calc('global.s_drag_' + caller.name + '_direction') === 'x',
+                  screentosphere(s_dx,s_dy,caller.ath,);
+              ,calc('global.s_drag_' + caller.name + '_direction') === 'y',
+                  screentosphere(s_dx,s_dy,,caller.atv);
+         );        
+      ,
+        /////////////////POST
+        calc(calc('global.s_' + caller.name + '_finalath'),caller.ath);
+        calc(calc('global.s_' + caller.name + '_finalatv'),caller.atv);
+        calc(calc('global.s_' + caller.name + '_moving'),false);
+        delete(global.s_current_dragging);
+        if(dr,
+           calc(global.s_last_dragging,caller.name); 
+        );
+        calc(global.s_last_dragging,caller.name);
+        if (postaction,scope(global,calc(postaction)););
+        /////////////////
+      );
+	);
+  </action>
+
+/// intended to be called in after dragg action
+<action name="s_dragg_limits" scope="local" args="lname">
+
+if (layer[get(lname)].y LE (stageheight / 2 ) AND layer[get(lname)].y GE ((stageheight / 2) * -1) AND layer[get(lname)].x GE 1 AND layer[get(lname)].x LE (stagewidth - layer[get(lname)].width),
+break();
+);
+
+    if (layer[get(lname)].y GT (stageheight / 2 ),
+            tween(layer[get(lname)].y,calc((stageheight / 2 ) - (layer[get(lname)].height / 2 )),0.1,,s_dragg_limits(get(lname)));	
+    ,layer[get(lname)].y LT ((stageheight / 2) * -1),
+            tween(layer[get(lname)].y,calc(((stageheight / 2) * -1) + (layer[get(lname)].height / 2 )),0.1,,s_dragg_limits(get(lname)));
+    ,layer[get(lname)].x LT 1,
+            tween(layer[get(lname)].x,1,0.1,,s_dragg_limits(get(lname)));
+    ,layer[get(lname)].x GT (stagewidth - layer[get(lname)].width),
+            tween(layer[get(lname)].x,calc(stagewidth - layer[get(lname)].width),0.1,,s_dragg_limits(get(lname)));
+    );
+trace('sdragg');
+</action>
+
+<action name="s_glitch_something" scope="local" args="values,tweens,what,token" >
+	txtsplit(get(values),'|',low,high);
+	calc(vals,roundval((random * (high - low)) + low ));
+	calc(vals, vals/100);
+	txtsplit(get(tweens),'|',ltweens,htweens);
+	calc(tweenis,roundval((random * (htweens - ltweens)) + ltweens ));
+	calc(tweenis,tweenis/10);
+	tween(calc('caller.' + what),get(vals),get(tweenis),,
+	callwith(caller,
+			if( calc('global.' + token) != 'clear',
+				s_glitch_something(get(values),get(tweens),get(what),get(token));
+				
+			)
+		)
+	);
+</action>
+
+</krpano>

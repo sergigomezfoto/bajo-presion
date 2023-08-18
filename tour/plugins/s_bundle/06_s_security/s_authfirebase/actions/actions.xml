@@ -1,0 +1,44 @@
+<krpano>
+
+
+<action name="next" type="javascript" protect="true">
+
+
+<![CDATA[
+  const db = firebase.firestore();
+
+//reed password
+  const getpass = async()=>{
+    const pass08027 = await db.collection('password').doc('pass').get();
+    const psword08027 = pass08027.data().key;
+    krpano.set("pass08027.word", psword08027);
+  }
+getpass();
+
+]]>
+</action>	
+	
+      <action name="passcheck" protect="true" scope="local">  
+            if(!passkey31760,
+             , 
+             scope(global,correctpass08027()); 
+             ); 
+      </action>    
+     
+      <action name="passinput" protect="true" scope="local">
+            callwhen(passkey31760, scope(global,correctpass08027());); 
+
+            if(caller.text == pass08027.word
+            	, 
+                        set(global.var933514608,'f0040');
+      		      set(global.passkey31760, true);
+      		       , 
+      		      set(layer[passtitle].html, 'data:wrong_password');
+      		      set(layer[passinput].text, );
+            );         
+      </action>
+      
+
+
+	
+</krpano>

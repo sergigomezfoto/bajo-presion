@@ -1,0 +1,16 @@
+
+<krpano>
+<set var="blendmode" val="OPENBLEND(1.0, 0.0, 0.2, 0.0, linear)"/>
+
+
+
+<action name="kp_load_scene" scope="local" args="scenename" >
+       
+    loadscene((scenename), null, MERGE,get(blendmode));
+    
+</action>
+
+  
+  
+</krpano>
+

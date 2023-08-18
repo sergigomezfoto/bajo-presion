@@ -1,0 +1,11 @@
+<krpano>
+
+    <action name="s_c2c" type="javascript"><![CDATA[
+
+    var copyText = args[1];
+    navigator.clipboard.writeText(copyText); 
+    //console.log(copyText);
+
+]]></action>
+
+</krpano>

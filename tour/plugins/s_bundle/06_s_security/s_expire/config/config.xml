@@ -1,0 +1,90 @@
+<krpano>
+	
+		<!-- EXPIRATION DATE RECOMENDED-->
+
+<!-- 
+	<include url="%FIRSTXML%/expiration08027.xml" />
+
+	expiration08027.xml:
+
+	<krpano>
+
+	<s_expiration	
+		date="2021 09 09 15:10:00"
+	/>
+
+	</krpano>
+ -->
+
+<!-- EXPIRATION DATE 'ENDURO'-->
+
+<s_expiration	
+		date="2021/09/10 18:56:10"
+	/>	
+
+<!-- FREQUENCY IN SECONDS OF CHEKING EXPIRATION -->
+<s_expiration_check
+	seconds="3"
+/>
+		<!-- EXPIRATION ADVICE -->
+
+
+<data name="s_expiration_advice "><![CDATA[
+
+	El periode de visualització</br> ha caducat amb data:</br></br>
+
+]]></data>
+
+<data name="s_expiration_contact "><![CDATA[
+</br>
+	<span style="font-size:12px;">contacteu amb: <a style="color:#ffffff" href="mailto:sergi@sergigomez.com"> sergi@sergigomez.com</span>
+
+]]></data>
+
+<!-- DESIGN -->
+<layer name="s_blackout" keep="true" style="s_blackout"/>
+
+<style name="s_blackout"
+	width="100%" 
+	height="100%" 
+	type="text" 
+	html="checking expiration date" 
+	css="color:white;text-align:center;font-size:3em;" 
+	bgcolor="get:maincolor" 
+	bgalpha="1" 
+	alpha="0" 
+	autoalpha="true" 
+	zorder="20000000000000000000000000000"
+	vcenter="true"
+/>
+
+		<!-- BEGINNING STATE ACTION BEFORE TOUR IS COMPLETLY RENDERED -->
+
+<action name="s_expiration_beginning_state_action">
+
+	set(layer[s_blackout].alpha,1);
+
+	
+	
+</action>
+
+	<!-- AFTER EXPIRATION CHECK AND NOT EXPIRED ACTION -->
+
+<action name="s_expiration_aftercheck_ok_action">
+
+	tween(layer[s_blackout].alpha,0,0.2);
+	
+</action>
+
+		<!-- ACTION WHEN EXPIRATE  -->
+
+<action name="s_expiration_action">
+
+	//HERE YOUR ACTION
+	calc(layer[s_blackout].html,data[s_expiration_advice].content + s_expiration.date + data[s_expiration_contact].content  );
+	tween(layer[s_blackout].alpha,1,0.2);
+	
+</action>
+	
+
+</krpano>

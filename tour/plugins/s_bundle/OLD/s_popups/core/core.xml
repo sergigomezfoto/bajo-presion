@@ -1,0 +1,107 @@
+<krpano>
+  
+<action name="s_iframe" type="Javascript">
+  <![CDATA[
+ //definicions 
+  var s_iframe_container = document.createElement("div");
+  var container_placeholder_s_iframe = document.createElement("div");
+  var placeholder_s_iframe = document.createElement("div");
+	  var dot1 = document.createElement("div");
+	  var dot2 = document.createElement("div");
+  var s_iframe = document.createElement("iframe");
+//S_IFRAME_CONTAINER 
+  s_iframe_container.style.overflow = args[2] == "true" ? "auto" : "hidden";
+  s_iframe_container.className="s_popup_container";
+					  function stopPropagation(e){ e.stopPropagation(); }
+					  function preventDefault(e){ e.preventDefault(); }
+
+  // enable browsed-based mouse-wheel and touch-scrolling support:
+  s_iframe_container.addEventListener("wheel", stopPropagation, true);
+  s_iframe_container.addEventListener("mousewheel", stopPropagation, true);
+  s_iframe_container.addEventListener("DOMMouseScroll", stopPropagation, true);
+  s_iframe_container.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("gesturestart", preventDefault, true);
+
+//PLACEHOLDER
+container_placeholder_s_iframe.className="container_placeholder_s_iframe";
+placeholder_s_iframe.className="spinner_s_iframe";
+dot1.className="dot1_s_iframe";
+dot2.className="dot2_s_iframe";
+
+//S_IFRAME
+s_iframe.className="s_iframe";
+s_iframe.src = args[1];
+s_iframe.frameBorder=0;
+s_iframe.setAttribute('allowFullScreen', 'true');
+//FUNCIÓ FADE CONTINGUT S_IFRAME
+const funcs_Iframe=()=> {
+  s_iframe.style.opacity="1";
+  container_placeholder_s_iframe.style.display="none";
+};
+s_iframe.addEventListener('load', funcs_Iframe, true);
+
+//APPEND DELS DIFERENTS ELEMENTS
+placeholder_s_iframe.appendChild(dot1);
+placeholder_s_iframe.appendChild(dot2);
+container_placeholder_s_iframe.appendChild(placeholder_s_iframe);
+s_iframe_container.appendChild(container_placeholder_s_iframe);
+s_iframe_container.appendChild(s_iframe);
+caller.sprite.appendChild(s_iframe_container);
+
+]]>
+    </action>
+
+<action name="s_iframe_integrated" type="Javascript">
+  <![CDATA[
+ //definicions 
+  var s_iframe_container = document.createElement("div");
+  var container_placeholder_s_iframe = document.createElement("div");
+  var placeholder_s_iframe = document.createElement("div");
+    var dot1 = document.createElement("div");
+    var dot2 = document.createElement("div");
+  var s_iframe = document.createElement("iframe");
+//S_IFRAME_CONTAINER 
+  s_iframe_container.style.overflow = args[2] == "true" ? "auto" : "hidden";
+  s_iframe_container.className="s_popup_container";
+            function stopPropagation(e){ e.stopPropagation(); }
+            function preventDefault(e){ e.preventDefault(); }
+
+  // enable browsed-based mouse-wheel and touch-scrolling support:
+  s_iframe_container.addEventListener("wheel", stopPropagation, true);
+  s_iframe_container.addEventListener("mousewheel", stopPropagation, true);
+  s_iframe_container.addEventListener("DOMMouseScroll", stopPropagation, true);
+  s_iframe_container.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+  s_iframe_container.addEventListener("gesturestart", preventDefault, true);
+
+//PLACEHOLDER
+container_placeholder_s_iframe.className="container_placeholder_s_iframe";
+placeholder_s_iframe.className="spinner_s_iframe";
+dot1.className="dot1_s_iframe";
+dot2.className="dot2_s_iframe";
+
+//S_IFRAME
+s_iframe.className="s_iframe";
+s_iframe.src = args[1];
+s_iframe.frameBorder=0;
+s_iframe.setAttribute('allowFullScreen', 'true');
+//FUNCIÓ FADE CONTINGUT S_IFRAME
+const funcs_Iframe=()=> {
+  s_iframe.style.opacity="1";
+  container_placeholder_s_iframe.style.display="none";
+};
+s_iframe.addEventListener('load', funcs_Iframe, true);
+
+//APPEND DELS DIFERENTS ELEMENTS
+placeholder_s_iframe.appendChild(dot1);
+placeholder_s_iframe.appendChild(dot2);
+container_placeholder_s_iframe.appendChild(placeholder_s_iframe);
+s_iframe_container.appendChild(container_placeholder_s_iframe);
+s_iframe_container.appendChild(s_iframe);
+caller.sprite.appendChild(s_iframe_container);
+
+]]>
+    </action>
+
+</krpano>

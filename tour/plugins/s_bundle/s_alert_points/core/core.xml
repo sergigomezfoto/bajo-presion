@@ -1,0 +1,287 @@
+<krpano>
+
+     
+
+<s_loc_hs_config
+		tween_time="0.2"
+/>
+
+//
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+<action name="s_loc_text_hs">
+
+  s_localize();
+  calc(hotspot[get(name)].s_onlocalize,' s_localize_hs_and_show_text(' + name + ');');
+  calc(hotspot[get(name)].s_onunlocalize,'s_unlocalize_hs_and_show_text(' + name + ');');
+  set(hotspot[get(name)]
+	,
+	initial_bgalpha=get(bgalpha)
+	,
+    initial_width=get(width)
+	,
+    initial_height=get(height)
+	,
+    initial_bgroundedge=get(bgroundedge)
+	,
+    initial_bgborder=get(bgborder)
+	,
+    initial_css=get(css)
+	,
+    initial_bgcolor=get(bgcolor)
+	,
+    initial_html=get(html)
+	,
+    initial_crop=get(crop)
+	,
+    initial_scale=get(scale)
+	,
+    initial_onovercrop=get(onovercrop)
+	,
+    initial_bgshadow=get(bgshadow)
+	,
+
+);
+
+</action>
+
+
+
+//LOC
+
+<action name="s_localize_hs_and_show_text" scope="local" args="hsid">
+
+//stop animation twin
+tween(hotspot[calc(hsid + '_twin')].alpha,get(hotspot[calc(hsid + '_twin')].action_localized_alpha),get(global.s_loc_hs_config.tween_time));
+//point spot
+tween(hotspot[get(hsid)].width,get(hotspot[get(hsid)].final_width),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].height,get(hotspot[get(hsid)].final_height),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].bgroundedge,get(hotspot[get(hsid)].final_bgroundedge),get(global.s_loc_hs_config.tween_time)); 
+tween(hotspot[get(hsid)].bgalpha,get(hotspot[get(hsid)].final_bgalpha),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].bgcolor,get(hotspot[get(hsid)].final_bgcolor),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].scale,get(hotspot[get(hsid)].final_scale),get(global.s_loc_hs_config.tween_time));
+
+set(hotspot[get(hsid)].bgborder,get(hotspot[get(hsid)].final_bgborder));
+set(hotspot[get(hsid)].bgshadow,get(hotspot[get(hsid)].final_bgshadow));
+set(hotspot[get(hsid)].css,get(hotspot[get(hsid)].final_css));
+set(hotspot[get(hsid)].html,get(hotspot[get(hsid)].final_html));
+set(hotspot[get(hsid)].crop,get(hotspot[get(hsid)].final_crop));
+set(hotspot[get(hsid)].onovercrop,get(hotspot[get(hsid)].final_onovercrop));
+    
+
+//quan encara no hi ha el hotspot el crea
+if(!hotspot[calc(hsid + '_content')].name,
+
+	if(!hotspot[get(hsid)].s_gettag,
+		calc(isdata,contains(hotspot[get(hsid)].s_text,'['));
+		calc(text_to_show,isdata?calc(hotspot[get(hsid)].s_text):hotspot[get(hsid)].s_text);
+	,hotspot[get(hsid)].s_gettag,
+		calc(text_to_show,calc(hotspot[get(hsid)].s_gettag));
+		trace(text_to_show);
+	);
+	addhotspot(calc(hsid + '_content'), text_content);
+	text_content.loadstyle('s_hsloc_content_text'); 
+	set(text_content
+		,
+		ath=get(hotspot[get(hsid)].ath)
+		,
+		atv=get(hotspot[get(hsid)].atv)
+		,
+		html=get(text_to_show)
+		,
+		alpha="0"
+		,
+		oy=get(hotspot[get(hsid)].content_oy)
+		,
+		ox=get(hotspot[get(hsid)].content_ox)
+		,
+		edge=get(hotspot[get(hsid)].content_edge)
+		,
+		onclick=calc('callwith(hotspot[' + hsid + '],onclick);')
+		,
+		distorted=get(hotspot[get(hsid)].distorted)
+		,
+		zoom=get(hotspot[get(hsid)].zoom)
+		,
+		css=get(hotspot[get(hsid)].content_css)
+		,
+		padding=get(hotspot[get(hsid)].content_padding)
+		,
+		vcenter=get(hotspot[get(hsid)].content_vcenter)
+		,
+		bgalpha=get(hotspot[get(hsid)].content_bgalpha)
+		,
+		bgcolor=get(hotspot[get(hsid)].content_bgcolor)
+		,
+		bgborder=get(hotspot[get(hsid)].content_bgborder)
+		,
+		bgroundedge=get(hotspot[get(hsid)].content_bgroundedge)
+		,
+		max_width=get(hotspot[get(hsid)].content_max_width)
+		,
+		capture=get(hotspot[get(hsid)].content_capture)
+		,
+		enabled=get(hotspot[get(hsid)].content_enabled)
+		,
+		handcursor=get(hotspot[get(hsid)].content_handcursor)
+		,
+		scale=get(hotspot[get(hsid)].scale)
+		,
+		autoalpha="true"
+		,
+		onloaded=calc('s_hs_loc_recalc_sizes_text(' + hsid + ');');
+
+	);
+//		onautosized=calc('s_hs_loc_recalc_sizes_text(' + hsid + ');')
+//quan ja ha estat creat el hotspot
+, hotspot[calc(hsid + '_content')].name,
+
+    tween(hotspot[calc(hsid + '_line')].alpha,1,get(global.s_loc_hs_config.tween_time)); 
+	tween(hotspot[calc(hsid + '_content')].alpha,1,get(global.s_loc_hs_config.tween_time));
+);	
+
+</action>
+
+		<action name="s_hs_loc_recalc_sizes_text" scope="local" args="hsid">
+//TODO LO DEL MAX SIZE NO FUNCIONA!!!!
+	asyncloop(!caller.width OR !caller.max_width,,
+
+			if (caller.width GT caller.max_width,	
+			trace(caller.name, ' revisat de size');			
+				set(caller.autowidth,false);
+				set(caller.width,get(caller.max_width));
+
+				s_loc_hs_create_line(get(hsid));
+				if(hotspot[calc(hsid + '_line')].bgalpha == hotspot[get(hsid)].line_bgalpha,
+					tween(caller.alpha,1,get(global.s_loc_hs_config.tween_time));
+				);
+				,
+				s_loc_hs_create_line(get(hsid));
+				if(hotspot[calc(hsid + '_line')].bgalpha == hotspot[get(hsid)].line_bgalpha,
+					tween(caller.alpha,1,get(global.s_loc_hs_config.tween_time));
+				);
+			); 
+			delayedcall (0.3,
+				double_check_unlocalize(get(hsid));		
+			);
+	);	
+		</action>
+				<action name="s_loc_hs_create_line" scope="local" args="hsid">
+
+
+					addhotspot(calc(hsid + '_line'), hotspot_line);
+
+					set(hotspot_line
+					,
+					type=get(hotspot[get(hsid)].line_type)
+					,
+					bg=get(hotspot[get(hsid)].line_bg)
+					,
+					bgcolor=get(hotspot[get(hsid)].line_bgcolor)
+					,
+					bgalpha=get(hotspot[get(hsid)].line_bgalpha)
+					,
+					enabled=get(hotspot[get(hsid)].line_enabled)
+					,
+					scale=get(hotspot[get(hsid)].scale)
+					,
+					width=get(hotspot[get(hsid)].line_width)
+					,
+					distorted=get(hotspot[get(hsid)].distorted)
+					,
+					zoom=get(hotspot[get(hsid)].zoom)
+					,
+					edge="bottom"
+					,  
+					ath=get(hotspot[calc(hsid)].ath)
+					,
+					atv=get(hotspot[calc(hsid)].atv)
+					,
+					rotate=get(hotspot[calc(hsid)].line_rotate)
+					,
+					oy=calc(hotspot[calc(hsid)].line_oy + hotspot[calc(hsid)].line_extraoy)
+					,
+					height=calc(hotspot[calc(hsid)].line_height + hotspot[calc(hsid)].line_extraheight)
+
+					);
+		
+				</action>
+
+
+///////////////UN LOC
+
+<action name="s_unlocalize_hs_and_show_text" scope="local" args="hsid">
+
+//line
+tween(hotspot[calc(hsid + '_line')].alpha|hotspot[calc(hsid + '_content')].alpha,0,get(global.s_loc_hs_config.tween_time)); 
+//content 
+//tween(hotspot[calc(hsid + '_content')].alpha,0,get(global.s_loc_hs_config.tween_time));
+//return initial point spot
+tween(hotspot[get(hsid)].width,get(hotspot[get(hsid)].initial_width),get(global.s_loc_hs_config.tween_time)); 
+tween(hotspot[get(hsid)].height,get(hotspot[get(hsid)].initial_height),get(global.s_loc_hs_config.tween_time)); 
+tween(hotspot[get(hsid)].bgroundedge,get(hotspot[get(hsid)].initial_bgroundedge),get(global.s_loc_hs_config.tween_time)); 
+tween(hotspot[get(hsid)].bgalpha,get(hotspot[get(hsid)].initial_bgalpha),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].bgcolor,get(hotspot[get(hsid)].initial_bgcolor),get(global.s_loc_hs_config.tween_time));
+tween(hotspot[get(hsid)].scale,get(hotspot[get(hsid)].initial_scale),get(global.s_loc_hs_config.tween_time));
+set(hotspot[get(hsid)].bgborder,get(hotspot[get(hsid)].initial_bgborder));
+set(hotspot[get(hsid)].bgshadow,get(hotspot[get(hsid)].initial_bgshadow));
+set(hotspot[get(hsid)].css,get(hotspot[get(hsid)].initial_css));
+set(hotspot[get(hsid)].html,get(hotspot[get(hsid)].initial_html));
+set(hotspot[get(hsid)].crop,get(hotspot[get(hsid)].initial_crop));
+set(hotspot[get(hsid)].onovercrop,get(hotspot[get(hsid)].initial_onovercrop));
+//return to animation 
+tween(hotspot[calc(hsid + '_twin')].alpha,get(hotspot[calc(hsid + '_twin')].action_unlocalized_alpha),get(global.s_loc_hs_config.tween_time),,
+
+set(hotspot[calc(hsid + '_twin')].alpha,get(hotspot[calc(hsid + '_twin')].action_unlocalized_alpha));
+
+
+);
+  
+</action>
+
+<action name="double_check_unlocalize" scope="local" args="hsid">
+
+	if (!hotspot[get(hsid)].s_localized AND (hotspot[calc(hsid + '_line')].alpha GT 0 OR hotspot[calc(hsid + '_content')].alpha GT 0 ),
+		set(hotspot[calc(hsid + '_line')].alpha,0);
+		set(hotspot[calc(hsid + '_content')].alpha,0);
+trace(get(hsid),' alpha fet un cop');
+	);	
+
+
+</action>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CONTENT STYLE CORE
+<style name="s_hsloc_content_text"
+    type="text"
+    bg="true"
+    autowidth="true"
+    autoheight="true"
+    renderer="css3d"
+    oref="2"
+/>
+
+<action name="mov_conversion" scope="local" autorun="preinit" devices="handheld" >
+<!-- trace('for mov');
+set(mov_factor,0.015);
+set(line_factor,0.86);
+for(set(i,0 ), i LT hotspot.count , inc(i),
+set(hotspot[get(i)].distorted,false);
+set(hotspot[get(i)].zoom,true);
+
+calc(hotspot[get(i)].scale,hotspot[get(i)].scale * mov_factor);	
+calc(hotspot[get(i)].final_scale,hotspot[get(i)].final_scale * mov_factor);
+if (hotspot[get(i)].line_bg,
+calc(hotspot[get(i)].line_bg,0);	
+);
+);
+	 -->
+
+</action>
+
+
+</krpano>

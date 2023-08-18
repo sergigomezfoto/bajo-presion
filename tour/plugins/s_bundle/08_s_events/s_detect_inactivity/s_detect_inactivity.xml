@@ -1,0 +1,101 @@
+<krpano>
+
+    //USER INACTIVE
+
+//vars:global.s_useractive = boolean
+
+
+
+
+<events name="s_detect_inactivity" keep="true"  onkeydown="key_s_detect_inactivity" onclick="click_s_detect_inactivity" />
+
+
+
+
+<action name="key_s_detect_inactivity">
+
+
+  if(s_detect_inactivity_key === null
+  ,
+    def(s_detect_inactivity_key,number,0);
+  );
+  if (s_detect_inactivity_key GT 100,
+    set(s_detect_inactivity_key,0);
+  );
+  inc(s_detect_inactivity_key,1);
+
+
+</action>
+<action name="click_s_detect_inactivity">
+
+
+  if(s_detect_inactivity_click === null
+  ,
+    def(s_detect_inactivity_click,number,0);
+  );
+  if (s_detect_inactivity_click GT 100,
+    set(s_detect_inactivity_click,0);
+  );
+  
+  inc(s_detect_inactivity_click,1);
+
+
+</action>
+//TIME TOCHECK: EL TEMPS QUE ESPERA PER COMPROVAR SI ALGO S HA MOGUT
+//VARS IN TRUE: CERTES COSES QUE NO SON INACTIVITAT COM LLEGIR UN POPUP (s'ha de atorar una variable a a questes accions: popup_open = true, fara que es detecti com a 
+// temps actiu, pq està llegint i pot no fer res, però llegir. a la que popup_open sigui false, llavors seguirà buscant moments d inactivitat)
+ <action name="s_detect_inactivity" scope="local" args="timetocheck,vars_in_true"> 
+ 
+
+      set(global.s_useractive,true); 
+      txtadd(checkinactivitybefore,get(mouse.x),get(mouse.y),calc(device.desktop?global.s_detect_inactivity_key:''),get(s_detect_inactivity_click),calc(device.desktop?wheeldelta:''));
+      delayedcall(s_detect_inactivity2,get(timetocheck)
+      ,      
+          txtadd(checkinactivitynow,get(mouse.x),get(mouse.y),calc(device.desktop?global.s_detect_inactivity_key:''),get(s_detect_inactivity_click),calc(device.desktop?wheeldelta:''));  
+          if (checkinactivitybefore !== checkinactivitynow ,          
+            s_detect_inactivity(get(timetocheck),get(vars_in_true));
+          ,
+            s_detect_inactivity_inactive(get(checkinactivitynow),get(timetocheck),get(vars_in_true));
+          );     
+      );
+
+    </action>
+            <action name="s_detect_inactivity_inactive" scope="local" args="lastactive,timetocheck,vars_in_true">  
+             
+
+            set(some_vars_are_true,false);
+
+            setinterval(s_detect_inactivity_inactive,0.3 ,
+                    txtadd(checkinactivitynow,get(mouse.x),get(mouse.y),calc(device.desktop?global.s_detect_inactivity_key:''),get(s_detect_inactivity_click),calc(device.desktop?wheeldelta:''));
+                    
+                    if (vars_in_true,
+                            txtsplit(get(vars_in_true),'|',vars_arr);
+                            copy(vars_number,vars_arr.count);
+                            for(set(i,0), i LT vars_number, inc(i),
+                                if (calc('global.' + vars_arr[get(i)].value)
+                                    ,
+                                        set(some_vars_are_true,true); 
+                                        break();                              
+                                    );   
+                            );            
+                    );  
+                 
+                    
+                    if (checkinactivitynow !== lastactive OR some_vars_are_true
+                    ,
+                          
+                        clearinterval(s_detect_inactivity_inactive);
+                        s_detect_inactivity(get(timetocheck),get(vars_in_true)); 
+                        
+                    ,
+                          if (global.s_useractive,                                              
+                            set(global.s_useractive,false);   
+                          ); 
+                                    
+                    );
+            );  
+          
+
+            </action>
+
+</krpano>

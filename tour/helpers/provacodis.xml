@@ -1,0 +1,295 @@
+﻿<krpano>
+
+
+<action name="vinyette">
+trace('hooola');
+</action>
+<walk_2
+stepspairs="3"
+intensitybounce="2"
+intensityup="1"
+duration="0.45"
+factorreprise="1"
+tweentipes="easeinoutsine"
+reprise="false"
+onend=""
+/>
+
+<walk_movement2
+finalfov="76"
+movementduration="2"
+/>
+
+<action name="stepscamina">
+<!-- stepsinitialfov(); -->
+	steps-pluguin('walk_2');
+tween(view.fov,130,walk_movement2.movementduration)	;
+	delayedcall(calc(walk_2.duration * 3.1)
+		,
+		tween(view.fov,calc(walk_movement2.finalfov),calc(walk_movement2.movementduration),linear);
+	);
+	delayedcall (calc(walk_movement2.movementduration + 0.5 ),
+		//finalwalkaction();
+		loadscene(scene_02, null,  KEEPMOVING ,BLEND(0.3,linear),delayedcall(0,tween(view.fov,120,1)));
+	);
+</action>
+
+<!-- -->
+
+
+		<!--estil default pel text-->
+		<textstyle name="DEFAULT"
+				   origin="topright"
+				   edge="topright"
+				   xoffset="0"
+				   yoffset="0"
+				   fadeintime="0.0"
+				   showtime="5"
+				   fadetime="0.0"
+				   font="Times"
+				   fontsize="12.0"
+				   bold="true"
+				   italic="false"
+				   textcolor="0x000000"
+				   textalign="none"
+				   padding="1"
+				   css="font-family:roboto; font-size:14px; color:#ffffff;"
+				   width=""
+				   height=""
+				   vcenter=""
+				   background="true"
+				   backgroundcolor="0x000000"
+				   backgroundalpha="0.5"
+				   bgborder="false"
+				   bordercolor="0x000000"
+				   borderalpha="1.0"
+				   borderwidth="1.0"
+				   roundedge="0"
+				   shadow="0.0"
+				   shadowrange="4.0"
+				   shadowangle="45"
+				   shadowcolor="0x000000"
+				   shadowalpha="1.0"
+				   textshadow="0.0"
+				   textshadowrange="4.0"
+				   textshadowangle="45"
+				   textshadowcolor="0x000000"
+				   textshadowalpha="1.0"
+				   alpha="1.0"
+				   parent=""
+				   noclip="true"
+				   />
+
+					 <!-- <layer
+					name="test_icone_svg" keep="true" visible="true" url="calc:urlbase.url + '/numeros/t0' + '.png'" crop="0|0|56|60" onovercrop="56|0|56|60" ondowncrop="112|0|56|60" ondown="set(bgcolor,0xffffff);" onup="set(bgcolor,0xeedd99);" css=""  enabled="true" edge="center" align="center" y="0"  width="56" height="60"
+
+ 					onclick="test_copy_2(); "
+ 					    /> -->
+
+
+<action name="preguntacalc">
+trace(
+calc(layer[get(name)].atribut !== null ? ' te atribut: ' + view.hlookat : ' no te atribut: ' + view.hlookat );
+
+);
+
+
+</action>
+<!--acció per fer les layers dragables	-->
+	<action name="draglayer">
+		if(%1 != dragging,
+			copy(drag_currentx, x);
+			copy(drag_currenty, y);
+			copy(drag_stagex, mouse.stagex);
+			copy(drag_stagey, mouse.stagey);
+			set(drag_sx, +1);
+			set(drag_sy, +1);
+			if(align == righttop,    set(drag_sx,-1); );
+			if(align == right,       set(drag_sx,-1); );
+			if(align == rightbottom, set(drag_sx,-1); set(drag_sy,-1); );
+			if(align == bottom,      set(drag_sy,-1); );
+			if(align == leftbottom,  set(drag_sy,-1); );
+			draglayer(dragging);
+		  ,
+			if(pressed,
+				sub(dx, mouse.stagex, drag_stagex);
+				sub(dy, mouse.stagey, drag_stagey);
+				mul(dx, drag_sx);
+				mul(dy, drag_sy);
+				add(x, drag_currentx, dx);
+				add(y, drag_currenty, dy);
+				delayedcall(0, draglayer(dragging) );
+			  );
+		  );
+	</action>
+  <!-- the action for dragging the layer elements - call it once in the ondown event -->
+  <action name="draglayer2">
+    copy(drag_currentx, x);
+    copy(drag_currenty, y);
+    copy(drag_stagex, mouse.stagex);
+    copy(drag_stagey, mouse.stagey);
+    indexoftxt(align_contains_right, get(align), 'right');
+    indexoftxt(align_contains_bottom, get(align), 'bottom');
+    calc(drag_align_x, align_contains_right GE 0 ? -1 : +1);
+    calc(drag_align_y, align_contains_bottom GE 0 ? -1 : +1);
+    asyncloop(pressed,
+      calc(x, drag_currentx + (mouse.stagex - drag_stagex)*drag_align_x);
+      calc(y, drag_currenty + (mouse.stagey - drag_stagey)*drag_align_y);
+      );
+  </action>
+
+
+
+
+
+<!--...............................................-->
+<!--...............................................-->
+<!--..................CREA SLIDERS.................-->
+<!--...............................................-->
+<!--...............................................-->
+
+<!--barreta_accio(1 nom  etiqueta,2 numero valor més alt,3 posicio x,4 posició en y,5 data variables,6 accio boto verd si no hi ha res refrescarà,7 acció dragging,8 accio no dragging, 9 mida de la barra);-->
+<!--barreta_accio(set north,360,0,0,nort,angle_inicial_verd,angle_inicial_drag();,angle_inicial_nodrag();,250);-->
+<!--barreta_accio(mida,1000,0,0,nort,angle_inicial_verd,angle_inicial_drag();,angle_inicial_nodrag();,250);-->
+
+<action name="barreta_accio">
+
+calc(linia_mare, '%1' + '_l');
+calc(camp_definicio, '%1' + '_t');
+addplugin(get(linia_mare));
+plugin[get(linia_mare)].loadstyle(slider_l);
+if(%9
+,
+set(plugin[get(linia_mare)].width,%9);
+,
+);
+addplugin(%1);
+plugin[%1].loadstyle(boleta_slider);
+set(plugin[%1].dragging, barreta(%1,%7,%8););
+set(plugin[%1].parent,get(linia_mare));
+set(plugin[%1].data_vmitg, %2);
+creartext(get(camp_definicio),%1,-16,0,get(linia_mare),calc,false);
+tween(plugin[get(linia_mare)].x,%3);
+tween(plugin[get(linia_mare)].y,%4);
+set(plugin[get(linia_mare)].enabled,true);
+set(plugin[get(linia_mare)].visible,true);
+set(plugin[get(linia_mare)].keep,true);
+ifnot(plugin[refrescar] !== null
+,
+	addplugin(refrescar);
+	plugin[refrescar].loadstyle(refrescar);
+	set(plugin[refrescar].parent,get(linia_mare));
+	tween(plugin[refrescar].x,-30);
+	tween(plugin[refrescar].y,0);
+	if(%6 != null
+	,
+        set(accio_previa,%6);
+		set(plugin[refrescar].onclick,%6);
+	,
+		set(plugin[refrescar].onclick,refrescar(););
+	);
+,
+	<!--set(yref, get(plugin[refrescar].y));
+	calc(yreff, yref + 15 );
+	tween(plugin[refrescar].y, get(yreff));-->
+	txtadd(accions_a_onclick,%6, get(accio_previa));
+	set(plugin[refrescar].onclick,get(accions_a_onclick));
+
+);
+set(valormitg, %2);
+if(%5,
+	calc(passos, valormitg / plugin[get(linia_mare)].width);
+	calc(posicio, %5 / passos);
+	roundval(posicio);
+	tween(plugin[%1].x,get(posicio));
+
+,
+	calc(valor_aprox, %2 / 2);
+	set(%5,get(valor_aprox));
+	calc(passos, valormitg / plugin[get(linia_mare)].width);
+	calc(posicio, %5 / passos);
+	roundval(posicio);
+	tween(plugin[%1].x,get(posicio));
+);
+
+</action>
+
+		<action name="barreta">
+			if(pressed
+			,
+				  set(valor_mig_bo, get(data_vmitg));
+				  sub(dx, mouse.stagex, drag_stagex);
+				  add(newx, drag_currentx, dx);
+
+				  if(newx LT 0
+				  ,
+					  set(newx,0)
+				  );
+				  if(newx GT plugin[get(parent)].width
+				  ,
+					  copy(newx,plugin[get(parent)].width)
+				  );
+				  copy(x,newx);
+				  div(vap, newx, plugin[get(parent)].width);
+				  calc(val,vap * valor_mig_bo);
+				  roundval(val,2);
+				  %2
+				  delayedcall(0,dragging());
+			,
+				  %3
+			);
+			</action>
+			<!--crea el text de l'slider (width o height o rotació, etc-->
+			<action name="creartext">
+			addplugin(%1);
+			plugin[%1].loadstyle(%6);
+			set(plugin[%1].parent,%5);
+			set(plugin[%1].align,left);
+			set(plugin[%1].y, %3);
+			set(plugin[%1].x,%4);
+			set(plugin[%1].autowidth, auto);
+			set(plugin[%1].autoheight, auto);
+			set(plugin[%1].html, %2);
+			set(plugin[%1].enabled,%7);
+			set(plugin[%1].onclick,%8);
+			set(plugin[%1].%9,%10);
+			set(plugin[%1].%11,%12);
+			set(plugin[%1].%13,%14);
+			</action>
+
+<!--............................................-->
+<!--ACCIONS A UTILITZAR AMB EL BARRETA ACCIÓ-->
+<!--............................................-->
+
+<!--............-->
+<!--..width.....-->
+<!--............-->
+
+<!--cambia el width quan fa dragg	-->
+<action name="cambia_width">
+set(layer[get(nom_layer)].width,get(val));
+showtext(get(val), STYLE5);
+</action>
+
+<!--mostra el text a l'etiqueta 'creartext' del resultat de canviar el width-->
+<action name="finalwidth">
+set(plugin[width_t].html,calc('width: ' + val) );
+</action>
+
+<!--............-->
+<!--..height.....-->
+<!--............-->
+
+<!--cambia el height quan fa dragg	-->
+<action name="cambia_height">
+set(layer[get(nom_layer)].height,get(val));
+showtext(get(val), STYLE5);
+</action>
+
+<!--mostra el text a l'etiqueta 'creartext' del resultat de canviar el height-->
+<action name="finalheight">
+set(plugin[height_t].html,calc('height: ' + val) );
+</action>
+
+
+</krpano>

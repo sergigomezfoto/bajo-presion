@@ -1,0 +1,406 @@
+<krpano>
+
+ 
+////////////////////////////////////////////////////////// CONFIG
+<s_config_spui_buttons
+height="24"
+width="100"
+separation="2"
+/>
+<s_config_spui_pieces
+height="110"
+width="100"
+separation="2"
+oytype="-20"
+oycontent="0"
+oydelay="0"
+oyelapsed="-50"
+oxelapsed="0"
+/>
+
+////////////////////////////////////////////////////////// BACKGROUND
+//parent="OVERLAY"
+<style name="s_show_pieces_ui_bg"
+type="container"
+bg="true"
+bgcolor="0x000000"
+bgborder="1,0,0,0 0X8f8f8f 1"
+bgalpha="1"
+width="100%"
+height="210"
+align="bottom"
+edge="BOTTOM"
+oy=""
+parent="BGLAYER"
+handcursor="false"    
+
+/>
+
+////////////////////////////////////////////////////////// TOOLS
+
+    <style name="s_spui_tools"
+    type="container"
+    bg="true"
+    bgcolor="0x8f8f8f"
+    bgalpha="1"
+    width="100%"
+    height="26"
+    align="lefttop"       
+    />
+        <style name="s_spui_tools_rec_pause"
+        type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(!s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(!s_autotour_recording,s_out_action_rec_tools);"
+        html="get:s_autotour_record_config.ui_rec_button_paused"  
+        height="get:s_config_spui_buttons.height"
+        width="get:s_config_spui_buttons.width"
+        ox="get:s_config_spui_buttons.separation"
+        padding="6"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;"
+        align="left" 
+        alpha="1"  
+        s_autotour_excluded="true"
+        
+        />
+                       
+
+        <style name="s_spui_tools_delete_all_pieces"
+        type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(!s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(!s_autotour_recording,s_out_action_rec_tools);"
+        html="get:s_autotour_record_config.ui_delete_all_pieces"  
+        height="get:s_config_spui_buttons.height"
+        width="get:s_config_spui_buttons.width"
+        ox="calc:(s_config_spui_buttons.width * 1 ) + ( s_config_spui_buttons.separation * 2 )"
+        padding="6"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;"
+        align="left" 
+        alpha="1"  
+        s_autotour_excluded="true"
+          
+        />
+
+        <style name="s_spui_tools_delete_last_piece"
+        type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(!s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(!s_autotour_recording,s_out_action_rec_tools);"
+        html="get:s_autotour_record_config.ui_delete_last_piece"  
+        height="get:s_config_spui_buttons.height"
+        width="get:s_config_spui_buttons.width"
+        ox="calc:(s_config_spui_buttons.width * 2 ) + ( s_config_spui_buttons.separation * 3 )"
+        padding="6"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;"
+        align="left" 
+        alpha="1"  
+        s_autotour_excluded="true"
+         
+        />
+
+////////////////////////////////////////////////////////// INFO
+
+    <style name="s_spui_info"
+    type="container"
+    bg="true"
+    bgcolor="0x333333"
+    bgalpha="1"
+    width="100%"
+    height="30"
+    align="lefttop" 
+    oy="26"  
+    s_autotour_excluded="true"    
+    />
+        <style name="ui_spui_info_text_total_time"
+            type="text"
+            html="total pieces: 0 total time: 0.00[dq]  "
+            bg="false"
+            enabled="false"
+            align="left"
+            edge="left"
+            css="color:#666666; font-size:12px;"
+            padding="6"
+            s_autotour_excluded="true"
+            />
+       
+
+////////////////////////////////////////////////////////// THUMBS PIECES
+    <style name="s_spui_visual_pieces_bg"
+        type="container"
+        bg="true"
+        bgcolor="0x65434f"
+        bgalpha="1"
+        width="100%"
+        height="110"
+        align="leftbottom"    
+        s_autotour_excluded="true"
+    />
+            <style name="ui_spui_visual_line_scrollarea"
+                url="%FIRSTXML%/plugins/scrollarea.js"
+                parent="s_spui_visual_pieces_bg"
+                align="lefttop" width="300" height="100%"
+                direction="h"
+                draggable="true"
+                capturechildren="true"
+                parentmaskchildren="false"
+                mwheel="true"
+                onhover_autoscrolling="false"
+                overscroll="1.0"
+                friction="0.95"
+                acceleration="0.08"
+                returnacceleration="0.15"
+                momentum="0.06"
+                onscroll=""
+                s_autotour_excluded="true"
+            />
+
+            <style name="ui_spui_piece_n"
+            parent="ui_spui_visual_line_scrollarea"
+            type="text"
+            width="get:s_config_spui_pieces.width"
+            height="get:s_config_spui_pieces.height"
+            bg="true"
+            bgcolor="0x30cd12"
+            bgalpha="1"
+            css="color:#ffffff; font-size:14px;text-align: center;"
+            enabled="true"
+            align="left"
+            onclick=""
+            s_autotour_excluded="true"
+            padding="6"
+            />
+                <style name="ui_spui_piece_type_delay"
+                type="text"
+                bg="false"
+                enabled="false"
+                align="top"
+                edge="top"
+                css="color:#ffffff; font-size:16px;text-align: center;"
+                oy="get:s_config_spui_pieces.oytype"
+                s_autotour_excluded="true"
+                />
+                <style name="ui_spui_piece_content"
+                type="text"
+                bg="true"
+                bgcolor="0x000000"
+                bgalpha="0.2"
+                enabled="false"
+                align="center"
+                edge="center"
+                css="color:#ffffff; font-size:11px;"
+                padding="6"
+                oy="get:s_config_spui_pieces.oycontent"
+                s_autotour_excluded="true"
+                />
+                <style name="ui_spui_piece_delay"
+                type="text"
+                bg="false"
+                enabled="false"
+                align="top"
+                edge="bottom"
+                css="color:#ffffff; font-size:14px;"
+                padding="6"
+                oy="get:s_config_spui_pieces.oydelay"
+                s_autotour_excluded="true"
+                />
+                <style name="ui_spui_piece_elapsed"
+                type="text"
+                bg="true"
+                bgcolor="0x4f4f4f"
+                html="aaaaaa"
+                enabled="true"
+                align="left"
+                edge="center"
+                css="color:#ffffff; font-size:9px;"
+                padding="3"
+                oy="get:s_config_spui_pieces.oyelapsed"
+                ox="get:s_config_spui_pieces.oxelapsed"
+                s_autotour_excluded="true"
+                />
+                
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//RECORD ADVICER
+ <style name="s_spui_tools_rec_advicer"
+    type="text"
+    bg="true"
+    width="25"
+    height="25"
+    bgroundedge="25"
+    bgcolor="0xd40710"
+    alpha="0"
+    align="lefttop"
+    oy="50"
+    ox="50"
+    enabled="false"    
+    parent="STAGE"
+    onloaded="s_atribute_blink(bgalpha,0.4,1,0.5,0.5,,true);"
+    s_autotour_excluded="true"
+/>
+ <style name="ui_spui_info_text_time_since_last"
+    type="text"
+    html=""
+    bg="false"
+    enabled="false"
+    align="topleft"
+    ox="80"
+    css="color:#d40710; font-size:20px; font-weight:bold;"
+    padding="6"
+    oy="45"
+    alpha="1"
+    s_autotour_excluded="true"
+    parent="STAGE"
+/>
+//MOVE ADVICER
+<style name="s_get_view_recordautotour_capture"
+  type="text"  
+  html="MOVE TO PLACE"
+  css="font-family:Arial; font-size:50px; color:#ffffff;text-align:center;"
+  vcenter="true"
+  s_autotour_excluded="true"
+  width="100%"
+  height="100%"
+  bg="true"
+  bgcolor="0x4236dc"
+  bgalpha="0.5"
+  enabled="false"
+  parent="OVERLAY"
+/>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//HELPER BUTTONS
+
+<style name="s_helper_buttons"
+    type="container"
+    bg="true"
+    bgcolor="0x8f8f8f"
+    bgalpha="1"
+    width="200"
+    height="27"
+    parent="STAGE"
+    align="bottom"
+    y="156"   
+/>
+
+    <style name="s_fr_right"
+        type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(s_autotour_recording,s_out_action_rec_tools);"
+        html="⭮"  
+        height="get:s_config_spui_buttons.height"
+        width="40"
+        ox="2"
+        padding="2"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;font-size:16px"
+        align="left" 
+        alpha="1"  
+        s_autotour_excluded="true"
+         
+        />
+    <style name="s_fr_left"
+        type="text"
+        bg="true"
+        bgalpha="1"
+            bgcolor="0x717171"
+            bgcolor1="0x717171"
+            bgcolor2="0xa0a0a0"
+            bgcoloractive="0xb5b5b5"
+            onhover="if(s_autotour_recording,s_hover_action_rec_tools);"
+            onout="if(s_autotour_recording,s_out_action_rec_tools);"
+        html="⭯"  
+        height="get:s_config_spui_buttons.height"
+        width="40"
+        ox="44"
+        padding="2"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;font-size:16px"
+        align="left" 
+        alpha="1"  
+        s_autotour_excluded="true"
+         
+        />
+    <style name="s_autotour_tape_ejected"
+        type="text"
+        bg="true"
+        bgalpha="1"
+        bgcolor="0x717171"
+        html="hola"  
+        height="350"
+        width="400"
+        ox="44"
+        padding="2"
+        vcenter="true"
+        css="color:#ffffff;text-align:center;font-size:16px"
+        align="center" 
+        alpha="1"  
+        s_autotour_excluded="true"
+        parent="STAGE" 
+        />
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//BUTTON ACTIONS
+
+<action name="s_hover_action_rec_tools">
+
+    set(bgcolor,get(bgcolor2));
+    
+</action>
+
+<action name="s_out_action_rec_tools">
+
+    set(bgcolor,get(bgcolor1));    
+
+</action>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

@@ -1,0 +1,338 @@
+<krpano>
+
+//[0] get the cassete
+<action autorun="onstart">
+    set(s_set_recorded_autotour_cassette,get(data[s_set_recorded_autotour_tape].content));    
+    s_callwhen(play_while_recording,play_while_recording,
+    set(s_set_recorded_autotour_cassette,get(s_set_just_recorded_autotour_cassette));
+    );
+    s_callwhen(not_play_while_recording,!play_while_recording,
+    set(s_set_recorded_autotour_cassette,get(data[s_set_recorded_autotour_tape].content));
+    ,
+    true
+    );
+    if (s_autotour_recored_module, 
+        s_kp_string_to_array();
+    );
+    
+</action>
+
+<action name="s_kp_string_to_array" type="javascript">
+<![CDATA[
+    var kp_string = krpano.get('data[s_set_recorded_autotour_tape].content'); 
+    var reform_array = kp_string.split('*');
+        reform_array.shift();
+    s_autotour.recorded = reform_array
+    //console.log(s_autotour.recorded);
+        krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+        krpano.set("s_current_timestampinit_time",1);
+        krpano.call("s_spui_piece_autogenerate()");
+        var s_lrai = s_autotour.recorded[s_autotour.recorded.length - 1];
+            var s_lraiplited = s_lrai.split('|');
+                var s_lrai_type = s_lraiplited[0];
+                var s_lrai_delay = Number(s_lraiplited[2]);
+                var s_lrai_mtime = Number(s_lraiplited[3]);
+        if(s_autotour.recorded.length >= 1){
+            if(s_lrai_type !== 'v' && s_lrai_type !== 'f'){
+            krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay) * 1000 + ');');
+            }else{
+                krpano.call('calc(s_last_timestamptick,' + (s_lrai_delay + s_lrai_mtime) * 1000 + ');');
+            }            
+        };
+]]>
+</action>
+
+
+<data name="s_set_recorded_autotour_tape">
+<![CDATA[*i|scene_01:150,0,120|0.002|res_1*v|-77.617788930621,4.070463737687036,120|1.16|2.252*l|sdummy1trattatatatattartartartar_iojsihia|5.886*l|sdummy4|6.377*l|sdummy2|7.095*v|127.55829857416025,0.18387142740045576,120|7.92|1.7200000000000006*f|right|11.076|2.004999999999999*l|sdummy1trattatatatattartartartar_iojsihia|13.909*l|sdummy4|14.586*p|1.055|15.641]]>
+</data>
+
+<action name="s_autotour_player_setup_sound">
+
+set(s_init_sound_name,get(s_set_recorded_autotour_cassette));
+txtsplit(get(s_init_sound_name),'*',s_init_sound_name_arr);
+txtsplit(get(s_init_sound_name_arr[1].value),'|',s_init_sound_name_arr_arr);
+    if (s_init_sound_name_arr_arr[3].value !== 'undefined'
+    ,
+        set(s_autotour_general_sound,get(s_init_sound_name_arr_arr[3].value));
+        txtsplit(get(s_autotour_general_sound),'_',s_autotour_general_sound_parsed,s__);
+        //trace(get(s_autotour_general_sound_parsed));
+        if(!layer[soundinterface_s_autotour].name
+        ,
+            s_autotour_play_create_sound_interface_for_the_audio();    
+        ,
+            //trace('TOT LO DEL AUDIO A PUNT CREAT');      
+        );
+    );
+
+</action>
+
+//[1BIS]setup so
+
+<s_events name="s_autotour_sounds"  onwindowvisible="pauseallsounds(); " onwindowinvisible="pauseallsounds(); trace('he fet això');" />
+
+
+<action name="s_autotour_play_create_sound_interface_for_the_audio">
+
+asyncloop(image.loadstate !== 3 AND s_firstclick_done,,
+
+    addlayer('soundinterface_s_autotour',soundinterface_s_autotour);
+    set(soundinterface_s_autotour,
+        url="%FIRSTXML%/plugins/s_bundle/13_s_autotour/s_play_autotour/assets/soundinterface.js"
+        ,
+        preload="true"
+        ,
+        keep="true"
+        ,
+        volume="1"
+        ,
+        autounlock="false"
+        ,
+        onloaded="set(s_autotour_soundinterface_loaded,true);"
+        ,
+    );
+    asyncloop(!s_autotour_soundinterface_loaded AND s_init_sound_name_arr_arr[3].value,,
+
+            createsound(get(s_autotour_general_sound),calc('%FIRSTXML%/plugins/s_bundle/13_s_autotour/media/' + s_autotour_general_sound_parsed + '.mp3'));
+            playsound(get(s_autotour_general_sound)); 
+            asyncloop(!sound[get(s_autotour_general_sound)].duration AND s_autotour_general_sound ,trace('---loading soundinterface---'),
+                stopsound(get(s_autotour_general_sound)); 
+                if(s_autotour_recored_module,
+                        calc( s_autotour_general_audio_name, s_autotour_general_sound_parsed + '.mp3');
+                        addlayer('s_main_sound',s_main_sound);
+                        s_main_sound.loadstyle('s_main_sound');
+                        set(s_main_sound
+                            ,
+                            keep="true"
+                            ,
+                            html=calc(s_autotour_general_sound + '.mp3 - ' + roundval(sound[get(s_autotour_general_sound)].duration /60 ,2) + '[sq]');
+                            ,
+                            onloaded=""
+                        );
+                        s_autotour_sound_insert_ini();
+                );
+            );
+   
+    );
+);
+
+</action>
+
+<action name="s_add_sound_visual_layer" type="javascript"><![CDATA[
+ var s_frai = s_autotour.recorded[0];
+            var s_fraipited = s_frai.split('|');
+            var s_frai_mtime = s_fraipited[3];
+    krpano.call('s_autotour_add_main_sound(' + s_frai_mtime +'.mp3)'); 
+]]></action>
+
+
+//[1]split the cassete in pieces
+<action name="s_start_play_split_cassette_pieces" scope="local" args="cassette">
+
+txtsplit(get(cassette),'*',cassette_piece); 
+set(global.s_player_autotour_total_pieces_count,get(cassette_piece.count));
+for(set(i, 0), i LT cassette_piece.count, inc(i),
+        s_create_actions_from_cassette_pieces(get(cassette_piece[get(i)].value),get(i),get(cassette_piece.count));  
+);
+</action>
+
+//[2]CREATE PLAYABLE ACTIONS FROM PIECES
+<action name="s_create_actions_from_cassette_pieces" scope="local" args="cassette_piece,no,total_pieces">
+//trace('creoa_accions');
+txtsplit(get(cassette_piece),'|',piece_type,piece_content,piece_delay,piece_motion_time);
+if (piece_delay - global.s_last_piece_called GE 0,
+    if ( piece_type === 'i',
+         txtsplit(get(piece_content),':',iniscene,inilookat);
+         txtsplit(get(inilookat),',',ih,iv,ifo);
+         calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' + 's_cassette_piece_init(' + iniscene + ',' + piece_delay + ',' + ih + ',' + iv + ',' + ifo + ',' + piece_motion_time + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+         
+        ,piece_type === 's',
+             calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' + 's_cassette_piece_scene(' + piece_content + ',' + piece_delay + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+        
+        ,piece_type === 'h' OR piece_type === 'l',
+            if (piece_type === 'l',
+                calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' +  's_cassette_piece_layer(' + piece_content + ',' + piece_delay + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+                ,piece_type === 'h',
+                calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' +  's_cassette_piece_hotspot(' + piece_content + ',' + piece_delay + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+            );
+        
+        ,piece_type === 'v',
+            txtsplit(get(piece_content),',',h,v,f);
+            calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' + 's_cassette_piece_view(' + h + ',' + v + ',' + f + ',' + piece_delay + ',' + piece_motion_time + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+        
+        ,piece_type === 'f',
+            calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' + 's_cassette_piece_fr(' + piece_content + ',' + piece_delay + ',' + piece_motion_time + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+        
+        ,piece_type === 'p',
+            calc(calc_action,'delayedcall(piece_' + no + ',' +  (piece_delay - global.s_last_piece_called ) + ',' + 's_cassette_piece_pause(' + piece_content + ',' + piece_delay + ');s_cassette_piece_end(' + no + ',' + total_pieces + '););');
+        
+    );
+    scope(global,calc(calc_action));
+);
+</action>
+      
+
+
+        <action name="s_cassette_piece_init" scope="local" args="iniscene,piece_delay,ih,iv,ifo,mainsound">
+
+
+            if (xml.scene !== iniscene,
+            loadscene(get(iniscene),null, MERGE );
+            );        
+            lookat(get(ih),get(iv),get(ifo));
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov + '|' + piece_delay );
+            if(sound[get(s_autotour_general_sound)].paused,
+
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+        </action>
+
+        <action name="s_cassette_piece_scene" scope="local" args="piece_content,piece_delay">
+            loadscene( get(piece_content),null, MERGE );
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov );
+            if(sound[get(s_autotour_general_sound)].paused,
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+        </action>
+
+        <action name="s_cassette_piece_layer" scope="local" args="piece_content,piece_delay">
+            callwith(layer[get(piece_content)],onclick);
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov );
+            if(sound[get(s_autotour_general_sound)].paused,
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+        </action>
+
+        <action name="s_cassette_piece_hotspot" scope="local" args="piece_content,piece_delay">
+            callwith(hotspot[get(piece_content)],onclick);
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov );
+            if(sound[get(s_autotour_general_sound)].paused,
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+        </action>
+
+        <action name="s_cassette_piece_view" scope="local" args="h,v,f,piece_delay,piece_motion_time">
+            adjusthlookat(h);            
+            tween(view.hlookat|view.vlookat|view.fov,calc(h + '|' + v + '|' + f),get(piece_motion_time),easeinoutquad); 
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov );
+            
+            if(sound[get(s_autotour_general_sound)].paused,
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+
+        </action>
+
+        <action name="s_cassette_piece_fr" scope="local" args="piece_content,piece_delay,piece_motion_time">
+            tween(view.hlookat,calc(piece_content === 'right' ? view.hlookat + 360 : view.hlookat - 360),get(piece_motion_time),easeinoutquad); 
+            set(global.s_last_piece_called,get(piece_delay));
+            calc(global.s_last_v_point,xml.scene + '|' + view.hlookat + '|' + view.vlookat + '|' + view.fov );
+            if(sound[get(s_autotour_general_sound)].paused,
+               s_autotour_play_general_sound_player(get(piece_delay),get(global.s_autotour_general_sound));
+            );
+        </action>
+
+        <action name="s_cassette_piece_pause" scope="local" args="piece_content,piece_delay">
+        
+          //trace('soc una pause');  
+        
+        </action>
+
+        <action name="s_cassette_piece_end" scope="local" args="no,total_pieces">
+        //trace(no,' / ',total_pieces);
+        
+            if (no GE total_pieces - 1,
+                s_clear_all_delayed_calls();
+                 s_stop_autotour();
+                 //trace('finaaal');
+            );
+        </action>
+                //KILL ALL DELAYED CALL ACTIONS
+                <action name="s_clear_all_delayed_calls" scope="local">
+                    set(total_pieces,get(global.s_player_autotour_total_pieces_count));
+                    for(set(i, 0), i LT total_pieces , inc(i),
+                        stopdelayedcall(calc('piece_' + i));   
+                    );
+                </action>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//FUNCIONS PLAY PAUSA STOP
+<s_events name="s_play_pause_autotour_absent" onwindowvisible="" onwindowinvisible="if(s_autotour_play,s_play_pause_autotour(););"/> 
+//PLAY PAUSE
+<action name="s_play_pause_autotour">
+    toggle(s_autotour_play);
+    txtsplit(get(s_last_v_point),'|',s_lvp_arr);
+    if (s_autotour_play
+    ,   
+        set(layer[s_autotour_ui_play_pause_recorded_autotour].html,'pause');
+        s_start_play_split_cassette_pieces(get(s_set_recorded_autotour_cassette)); 
+        if (s_last_v_point,
+          s_autotour_go_to_lvp(get(s_lvp_arr[0].value),get(s_lvp_arr[1].value),get(s_lvp_arr[2].value),get(s_lvp_arr[3].value),false);
+        );      
+    ,
+        s_autotour_pause_general_sound_player(0,get(s_autotour_general_sound));
+        set(layer[s_autotour_ui_play_pause_recorded_autotour].html,'play');
+        s_clear_all_delayed_calls();
+        stoptween(view.hlookat,view.vlookat,view.fov);
+        if (s_last_v_point,
+            s_autotour_go_to_lvp(get(s_lvp_arr[0].value),get(s_lvp_arr[1].value),get(s_lvp_arr[2].value),get(s_lvp_arr[3].value),true);
+        );
+    );
+</action>
+
+<action name="s_autotour_play_general_sound_player" scope="local" args="seek,soundname">
+
+    seeksound(get(soundname), get(seek));playsound(get(soundname));
+
+</action>
+<action name="s_autotour_pause_general_sound_player" scope="local" args="seek,soundname">
+
+     seeksound(get(soundname), get(seek)); pausesound(get(soundname)); pauseallsounds();
+
+</action>
+
+<action name="s_autotour_go_to_lvp" scope="local" args="s,h,v,f,p">
+ 
+if (s !== xml.scene,
+    loadscene(get(s),null,MERGE);
+); 
+if (p,
+    lookto(calc(h),calc(v),calc(f));
+,
+    lookat(calc(h),calc(v),calc(f));
+);
+
+</action>
+
+//STOP AUTOTOUR
+<action name="s_stop_autotour">
+////////////////////////////player del recorder
+set(layer[s_autotour_ui_play_pause_recorded_autotour].crop,0|0|25|25); delete(s_button_stopped);
+/////////////////////////////
+s_autotour_pause_general_sound_player(0,get(s_autotour_general_sound));
+    set(layer[s_autotour_ui_play_pause_recorded_autotour].html,'play');
+    set(s_autotour_play,false);
+    stoptween(view.hlookat,view.vlookat,view.fov);
+    s_clear_all_delayed_calls();
+    set(global.s_last_piece_called,0);
+
+</action>
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//STORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<action name="s_store_redux_s_autotour_play_stop_pause" autorun="preinit">
+set(s_autotour_play,false);
+set(s_last_piece_called,0);
+</action>
+
+</krpano>

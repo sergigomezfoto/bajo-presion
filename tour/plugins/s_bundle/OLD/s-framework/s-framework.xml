@@ -1,0 +1,202 @@
+<krpano>
+<!-- SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL SBLOCKALL -->
+<!-- s-blockall(true|false); no mouse no buttons no nothing but cursor  -->
+<action name="s-blockall" args="bool,lzorder" scope="local">
+if (bool
+	,
+	if (lzorder,
+		set(layer[s-invisible-bloking-layer].zorder,get(lzorder));
+	);
+	set(layer[s-invisible-bloking-layer].alpha,1);
+	set(control.usercontrol,"off");
+	,
+	set(control.usercontrol,"all");
+    set(layer[s-invisible-bloking-layer].alpha,0);
+);
+</action>
+ <cursors standard="default" dragging="move" moving="move" />
+<layer name="s-invisible-bloking-layer" keep="true" style="s-invisible-bloking-layer"/>
+							<style name="s-invisible-bloking-layer"
+								 keep="true" 
+								 preload="true" 
+								 type="container" 
+								 autoalpha="true" 
+								 alpha="0" 
+								 width="100%" 
+								 height="100%" 
+								 bgcolor="0x0076c6" 
+								 bgalpha="0" 
+								 enabled="true" 
+								 bgcapture="true"
+								 handcursor="true" 
+								 cursor="none"
+								 zorder="900000000000"
+							/>
+
+
+<!-- SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC  SCINEMATIC -->
+<!-- s-cinematic(true|false); control no mouse no buttons no cursor -->
+<action name="s-cinematic" args="bool" scope="local">
+if (bool
+	,
+s-blockall(true);
+copy(global.s-var-cinematic,cursors.standard);
+set(cursors.standard,'none');
+	,
+s-blockall();
+set(cursors.standard,get(global.s-var-cinematic));	
+);	
+	
+</action>
+  <!-- SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER -->
+<!-- s-changepointer('cursor-key layer') ||reset-> s-changepointer('cursor-key',off)  -->
+<!--<style name="cursor-key"
+type="image"
+url="%FIRSTXML%/skin/img/cursor.png"
+visible="false"
+alpha="0"
+enabled="false"
+zorder="1000000000000000000000000000000000000000000000"	
+/>
+<layer name="cursor-key" keep="true" style="cursor-key"	/> -->
+<!-- onover="s-changepointer('cursor-key')" onout="s-changepointer(off)" -->
+
+
+  <action name="s-changepointer" args="picture,second" scope="local">
+
+ if (second === null
+ ,
+			set(layer[calc(picture)].alpha,1);
+			copy(global.s-var-changepointer,cursors.standard);
+			set(cursors.standard,'none');
+
+
+			setinterval(calc(picture), 0, 
+						copy(layer[calc(picture)].y, mouse.y);
+						copy(layer[calc(picture)].x, mouse.x);	
+						set(layer[calc(picture)].visible,true );	
+						set(layer[calc(picture)].alpha,1);
+				);
+,
+			clearinterval(calc(picture));
+			set(layer[calc(picture)].alpha,0); 
+			set(layer[calc(picture)].visible,false );
+			set(cursors.standard,get(global.s-var-changepointer));	
+			
+);		
+  </action>
+
+ <!-- SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE SROTATE -->
+ 
+ <action name="s-rotate" args="sname,svalue,stime,tweentype,doneactions" scope="local">
+
+if (hotspot[get(sname)].torigin !== null
+	,
+	tween(hotspot[get(sname)].rotate,get(svalue),get(stime),get(tweentype),get(doneactions));
+	,
+	tween(layer[get(sname)].rotate,get(svalue),get(stime),get(tweentype),get(doneactions));
+);
+  	
+ </action>
+
+
+<!-- SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG-->
+<!-- TODO NOMES FUNCIONA AMB LOCAL -->
+<action name="s-log" scope="local" args="" >
+
+	trace(args.length);
+		
+	for(set(i, 0), i LT args.length , inc(i),
+	
+		trace('[ ',args[get(i)],' ]: ', calc(args[get(i)]));
+
+	);
+</action>
+
+<!-- FIND NEAREST ARRAY VALUE-->
+<!-- TODOOOOOOOO -->
+<action name="s_nearest_array_value" scope="local" args="n_array,var_n">
+
+txtsplit(get(),'|',numb_array);
+<!-- calc(frame,401); -->
+def(bigger_numbers_array,array);
+//if ( frame === calc(caller.imageheight - frameheight),);
+
+  for(set(f, 0), f LT numb_array.length, inc(f),
+    <!--     if (frame !== min(stay_places[get(f)],frame),                                
+        trace('el numero final, [',frame,'] es MÉS GRAN que ',stay_places[get(f)]);
+
+        ); -->
+
+       if (var_n !== min(numb_array[get(f)],get(var_n)),                                
+       <!--  trace('el numero final, [',calc(forsanumero),'] es MÉS GRAN que ',stay_places[get(f)]); -->
+        set(bigger_numbers_array[calc(f)],calc(numb_array[get(f)]));
+        );
+        
+  );
+    calc(nearest_number_down,bigger_numbers_array[calc(bigger_numbers_array.length - 1)]?bigger_numbers_array[calc(bigger_numbers_array.length - 1)]:0);
+    calc(nearest_number_up,nearest_number_down + 10 );
+
+  
+   trace('el numero final, [',calc(var_n),'] es MÉS GRAN que {',nearest_number_down, '} i MES PETIT que [',nearest_number_up,']' );
+ if (abs(calc(var_n - nearest_number_down)) LT abs(calc(var_n - nearest_number_up)),
+  trace(nearest_number_down);
+set(global.nunnearest,get(nearest_number_down));
+
+  ,
+   trace(nearest_number_up);
+   set(global.nunnearest,get(nearest_number_up));
+
+ );
+                            
+</action>
+
+<!-- S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK S_BGCOLOR_BLINK-->
+<action name="s_bgcolor_blink" scope="local" args="newcolor,delay">
+calc(calc(caller.name +'_s_bgcolor_blink'),caller.bgcolor);
+calc(caller.bgcolor,newcolor);
+delayedcall(get(delay)
+	,
+		calc(caller.bgcolor,calc(caller.name +'_s_bgcolor_blink'));
+	);
+	
+</action>
+
+/////////////////////////////////////REGULARITZADES//////////////////////////////////////////////////////
+/////////////////////////////////////REGULARITZADES//////////////////////////////////////////////////////
+/////////////////////////////////////REGULARITZADES//////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////SROTATEINFINITE//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//s_rotateinfinite(-1 left -1 right , velocity from 0 to 360 , tween tweentypes );
+ <action name="s_rotateinfinite" scope="local" args="direction,velocity,tweentipe">
+
+
+	tween(caller.rotate,calc(360 * direction),get(velocity),get(tweentipe)
+		,
+		set(caller.rotate,0);
+		callwith(calc(layer[calc(caller.name)].name ? 'layer[' + caller.name + ']' : 'hotspot[' + caller.name + ']' ),s_rotateinfinite(get(direction),get(velocity),get(tweentipe)) );
+		);
+	
+</action>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////SBLINKINIFINITE//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//s_blinkinfinite(initial alpha , final alpha , time of transition, tweentype);
+
+<action name="s_blinkinfinite" scope="local" args="inialpha,finalalpha,time,tweentype">
+
+tween(caller.alpha,get(finalalpha),get(time),get(tweentype),
+   tween(caller.alpha,get(inialpha),get(time),get(tweentype),
+      set(caller.alpha,get(inialpha));
+      callwith(calc(layer[calc(caller.name)].name ? 'layer[' + caller.name + ']' : 'hotspot[' + caller.name + ']' ), s_blinkinfinite(get(inialpha),get(finalalpha),get(tweentype),get(time),); );
+      );
+   );   
+   
+</action>
+
+</krpano>

@@ -1,0 +1,24 @@
+<krpano>
+
+      
+//estil default dels 's_floating_text_constructor'
+<style name="s_floating_text_constructor"
+type="text"
+html="tag text"
+alpha="1"
+bg="true"
+backgroundalpha="1"
+multiline="true"
+css="font-family:Century Gothic, CenturyGothic, AppleGothic, sans-serif; font-size:12px; color:#000000;"
+enabled="false"
+backgroundcolor="0xc09362"
+zorder="20000"
+align="left"
+autowidth="auto"
+autoheight="auto"
+x="0"	
+y="0"						       
+/>
+
+
+</krpano>

@@ -1,0 +1,78 @@
+<krpano>
+
+
+ 
+
+<!-- SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG SLOG-->
+<!-- TODO NO FUNCIONA AMB LOCAL -->
+<action name="s_log" scope="local" args="" >
+
+	trace(args.length);
+		
+	for(set(i, 0), i LT args.length , inc(i),
+	
+		trace('[ ',args[get(i)],' ]: ', calc(args[get(i)]));
+
+	);
+</action>
+ 
+<!-- SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM SRANDOM -->
+<!-- s_random(37,88,noran);
+s_log(noran); -->
+
+<action name="s_random" scope="local" args="bottomval,topval,destvar">
+	calc(calc('global.'+ destvar),number(roundval((random * (topval - bottomval)) + bottomval )));
+</action>
+
+<!-- ARRAY ANALISIS-->
+<!-- TODOOOOOOOO -->
+<action name="s_number_array_analisis" scope="local" args="n_array,var_n,publicbartoken">
+
+txtsplit(get(n_array),'|',numb_array);
+def(bigger_numbers_array,array);
+def(lower_numbers_array,array);
+def(coincident_numbers_array,array);
+def(bn,number,0);
+def(ln,number,0);
+def(cn,number,0);
+calc(calc('global.s_' + publicbartoken + '_given'),var_n);
+ for(set(f, 0), f LT numb_array.count, inc(f),
+ 	if (
+ 		var_n LT numb_array[get(f)].value,
+ 				calc(calc('global.s_' + publicbartoken + '_bigger[' + calc(bn) + '].value'), numb_array[get(f)].value);
+ 				inc(bn); 	
+
+ 		,var_n GT numb_array[get(f)].value,		
+ 				calc(calc('global.s_' + publicbartoken + '_lower[' + calc(ln) + '].value'),numb_array[get(f)].value);
+ 		        inc(ln);
+ 		 		
+ 		,var_n == numb_array[get(f)].value,
+ 				calc(calc('global.s_' + publicbartoken + '_coincident[' + calc(cn) + '].value'),numb_array[get(f)].value);
+ 		   		inc(cn);
+ 				
+ 	);         
+  );
+
+</action>
+
+
+
+
+
+ <!-- SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER SCHANGEPOINTER -->
+<!-- s-changepointer('cursor-key layer') ||reset-> s-changepointer('cursor-key',off)  -->
+<!--<style name="cursor-key"
+type="image"
+url="%FIRSTXML%/skin/img/cursor.png"
+visible="false"
+alpha="0"
+enabled="false"
+zorder="1000000000000000000000000000000000000000000000"	
+/>
+<layer name="cursor-key" keep="true" style="cursor-key"	/> -->
+<!-- onover="s-changepointer('cursor-key')" onout="s-changepointer(off)" -->
+
+
+
+	
+</krpano>

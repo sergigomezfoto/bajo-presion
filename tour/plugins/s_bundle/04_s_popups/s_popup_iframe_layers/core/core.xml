@@ -1,0 +1,192 @@
+<krpano>
+	
+	
+ <action name="s_popup_iframe" scope="local" args="pagina,swidth,sheight,estils,actions"> 
+set(global.s_popup_open,true);
+set(global.s_popup_caller,get(caller.name));
+if(!estils,set(estils,'off'););
+if(!actions,
+    set(before,'off');set(middle,'off');set(after,'off');
+ ,
+     txtsplit(actions, '|', actions_arr);
+     copy(before,actions_arr[0].value);
+     copy(middle,actions_arr[1].value);
+     copy(after,actions_arr[2].value);
+);
+        if(device.mobile
+        ,
+        openurl('get(pagina)', _blank);
+        ,
+        set(global.s_open_popup,true);
+        if (trim(before) === 'off' 
+            ,
+            s_popup_before_open();
+            ,
+            scope(global,calc(trim(before)));
+        );
+        s_popup_throw(get(pagina),calc(swidth ? swidth : s_popup_general_settings.width),calc(sheight ? sheight : s_popup_general_settings.height),get(estils),get(middle),get(after),'s_iframe');	
+        ); 
+ </action>
+
+
+ <action name="s_popup_layers" scope="local" args="pagina,swidth,sheight,estils,actions">
+set(global.s_popup_caller,get(caller.name));
+if(!estils,set(estils,'off'););
+if(!actions,
+    set(before,'off');set(middle,'off');set(after,'off');
+ ,
+     txtsplit(actions, '|', actions_arr);
+     copy(before,actions_arr[0].value);
+     copy(middle,actions_arr[1].value);
+     copy(after,actions_arr[2].value);
+);
+       <!--  if(device.mobile
+        ,
+        openurl('get(pagina)', _blank);
+        , -->
+        set(global.s_open_popup,true);
+        if (trim(before) === 'off'
+            ,
+            s_popup_before_open();
+            ,
+            scope(global,calc(trim(before)));
+        );
+        s_popup_throw(get(pagina),calc(swidth ? swidth : s_popup_general_settings.width),calc(sheight ? sheight : s_popup_general_settings.height),get(estils),get(middle),get(after),'layers');  
+       <!--  );  -->
+ </action>
+
+
+
+
+
+
+<action name="s_popup_throw" scope="private:SPOPUPCORE" args="content, width, height, styles, middle, after,frametype">
+        if(s_popup_main, break(););       
+        if(trim(styles) !== 'off'
+            ,
+         txtsplit(styles, '|', styles_arr);
+         copy(custom_style_bg,styles_arr[0].value);
+         copy(custom_style_main,styles_arr[1].value);
+         copy(custom_style_close,styles_arr[2].value);
+            );
+//FONS
+		  addlayer('s_popup_bg', s_popup_bg);
+		  s_popup_bg.loadstyle( 
+            calc(trim(styles) !== 'off'
+            ?
+            's_popup_bg' + 
+                (trim(custom_style_bg) !== 'off'
+                    ? 
+                     ' | ' + custom_style_bg  
+                    : ''
+                ) 
+            : 
+            's_popup_bg' 
+            )
+          );
+            <!-- if (trim(after) === 'off',
+           set(global.layer[s_popup_bg].onclick,'popup_close(off);'); 
+           ,
+           calc(global.layer[s_popup_bg].onclick,'popup_close('+ after +');');
+          ); -->
+//POPUP LLENÇ
+		  addlayer('s_popup_main', s_popup_main);
+          s_popup_main.loadstyle(
+            calc(trim(styles) !== 'off'
+            ?
+            's_popup_main' + 
+                (trim(custom_style_main) !== 'off'
+                    ? 
+                     ' | ' + custom_style_main  
+                    : ''
+                ) 
+            : 
+            's_popup_main' 
+            )
+            );
+          
+		  set(s_popup_main,
+		  	//per fer que tingui un with i height maxim
+		    width=calc(min(width,global.stagewidth*0.8))
+		    ,
+		    height=calc(min(height,global.stageheight*0.8))
+		    ,
+
+		    );
+      //AQUI ES LENÇA LA FUNCIÓ s_iframe DE JS A CORE.XML
+      if (frametype === 's_iframe',
+      
+                          		    calc(s_popup_main.onloaded, 's_iframe(' + content + ',true);');
+                                      if (trim(middle) === 'off'
+                                          ,
+                                          s_popup_middle_action(); 
+                                          ,
+                                          scope(global,calc(trim(middle)));
+                                      );
+
+		      ,frametype === 'layers',
+                                    
+                                     scope(global,calc(content));
+                                        if (trim(middle) === 'off'
+                                          ,
+                                          s_popup_middle_action(); 
+                                          ,
+                                          scope(global,calc(trim(middle)));
+                                      );
+
+       );
+//BOTO TANCAR
+		  addlayer('s_close_x', s_close_x);
+    
+          s_close_x.loadstyle(
+            calc(trim(styles) !== 'off'
+            ?
+            's_popup_close_x' + 
+                (trim(custom_style_close) !== 'off'
+                    ? 
+                     ' | ' + custom_style_close  
+                    : ''
+                ) 
+            : 
+            's_popup_close_x' 
+            )
+            );         
+          if (trim(after) === 'off',
+           set(global.layer[s_close_x].onclick,'popup_close(off);'); 
+           ,
+           calc(global.layer[s_close_x].onclick,'popup_close('+ after +');');
+          );
+		  set(global.events[s_popup_main].onremovepano, popup_close(); );
+
+    </action>
+
+
+
+
+
+    <action name="popup_close" args="after" scope="local">
+
+        set(global.s_popup_open,false);
+        set(global.layer[s_popup_bg].enabled, false);
+        set(global.events[s_popup_main].name, null);
+        tween(global.layer[s_popup_bg].bgalpha, 0.0, 0.25);
+        tween(global.layer[s_popup_main].alpha, 0.0, 0.25, default
+        	,
+        	removelayer('s_popup_bg', true);
+        	scope(private:SPOPUPCORE, delete(s_popup_main););
+
+            );
+        set(global.s_open_popup,false);
+        if (trim(after) === 'off'
+            ,
+           s_popup_after_close();
+            ,
+            scope(global, calc(trim(after)));
+        );
+        
+    </action>
+	
+
+
+
+</krpano>

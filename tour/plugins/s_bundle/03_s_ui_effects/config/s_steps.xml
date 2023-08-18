@@ -1,0 +1,107 @@
+<krpano>
+
+////////////////////////////////////EXAMPLE WALK AND LOADPANO///////////////////////////////////////////////////
+<!-- 
+[0] config the object:
+<dummy_steps
+
+stepspairs="600"
+eachstepduration="0.5"
+
+wantcamroll="true"
+intensitybounce="1.5"
+
+wanttilt="true"
+intensityup="1.5"
+
+reprise="true"
+factorreprise="1"
+
+tweentipes="easeinoutsine"
+
+fovinc="7"
+fovdelayreturn="1.5"
+fovreturntweentime="3"
+
+
+onend="accio_load_pano"
+onendtime=""
+clear=""
+/>
+
+[1] assign action to a trigger (s_steps([object])):
+
+		set(layer[sdummy1].onclick,s_steps('dummy_steps');delayedcall(3,accio_load_pano()); );
+the delayedcall trigger an action after 3s that make something , i this case load a pano.
+
+		<action name="accio_load_pano">
+
+			if (xml.scene === "scene_01"
+				,
+			loadscene(scene_02, null,KEEPMOVING,OPENBLEND(1.0, 0.0, 0.2, 0.0, linear));
+				,
+			loadscene(scene_01, null,KEEPMOVING,OPENBLEND(1.0, 0.0, 0.4, 0.0, linear));
+				);	
+			
+		</action> 
+
+after the pano is blended the variable with the name of the general config object and the atribute 'clear' in true. This, stop the interval:
+	
+	<events name="loadpanodummy" keep="true"
+				
+	onblendcomplete="set(dummy_steps.clear,true)"	
+
+	/>
+
+Other way to make an action is to fullfill the "onend" with an action and the "onendtime" with the time of that action. 
+This don't clear the interval, only trigger that "onend" action in this "onendtime" time.
+To clear the interval it's necessari to set the var name dummy_steps.clear="true", or to rise the stepspair writen in "stepspair" atribute of the config object.
+
+ -->
+/////////////////////////////////////EXAMPLE SHAKE/////////////////////////////////////////////////////
+<!-- 
+[0]config the object:
+
+<dummy_despertador
+
+stepspairs="15"
+eachstepduration="0.03"
+
+wantcamroll="true"
+intensitybounce="3"
+
+wanttilt="true"
+intensityup="7"
+
+reprise="true"
+factorreprise="1"
+
+tweentipes="easeinoutsine"
+
+fovinc="0"
+fovdelayreturn=""
+fovreturntweentime=""
+
+
+onend="accio_despertador"
+onendtime="3"
+clear=""
+/>
+
+[1]assign action to a trigger (s_steps([object])):
+
+		  set(layer[sdummy2].onclick,s_steps('dummy_despertador'););
+
+				<action name="accio_despertador">
+				trace('final actioooooooooooooooooooon DESPERTADOR');	
+				</action>
+In this example in the time of "onendtime" (3s) will make the "onend" action (accio_despertador). The interval it's NOT cleared befor the "stepspairs" (15) is completed. 
+
+
+
+[2] 
+[3]
+[4]
+	
+	 -->
+</krpano>

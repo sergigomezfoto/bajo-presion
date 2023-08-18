@@ -1,0 +1,8 @@
+<krpano>
+	
+<include url="s_popup_iframe_layers/s_popup_iframe_layers.xml" />
+
+<include url="s_popup_fullscreen/s_popup_fullscreen.xml" />
+
+	
+</krpano>

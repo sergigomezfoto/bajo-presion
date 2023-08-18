@@ -1,0 +1,64 @@
+<krpano>
+	
+	// COUNTER MIN AND SECONDS S_COUNTDOWN_MIN_SEC(time from: min | sec, time of interval tick(default 1s), final action);
+<action name="s_countdown_min_sec" scope="local" args="argtime,ticktime,finalaction">
+	txtsplit(argtime,'|',timer_array);
+	copy(minutes, timer_array[0].value);
+	copy(seconds, timer_array[1].value);
+	txtadd(totaltime,calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+	copy(caller.html,totaltime);
+	setinterval(calc('s_countdown_min_sec_' + caller.name), calc(ticktime? ticktime :1) , 
+		 if(calc('global.s_countdown_min_sec_' + caller.name + '_pause')
+		 	,
+		 	,
+	 calc(seconds,seconds == 0 AND minutes != 0 ? 59 : seconds - 1);
+ 	 calc(minutes,seconds == 59 ? minutes - 1 : minutes);
+ 	 if (minutes GT 0 OR seconds GE 0 
+ 	 ,
+		 txtadd(totaltime,calc(minutes LT 10 ? '0' : ''),calc(minutes),':',calc(seconds LT 10? '0' : ''),calc(seconds));
+     ,
+     	scope(global, calc(finalaction));
+
+     	 clearinterval(calc('s_countdown_min_sec_' + caller.name));
+        );
+     copy(caller.html,totaltime);
+         );
+    if(!caller.loaded OR calc('global.s_countdown_min_sec_' + caller.name + '_delete') ,
+
+      	clearinterval(calc('s_countdown_min_sec_' + caller.name));
+      	); 
+	);	
+</action>
+
+<action name="s_countdown_sec" scope="local" args="argtime,ticktime,finalaction">
+
+	copy(seconds, argtime);
+	txtadd(totaltime,calc(seconds LT 10? '0' : ''),calc(seconds));
+	copy(caller.html,totaltime);
+	setinterval(calc('s_countdown_sec_' + caller.name), calc(ticktime? ticktime :1) , 
+		//trace('countersec');
+	if(calc('global.s_countdown_sec_' + caller.name + '_pause')
+		 	,
+		 	,
+	 calc(seconds, seconds - 1);
+ 	 if (seconds GE 0 
+ 	 ,
+		 txtadd(totaltime,calc(seconds LT 10? '0' : ''),calc(seconds));
+     ,
+     	scope(global, calc(finalaction));
+//trace(calc(finalaction));
+     	 clearinterval(calc('s_countdown_sec_' + caller.name));
+        );
+     copy(caller.html,totaltime);
+         );
+    if(!caller.loaded OR calc('global.s_countdown_sec_' + caller.name + '_delete') ,
+
+      	clearinterval(calc('s_countdown_sec_' + caller.name));
+      	); 
+	);	
+</action>
+//	
+//s_countdown_min_sec_TARGETNAME_delete / clear interval
+
+
+</krpano>

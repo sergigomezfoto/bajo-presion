@@ -1,0 +1,35 @@
+<krpano>
+	
+	<action name="s-blockall" args="bool,lzorder" scope="local">
+if (bool
+	,
+	if (lzorder,
+		set(layer[s-invisible-bloking-layer].zorder,get(lzorder));
+	);
+	set(layer[s-invisible-bloking-layer].alpha,1);
+	set(control.usercontrol,"off");
+	,
+	set(control.usercontrol,"all");
+    set(layer[s-invisible-bloking-layer].alpha,0);
+);
+</action>
+ <cursors standard="default" dragging="move" moving="move" />
+<layer name="s-invisible-bloking-layer" keep="true" style="s-invisible-bloking-layer"/>
+							<style name="s-invisible-bloking-layer"
+								 keep="true" 
+								 preload="true" 
+								 type="container" 
+								 autoalpha="true" 
+								 alpha="0" 
+								 width="100%" 
+								 height="100%" 
+								 bgcolor="0x0076c6" 
+								 bgalpha="0" 
+								 enabled="true" 
+								 bgcapture="true"
+								 handcursor="true" 
+								 cursor="none"
+								 zorder="900000000000"
+							/>
+	
+</krpano>

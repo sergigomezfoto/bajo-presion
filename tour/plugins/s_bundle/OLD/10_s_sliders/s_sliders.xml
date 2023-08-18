@@ -1,0 +1,169 @@
+<krpano>
+
+
+
+
+<!--linia	-->	
+<style name="slider_l"
+edge="left"
+width="180"
+height="4"
+visible="true"
+enabled="true"
+keep="true" 
+align="center"
+type="container" 
+bgcolor="0xFFFFFF"
+bgalpha="0.5"
+/>	
+
+<!--boleta de la linia-->
+<style name="boleta_slider"
+bgcapture="true"
+type="container"
+bgcolor="0xFFFFFF"
+bgalpha="1.0"
+align="left"
+edge="center"
+x="0"
+bgroundedge="8"
+width="10"
+height="10"
+visible="true"
+enabled="true"
+keep="true"
+dragging="barreta(get(name))"
+ondown="copy(drag_currentx,x); copy(drag_stagex,mouse.stagex); dragging();"
+/>
+
+<!--botonet verd de refresc-->
+<style name="refrescar"
+bgcapture="true"
+edge="left"
+width="20"
+height="20"
+visible="true"
+enabled="true"
+keep="true" 
+align="left"
+type="container" 
+bgcolor="0x0cd30c"
+bgalpha="0.5"
+bgroundedge="20"
+/>	
+
+
+<!--barreta_accio(nom etiqueta,numero valor més alt,posicio x,posició en y, data variables, accio boto verd si no hi ha res refrescarà, acció dragging,accio no dragging, mida de la barra);-->
+<!--barreta_accio(set north,360,0,0,nort,angle_inicial_verd,angle_inicial_drag();,angle_inicial_nodrag();,250);
+</action>
+		<action name="angle_inicial_verd">
+		salvar_angle_inicial();
+		delayedcall(2,refrescar());
+		</action>
+		<action name="angle_inicial_drag">
+		tween(view.hlookat,get(val),0.1);
+		</action>
+		<action name="angle_inicial_nodrag">
+		set(hv_inicial, get(view.hlookat));
+		</action>-->
+<!--crea una barreta que modifica un element segons el que es vulgui modificar, alpha, etc...-->
+<action name="barreta_accio" scope="local" args="pname,lname,highvalue,xpos,ypos,greenaction,draggingaction,leaveaction,barwidth">
+//linia_mare:line
+calc(line, pname + '_l');
+calc(camp_definicio, pname + '_t');
+addlayer(get(line));
+layer[get(line)].loadstyle(slider_l);
+set(layer[get(line)]
+	,
+	x=get(xpos)
+	,
+	y=get(ypos)
+);
+
+ if(barwidth
+,
+set(layer[get(line)].width,get(barwidth));
+,
+); 
+addlayer(get(pname));
+layer[get(pname)].loadstyle(boleta_slider);
+
+ set(layer[get(pname)]
+	,
+	dragging=calc('barreta(' + pname + ',' + line + ',' + draggingaction + ',' + leaveaction + ')');
+	,
+	parent=get(line)
+	,
+	data_vmitg=calc(highvalue)
+ );
+
+creartext(get(camp_definicio),get(pname),-25,0,get(line),calc,false);
+
+
+if(layer[refrescar] === null
+,
+	addlayer(refrescar);
+	layer[refrescar].loadstyle(refrescar);
+	set(layer[refrescar].parent,get(line));
+	set(layer[refrescar]
+		,
+		x='-40'
+		,
+		y="0"
+	);
+	if(greenaction
+	,	
+		calc(layer[refrescar].onclick,greenaction);
+	,
+		set(layer[refrescar].onclick,refrescar(););
+	);
+,
+	layer[refrescar].addevent(onclick, calc(greenaction));	
+);
+calc(passos, highvalue / layer[get(line)].width);
+if (layer[get(lname)].name !== null
+,
+	calc(posicio, calc('layer[' + lname + '].' + pname ) / passos);
+,hotspot[get(lname)].name !== null,
+	calc(posicio, calc('hotspot[' + lname + '].' + pname ) / passos);
+,
+	calc(posicio, calc(lname + '.' + pname ) / passos); 
+	trace(posicio);
+); 
+tween(layer[get(pname)].x,get(posicio));  
+
+
+</action>
+		<action name="barreta" scope="local" args="thisname,parentname,draggaction,leaveaction" >
+			if(caller.pressed
+			,
+			
+				 sub(dx, mouse.stagex, drag_stagex); 
+										     		
+				  add(newx, global.drag_currentx, dx); 
+
+										  
+				  if(newx LT 0,set(newx,0));
+				  	
+				  if(newx GT layer[get(parentname)].width
+				  , 
+					  copy(newx,global.layer[get(parentname)].width)
+				  );
+                   
+					
+				  copy(caller.x,newx);
+				  div(vap, newx, layer[get(parentname)].width);	  
+				  calc(val,vap * caller.data_vmitg);
+				  roundval(val,2);	
+
+				  scope(global,calc(draggaction + '(' + val + ');'));					  
+				  delayedcall(0,callwith(layer[get(caller.name)],dragging()));	
+			,								 
+              trace('leave'); 
+			   scope(global,calc(leaveaction));
+			); 
+			</action>
+
+
+
+</krpano>

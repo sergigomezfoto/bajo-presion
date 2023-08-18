@@ -1,0 +1,361 @@
+<krpano>   
+<!-- <include url="s_autotour_recorder_ui/design.xml" /> -->
+<include url="s_record_autotour_pieces_ui/s_record_autotour_pieces_ui.xml" />
+<include url="s_record_autotour_pieces_ui/s_record_autotour_player/s_record_autotour_player.xml" />
+<include url="s_record_autotour_music/s_record_autotour_music.xml" />
+
+//create empty array to record
+<action name="s_record_autotour_array_creator" type="javascript" autorun="preinit"> 
+    <![CDATA[
+
+        window.s_autotour = {    
+        recorded: [],   
+        };
+
+    ]]>
+</action> 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//AUTOMATISME PER A TOTS ELS LAYERS I HOTSPOTS
+//excepte layers o hotspots amb s_autotour_excluded ="true"
+<include url="s_actions_record_propagation/s_actions_record_propagation.xml" />
+
+<s_events name="s_record_pause_autotour_absent" onwindowvisible="" onwindowinvisible="if(s_autotour_recording,s_autotout_ui_rec_pause_action(););"/> 
+// REC PAUSE BUTTON
+ <action name="s_autotout_ui_rec_pause_action">
+ if (!s_record_movement,
+
+    s_current_timestamp(tick);
+      
+    set(play_while_recording,true);
+    toggle(s_autotour_recording);
+
+    if (s_autotour_recording 
+    ,//REC
+    //audio
+        if (s_autotour_general_audio_name,
+            s_autotour_play_general_sound(calc(s_last_timestamptick / 1000),get(s_autotour_general_sound));     
+        );
+    //end audio
+        if (!s_current_timestampinit_time
+        ,   //primer cop                  
+            s_get_init_recordautotour();
+        ,    //els altres cops  
+            s_current_timestamp(init_time);
+            calc(s_current_timestampinit_time,s_current_timestampinit_time - s_last_timestamptick); calc(s_beforepause_timestamptick,(s_current_timestamptick -  s_current_timestampinit_time));
+
+        ); 
+        s_ui_record_stopwatch_tick();              
+        s_pieces_ui_rec_action();
+        def(s_get_view_recordautotour_toggler,boolean,true);
+        s_show_helper_buttons(true);
+    ,//PAUSE
+    //audio
+        if (s_autotour_general_audio_name,
+            s_autotour_pause_general_sound(calc(s_last_timestamptick / 1000),get(s_autotour_general_sound));     
+        );
+    //end audio
+        s_ui_record_stopwatch_tick_kill();
+        calc(s_last_timestamptick,(s_current_timestamptick -  s_current_timestampinit_time));        
+        s_get_pause_item();
+        s_pieces_ui_pause_action();
+        s_show_helper_buttons(false);
+        
+    );
+ );
+</action>
+
+        <action name="s_pieces_ui_rec_action">  
+            //propaga l'acció d'activació de rec en els diferents layers i hotspots
+            s_actions_record_propagation();   
+            set(layer[s_spui_tools_rec_pause].html,get(s_autotour_record_config.ui_rec_button_recording));
+            set(layer[s_spui_tools_rec_pause].bgcolor,get(layer[s_spui_tools_rec_pause].bgcoloractive));
+            set(layer[s_spui_tools_rec_advicer].alpha,1);  
+            set(layer[s_rec_center].visible,true);      
+        </action>
+
+        <action name="s_pieces_ui_pause_action">  
+            set(layer[s_spui_tools_rec_pause].html,get(s_autotour_record_config.ui_rec_button_paused));
+            set(layer[s_spui_tools_rec_advicer].alpha,0);
+            set(layer[s_rec_center].visible,false);
+            //consolida i logeja l'array de grabacio
+            s_recorded_autotour_log();     
+        </action>
+
+
+
+<!--marca boto del centre -->
+<layer name="s_rec_center"
+align="center" edge="center" width="29" height="29" keep="true" enabled="false" visible="false" url="s_record_autotour_pieces_ui/styles/img/center.png"
+/>
+ //PAUSE TIMESPACE
+
+<action name="s_get_pause_item" >
+
+calc(s_calc_pause_recordautotour, s_autotour_common_config.pause_clicks_prefix +  (s_last_timestamptick- s_beforepause_timestamptick )/1000 + '|' + s_last_timestamptick/1000);  
+s_write_in_recordautotour_pause(get(s_calc_pause_recordautotour));
+
+</action>                       
+
+//INIT RECORD
+<action name="s_get_init_recordautotour">
+ s_current_timestamp(init_time);
+if (s_autotour_recording AND s_autotour_record_config.register_init,
+            s_ui_record_stopwatch_tick();
+            calc(s_calc_init_recordautotour, s_autotour_common_config.init_prefix + xml.scene + ':' + view.hlookat + ',' + view.vlookat + ',' + view.fov + '|' + '0.002' + '|' + s_autotour_general_sound);
+            s_write_in_recordautotour(get(s_calc_init_recordautotour)); copy(s_beforepause_timestamptick,0);
+);
+</action>
+
+//SCENE RECORD
+ <events name="s_write_scene_recordautotour" keep="true" onnewscene="s_get_scene_recordautotour();"/>
+//SCENE RECORD ACTION
+<action name="s_get_scene_recordautotour">
+
+if (s_autotour_recording AND s_autotour_record_config.register_scenes AND !s_record_movement,
+            s_ui_record_stopwatch_tick();
+            s_current_timestamp(tick);
+            calc(s_calc_scene_recordautotour, s_autotour_common_config.scene_prefix + xml.scene + '|' + ((s_current_timestamptick -  s_current_timestampinit_time)/1000));
+            get_s_last_and_before_timestamptick();
+            s_write_in_recordautotour(get(s_calc_scene_recordautotour));
+
+);
+</action>
+
+//VIEW RECORD ACTION
+ <events name="s_write_view_recordautotour" keep="true" ondoubleclick="s_get_view_recordautotour();" onnewscene="if(s_record_movement,s_get_view_recordautotour(););"/>
+
+        
+        //agafat directe de klaus krpano.
+        <events name="continuous_tracking" keep="true" onviewchange="continuous_tracking();" />
+
+        <action name="continuous_tracking">
+            if(last_hlookat === null, copy(last_hlookat,view.hlookat));
+            if(cont_hlookat === null, copy(cont_hlookat,view.hlookat));           
+            calc(d1, view.hlookat - last_hlookat);
+            calc(d2, view.hlookat+360 - last_hlookat);
+            calc(d3, view.hlookat-360 - last_hlookat);
+            Math.abs(ad1,d1);
+            Math.abs(ad2,d2);
+            Math.abs(ad3,d3);
+            
+            if(ad1 LT ad2 AND ad1 LT ad3,
+                add(cont_hlookat,d1);
+            ,ad2 LT ad1 AND ad2 LT ad3,
+                add(cont_hlookat,d2);
+            ,
+                add(cont_hlookat,d3);
+            );           
+            copy(last_hlookat,view.hlookat);
+        </action>
+
+//VIEW RECORD
+<action name="s_get_view_recordautotour">
+
+if (s_autotour_recording AND s_autotour_record_config.register_view, 
+s_ui_record_stopwatch_tick();
+    //advice layer
+    if (s_get_view_recordautotour_toggler,   
+        s_current_timestamp(tick);
+        set(s_record_movement,true);
+                addlayer('s_get_view_recordautotour_capture', s_get_view_recordautotour_capture);
+                s_get_view_recordautotour_capture.loadstyle('s_get_view_recordautotour_capture');
+                copy(s_first_view_hlookat,cont_hlookat);
+                s_callwhen(check_view1,abs(s_first_view_hlookat - cont_hlookat) GT 179,
+                set(layer[s_get_view_recordautotour_capture].bgcolor,'0xd80d33');
+                ,true);
+                s_callwhen(check_view2,abs(s_first_view_hlookat - cont_hlookat) LT 179,
+                set(layer[s_get_view_recordautotour_capture].bgcolor,'0x4236dc');
+                ,true);
+    ,
+                delete(s_record_movement);
+                set(s_callwhencheck_view1,'clear');
+                set(s_callwhencheck_view2,'clear');
+                tween(s_get_view_recordautotour_capture.alpha,0,0.6,,removelayer('s_get_view_recordautotour_capture',true);); 
+        s_current_timestamp(calc_delay);
+        calc(s_calc_view_recordautotour, s_autotour_common_config.view_cahnged_prefix + view.hlookat + ',' + view.vlookat + ',' + view.fov + '|' + ((s_current_timestamptick -  s_current_timestampinit_time)/1000) + '|' + (((s_current_timestampcalc_delay -  s_current_timestampinit_time)/1000) - ((s_current_timestamptick -  s_current_timestampinit_time)/1000)) );
+        s_current_timestamp(tick);
+        get_s_last_and_before_timestamptick();
+        s_write_in_recordautotour(get(s_calc_view_recordautotour));
+    );
+//end andvice layer
+toggle(s_get_view_recordautotour_toggler);
+);
+
+</action>
+
+
+//FULLROUND RECORD
+<action name="s_get_full_round_recordautotour">
+
+
+if (s_autotour_recording AND !s_record_movement,
+   
+    s_ui_record_stopwatch_tick();
+    s_current_timestamp(tick);
+
+    tween(view.hlookat,calc(view.hlookat + (360 * %1)),2,,
+    s_current_timestamp(calc_delay);    
+        calc(s_calc_click_recordautotour, s_autotour_common_config.fullround_prefix + (%1 GT 0 ? 'right|' : 'left|') + ((s_current_timestamptick -  s_current_timestampinit_time)/1000) + '|' + (((s_current_timestampcalc_delay -  s_current_timestampinit_time)/1000) - ((s_current_timestamptick -  s_current_timestampinit_time)/1000)));    
+        s_current_timestamp(tick);        
+        get_s_last_and_before_timestamptick();
+        s_write_in_recordautotour(get(s_calc_click_recordautotour));
+);
+);
+    
+
+</action>
+
+//LAYER AND HOTSPOT RECORD (VE DE s_actions_record_propagation, i s'activa quan es clica qualsevol cosa).
+<action name="s_get_clicks_recordautotour">
+
+if (s_autotour_recording AND !s_autotour_excluded AND !s_record_movement,
+
+    s_ui_record_stopwatch_tick();
+    s_current_timestamp(tick);
+    if (!ishotspot AND s_autotour_record_config.register_lay_clicks ,
+                calc(s_calc_click_recordautotour, s_autotour_common_config.layer_clicks_prefix +  name + '|' + ((s_current_timestamptick -  s_current_timestampinit_time)/1000));            
+    , ishotspot AND s_autotour_record_config.register_hs_clicks,
+                calc(s_calc_click_recordautotour, s_autotour_common_config.hs_clicks_prefix +  name + '|' + ((s_current_timestamptick -  s_current_timestampinit_time)/1000)); 
+    );
+    get_s_last_and_before_timestamptick();
+    s_write_in_recordautotour(get(s_calc_click_recordautotour));
+
+);
+</action>
+
+//////////////////////////////////////////////////////////////////////
+//times
+<action name="get_s_last_and_before_timestamptick">
+
+   calc(s_last_timestamptick,(s_current_timestamptick -  s_current_timestampinit_time));  copy(s_beforepause_timestamptick,s_last_timestamptick);  
+
+</action>
+<action name="get_s_last_and_before_timestamptick_fr">
+
+   calc(s_last_timestamptick,(s_current_timestamptick -  s_current_timestampinit_time));  copy(s_beforepause_timestamptick,s_last_timestamptick );  
+
+</action>
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//WRITE IN ARRAY
+<action name="s_write_in_recordautotour" type="Javascript" >
+    <![CDATA[
+
+            s_autotour.recorded.push(args[1]); 
+            krpano.call('s_recorded_autotour_log();');
+            
+                
+    ]]>  
+</action> 
+
+
+
+//WRITE IN ARRAY PAUSE NODE
+<action name="s_write_in_recordautotour_pause" type="Javascript" >
+    <![CDATA[
+        
+        var s_actpausedtime = Number(args[1].split('|')[1]);
+        var s_actdelay = args[1].split('|')[2]
+        
+            var s_arrli_type = s_autotour.recorded.at(-1).split('|')[0];
+            var s_arrli_pausedtime = Number(s_autotour.recorded.at(-1).split('|')[1]);
+            var s_arrli_delay = s_autotour.recorded.at(-1).split('|')[2];
+
+            //console.log(s_arrli_type);
+            if(s_arrli_type === 'p'){
+
+                var s_new_pause_times = 'p|' + (s_actpausedtime + s_arrli_pausedtime ) + '|' + s_actdelay;
+                s_autotour.recorded[s_autotour.recorded.length - 1] = s_new_pause_times;
+            }else{
+                s_autotour.recorded.push(args[1]);
+            }
+             
+            krpano.call('s_recorded_autotour_log();');
+
+                
+    ]]>  
+</action> 
+
+<action name="s_show_helper_buttons" scope="local" args="show">
+
+if (show
+,
+    
+    addlayer('s_helper_buttons',s_helper_buttons);
+    s_helper_buttons.loadstyle('s_helper_buttons');
+    set(s_helper_buttons
+        ,
+        keep="true"
+        ,
+    );
+        addlayer('s_fr_right',s_fr_right);
+        s_fr_right.loadstyle('s_fr_right');
+        set(s_fr_right
+            ,
+            keep="true"
+            ,
+            parent="s_helper_buttons"
+            ,
+            onclick="s_get_full_round_recordautotour(1)"
+        );
+        addlayer('s_fr_left',s_fr_left);
+        s_fr_left.loadstyle('s_fr_left');
+        set(s_fr_left
+            ,
+            keep="true"
+            ,
+            parent="s_helper_buttons"
+            ,
+            onclick="s_get_full_round_recordautotour(-1)"
+        );
+,
+removelayer('s_helper_buttons',true);
+
+);
+    
+
+</action>
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//ACTIONS FROM UI INTERFACE
+
+//JS
+//SEE ARRAY BUTTON
+<action name="s_recorded_autotour_log" type="javascript" >
+<![CDATA[
+    var show_array = '*' + s_autotour.recorded.join('*');
+
+    //console.log("_______________________________");
+    //console.log("RECORDED_AUTOTOUR");
+    //console.log(show_array);
+    //console.log('REAL ARRAY');
+    //console.log(s_autotour.recorded);
+    krpano.set("s_set_just_recorded_autotour_cassette",show_array);
+    krpano.set("s_number_autotour_pieces",s_autotour.recorded.length);
+    krpano.call("s_spui_piece_autogenerate()");
+
+]]>
+</action>
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//STORE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<action name="s_store_redux_s_autotour_recorder_pause" autorun="preinit">
+set(s_autotour_recording,false);
+set(s_ui_record_stopwatch_tick,false);
+set(s_autotour_recored_module,true);
+</action>
+
+
+</krpano>

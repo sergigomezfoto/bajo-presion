@@ -1,0 +1,10 @@
+#tourLogo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../../../assets/img/tour_lp.png);
+    pointer-events: none;
+    background-size: cover;
+    width: 229px;
+    height: 238px;
+}

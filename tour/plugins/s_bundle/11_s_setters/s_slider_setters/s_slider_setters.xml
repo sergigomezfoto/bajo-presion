@@ -1,0 +1,170 @@
+<krpano>
+
+ <include url="styles/styles.xml" />   
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SLIDERS
+
+ <action name="s_slider_setter" scope="local" args="elementtochanche,atributetochange,lowervalue,higgervalue,tagtexts,xpos,ypos,barwidth,parentname,salign,sedge">
+
+if (contains(atributetochange,color)
+,
+	def(iscolor,boolean,true);
+,
+	def(iscolor,boolean,false);
+); 
+if (!tagtexts	
+,
+	set(tagtexts,|on|on|on);
+,tagtexts === 'off',
+	set(tagtexts,off|off|off|off);
+);
+txtsplit(tagtexts,'|',texttag);
+
+
+//DEFINICIONS
+calc(s_slider_line, elementtochanche + atributetochange + '_l');
+calc(s_slider_thumb,elementtochanche + atributetochange + '_b');
+calc(s_slider_tagtext, elementtochanche + atributetochange + '_t');
+
+set(krp,false);
+if (
+	layer[get(elementtochanche)].name,
+		calc(settingtochange, 'layer[' + elementtochanche + '].' + atributetochange);
+		def(eltype,string,'layer{ ');
+	,hotspot[get(elementtochanche)].name,
+		calc(settingtochange, 'hotspot[' + elementtochanche + '].' + atributetochange);
+		def(eltype,string,'hotspot{ ');
+		
+	,
+		calc(settingtochange,elementtochanche + '.' + atributetochange );
+		def(eltype,string,'');
+		set(krp,true);
+); 
+
+//LINIA MARE
+addlayer(get(s_slider_line), line);
+line.loadstyle('s_slider_line');
+set(line
+	,
+	ox=get(xpos)
+	,
+	oy=get(ypos)
+	,
+	width=calc(barwidth ? barwidth : calc(style[s_slider_line].width))
+	,
+	parent=calc(parentname ? parentname : style[s_slider_line].parent)
+	,
+	align=calc(salign ? salign : style[s_slider_line].align)
+	,
+	edge=calc(sedge ? sedge : style[s_slider_line].edge)
+);
+//THUMB
+addlayer(get(s_slider_thumb),thumb);
+thumb.loadstyle('s_slider_thumb');
+if (lowervalue LT 0,
+	set(thumb,align="center",);
+	set(minus,true);
+,
+	set(minus,false);
+);
+ set(thumb,	
+	doingdragg=calc('s_slider_setter_helper_setting_changer(' + settingtochange + ',' + lowervalue + ',' + minus + ',' + s_slider_tagtext + 'actuals_ft' + ',' + calc(texttag[3].value === 'on' ? true : false) + ',' + calc(iscolor ? true : false) + ')');
+	,
+	ondown="copy(drag_currentx,x);copy(drag_stagex,mouse.stagex); doingdragg();"
+	//ondown="s_drag(x,preaction,whileaction,postaction,layerwhat)"
+	,
+	parent=get(s_slider_line)
+	,
+	max_value=calc(higgervalue)
+ );
+//dependency s_floating_text_constructor
+//ETIQUETA GENERAL
+if (texttag[0].value !== 'off',
+s_floating_text_constructor(calc(texttag[0].value ? texttag[0].value : get(eltype) + elementtochanche + (krp ? '' : ' }' ) + '.' + atributetochange + ': ' ),get(s_slider_tagtext),s_slider_title,get(s_slider_line));
+//VALOR MINIM
+);
+if (texttag[1].value === 'on',
+	s_floating_text_constructor(calc(iscolor ? padleft(tohex(lowervalue),6,string(0)) : lowervalue),calc(s_slider_tagtext + 'lower'),s_slider_minvalue,get(s_slider_line));	
+);
+//VALOR MAXIM
+if (texttag[2].value === 'on',
+	s_floating_text_constructor(calc(iscolor ? padleft(tohex(higgervalue),6,string(0)) : higgervalue),calc(s_slider_tagtext + 'higger'),s_slider_maxvalue,get(s_slider_line));
+);
+//VALOR ACTUAL
+if (texttag[3].value === 'on',
+	s_floating_text_constructor(calc(iscolor ? padleft(tohex(calc(settingtochange)),6,string(0)) : roundval(calc(settingtochange),2)),calc(s_slider_tagtext + 'actual'),s_slider_currentvalue,calc(texttag[0].value !== 'off' ? s_slider_tagtext + 's_ft' : s_slider_line),,,calc(texttag[0].value !== 'off' ? '' : 5));
+);
+//fi dependency s_floating_text_constructor
+//CALCUL DELS STEPS
+calc(steps, (higgervalue + abs(lowervalue)) / layer[get(s_slider_line)].width);
+
+if (
+	layer[get(elementtochanche)].name,
+		calc(posicio, calc('layer[' + elementtochanche + '].' + atributetochange ) / steps);
+	,hotspot[get(elementtochanche)].name,
+		calc(posicio, calc('hotspot[' + elementtochanche + '].' + atributetochange ) / steps);
+	,
+		calc(posicio, calc(elementtochanche + '.' + atributetochange ) / steps); 
+); 
+	tween(layer[get(s_slider_thumb)].x,get(posicio));  
+
+</action>
+
+		<action name="s_slider_setter_helper_setting_changer" scope="local" args="settingtochange,lowervalue,minus,tagtext,mustbetext,iscolor" >
+		trace(iscolor);
+			if(caller.pressed
+			,		
+								
+				 sub(dx, mouse.stagex, drag_stagex); 										     		
+				 add(newx, global.drag_currentx, dx); 
+				 if (minus
+				 ,				 									  
+							if(newx LT ((layer[get(caller.parent)].width / 2) * -1)
+							,
+							calc(newx,((layer[get(caller.parent)].width / 2) * -1));
+							);				  	
+											
+							if(newx GT (layer[get(caller.parent)].width / 2)
+							, 
+								calc(newx,global.layer[get(caller.parent)].width / 2);
+							);                   					
+							copy(caller.x,newx);
+							div(vap, newx, layer[get(caller.parent)].width);	  
+							calc(val,(vap * 2) * caller.max_value);
+				  ,
+							if(newx LT 0
+							,
+							calc(newx,0);
+							);				  	
+											
+							if(newx GT layer[get(caller.parent)].width
+							, 
+								calc(newx,global.layer[get(caller.parent)].width);
+							);                   					
+							copy(caller.x,newx);
+							div(vap, newx, layer[get(caller.parent)].width);	  
+							calc(val,vap * caller.max_value);
+				  );	
+				  	
+				  if (mustbetext
+				  ,
+						calc(global.layer[get(tagtext)].html, !iscolor ? roundval(val,2) : padleft(tohex(val),6,string(0)));
+				  );
+				  scope(global,calc('set(' + settingtochange + ',' + val + ');'));	
+
+				  delayedcall(0,callwith(layer[get(caller.name)],doingdragg()));	
+			,								 
+              trace('leave'); 
+			   scope(global,calc(leaveaction));
+			); 
+			</action>
+
+
+		
+</krpano>

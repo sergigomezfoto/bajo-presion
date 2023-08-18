@@ -1,0 +1,9 @@
+<krpano>
+
+<include url="point_styles.xml" />
+<include url="twin_animation_styles.xml" />
+<include url="position_styles.xml" />
+
+
+
+</krpano>

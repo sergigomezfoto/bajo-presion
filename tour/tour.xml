@@ -166,7 +166,7 @@
 			s_date="1w"
 			s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 			/>
-			<hotspot name="htest" ath="-100" atv="-21.233159931790514"  style="speech_bubbles"
+			<hotspot name="htest" ath="-121.03052929013131" atv="-27.200416978138314"   style="speech_bubbles"
 			s_position="bottom"
 			s_photo="pau"
 			s_user="Miquel"

@@ -11,20 +11,22 @@
     bg="true"
     bgalpha="1"
     bgcolor="0xffffff"
-    bgshadow="4 4 9 0x000000 0.3"
+    bgshadow="4 4 9 0x000000 0.2"
     width="20"
     height="20"   
     distorted="true"
     zoom="true"
-    capture="false"
+    capture="true"
     renderer="css3d"
     handcursor="true"
     align="bottomleft"
     alpha="1"
     onclick="trace('click');"
-
-
+    onloaded="configurebubblehs"
  />
+
+ 
+
 
 
       <style name="hstotalwrapper"
@@ -32,7 +34,7 @@
          bg="true"
          bgcolor="0xffffff"
          bgalpha="1"
-         parent="hotspot[htest]"  
+
          enabled="false"
          flowchildren="h"
          childflowspacing="10"  
@@ -44,16 +46,13 @@
       />
 
 <action name="initializehs" scope="local">
-
-  <!-- delayedcall(1,trace('pw: ',caller.pixelwidth);trace('lch: ',caller.loadedchilds););  -->
+<!-- trace('initializehs:' ,caller.name);
 txtsplit(caller.parent,'[',,last);   
 txtsplit(last,']',parentname,);   
-
 asyncloop(caller.loadedchilds LT 5,,
 calc(hotspot[get(parentname)].width,caller.pixelwidth);
 calc(hotspot[get(parentname)].height,caller.pixelheight);
-
-);
+); -->
    
 </action>
 
@@ -61,12 +60,16 @@ calc(hotspot[get(parentname)].height,caller.pixelheight);
 
 
             <style name="hsimage"
-               url="%FIRSTXML%/assets/img/users/noi.jpg"
                scale="0.25"
                gridfit="true"
                align="topleft"
                onloaded="imloaded"
             />
+            
+            <style name="pau"
+               url="%FIRSTXML%/assets/img/users/noi.jpg"              
+            />
+            
             
 
             <style name="hsuserinfocontentwrapper"
@@ -143,14 +146,100 @@ calc(hotspot[get(parentname)].height,caller.pixelheight);
                         
                      />
 
-      
+    <style name="bubble_indicator"
+    type="text"
+    bg="true"
+    bgalpha="1"
+    bgcolor="0xffffff"
+    width="20"
+    height="20"   
+    alpha="1"
+    flow="false"
+    edge="center"
+    rotate="45"
+    align="bottom"
+    y="-15" 
+    zorder="0"
+ />
+ 
   
-  <action name="imloaded" scope="local">
+  <action name="hsloaded" scope="local">
   
    layer[test2wrapper].loadedchilds = layer[test2wrapper].loadedchilds + 1;
    
   </action>
-  
+
+
+<action name="configurebubblehs" scope="local">
+<!-- trace('configurebubblehs:' ,caller.name);     -->         
+///////////////////////////hstotalwrapper
+addlayer((caller.name + 'wrapper'),wrapper); 
+wrapper.parent=('hotspot[' + caller.name + ']'); 
+wrapper.loadstyle('hstotalwrapper'); 
+///////////////////////////hsimage
+addlayer((caller.name + 'image'),image);
+image.parent=(caller.name + 'wrapper');
+image.loadstyle(('hsimage|' + caller.s_photo));
+///////////////////////////hsuserinfocontentwrapper
+addlayer((caller.name + 'infocontentwrapper'),infocontentwrapper); 
+infocontentwrapper.parent=(caller.name + 'wrapper');
+infocontentwrapper.loadstyle('hsuserinfocontentwrapper');
+///////////////////////////hsuserdatewrapper
+addlayer((caller.name + 'userdatewrapper'),userdatewrapper);
+userdatewrapper.parent=(caller.name + 'infocontentwrapper');
+userdatewrapper.loadstyle('hsuserdatewrapper');
+///////////////////////////hsuser
+addlayer((caller.name + 'user'),user);
+user.parent=(caller.name + 'userdatewrapper');
+user.loadstyle('hsuser');
+user.text=caller.s_user;
+///////////////////////////hsdate
+addlayer((caller.name + 'date'),date);
+date.parent=(caller.name + 'userdatewrapper');
+date.loadstyle('hsdate');
+date.text=caller.s_date;
+///////////////////////////hsheart
+addlayer((caller.name + 'heart'),heart);
+heart.parent=(caller.name + 'userdatewrapper');
+heart.loadstyle('hsheart');
+///////////////////////////hscontent
+addlayer((caller.name + 'content'),content);
+content.parent=(caller.name + 'infocontentwrapper');
+content.loadstyle('hscontent');
+content.text=caller.s_content;
+///////////////////////////hsindicator
+addlayer((caller.name + 'indicator'),indicator);
+indicator.parent=(caller.name + 'wrapper');
+indicator.loadstyle('bubble_indicator');
+
+
+
+delayedcall (2,
+caller.width=layer[(caller.name + 'wrapper')].pixelwidth;
+caller.height=layer[(caller.name + 'wrapper')].pixelheight;
+<!-- trace(layer[(caller.name + 'infocontentwrapper')].pixelwidth);
+trace(layer[(caller.name + 'infocontentwrapper')].pixelheight);
+set(caller.width,layer[(caller.name + 'infocontentwrapper')].pixelwidth);
+set(caller.height,layer[(caller.name + 'infocontentwrapper')].pixelheight); -->
+
+);
+</action>
+
+
+ 		 <!-- 
+       <hotspot name="htest" ath="0" atv="0" style="speech_bubbles"/>
+       <layer name="test2wrapper" style="hstotalwrapper" >
+				<layer name="test2" style="hsimage" />			
+				<layer name="test98"  style="hsuserinfocontentwrapper">				
+					<layer name="test23"  style="hsuserdatewrapper">			
+						<layer name="test3" style="hsuser" />
+						<layer name="test4" style="hsdate" />		
+						<layer name="test8796876" style="hsheart"/>
+					</layer>
+					<layer name="test54"  style="hscontent"/>
+				</layer>			
+				<layer name="hsindicator" keep="true" style="bubble_indicator"/>
+			</layer>  -->
   
   
 </krpano>

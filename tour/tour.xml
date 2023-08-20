@@ -159,24 +159,32 @@
 		<image>
 			<cube url="panos/centro_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-			<hotspot name="htest" keep="true" ath="100" atv="0" style="speech_bubbles"/>
-			<layer name="test2wrapper" style="hstotalwrapper" keep="true">
-				<layer name="test2" style="hsimage" keep="true"/>
-				
-				<layer name="test98" keep="true" style="hsuserinfocontentwrapper">				
-					<layer name="test23" keep="true" style="hsuserdatewrapper">			
-						<layer name="test3" style="hsuser" keep="true"/>
-						<layer name="test4" style="hsdate" keep="true"/>
-						
-						<layer name="test8796876" keep="true" style="hsheart"
-							
-						/>
-						
+			<hotspot name="htest22" ath="-7.2926247587825515" atv="-21.233159931790514"  style="speech_bubbles"
+			s_position="bottom"
+			s_photo="pau"
+			s_user="Pau"
+			s_date="1w"
+			s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+			/>
+			<hotspot name="htest" ath="-100" atv="-21.233159931790514"  style="speech_bubbles"
+			s_position="bottom"
+			s_photo="pau"
+			s_user="Miquel"
+			s_date="1w"
+			s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+			/>
+			<!-- <layer name="test2wrapper" style="hstotalwrapper" >
+				<layer name="test2" style="hsimage" />			
+				<layer name="test98"  style="hsuserinfocontentwrapper">				
+					<layer name="test23"  style="hsuserdatewrapper">			
+						<layer name="test3" style="hsuser" />
+						<layer name="test4" style="hsdate" />		
+						<layer name="test8796876" style="hsheart"/>
 					</layer>
-					
-					<layer name="test54" keep="true" style="hscontent"/>
-				</layer>
-			</layer>
+					<layer name="test54"  style="hscontent"/>
+				</layer>			
+				<layer name="hsindicator" keep="true" style="bubble_indicator"/>
+			</layer> -->
 	</scene>
 
 	<scene name="scene_centro_2" title="centro_2" onstart="" thumburl="panos/centro_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">

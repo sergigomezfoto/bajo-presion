@@ -1,0 +1,504 @@
+#hudWrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(32, 0, 21, 0.8);
+    backdrop-filter: blur(4px) saturate(150%);
+    --hudcolor: #ff57f1;
+    font-family: 'untitled_sansmedium';
+}
+
+#hudUserBg {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url(../../../assets/hud/top_bg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 1335px;
+    height: 263px;
+    display: flex;
+}
+
+#hudUser {
+    background-image: url(../../../assets/hud/user_bg.png);
+    background-repeat: no-repeat;
+    background-position: -10px top;
+    background-size: contain;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    padding-top: 18px;
+    font-size: 14px;
+}
+
+#hudCurrentSpanishDate {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+    color: var(--hudcolor);
+    font-size: 14px;
+}
+
+#hudHourAndIcons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--hudcolor);
+    font-size: 14px;
+    background-image: url(../../../assets/hud/mob_icons.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    height: 22px;
+    width: 181px;
+    padding-top: 6px;
+}
+
+#hudPositiveCard {
+    position: absolute;
+    top: 90px;
+    right: 0px;
+    width: 281px;
+    height: 96px;
+    background-image: url(../../../assets/hud/card1.png);
+    font-family: 'untitled_sansmedium';
+    font-size: 16px;
+    color: #ff57f1;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+#hudPositiveCardText {
+    width: 80%;
+    padding-left: 15%;
+}
+
+#hudCenterVisionTotalWrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    /* background-color: #f6f6f6; */
+    /* opacity: 0.4; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Cambio para alinear el elemento al inicio del eje vertical */
+    padding-top: 150px;
+    /* Margen superior */
+}
+
+#hudCenterVisionWrapper {
+    position: relative;
+    /* max-width: 1295px;
+    max-height: 715px; */
+    width: calc(100% - 600px);
+    height: calc(100% - 300px - 150px);
+    /* Se resta el espacio del margen superior */
+    min-height: 505px;
+    min-width: 489px;
+    box-sizing: border-box;
+    opacity: 0.5;
+
+}
+
+#hudCenterVisionLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    border-top: #ff57f1 2px solid;
+    border-left: #ff57f1 2px solid;
+    border-bottom: #ff57f1 2px solid;
+    border-radius: 260px 0 0 260px;
+
+}
+
+#hudCenterVisionLeftInterior {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80px;
+    width: 160px;
+    height: 60%;
+    border-top: #ff57f1 2px solid;
+    border-left: #ff57f1 2px solid;
+    border-bottom: #ff57f1 2px solid;
+    border-radius: 350px 0 0 350px;
+}
+
+#hudCenterVisionLeftExtra {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -4px;
+    width: 20px;
+    height: 30%;
+
+    border-left: #ff57f1 6px solid;
+
+}
+
+#hudCenterVisionMiddle {
+    position: relative;
+
+    height: 100%;
+    width: calc(100% - 400px);
+    border-top: #ff57f1 2px solid;
+    border-bottom: #ff57f1 2px solid;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#hudCenterVisionMiddleInterior {
+    position: relative;
+
+    height: 60%;
+    width: calc(100% - 86px);
+    border-top: #ff57f1 2px solid;
+    /* border-bottom: #ff57f1 2px solid; */
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, calc(-50% - 1px));
+}
+
+#hudCenterVisionRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    border-top: #ff57f1 2px solid;
+    border-right: #ff57f1 2px solid;
+    border-bottom: #ff57f1 2px solid;
+    border-radius: 0 260px 260px 0;
+}
+
+#hudCenterVisionRightInterior {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 80px;
+    width: 160px;
+    height: 60%;
+    border-top: #ff57f1 2px solid;
+    border-right: #ff57f1 2px solid;
+    border-bottom: #ff57f1 2px solid;
+    border-radius: 0 350px 350px 0;
+}
+
+#hudCenterVisionRightExtra {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -4px;
+    width: 20px;
+    height: 30%;
+
+    border-right: #ff57f1 6px solid;
+
+}
+
+#hudCenterPoint {
+    position: absolute;
+    /* Esto hará que la imagen se posicione respecto a #centerVisionWrapper */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Centra la imagen respecto a su propio tamaño */
+    /* Definir el tamaño deseado para esta imagen central, por ejemplo: */
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    /* Esto asegura que la imagen esté por encima de la imagen de fondo */
+}
+
+/* #hudProgressImage {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 322px;
+    height: 45px;
+    background-image: url(../../../assets/hud/progress.png);
+
+} */
+
+.filled-square {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    margin: 0 5px;
+    /* Un pequeño margen para separar el cuadrado del texto */
+}
+
+#hudProgressImage {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 322px;
+    height: 42px;
+    background-color: #ff57f1;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-family: 'untitled_sansmedium';
+    font-size: 19px;
+    gap: 10px;
+
+}
+
+#hudProgressImageTie {
+    position: absolute;
+
+    top: 19px;
+    left: 313px;
+    width: 66px;
+    height: 47px;
+    opacity: 0.7;
+
+    background-image: url(../../../assets/hud/progress_tie.png);
+}
+
+.hudCounterCircle {
+    position: absolute;
+    top: 200px;
+    left: 0px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 20px solid transparent;
+}
+
+.hudCounterPercentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45px;
+    font-family: 'bw_black';
+    color: rgb(255, 87, 241);
+    opacity: 0.2;
+}
+
+.hudCounterPortion {
+    position: absolute;
+    border: 18px solid rgba(255, 87, 241, 0.2);
+    opacity: 1;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    clip-path: polygon(50% 50%, 100% 26%, 100% 0, 50% 0);
+    -webkit-clip-path: polygon(50% 50%, 100% 26%, 100% 0, 50% 0);
+    /* Add this line */
+    /* box-shadow: 0 0 0 10px rgb(255, 255, 255); */
+    /* border: 1px solid transparent;  */
+}
+
+.hudCounterPortion[data-value="20"] {
+    rotate: 0deg;
+}
+
+.hudCounterPortion[data-value="40"] {
+    rotate: 72deg;
+
+
+}
+
+.hudCounterPortion[data-value="60"] {
+    rotate: 144deg;
+
+}
+
+.hudCounterPortion[data-value="80"] {
+    rotate: 216deg;
+
+}
+
+.hudCounterPortion[data-value="100"] {
+    rotate: 288deg;
+
+}
+
+.hudCounterHighlighted {
+    border: 18px solid rgba(255, 87, 241, 1);
+}
+
+
+#hudSkillsImage {
+    position: absolute;
+    top: 232px;
+    right: 20px;
+    width: 190px;
+    height: 45px;
+    background-color: #ff57f1;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-family: 'untitled_sansmedium';
+    font-size: 19px;
+    gap: 10px;
+}
+
+#hudSkillsImageTie {
+    position: absolute;
+    top: 21px;
+    left: -100px;
+    width: 106px;
+    height: 44px;
+    opacity: 0.7;
+    background-image: url(../../../assets/hud/aptitudes_tie.png);
+}
+
+#hudSkillsListWrapper {
+    position: absolute;
+    top: 300px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 189px;
+    gap: 10px;
+}
+
+.hudSkillLockerWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.hudSkillLocker {
+    width: 26px;
+    height: 26px;
+    background-image: url('../../../assets/hud/aptitudes_locked.png');
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.hudSkillConqueredLocker {
+    background-image: url('../../../assets/hud/aptitudes_unlocked.png');
+}
+
+.hudSkillText {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: rgb(255, 87, 241);
+    opacity: 0.2;
+    width: 150px;
+}
+
+.hudSkillConqueredText {
+    opacity: 1;
+}
+
+#hudTalentWrapper{
+    position: absolute;
+    bottom: 31px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1397px;
+    height: 215px;
+    /* background-color: rgba(0, 255, 255,0.2); */
+    /* margin: auto 0; */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+#hudTalentWrapper > :first-child, #hudTalentWrapper > :last-child {
+
+    align-self: flex-start;
+}
+.hudTalentCard{
+    width:180px;
+    height:149px;
+    background-image: url('../../../assets/hud/talent_card_locked.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    color:#ff57f1;
+    font-family: 'untitled_sansmedium';
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.hudTalentUnlockedCard{
+    background-image: url('../../../assets/hud/talent_card_unlocked.png');
+    color:#000000;
+}
+
+.hudTalentCard span{
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+}
+.hudTalentList{
+    position: relative;
+    top: 27px;
+    left: 8px;
+    width: 170px;
+    height: 77px;
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-start;
+    gap: 2px;
+}
+.hudTalentItem{
+    color: #ff57f1;
+    text-transform: initial;
+    font-family: 'untitled_sansmedium';
+    font-size: 12px;
+}
+
+
+#hudReturnButton {
+    display: flex;
+    position: absolute;
+    right: 40px;
+    bottom: 300px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    width: auto;
+}
+
+#hudGoHomeButton {
+    display: flex;
+    position: absolute;
+    left: 40px;
+    bottom: 300px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    width: auto;
+}
+.hudButton{
+    color:#ff57f1;
+    border: 2px solid #ff57f1;
+}
+.hudButton:hover{
+    color:#000000;
+    background-color: #ff57f1;
+}

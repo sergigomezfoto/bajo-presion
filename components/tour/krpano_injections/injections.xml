@@ -1,0 +1,25 @@
+<krpano>
+
+
+<events name="scene" keep="true"
+onnewscene="efimer_injections"
+/>
+
+<action name="efimer_injections">
+    if (a987987765,
+        trace('efimer_injections');
+        view.maxpixelzoom=1;
+    );
+
+    a987987765=true;
+</action>
+
+<action  autorun="true">
+
+
+</action>
+
+
+
+
+</krpano>

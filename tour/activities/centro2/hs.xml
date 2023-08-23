@@ -1,0 +1,14 @@
+<krpano>
+
+
+<hotspot name="htest22" ath="-1.668472618807641" atv="-8.251196353633475"  style="speech_bubbles"
+    s_position="rightbottom"
+    s_photo="mariona"
+    s_user="Mariona"
+    s_date="1w"
+    s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    onclick.addevent="trace('lalala')"
+/>
+    
+
+</krpano>

@@ -1,21 +1,20 @@
-
-#homeInterface{
+#homeInterface {
     position: absolute;
     z-index: 20;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     pointer-events: none;
-    display:none;
-    opacity:0;
+    display: none;
+    opacity: 0;
     transition: opacity 0.3s linear;
 }
 
 
 
-#homeTitle{
+#homeTitle {
     position: absolute;
 
     top: var(--margin);
@@ -23,10 +22,10 @@
     font-family: 'bw_black';
     font-size: 18px;
     color: #FFFFFF;
-    
+
 }
 
-#homeUserWrapper{
+#homeUserWrapper {
     /* background-color: #f5005d;
     border-radius: 50%; */
     width: 55px;
@@ -45,24 +44,26 @@
     font-size: 14px;
 
 }
-#userImageHome{
-    width:57px;
-    height:58px;
+
+#userImageHome {
+    width: 57px;
+    height: 58px;
 }
+
 #nikname {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 20px;
-    padding:6px 10px;
+    padding: 6px 10px;
 
 }
 
-#homeHelp{
+#homeHelp {
     position: absolute;
 
     bottom: var(--margin);
     right: var(--margin);
-    width:40px;
-    height:40px;
+    width: 40px;
+    height: 40px;
     border: 2px solid #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -73,13 +74,14 @@
     font-size: 18px;
     pointer-events: auto;
 }
-#homeHelp:hover{
+
+#homeHelp:hover {
     background-color: #FFFFFF;
     color: #f5005d;
     cursor: pointer;
 }
 
-#homeCredits{
+#homeCredits {
     position: absolute;
 
     bottom: var(--margin);
@@ -92,15 +94,15 @@
     font-family: 'untitled_sansmedium';
     font-size: 14px;
     letter-spacing: 0.1rem;
-    text-decoration: none;      
-    border-bottom: 2px 0 solid; 
-    padding-bottom: 5px;      
-    margin-bottom: -5px; 
-    box-sizing:content-box;
+    text-decoration: none;
+    border-bottom: 2px 0 solid;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
+    box-sizing: content-box;
     pointer-events: auto;
 }
 
-#homeCredits:hover{
-    border-bottom: 2px  solid; 
-    margin-bottom: -7px; 
+#homeCredits:hover {
+    border-bottom: 2px solid;
+    margin-bottom: -7px;
 }

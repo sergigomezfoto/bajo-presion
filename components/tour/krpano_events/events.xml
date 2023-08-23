@@ -1,0 +1,14 @@
+
+
+<krpano>
+
+<events name="panopoints" keep="true"
+onremovepano="js:Game.resetPanoPoints()"
+/>
+
+  
+  
+  
+</krpano>
+
+

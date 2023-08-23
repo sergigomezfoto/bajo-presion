@@ -6,7 +6,7 @@
 		<include url="provacodis.xml" />
 		<include url="toolbox/toolbox.xml" />
 		<include url="fps.xml" />
-		<!-- <include url="tools/s_printvars.xml" /> -->
+		<include url="tools/s_printvars.xml" />
 
 		<!-- <videocall creada dianmicament a videocall.xml videocallin();/> -->
 		<!-- CONTENIDOR ARROSSEGABLE parent="STAGE"-->
@@ -37,8 +37,8 @@
 				<layer name="test_infoshortcuts" style="text_nomes" html="data:teclat" align="rightbottom" width="100%" height="calc:(testdisseny.midatitol)*3" y="0" css="calc: testdisseny.colortextos" bg="true" bgcolor="get:testdisseny.bgtitol" bgalpha="0.8" edge="rightbottom" padding="2 0 2 0" />
 				<layer name="test_ressolucions" type="text" align="rightbottom" x="10" y="6" bg="false" vcenter="true" html="|RES|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="toggle(layer[test_contenidor_ressolucions].visible);" />
 				<layer name="test_mobil" type="text" align="rightbottom" x="50" y="6" bg="false" vcenter="true" html="|MOB|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="test_obrefinestra_mob();" />
-				<layer name="test_escena_ant" type="text" align="leftbottom" x="10" y="6" bg="false" vcenter="true" html="|ant|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="loadscene(calc(scene[calc(scene[get(xml.scene)].index  - 1)].name),null, MERGE );" />
-				<layer name="test_escena_seg" type="text" align="leftbottom" x="40" y="6" bg="false" vcenter="true" html="|seg|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="loadscene(calc(scene[calc(scene[get(xml.scene)].index  + 1)].name),null, MERGE );" />
+				<layer name="test_escena_ant" type="text" align="leftbottom" x="10" y="6" bg="false" vcenter="true" html="|ant|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="loadscene(calc(scene[calc(scene[get(xml.scene)].index  - 1)].name),null, MERGE );jscall('enterPano()')" />
+				<layer name="test_escena_seg" type="text" align="leftbottom" x="40" y="6" bg="false" vcenter="true" html="|seg|" css="calc: testdisseny.colortextos" alpha="1" onover="set(css,get(testdisseny.colortextosover));" onout="set(css,get(testdisseny.colortextos));" onclick="js:nextTourClick()" />
 
 
 

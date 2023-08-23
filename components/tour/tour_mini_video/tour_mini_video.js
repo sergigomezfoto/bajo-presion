@@ -97,6 +97,7 @@ const randomVideoId = [
 
 const randomPlayerCanvasWrapper = document.getElementById("randomPlayerCanvasWrapper");
 const randomPlayerCanvas = document.getElementById("randomPlayerCanvas");
+
 const randomPlay = async () => {
   const video = getRandomElement(randomVideoId);
   await awaitStylecomplete(randomPlayerCanvasWrapper, "display", "flex");

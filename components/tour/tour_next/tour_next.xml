@@ -1,0 +1,21 @@
+<krpano>
+
+<style name="tourNext"
+    type="text"
+    bg="true"
+    bgcolor="0x125235"	
+    bgalpha="0"
+    capture="false"
+    width="223px"
+    height="45px"
+    align="rightbottom"
+    x="110"
+    y="40"
+    enabled="false"
+    onhover="js:nextTourClassAdd();"
+    onout="js:nextTourClassRemove();"
+    onclick="js:nextTourClick();"	
+/>
+<layer name="nextTour" keep="true" style="tourNext"/>
+
+</krpano>

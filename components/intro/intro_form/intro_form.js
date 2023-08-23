@@ -23,6 +23,7 @@ const sendNickName = () => {
  
   const nikname= document.getElementById("nikname");
   const niknameTour= document.getElementById("niknameTour");
+  // const hudUser = document.getElementById('hud-user');
   const inputValue = inputFormIntro.value.trim();
 
   if (inputValue.length < 2) {
@@ -42,6 +43,7 @@ const sendNickName = () => {
     Game.user = inputValue;
     nikname.innerText = Game.nickName;
     niknameTour.innerText = Game.nickName;
+    // hudUser.innerText = Game.nickName;
     window.removeEventListener("keyup", handleFormKeyUp);
   }
 };

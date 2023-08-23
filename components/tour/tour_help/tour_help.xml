@@ -1,0 +1,20 @@
+<krpano>
+
+<style name="tourHelp"
+    type="text"
+    bg="true"
+    bgcolor="0x125235"	
+    bgalpha="0"
+    capture="false"
+    width="45px"
+    height="45px"
+    align="rightbottom"
+    x="40"
+    y="40"
+    onhover="js:helpTourClassAdd();"
+    onout="js:helpTourClassRemove();"
+    onclick="js:helpTourClick();"	
+/>
+<layer name="helpTour" keep="true" style="tourHelp"/>
+
+</krpano>

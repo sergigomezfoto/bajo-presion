@@ -1,0 +1,25 @@
+<krpano>
+
+<style name="tourUser"
+    type="text"
+    bg="true"
+    bgcolor="0x125235"	
+    bgalpha="0"
+    capture="false"
+    width="100px"
+    height="100px"
+    align="righttop"
+    x="40"
+    y="40"
+    onhover="js:niknameTourClassAdd();"
+    onout="js:niknameTourClassRemove();"
+    onclick="js:niknameTourClick();"	
+/>
+
+
+
+
+
+<layer name="niknameTour" keep="true" style="tourUser"/>
+
+</krpano>

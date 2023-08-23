@@ -1,14 +1,15 @@
 <krpano> 
 <!-- framework  -->
     <include url="01_s_framework/s_framework.xml"/>
-    <!-- <include url="02_s_element_effects/s_element_effects.xml" />
+    <include url="10_s_localize/s_localize.xml" />
+    <include url="02_s_element_effects/s_element_effects.xml" />
+    <!-- 
     <include url="03_s_ui_effects/s_ui_effects.xml" />
     <include url="04_s_popups/s_popups.xml" />
     <include url="05_s_constructors/s_constructors.xml" />
     <include url="07_s_time/s_time.xml" />
     <include url="08_s_events/s_events.xml" />
     <include url="09_s_counters/s_counters.xml" />
-    <include url="10_s_localize/s_localize.xml" />
     <include url="11_s_setters/s_setters.xml" />
     <include url="s_alert_points/s_alert_points.xml" /> -->
     <!-- <include url="12_s_analytics/s_analytics.xml" /> -->

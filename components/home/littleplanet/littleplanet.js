@@ -122,12 +122,11 @@ planetAnimation.pause();
 
 const labels = document.querySelectorAll(".hlp-label");
 
-labels.forEach((label) => {
-  let dataValue = label.dataset.value;
+labels.forEach((label,index) => {
+  let dataValue = Game.state.places[index];
+  label.dataset.value = dataValue;
   label.innerText = data[dataValue].title;
-  Game.addPlace(dataValue);
   label.addEventListener("click", function () {
-    console.log(dataValue);
    
     enterPlace(dataValue);
   });

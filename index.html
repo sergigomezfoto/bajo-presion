@@ -4,12 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no"" />
     <title>Bajo presión</title>
     <script>
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+
+        // document.addEventListener('keydown', function (event) {
+        //     if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
+        //         event.preventDefault();
+        //     }
+        // });
+        // let initialZoom = 1;
+        // console.log(initialZoom);
+        // window.addEventListener('resize', function () {
+        //     if (window.devicePixelRatio !== initialZoom) {
+        //         document.body.style.transform = 'scale(' + initialZoom / window.devicePixelRatio + ')';
+        //     }
+        // });
     </script>
-    <script src="./js/perfect_scrollbar.js"></script>
+    <script src=" ./app/perfect_scrollbar.js">
+    </script>
     <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/perfect-scrollbar.css">
@@ -30,6 +44,7 @@
     <link rel="stylesheet" href="components/tour/tour_mini_video/style.css">
     <link rel="stylesheet" href="components/tour/tour_next/style.css">
     <link rel="stylesheet" href="components/tour/tour_pano_text/style.css">
+    <link rel="stylesheet" href="components/tour/tour_hud/style.css">
     <link rel="stylesheet" href="components/popup/style.css">
     <script src="data/data.js"></script>
 
@@ -38,6 +53,29 @@
 
 <body>
 
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    function scaleBodyAndHtml(scaleFactor) {
+        const elements = [document.body, document.documentElement];
+
+        elements.forEach(el => {
+            el.style.transform = `scale(${scaleFactor})`;
+            el.style.transformOrigin = 'top left';
+            el.style.width = `${100 / scaleFactor}%`;
+            el.style.height = `${100 / scaleFactor}%`;
+        });
+    }
+
+    // Si el zoom es prácticament 100%, no fa res.
+    if (Math.abs(window.devicePixelRatio - 1) < 0.05) return;
+    
+    const originalScale = 1 / window.devicePixelRatio;
+    const adjustmentFactor = 1; 
+    const finalScale = originalScale * adjustmentFactor;
+
+    scaleBodyAndHtml(finalScale);
+});
+    </script>
     <div id="home-interface" class="fullscreen" style="display:none;"></div>
     <div id="startcontainer">
 
@@ -96,10 +134,68 @@
                             </div>
                         </div>
                     </div>
+          
 
                     <!-- <div id="miniVideo"><img src="./assets/img/mini_etna.png" alt="me" width="100%" height="100%"></div> -->
                 </div>
             </div>
+        </div>
+        <div id="hudWrapper">
+            <div id="hudUserBg">
+                <div id="hudUser"></div>
+            </div>
+            <div id="hudCurrentSpanishDate"></div>
+            <div id="hudHourAndIcons">12:45</div>
+            <div id="hudPositiveCard">
+                <p id="hudPositiveCardText">Sigue así, lo estas haciendo genial!</p>
+            </div>
+            <div id="hudCenterVisionTotalWrapper">
+                <div id="hudCenterVisionWrapper">
+                    <div id="hudCenterVisionLeft">
+                        <div id="hudCenterVisionLeftExtra"></div>
+                        <div id="hudCenterVisionLeftInterior"></div>
+                    </div>
+                    <img id="hudCenterPoint" src="assets/hud/center_point.png" alt="Descripción de la imagen central">
+                    <div id="hudCenterVisionMiddle">
+                        <div id="hudCenterVisionMiddleInterior"></div>
+                    </div>
+                    <div id="hudCenterVisionRight">
+                        <div id="hudCenterVisionRightExtra"></div>
+                        <div id="hudCenterVisionRightInterior"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="hudProgressImage">
+                <div class="filled-square"></div> PROGRESO PERSONAL<div id="hudProgressImageTie"></div>
+            </div>
+            <div class="hudCounterCircle">
+                <span class="hudCounterPercentage">100%</span>
+                <div class="hudCounterPortion" data-value="20"></div>
+                <div class="hudCounterPortion" data-value="40"></div>
+                <div class="hudCounterPortion" data-value="60"></div>
+                <div class="hudCounterPortion" data-value="80"></div>
+                <div class="hudCounterPortion" data-value="100"></div>
+            </div>
+            <div id="hudSkillsImage">
+                <div class="filled-square"></div> APTITUDES<div id="hudSkillsImageTie"></div>
+            </div>
+            <div id="hudSkillsListWrapper">
+                <!-- <div class="hudSkillLockerWrapper"><div class="hudSkillLocker"></div><span class="hudSkillText">Autoconocimiento</span></div>
+                    ....
+                -->
+            </div>
+            <div id="hudReturnButton" class="button hudButton">continuar actividad</div>
+            <div id="hudGoHomeButton" class="button hudButton">ir al menú principal</div>
+            <div id="hudTalentWrapper">
+                <!-- <div class="hudTalentCard hudTalentUnlockedCard" ><span></span></div>
+                <div class="hudTalentCard" ><span></span></div>
+                <div class="hudTalentCard" ><span></span></div>
+                <div class="hudTalentCard" ><span></span></div>
+                <div class="hudTalentCard" ><span></span></div> -->
+            </div>
+           
+            <!-- <div id="hudHomeButton"></div> -->
+
         </div>
         <!-- </div> -->
         <div id="videoPlayerCanvasWrapper">
@@ -187,11 +283,11 @@
         <div id="homeInterface">
             <div id="homeLittlePlanet">
                 <div id="home-planet-wrapper">
-                    <div id="hlp-label-1" class="hlp-label home-planet-label-active" data-value="casa"></div>
-                    <div id="hlp-label-2" class="hlp-label home-planet-label-active" data-value="polideportivo"></div>
-                    <div id="hlp-label-3" class="hlp-label home-planet-label-active" data-value="instituto"></div>
-                    <div id="hlp-label-4" class="hlp-label home-planet-label-active" data-value="centro"></div>
-                    <div id="hlp-label-5" class="hlp-label home-planet-label-active" data-value="parque"></div>
+                    <div id="hlp-label-1" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-2" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-3" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-4" class="hlp-label home-planet-label-active"></div>
+                    <div id="hlp-label-5" class="hlp-label home-planet-label-active"></div>
                     <div id="home-littleplanet"></div>
                 </div>
                 <div class="circle">
@@ -219,17 +315,19 @@
 
     </div>
 
-    <script src="js/helpers.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/krpano_actions.js"></script>
-    <script src="js/enter_place_pano.js"></script>
+    <script src="app/helpers.js"></script>
+    <script src="app/Game_object.js"></script>
+    <script src="app/krpano_incrustation.js"></script>
+    <script src="components/tour/tour_loadscene/loadscene.js"></script>
+    <script src="components/tour/enter_place_enter_pano/enter_place_enter_pano.js"></script>
     <script src="components/youtube_api/youtube_api.js"></script>
     <script src="components/intro/intro_first_littleplanet/intro_first_littleplanet.js"></script>
     <script src="components/intro/intro_form/intro_form.js"></script>
     <script src="components/home/littleplanet/littleplanet.js"></script>
     <script src="components/home/counter_home/counter_home.js"></script>
     <script src="components/home/home.js"></script>
-    <script src="js/intro.js"></script>
+    <script src="app/access_mode.js"></script>
+    <script src="components/tour/tour.js"></script>
     <script src="components/tour/tour_timer/tour_timer.js"></script>
     <script src="components/tour/tour_user/tour_user.js"></script>
     <script src="components/tour/tour_help/tour_help.js"></script>
@@ -237,6 +335,7 @@
     <script src="components/tour/tour_mini_video/tour_mini_video.js"></script>
     <script src="components/tour/tour_next/tour_next.js"></script>
     <script src="components/tour/tour_pano_text/tour_pano_text.js"></script>
+    <script src="components/tour/tour_hud/tour_hud.js"></script>
     <script src="components/popup/popup.js"></script>
     <!-- LAST -->
     <script src="components/general_loader/general_loader.js"></script>

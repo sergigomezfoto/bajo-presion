@@ -128,7 +128,29 @@ const talentCards = async () => {
   }
 };
 
+
+const hudTimeElapsed=()=>{
+  const hudPlacePlaceTime = document.getElementById("hudPlacePlaceTime");
+  const totalElapsed = countdown.elapsedTime;
+  const totalElapsedFormated=formatSecondsToMMSS(totalElapsed);
+  const hudTotalPlaceTime = document.getElementById("hudTotalPlaceTime");
+  const hudTotalPlaceBorrowedTime = document.getElementById("hudTotalPlaceBorrowedTime");
+  hudPlacePlaceTime.innerText=Game.placeTitle;
+  hudTotalPlaceTime.innerText=totalElapsedFormated;
+  hudTotalPlaceBorrowedTime.innerText= totalElapsed - Game.state.timerTime > 0 ? formatSecondsToMMSS(totalElapsed - Game.state.timerTime) : "00:00";
+  // const borrowedTime = 
+
+}
+
+const hudPlaceName = () => {
+  const hudPlaceName = document.getElementById("hudPlaceName");
+  hudPlaceName.innerText = Game.placeTitle;
+}
+
+
 const updateHud = () => {
+  hudPlaceName();
+  hudTimeElapsed();
   talentCards();
   updateHudUser();
   updateHudTime();
@@ -137,7 +159,26 @@ const updateHud = () => {
   updateSkillsHud();
 };
 
-const actualPlaceTalentConquered = (talent) => {
+
+const newSkillConqueredHud = () => {
+  const hudPrices = document.getElementById("hudPrices");
+  hudPrices.style.display = "block";
+  hudPrices.innerText = "¡Nueva aptitud conseguida, felicidades!";
+};
+const newTalentConqueredHud = () => {
+  const hudPrices = document.getElementById("hudPrices");
+  hudPrices.style.display = "block";
+  hudPrices.innerText = "¡Nueva capacidad desbloqueada, sigue así!";
+};
+
+const hidePricesHud = () => {
+  const hudPrices = document.getElementById("hudPrices");
+  hudPrices.style.display = "none";
+};
+
+
+
+const talentConquered = (talent) => {
   const actualPlaceCard = document.querySelector(`.hudTalentCard[data-value="${Game.place}"]`);
   const acutalTalentList = actualPlaceCard.querySelector(".hudTalentList");
   const talentItem = document.createElement("div");

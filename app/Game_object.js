@@ -11,8 +11,8 @@ const gameOptions = {
   intro: true,
   user: "anonimus",
   places: ["casa", "polideportivo", "instituto", "centro", "parque"],
-  skills: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad", "rebatir creencias"],
-  timerTime: 20 * 60 * 1000, //20 minuts
+  skills: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad", "criterio própio"],
+  timerTime: 20, //20 minuts
 };
 
 ////////////////////////////////////////////////////////////////////// MAIN GAME OBJ
@@ -34,7 +34,6 @@ class GameClass {
       skillsConqueredNum: 0,
       skillsConqueredPercentage: "0%",
       timerTime: timerTime, //20 minuts
-      timerBonusRecived: 0,
       win: false,
       now: {
         _obj: "Game.state.now",

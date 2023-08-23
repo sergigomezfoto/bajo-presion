@@ -549,3 +549,22 @@ const getCurrentTime = () => {
   const minutes = String(now.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;
 };
+/**
+ * ***************************************************************************************************************************
+ *                                              FORMATEIG DE SEGONS A MM:SS
+ * ***************************************************************************************************************************
+ */
+/**
+ * Aquesta funció transforma una quantitat de segons en un format MM:SS.
+ * Es divideixen els segons per 60 per obtenir els minuts i es pren el residu per obtenir els segons restants.
+ * Els minuts i els segons s'ajusten per assegurar-se que sempre tenen dos dígits
+ * fent servir la funció `padStart`.
+ *
+ * @param {number} seconds - La quantitat de segons que es volen transformar.
+ * @returns {string} - Una cadena de text que representa els segons en format MM:SS.
+ */
+const formatSecondsToMMSS = (seconds) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}

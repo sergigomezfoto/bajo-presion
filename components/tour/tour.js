@@ -1,4 +1,5 @@
 const showTour = async () => {
+  countdown.resume();
   const homeLittlePlanet = document.getElementById("homeLittlePlanet");
   const pano = document.getElementById("pano");
   updateGameState();

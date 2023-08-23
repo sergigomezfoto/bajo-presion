@@ -21,8 +21,8 @@ const enterPlace = async (dataValue) => {
   fadeinAndPlayNewPlaceVideo(Game.placeIntroVideo);
   await waitForEventToTrigger(document.getElementById("skipVideoButton"), "click");
   //   }
-  await hideHome();
-  countdown.resume();
+  await showTour();
+
 };
 
 const enterPano = async (pIndex=null) => {
@@ -74,7 +74,6 @@ const freeModeEnterPlacePano = async (dataValue) => {
     // panoskill: data[dataValue].panos[1].skill ? data[dataValue].panos[1].skill : null,
   });
   await showTour();
-  countdown.resume();
   Game.setNowState({
     panoName: `scene_${data[Game.place].name}_${panoIndex}`,
     panoGoal: data[Game.place].panos[panoIndex].points,

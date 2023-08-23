@@ -20,6 +20,7 @@ const HomeState = {
 };
 
 const showHome = async () => {
+  countdown.stopAndReset();
   const homeLittlePlanet = document.getElementById("homeLittlePlanet");
   const pano = document.getElementById("pano");
   updateGameState();

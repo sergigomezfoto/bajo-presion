@@ -5,7 +5,7 @@
  */
 /**
  * Aquesta funció envolta una funció asíncrona amb gestió d'errors.
- * Si la funció asíncrona llançada llança una excepció, aquesta serà capturada i els detalls de l'error 
+ * Si la funció asíncrona llançada llança una excepció, aquesta serà capturada i els detalls de l'error
  * seran mostrats en la consola, evitant així que l'error no gestionat interrompi l'execució del programa.
  *
  * @param {Function} asyncFn - La funció asíncrona que volem envoltar amb gestió d'errors.
@@ -100,17 +100,18 @@ const getRandomElement = (arr) => {
 /**
  * Aquesta funció executa un bucle asincrònic que espera que es compleixi una condició determinada.
  * Es verificarà la condició cada 'time' mil·lisegons fins que es compleixi o fins que es superin
- * el nombre màxim d'intents ('maxAttempts'). Si es supera el nombre màxim d'intents, 
+ * el nombre màxim d'intents ('maxAttempts'). Si es supera el nombre màxim d'intents,
  * s'executarà la funció 'onMaxAttempts' i es resoldrà la promesa.
  *
  * @param {Function} condition - Una funció que retorna un booleà indicant si la condició es compleix.
  * @param {number} [time=300] - El temps en mil·lisegons entre cada intent de comprovar la condició.
  * @param {number|null} [maxAttempts=null] - El nombre màxim d'intents per comprovar la condició. Si és 'null', no hi ha límit.
  * @param {Function} [onMaxAttempts=() => {}] - Una funció a executar quan es superi el nombre màxim d'intents.
+ * @param {string} [id=null] - Un id per traquejar errors.
  * @returns {Promise<void>} - Una promesa que es resol quan es compleixi la condició o quan es superi el nombre màxim d'intents.
  */
 
-const asyncLoopPositive = (condition, time = 300, maxAttempts = null, onMaxAttempts = () => {}) => {
+const asyncLoopPositive = (condition, time = 300, maxAttempts = null, onMaxAttempts = () => {}, id = null) => {
   return new Promise((resolve, reject) => {
     let attempts = 0;
 
@@ -118,7 +119,7 @@ const asyncLoopPositive = (condition, time = 300, maxAttempts = null, onMaxAttem
       attempts++;
 
       // Logging the current attempt number
-      if (Game.test) console.log(`bucleAsyncLoopPositive: ${attempts}`);
+      if (Game.test) console.log(`bucleAsyncLoopPositive:${id} , ${attempts}`);
       if (maxAttempts !== null && attempts > maxAttempts) {
         onMaxAttempts();
         resolve();
@@ -148,7 +149,7 @@ const asyncLoopPositive = (condition, time = 300, maxAttempts = null, onMaxAttem
  */
 /**
  * Aquesta funció converteix noms d'atributs d'estil CSS a la seva versió equivalent en JavaScript.
- * Específicament, converteix noms en camelCase a kebab-case. Per exemple, 'backgroundColor' es 
+ * Específicament, converteix noms en camelCase a kebab-case. Per exemple, 'backgroundColor' es
  * convertiria a 'background-color'.
  *
  * @param {string} attribute - El nom de l'atribut en camelCase que volem convertir.
@@ -168,19 +169,20 @@ const cssToJsAttributes = (attribute) => {
  * ***************************************************************************************************************************
  */
 /**
- * Aquesta funció espera fins que un estil específic d'un element del DOM arribi a tenir 
- * un valor determinat. Utilitza una funció d'ajuda 'asyncLoopPositive' per verificar 
+ * Aquesta funció espera fins que un estil específic d'un element del DOM arribi a tenir
+ * un valor determinat. Utilitza una funció d'ajuda 'asyncLoopPositive' per verificar
  * periòdicament si l'atribut d'estil ha arribat al valor desitjat.
  *
  * @param {HTMLElement} element - L'element del DOM en el qual estem esperant el canvi d'estil.
  * @param {string} attribute - L'atribut d'estil que estem esperant que canviï (p.ex. 'background-color').
  * @param {string} value - El valor desitjat de l'atribut d'estil.
- * @param {number} [time=null] - Un valor opcional que pot indicar el temps màxim d'espera o d'altres condicions relacionades amb 'asyncLoopPositive'.
+ * @param {number} [maxattempts=null] - Un valor opcional de nombre máxim d'intents en el bucle.
+ * @param {Function} [onMaxAttempts=() => {}] - Una funció a executar quan es superi el nombre màxim d'intents.
+ * @param {string} [id=null] - Un id per traquejar errors.
  * @returns {Promise<boolean>} - Una promesa que es resol amb `true` quan l'atribut d'estil arriba al valor desitjat.
  * @throws {Error} - Llança un error si es proporcionen arguments invàlids o si es produeix un error durant la comprovació d'estil.
  */
-const awaitStylecomplete = async (element, attribute, value, time = null) => {
-
+const awaitStylecomplete = async (element, attribute, value, maxAttempts = null, callback = () => {}, id = null) => {
   if (!element || !(element instanceof HTMLElement)) {
     throw new Error("Invalid element provided.");
   }
@@ -198,7 +200,9 @@ const awaitStylecomplete = async (element, attribute, value, time = null) => {
       }
     },
     10,
-    time
+    maxAttempts,
+    callback,
+    id
   );
 
   return true;
@@ -215,13 +219,13 @@ const awaitStylecompleteSafe = withErrorHandling(awaitStylecomplete);
 
 /**
  * Aquesta funció gestiona la transició d'opacitat d'un element del DOM especificat per ID.
- * Si l'opció 'display' no és "none", primer canvia l'estil 'display' de l'element i després 
- * la seva opacitat. Si l'opció 'display' és "none", primer canvia l'opacitat de l'element 
+ * Si l'opció 'display' no és "none", primer canvia l'estil 'display' de l'element i després
+ * la seva opacitat. Si l'opció 'display' és "none", primer canvia l'opacitat de l'element
  * i després l'estil 'display' a "none".
  *
  * @param {string} id - L'ID de l'element del DOM que volem gestionar.
  * @param {string} opaci - El valor d'opacitat que volem assignar a l'element.
- * @param {string} [display="none"] - L'estil 'display' que volem assignar a l'element 
+ * @param {string} [display="none"] - L'estil 'display' que volem assignar a l'element
  *                                    després de la transició (per defecte és "none").
  * @returns {Promise} - Una promesa que es resol quan la transició ha finalitzat.
  */
@@ -243,7 +247,7 @@ const fadeInFadeOut = async (id, opaci, display = "none") => {
  * ***************************************************************************************************************************
  */
 /**
- * Aquesta funció retorna una promesa que es resol després d'una quantitat especificada 
+ * Aquesta funció retorna una promesa que es resol després d'una quantitat especificada
  * de mil·lisegons. Es pot utilitzar per simular una pausa o retard en l'execució del codi.
  *
  * @param {number} ms - La quantitat de mil·lisegons que volem que la promesa esperi abans de resoldre's.
@@ -257,9 +261,9 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  * ***************************************************************************************************************************
  */
 /**
- * Aquesta funció retorna una promesa que es resol quan un determinat esdeveniment 
- * s'activa (trigger) en un element del DOM especificat. Una vegada l'esdeveniment 
- * s'activa, es pot executar una funció de callback si se li proporciona. Després d'activar-se 
+ * Aquesta funció retorna una promesa que es resol quan un determinat esdeveniment
+ * s'activa (trigger) en un element del DOM especificat. Una vegada l'esdeveniment
+ * s'activa, es pot executar una funció de callback si se li proporciona. Després d'activar-se
  * l'esdeveniment una vegada, no es consideraran activacions addicionals.
  *
  * @param {HTMLElement} element - L'element del DOM en el qual estem esperant que l'esdeveniment es produeixi.
@@ -291,9 +295,9 @@ const waitForEventToTrigger = (element, eventName, callback) => {
  */
 
 /**
- * Aquesta funció retorna una promesa que es resol quan un element del DOM arriba 
- * a tenir un nombre determinat de fills (o més). La funció utilitza MutationObserver 
- * per observar canvis en l'estructura de fills de l'element donat. Quan el nombre 
+ * Aquesta funció retorna una promesa que es resol quan un element del DOM arriba
+ * a tenir un nombre determinat de fills (o més). La funció utilitza MutationObserver
+ * per observar canvis en l'estructura de fills de l'element donat. Quan el nombre
  * de fills de l'element és igual o superior al valor 'expectedCount', la promesa es resol.
  *
  * @param {HTMLElement} element - L'element del DOM que volem observar.
@@ -332,6 +336,56 @@ const toggleClass = (element, className, action) => {
     element.classList.remove(className);
   }
 };
+
+/**
+ * ***************************************************************************************************************************
+ *                                             CANVI DE CLASSE EN UN ELEMENT
+ * ***************************************************************************************************************************
+ */
+
+/**
+ * Estableix una única classe en un element i elimina totes les altres.
+ *
+ * @param {HTMLElement} element - L'element al qual volem establir la classe.
+ * @param {string} className - El nom de la classe que volem establir.
+ */
+const singleClass = (element, className) => {
+  if (className === "") {
+    element.className = "";
+  } else {
+    element.className = className;
+  }
+};
+
+/**
+ * ************************************************************************************************************
+ *                                             CANVI DE COLOR DE FONS
+ * ************************************************************************************************************
+ */
+
+/**
+ * Canvia el color de fons d'un element entre dos colors a intervals i després el torna al color original.
+ *
+ * @param {HTMLElement} element - L'element que vols canviar de color.
+ * @param {string} color1 - El primer color.
+ * @param {string} color2 - El segon color.
+ * @param {number} interval - L'interval en mil·lisegons entre canvis de color.
+ * @param {number} duration - La durada total de l'efecte en mil·lisegons.
+ */
+function changeBackgroundColor(element, color1, color2, interval, duration) {
+  const originalColor = getComputedStyle(element).backgroundColor;
+  let isColor1 = true;
+
+  const intervalId = setInterval(() => {
+    element.style.backgroundColor = isColor1 ? color1 : color2;
+    isColor1 = !isColor1;
+  }, interval);
+
+  setTimeout(() => {
+    clearInterval(intervalId);
+    element.style.backgroundColor = originalColor;
+  }, duration);
+}
 /**
  * ***************************************************************************************************************************
  *                 CÀLCUL DE DIMENSIONS PROPORCIONALS AMB AJUST A NOMBRE SENCER
@@ -339,17 +393,17 @@ const toggleClass = (element, className, action) => {
  */
 
 /**
- * Aquesta funció calcula les dimensions proporcionals d'una imatge o objecte basant-se en el seu amplada i 
+ * Aquesta funció calcula les dimensions proporcionals d'una imatge o objecte basant-se en el seu amplada i
  * alçada originals, i una nova mida desitjada per l'altçada o l'amplada.
- * També proporciona les dimensions per l'amplada o alçada més propera a un nombre sencer, mantenint la 
+ * També proporciona les dimensions per l'amplada o alçada més propera a un nombre sencer, mantenint la
  * proporció.
  *
  * @param {number} originalWidth - L'amplada original de l'imatge o objecte.
  * @param {number} originalHeight - L'alçada original de l'imatge o objecte.
  * @param {number} newSize - La nova mida que es vol per l'altçada o l'amplada.
  * @param {string} [dimension="height"] - Indica quina dimensió es vol canviar, pot ser 'height' o 'width'.
- * 
- * @returns {Object} - Retorna un objecte amb les dimensions proporcionals (proportional) i les dimensions 
+ *
+ * @returns {Object} - Retorna un objecte amb les dimensions proporcionals (proportional) i les dimensions
  * més properes a un nombre sencer (nextWhole).
  */
 
@@ -461,15 +515,12 @@ class ObservableValue {
     this.callbacks = [];
   }
 
-
   addCallback(callback) {
     this.callbacks.push(callback);
   }
 
-
   set(value) {
     this._value = value;
-
 
     for (let callback of this.callbacks) {
       callback(value);
@@ -481,26 +532,25 @@ class ObservableValue {
   }
 }
 
-
 /**
  * ***************************************************************************************************************************
  *                                              DETECCIÓ DEL PRIMER CLIC
  * ***************************************************************************************************************************
  */
 /**
- * Aquesta lògica s'encarrega de detectar el primer clic fet per l'usuari en el document. 
- * Després de detectar aquest primer clic, elimina l'esdeveniment d'escolta per assegurar-se 
- * que el missatge "Primer Click." només s'imprimeix una vegada i actualitza la variable 
+ * Aquesta lògica s'encarrega de detectar el primer clic fet per l'usuari en el document.
+ * Després de detectar aquest primer clic, elimina l'esdeveniment d'escolta per assegurar-se
+ * que el missatge "Primer Click." només s'imprimeix una vegada i actualitza la variable
  * `isFirstClick` a `false` per indicar que ja s'ha fet el primer clic.
  */
 let isFirstClick = true;
-const handleFirstClick=(event)=> {
+const handleFirstClick = (event) => {
   if (isFirstClick) {
     console.log("Primer Click.");
     document.removeEventListener("click", handleFirstClick);
     isFirstClick = false;
   }
-}
+};
 document.addEventListener("click", handleFirstClick);
 /**
  * ***************************************************************************************************************************
@@ -510,8 +560,8 @@ document.addEventListener("click", handleFirstClick);
 
 /**
  * Aquesta funció retorna la data actual formatada en l'estil espanyol.
- * Es fa ús de l'objecte `Intl.DateTimeFormat` per formatar la data amb l'any, 
- * el mes i el dia en llenguatge natural. Finalment, es retorna la data amb 
+ * Es fa ús de l'objecte `Intl.DateTimeFormat` per formatar la data amb l'any,
+ * el mes i el dia en llenguatge natural. Finalment, es retorna la data amb
  * la primera lletra en majúscules.
  *
  * @returns {string} - Una cadena de text que representa la data actual en format espanyol.
@@ -520,15 +570,15 @@ const getCurrentSpanishDate = () => {
   const currentDate = new Date();
 
   const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   };
 
-  const formatter = new Intl.DateTimeFormat('es-ES', options);
+  const formatter = new Intl.DateTimeFormat("es-ES", options);
   const formattedDate = formatter.format(currentDate);
 
-  return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1); 
+  return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 };
 /**
  * ***************************************************************************************************************************
@@ -545,8 +595,8 @@ const getCurrentSpanishDate = () => {
  */
 const getCurrentTime = () => {
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
   return `${hours}:${minutes}`;
 };
 /**
@@ -566,5 +616,93 @@ const getCurrentTime = () => {
 const formatSecondsToMMSS = (seconds) => {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+};
+
+/**
+ * ***************************************************************************************************************************
+ *                                               AJUDANTS DEL LOCALSTORAGE
+ * ***************************************************************************************************************************
+ */
+/**
+ * Guarda un valor associat amb una clau al localStorage.
+ *
+ * @function saveLocalStorage
+ * @param {string} key - La clau sota la qual es vol guardar el valor.
+ * @param {*} value - El valor que es vol guardar.
+ */
+const saveLocalStorage = (key, value) => {
+  try {
+    const serializedValue = JSON.stringify(value);
+    localStorage.setItem(key, serializedValue);
+  } catch (error) {
+    console.error("Error al guardar al localStorage:", error);
+  }
+};
+
+/**
+ * Carrega un valor associat amb una clau des del localStorage.
+ *
+ * @function loadLocalStorage
+ * @param {string} key - La clau des de la qual es vol carregar el valor.
+ * @returns {*} - Retorna el valor associat amb la clau o undefined si no es troba.
+ */
+const loadLocalStorage = (key) => {
+  try {
+    const serializedValue = localStorage.getItem(key);
+    if (serializedValue === null) return undefined;
+    return JSON.parse(serializedValue);
+  } catch (error) {
+    console.error("Error al carregar des del localStorage:", error);
+    return undefined;
+  }
+};
+/**
+ * Elimina un valor associat amb una clau des del localStorage.
+ *
+ * @function deleteLocalStorage
+ * @param {string} key - La clau del valor que es vol eliminar.
+ */
+const deleteLocalStorage = (key) => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    console.error("Error al eliminar del localStorage:", error);
+  }
+};
+// Ús:
+// saveLocalStorage('laMevaClau', { prova: 123 });
+// const valor = loadLocalStorage('laMevaClau');
+// deleteLocalStorage('laMevaClau');
+
+/**
+ * ***************************************************************************************************************************
+ *                                             CAPITALITZACIÓ DE LA PRIMERA LLETRA
+ * ***************************************************************************************************************************
+ */
+/**
+ * Aquesta funció capitalitza la primera lletra d'una cadena donada.
+ *
+ * @param {string} string - La cadena que volem capitalitzar.
+ * @returns {string} - Retorna la cadena amb la primera lletra en majúscules.
+ */
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+/**
+ * ***************************************************************************************************************************
+ *                                                ELIMINA DIV A PARTIR DEL SEU ID
+ * ***************************************************************************************************************************
+ */
+/**
+ * Elimina un div a partir del seu ID
+ * @param {string} id - L'ID del div a eliminar.
+ */
+
+const removeDivById = (id) => {
+  const div = document.getElementById(id);
+  
+  if (div) {
+      div.remove();
+  } else {
+      console.error(`No s'ha trobat un div amb l'ID: ${id}`);
+  }
 }

@@ -6,31 +6,42 @@
 //const test = false;
 
 const gameOptions = {
-  test: true,
-  freeMode: false,
+  test: false,
   intro: true,
   user: "anonimus",
   places: ["casa", "polideportivo", "instituto", "centro", "parque"],
+  // placesConquered: ["casa", "polideportivo", "instituto", "centro", ],
+  // skillsConquered: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad"],
   skills: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad", "criterio própio"],
-  timerTime: 20, //20 minuts
+  timerTime: 60 * 20, //20 minuts
 };
 
 ////////////////////////////////////////////////////////////////////// MAIN GAME OBJ
 class GameClass {
-  constructor({ user = null, freeMode = false, intro = true, test = false, places = [], skills = [], timerTime = 20 * 60 * 1000 }) {
+  constructor({
+    user = null,
+    freeMode = false,
+    intro = true,
+    test = false,
+    places = [],
+    skills = [],
+    timerTime = 20 * 60 * 1000,
+    placesConquered = [], // Valor por defecto: array vacío
+    skillsConquered = [], // Valor por defecto: array vacío
+  }) {
     this._obj = "Game";
     this.user = user;
     this.freeMode = freeMode;
     this.intro = intro;
     this.test = test;
-    this.state = {
+    (this.state = {
       _obj: "Game.state",
       places: places,
-      placesConquered: [],
+      placesConquered: placesConquered,
       placesConqueredNum: 0,
       placesConqueredPercentage: "0%",
       skills: skills,
-      skillsConquered: [],
+      skillsConquered: skillsConquered,
       skillsConqueredNum: 0,
       skillsConqueredPercentage: "0%",
       timerTime: timerTime, //20 minuts
@@ -58,13 +69,20 @@ class GameClass {
           visible: false,
         },
       },
-    };
+    }),
+      (this._initialNowState = { ...this.state.now });
+  }
+  resetNowState() {
+    this.state.now = { ...this._initialNowState };
   }
   ///////////////////////////////nikname
   get nickName() {
     return "@" + this.user;
   }
 
+  get places() {
+    return this.state.places;
+  }
   ////////////////////////////////////////////////////////now
 
   // Getter and Setter for 'place'
@@ -352,17 +370,15 @@ document.addEventListener("keydown", function (event) {
 
 const Game = new GameClass(gameOptions);
 
-const updateGameState = () => {
-  
+const updateGameState = async () => {
+  Game.updateConqueredPlacesStats();
+  Game.updateConqueredSkillsStats();
   updateCounterTour();
-  updateHud();
+  await updateHud();
   updateHome();
 };
 
-// document.addEventListener("DOMContentLoaded", function () {
-///////////////////////////////////////////////////////////////////////////////////////////////////////perfect scrollbar
 
-// });
-// document.addEventListener("DOMContentLoaded", () => {
-
+// document.addEventListener("DOMContentLoaded", async () => {
+//   updateGameState();
 // });

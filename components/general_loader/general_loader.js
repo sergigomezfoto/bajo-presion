@@ -1,4 +1,5 @@
 //////////////////////////////////////////////////loaded obj informator
+
 class S_LoadControl {
   elements = [];
   imgElements = [];
@@ -197,11 +198,17 @@ const krpanoDatasLoaded = true;
   for (const font of fontArr) {
     await generalLoadControl.registerFonts(font);
   }
-  await asyncLoopPositive((_) => generalLoadControl.count === svgArr.length + imgArr.length + fontArr.length && krpanoDatasLoaded,300,50); // +1=krpano little planet
-  homeLoader.style.opacity = "0";
-  console.log("he arribat!!", generalLoadControl.count);
+  await asyncLoopPositive((_) => generalLoadControl.count === svgArr.length + imgArr.length + fontArr.length && krpanoDatasLoaded,300,4000); // +1=krpano little planet
   generalLoadControl.log();
+  if(freestyle){
+    console.log('freestyle mode, loading krpano');
+    await sleep(2000);
+  }
+  console.log('ara');
+  homeLoader.style.opacity = "0";
+  console.log('ara');
   await asyncLoopPositive((_) => getComputedStyle(homeLoader).opacity === "0");
   homeLoader.style.display = "none";
+
   generalIntro();
 })();

@@ -19,9 +19,10 @@ const skipIntro = async () => {
   startcontainer.classList.add("rainbow_gradient");
   startHome();
 };
-
+let localStorageSaved = false;
 const generalIntro = async () => {
-  if (!Game.test && Game.intro) {
+
+  if (!Game.test && Game.intro && !freestyle) {
     for (const logo of logosIntro) {
       await fadeInFadeOut(logo.id, 1, "block");
     }
@@ -38,16 +39,26 @@ const generalIntro = async () => {
     await sleep(timeShowIntroElements);
     const introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wrapper", "shadow_lp_intro"), 50); // activa el planeta bottant
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////lp + text
+
     firstTextIntro.style.width = "360px";
     await awaitStylecomplete(firstTextIntro, "width", "360px");
     firstTextIntro.style.opacity = "1";
     intro_black.style.display = "none";
+    if (loadLocalStorage("bajoPresion")) {
+      const localStorageLoadDiv = document.getElementById("localStorageLoadDiv");
+      localStorageText();
+      localStorageLoadDiv.style.display = "flex";
+      await awaitStylecomplete(localStorageLoadDiv, "display", "flex");
+      localStorageLoadDiv.style.opacity = "0.95";
+    }
+
     await waitForEventToTrigger(document.getElementById("next_to_user_input"), "click");
     introGradientFirst.style.top = "100%";
     introGradientForm.style.top = "0";
     clearInterval(introLPInterval); // mata l'interva que fa botar el lp
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////form
     await sleep(1000);
+
     // await awaitStylecomplete(introGradientFirst, "top", `100%`);
     introGradientFirst.style.display = "none";
     inputElement.focus();
@@ -65,21 +76,22 @@ const generalIntro = async () => {
     fadeinAndPlayNewVideoIntro(videoList.introVideo);
     await sleep(1000);
     // await awaitStylecomplete(introGradientForm, "left", `${window.innerWidth * -1}px`);
-    console.log("iyuhfvviiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
     introGradientForm.style.display = "none";
     await waitForEventToTrigger(document.getElementById("skipVideoButton"), "click");
     //await sleep(1000);
+
     intro.remove();
     startHome();
-  } else if (Game.test) {
-    console.log("this is test");
-    skipIntro();
-    showTour();
-    //  await enterPlace("centro");
-    await freeModeEnterPlacePano("centro_7");
     return true;
-  } else if (!Game.intro) {
-    console.log("this is no intro");
+  } else if (Game.test) {
+    console.log("this is test o freestyle");
+    skipIntro();
+    // showTour();
+    //  await enterPlace("centro");
+    await freeModeEnterPlacePano("centro_1");
+    return true;
+  }
+  else if (!Game.intro) {
     skipIntro();
     return true;
   }

@@ -101,13 +101,19 @@ class Countdown {
     this.elapsedTime = 0;
   }
 }
+const timeBonusAdvisor=async()=>{
+  const tourUiPlaceTime = document.getElementById('tourUiPlaceTime');
+  changeBackgroundColor(tourUiPlaceTime, '#f5005d','white',100,2000);
+  await sleep(2000);
 
+}
 // Ús:
 const countdown = new Countdown({
   elementId: "tourUiPlaceTime",
   startTime: Game.state.timerTime,
   endTimeCallback: async () => {
-    return new Promise((resolve) => setTimeout(resolve, 500));
+    
+    return new Promise((resolve) => setTimeout(async()=>{await timeBonusAdvisor();resolve()}, 500));
   },
   restartAferCallback: true,
   monospace: true,

@@ -7,7 +7,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: var(--maincolor);
+    background-color: #000000;
     z-index: 3;
     opacity: 1;
     display: flex;

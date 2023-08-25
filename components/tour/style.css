@@ -7,7 +7,7 @@ body, html {
 
 #pano{
   display:none;
-  transition: all 2s;
+  transition: all 1s;
 }
 
 #panoContainer{

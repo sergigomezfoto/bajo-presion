@@ -43,9 +43,12 @@
   
   /* COUNTER */
   .tourCircle {
-    position: absolute;
+    /* position: absolute;
       top: 2px;
-      left: 25px;
+      left: 25px; */
+      position: relative;
+    top: -59px;
+    left: 2px;
       width: 47px;
       height: 48px;
       border-radius: 50%;
@@ -98,4 +101,22 @@
       border: 2px solid rgba(255, 255, 255,1);
   }
 
+
+  #tourUserTalentIndicator{
+    width: 13px;
+    height: 13px;
+    background-color: #ff57f1;
+    border-radius: 50%;
+    position: absolute;
+    top: 42px;
+    right: 29px;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    
+  }
+  .tourUserTalentIndicatorNotification{
+    display: flex !important;
+  }
   

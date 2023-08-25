@@ -11,11 +11,8 @@ const vstate = {
 
 const videoList = {
   introVideo: "InfEfS2kx5k", //InfEfS2kx5k
-  endVideo: "keyJeG2lMwk",
-  smallTest: "RpLm69FLs74",
+  endVideo: "DmtFT_ktZeg",
 };
-
-const skills = ["Autoconocimiento", "Gestión emocional", "Empatía", "Sociabilidad", "Rebatir creencias"];
 
 const data = {
   casa: {
@@ -91,7 +88,7 @@ const data = {
           link3: "sergigomez.com",
         },
 
-        skill: "Autoconocimiento",
+        skill: "autoconocimiento",
       },
     },
   },
@@ -159,7 +156,7 @@ const data = {
         instructions: "<p><b>Bonus:</b></p> Cocina fusión: España se encuentra con Asia. <br> Un giro innovador en platos clásicos.",
         points: 30,
         aptitudes: ["valentía", "adaptabilidad"],
-        skill: "Gestión emocional",
+        skill: "gestión emocional",
         extra: {
           link1: "sergigomez.com",
           link2: "sergigomez.com",
@@ -177,7 +174,7 @@ const data = {
     panos: {
       1: {
         instructions: "<p><b>Instrucción Uno:</b></p> Comienza con los fundamentos básicos. <br> La base de cualquier habilidad.",
-        points: 2,
+        points: 1,
         aptitudes: ["dedicación", "compromiso"],
         extra: {
           link1: "mami.com",
@@ -197,7 +194,7 @@ const data = {
       3: {
         video: "IRBuE6LMLWE",
         instructions: "<p><b>Instrucción Tres:</b></p> La práctica hace al maestro. <br> Dedica tiempo diariamente.",
-        points: 15,
+        points: 1,
         aptitudes: ["paciencia", "disciplina"],
         extra: {
           link1: "sergigomez.com",
@@ -208,7 +205,7 @@ const data = {
       4: {
         video: "c_mH63i9A0k",
         instructions: "<p><b>Instrucción Cuatro:</b></p> Busca inspiración en otros. <br> Pero encuentra tu propio estilo.",
-        points: 20,
+        points: 1,
         aptitudes: ["creatividad", "individualidad"],
         extra: {
           link1: "sergigomez.com",
@@ -218,7 +215,7 @@ const data = {
       },
       5: {
         instructions: "<p><b>Instrucción Cinco:</b></p> El feedback es una herramienta, no una crítica. <br> Úsalo para crecer.",
-        points: 25,
+        points: 1,
         aptitudes: ["apertura", "auto-mejora"],
         extra: {
           link1: "sergigomez.com",
@@ -229,7 +226,7 @@ const data = {
       6: {
         video: "WoxvjJdq7DY",
         instructions: "<p><b>Instrucción Seis:</b></p> Celebra tus logros, no importa cuán pequeños. <br> Cada paso cuenta.",
-        points: 30,
+        points: 1,
         aptitudes: ["positividad", "auto-reconocimiento"],
         extra: {
           link1: "sergigomez.com",
@@ -243,7 +240,7 @@ const data = {
         points: 1,
         aptitudes: ["curiosidad", "hambre de conocimiento"],
 
-        skill: "Sociabilidad",
+        skill: "sociabilidad",
         extra: {
           link1: "sergigomez.com",
           link2: "sergigomez.com",
@@ -344,7 +341,7 @@ const data = {
           link3: "sergigomez.com",
         },
 
-        skill: "Empatía",
+        skill: "empatía",
       },
     },
   },
@@ -414,7 +411,7 @@ const data = {
         instructions: "<p><b>Conclusión:</b></p> Felicitaciones por completar este ejercicio. <br> Recuerda practicar la empatía y el amor en tu vida diaria.",
         points: 10,
         aptitudes: ["love", "empathy"],
-        skill: "Rebatir creencias",
+        skill: "criterio própio",
         extra: {
           link1: "sergigomez.com",
           link2: "sergigomez.com",

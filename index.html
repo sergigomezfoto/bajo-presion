@@ -21,32 +21,85 @@
         //         document.body.style.transform = 'scale(' + initialZoom / window.devicePixelRatio + ')';
         //     }
         // });
+
+
+        document.addEventListener(" DOMContentLoaded", function () {
+            function scaleBodyAndHtml(scaleFactor) {
+                const
+                elements = [document.body, document.documentElement]; elements.forEach(el => {
+                    el.style.transform = `scale(${scaleFactor})`;
+                    el.style.transformOrigin = 'top left';
+                    el.style.width = `${100 / scaleFactor}%`;
+                    el.style.height = `${100 / scaleFactor}%`;
+                });
+            }
+
+            // Si el zoom es prácticament 100%, no fa res.
+            if (Math.abs(window.devicePixelRatio - 1) < 0.05) return; const originalScale = 1 / window.devicePixelRatio;
+            console.log(window.devicePixelRatio); let adjustmentFactor; if (window.devicePixelRatio > 1 &&
+                window.devicePixelRatio < 1.24) { adjustmentFactor = 1.1; } else { console.log("entra"); adjustmentFactor = 1.1; }
+            const finalScale = originalScale * adjustmentFactor; scaleBodyAndHtml(finalScale);
+        }); let freestyle = false;
+        const checkParamAndAct = (expectedKey, expectedValue, callback) => {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.has(expectedKey) && params.get(expectedKey) === expectedValue) {
+                if (typeof callback === 'function') {
+                    callback();
+                } else {
+                    console.error('Provided callback is not a function.');
+                }
+            } else {
+                console.log(`Parameter doesn't match or doesn't exist.`);
+            }
+        }
+        checkParamAndAct('access', 'freestyle', () => {
+            freestyle = true;
+        });
     </script>
-    <script src=" ./app/perfect_scrollbar.js">
-    </script>
-    <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/perfect-scrollbar.css">
-    <link rel="stylesheet" href="components/tour/style.css">
-    <link rel="stylesheet" href="components/general_loader/style.css">
-    <link rel="stylesheet" href="components/intro/intro_black_logos/style.css">
-    <link rel="stylesheet" href="components/intro/intro_first_littleplanet/style.css">
-    <link rel="stylesheet" href="components/intro/intro_form/style.css">
-    <link rel="stylesheet" href="components/youtube_api/style.css">
-    <link rel="stylesheet" href="components/home/style.css">
-    <link rel="stylesheet" href="components/home/counter_home/style.css">
-    <link rel="stylesheet" href="components/home/littleplanet/style.css">
-    <link rel="stylesheet" href="components/tour/tour_timer/style.css">
-    <link rel="stylesheet" href="components/tour/tour_user/style.css">
-    <link rel="stylesheet" href="components/tour/tour_help/style.css">
-    <link rel="stylesheet" href="components/tour/tour_place_title/style.css">
-    <link rel="stylesheet" href="components/tour/tour_logo/style.css">
-    <link rel="stylesheet" href="components/tour/tour_mini_video/style.css">
-    <link rel="stylesheet" href="components/tour/tour_next/style.css">
-    <link rel="stylesheet" href="components/tour/tour_pano_text/style.css">
-    <link rel="stylesheet" href="components/tour/tour_hud/style.css">
-    <link rel="stylesheet" href="components/popup/style.css">
-    <script src="data/data.js"></script>
+            <script src=" ./app/perfect_scrollbar.js">
+            </script>
+            <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
+            <link rel="stylesheet" href="styles/style.css">
+            <link rel="stylesheet" href="styles/perfect-scrollbar.css">
+            <link rel="stylesheet" href="app/freestyle/freestyle.css">
+            <link rel="stylesheet" href="components/localstorage/style.css">
+            <link rel="stylesheet" href="components/tour/style.css">
+            <link rel="stylesheet" href="components/general_loader/style.css">
+            <link rel="stylesheet" href="components/intro/intro_black_logos/style.css">
+            <link rel="stylesheet" href="components/intro/intro_first_littleplanet/style.css">
+            <link rel="stylesheet" href="components/intro/intro_form/style.css">
+            <link rel="stylesheet" href="components/youtube_api/style.css">
+            <link rel="stylesheet" href="components/home/style.css">
+            <link rel="stylesheet" href="components/home/counter_home/style.css">
+            <link rel="stylesheet" href="components/home/littleplanet/style.css">
+            <link rel="stylesheet" href="components/tour/tour_timer/style.css">
+            <link rel="stylesheet" href="components/tour/tour_user/style.css">
+            <link rel="stylesheet" href="components/tour/tour_help/style.css">
+            <link rel="stylesheet" href="components/tour/tour_place_title/style.css">
+            <link rel="stylesheet" href="components/tour/tour_logo/style.css">
+            <link rel="stylesheet" href="components/tour/tour_mini_video/style.css">
+            <link rel="stylesheet" href="components/tour/tour_next/style.css">
+            <link rel="stylesheet" href="components/tour/tour_pano_text/style.css">
+            <link rel="stylesheet" href="components/tour/tour_hud/style.css">
+            <link rel="stylesheet" href="components/popup/style.css">
+            <link rel="stylesheet" href="components/game_over/style.css">
+            <!-- 
+    █████████████████████████████████████████
+    ████                                   ████
+    ████              TEST                 ████
+    ████                                   ████
+    █████████████████████████████████████████
+-->
+            <!-- <script src="data/data_test.js"></script> -->
+            <!-- 
+    █████████████████████████████████████████
+    ████                                   ████
+    ████              END TEST             ████
+    ████                                   ████
+    █████████████████████████████████████████
+-->
+            <script src="data/data.js"></script>
 
 </head>
 
@@ -54,29 +107,10 @@
 <body>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    function scaleBodyAndHtml(scaleFactor) {
-        const elements = [document.body, document.documentElement];
 
-        elements.forEach(el => {
-            el.style.transform = `scale(${scaleFactor})`;
-            el.style.transformOrigin = 'top left';
-            el.style.width = `${100 / scaleFactor}%`;
-            el.style.height = `${100 / scaleFactor}%`;
-        });
-    }
 
-    // Si el zoom es prácticament 100%, no fa res.
-    if (Math.abs(window.devicePixelRatio - 1) < 0.05) return;
-    
-    const originalScale = 1 / window.devicePixelRatio;
-    const adjustmentFactor = 1; 
-    const finalScale = originalScale * adjustmentFactor;
-
-    scaleBodyAndHtml(finalScale);
-});
     </script>
-    <div id="home-interface" class="fullscreen" style="display:none;"></div>
+    <!-- <div id="home-interface" class="fullscreen" style="display:none;"></div> -->
     <div id="startcontainer">
 
 
@@ -84,7 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="loader-spinner"></div>
             <div class="loadingtext">loading...</div>
         </div>
+        <div id="freestyleWrapper" class="rainbow_gradient">
+            <div id="freestyleLogo"></div>
+            <div id="freestyleTitle">FREESTYLE MODE</div>
+            <div id="freestyleContainer">
+                <!--  -->
 
+                <!--  -->
+            </div>
+        </div>
         <script src="./tour/tour.js"></script>
         <!-- <div id="panoContainer"> -->
 
@@ -122,11 +164,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <div class="tourCounterPortion" data-value="80"></div>
                                 <div class="tourCounterPortion" data-value="100"></div>
                             </div>
+                            <div id="tourUserTalentIndicator">1</div>
                         </div>
                         <div id="niknameTour">@anonimus</div>
                     </div>
                     <div id="tourHelp">?</div>
                     <div id="tourNext" class="button">SIGUIENTE ACTIVIDAD</div>
+                    <div id="goToFreestyleList" class="button">MENÚ DE ACTIVIDADES</div>
                     <div id="randomPlayerCanvasWrapper">
                         <div id="randomPlayerCanvas" class="randomBorderInitial">
                             <div id="randomPlayerWrapper" class="randomBorderInitial">
@@ -134,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     </div>
-          
+
 
                     <!-- <div id="miniVideo"><img src="./assets/img/mini_etna.png" alt="me" width="100%" height="100%"></div> -->
                 </div>
@@ -147,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div id="hudCurrentSpanishDate"></div>
             <div id="hudHourAndIcons">12:45</div>
             <div id="hudPrices">nueva aptitud conseguida ¡felicidades!</div>
+
             <div id="hudPositiveCard">
                 <p id="hudPositiveCardText">Sigue así, lo estas haciendo genial!</p>
             </div>
@@ -186,8 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     ....
                 -->
             </div>
-            <div id="hudReturnButton" class="button hudButton">continuar actividad</div>
-            <div id="hudGoHomeButton" class="button hudButton">ir al menú principal</div>
             <div id="hudTalentWrapper">
                 <!-- <div class="hudTalentCard hudTalentUnlockedCard" ><span></span></div>
                 <div class="hudTalentCard" ><span></span></div>
@@ -195,13 +238,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="hudTalentCard" ><span></span></div>
                 <div class="hudTalentCard" ><span></span></div> -->
             </div>
-           
+
             <!-- <div id="hudHomeButton"></div> -->
+            <div id="hudContiueButton" class="button hudButton">continuar actividad</div>
+            <div id="hudGoHomeButton" class="button hudButton">volver al mundo de etna</div>
 
             <div id="hudBorrowedTimeWrapper">
-                <p >Tiempo en <span id="hudPlacePlaceTime"></span>: <span id="hudTotalPlaceTime"></span>s </p>
-                <p >Bonus utilizado: <span id="hudTotalPlaceBorrowedTime"></span>s</p>
+                <p>Tiempo en <span id="hudPlacePlaceTime"></span>: <span id="hudTotalPlaceTime"></span>s </p>
+                <p>Bonus utilizado: <span id="hudTotalPlaceBorrowedTime"></span>s</p>
             </div>
+
+            <div id="hudGohomeAdvisorWrapper">
+                <div><span>¿Estás seguro que quieres volver al menú principal?</span><br>
+                    Perderás todo lo conseguido hasta ahora en este espácio</div>
+                <div>
+                    <div id="hudGoHomeYes" class="button">si</div>
+                    <div id="hudGoHomeNo" class="button">no</div>
+                </div>
+
+            </div>
+            <div id="finalPlacePicture" class="imagecentro"></div>
         </div>
         <!-- </div> -->
         <div id="videoPlayerCanvasWrapper">
@@ -282,6 +338,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button id="next_to_user_input" class="button"> Siguiente </button>
 
                     </div>
+                    <div id="localStorageLoadDiv">
+
+                        <div><span id="localstorageMessage"></div>
+                        <div>
+                            <div id="loadLocalStorageYes" class="button">cargar </div>
+                            <div id="loadLocalStorageNo" class="button">empezar </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <!-- <div id="home" class="rainbow_gradient fullscreen"></div> -->
@@ -318,12 +383,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+    </div>
+    <div id="gameOver">
+        <div id="gameOverBg"></div>
+        <div id="gameOverButton" class="button">Volver a empezar</div>
 
     </div>
 
+    <script>
+        if (freestyle) {
+
+            // const tourUser = document.getElementById('tourUser');
+            // tourUser.style.display = 'none';
+            const freestyleWrapper = document.getElementById('freestyleWrapper');
+            freestyleWrapper.style.display = 'flex';
+            freestyleWrapper.style.opacity = 1;
+            const tourPanoTextNumber = document.getElementById('tourPanoTextNumber');
+            tourPanoTextNumber.style.display = 'none';
+            const tourUiPlaceTime = document.getElementById('tourUiPlaceTime');
+            tourUiPlaceTime.style.display = 'none';
+            const goToFreestyleList = document.getElementById('goToFreestyleList');
+            goToFreestyleList.style.display = 'flex';
+
+            //fillHtmlFreestyle on dom ready
+            document.addEventListener('DOMContentLoaded', () => {
+                skipIntro();
+                showTour();
+                const homeInterface = document.getElementById('homeInterface');
+                homeInterface.style.display = 'none';
+                fillHtmlFreestyle();
+            });
+
+        }
+
+    </script>
     <script src="app/helpers.js"></script>
-    <script src="app/Game_object.js"></script>
+    <script src="app/game_object.js"></script>
     <script src="app/krpano_incrustation.js"></script>
+    <script src="app/freestyle/freestyle.js"></script>
+    <script src="components/localstorage/localstorage.js"></script>
     <script src="components/tour/tour_loadscene/loadscene.js"></script>
     <script src="components/tour/enter_place_enter_pano/enter_place_enter_pano.js"></script>
     <script src="components/youtube_api/youtube_api.js"></script>
@@ -339,10 +437,14 @@ document.addEventListener("DOMContentLoaded", function () {
     <script src="components/tour/tour_help/tour_help.js"></script>
     <script src="components/tour/tour_place_title/tour_place_title.js"></script>
     <script src="components/tour/tour_mini_video/tour_mini_video.js"></script>
+    <script src="components/tour/tour_add_talent/tour_add_talent.js"></script>
     <script src="components/tour/tour_next/tour_next.js"></script>
     <script src="components/tour/tour_pano_text/tour_pano_text.js"></script>
     <script src="components/tour/tour_hud/tour_hud.js"></script>
+    <script src="components/tour/tour_hud/tour_hud_go_home/tour_hud_go_home.js"></script>
+    <script src="components/tour/tour_hud/tour_hud_continue/tour_hud_continue.js"></script>
     <script src="components/popup/popup.js"></script>
+    <script src="components/game_over/game_over.js"></script>
     <!-- LAST -->
     <script src="components/general_loader/general_loader.js"></script>
 

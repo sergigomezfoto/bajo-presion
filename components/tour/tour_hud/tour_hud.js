@@ -111,54 +111,55 @@ const talentCards = async () => {
       const dataValue = card.getAttribute("data-value");
       if (Game.conqueredPlaces.includes(dataValue)) {
         let talentList = card.querySelector(".hudTalentList");
-        const currentTalentCount = talentList.children.length;
-        const missingTalentCount = 4 - currentTalentCount;
-
-        if (missingTalentCount > 0) {
-          card.classList.add("hudTalentUnlockedCard");
-          for (let i = currentTalentCount; i < currentTalentCount + missingTalentCount; i++) {
+        const currentTalents = Array.from(talentList.children).map((child) => child.textContent);
+       
+        talentList.querySelectorAll('*').forEach(child => {
+          if(child.hasAttribute('data-value')) {
+              child.removeAttribute('data-value');
+          }
+      });
+        for (const talent of data[dataValue].talents) {
+          if (!currentTalents.includes(talent)) {
+            card.classList.add("hudTalentUnlockedCard");
             const talentItem = document.createElement("div");
             talentItem.classList.add("hudTalentItem");
-            talentItem.innerHTML = data[dataValue].talents[i];
+            talentItem.innerHTML = talent;
             talentList.appendChild(talentItem);
           }
         }
       }
     });
   }
+
 };
 
-
-const hudTimeElapsed=()=>{
+const hudTimeElapsed = () => {
   const hudPlacePlaceTime = document.getElementById("hudPlacePlaceTime");
   const totalElapsed = countdown.elapsedTime;
-  const totalElapsedFormated=formatSecondsToMMSS(totalElapsed);
+  const totalElapsedFormated = formatSecondsToMMSS(totalElapsed);
   const hudTotalPlaceTime = document.getElementById("hudTotalPlaceTime");
   const hudTotalPlaceBorrowedTime = document.getElementById("hudTotalPlaceBorrowedTime");
-  hudPlacePlaceTime.innerText=Game.placeTitle;
-  hudTotalPlaceTime.innerText=totalElapsedFormated;
-  hudTotalPlaceBorrowedTime.innerText= totalElapsed - Game.state.timerTime > 0 ? formatSecondsToMMSS(totalElapsed - Game.state.timerTime) : "00:00";
-  // const borrowedTime = 
-
-}
+  hudPlacePlaceTime.innerText = Game.placeTitle;
+  hudTotalPlaceTime.innerText = totalElapsedFormated;
+  hudTotalPlaceBorrowedTime.innerText = totalElapsed - Game.state.timerTime > 0 ? formatSecondsToMMSS(totalElapsed - Game.state.timerTime) : "00:00";
+  // const borrowedTime =
+};
 
 const hudPlaceName = () => {
   const hudPlaceName = document.getElementById("hudPlaceName");
   hudPlaceName.innerText = Game.placeTitle;
-}
+};
 
-
-const updateHud = () => {
+const updateHud = async () => {
   hudPlaceName();
   hudTimeElapsed();
-  talentCards();
+  await talentCards();
   updateHudUser();
   updateHudTime();
   updatePositiveCard();
   updateCounterHud();
   updateSkillsHud();
 };
-
 
 const newSkillConqueredHud = () => {
   const hudPrices = document.getElementById("hudPrices");
@@ -178,13 +179,39 @@ const hidePricesHud = () => {
 
 
 
+
 const talentConquered = (talent) => {
+  
   const actualPlaceCard = document.querySelector(`.hudTalentCard[data-value="${Game.place}"]`);
   const acutalTalentList = actualPlaceCard.querySelector(".hudTalentList");
   const talentItem = document.createElement("div");
   talentItem.classList.add("hudTalentItem");
+  talentItem.dataset.value = Game.place;
   talentItem.innerHTML = talent;
   acutalTalentList.appendChild(talentItem);
 };
 
+const conqueredNowTalent = (talentIndex) => {
+  const tourUserTalentIndicator=document.getElementById("tourUserTalentIndicator");
+  singleClass(tourUserTalentIndicator,'tourUserTalentIndicatorNotification');
+  const talent = data[Game.place].talents[Number(talentIndex)];
+  talentConquered(talent);
+
+};
+
+const deleteTalentsOnPrematureExit = () => {
+  const itemsToRemove = document.querySelectorAll('.hudTalentItem[data-value]');
+  itemsToRemove.forEach(item => {
+      item.remove();
+  });
+}
+const showHud = async () => {
+  const tourUserTalentIndicator=document.getElementById("tourUserTalentIndicator");
+  singleClass(tourUserTalentIndicator,'');
+  await fadeInFadeOut("hudWrapper", 1, "flex");
+};
+const hideHud = async () => {
+  hidePricesHud();
+  await fadeInFadeOut("hudWrapper", 0, "none");
+};
 // updateHud();

@@ -20,7 +20,6 @@
   };
 
   const fillPanoText = async (text) => {
-    console.log("Llenando contenido");
     tourPanoTextNumber.innerHTML = `${Game.panoIndex}/${Game.placePanos}`;
     tourPanoTextContent.innerHTML = text;
     await asyncLoopPositive(() => tourPanoTextContent.innerHTML === text, 10);

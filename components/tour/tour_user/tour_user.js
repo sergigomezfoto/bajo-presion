@@ -24,6 +24,11 @@ const niknameTourClassRemove = () => {
   toggleClass(niknameTour, "niknameTourHover", "remove");
 };
 
+const nicknameTourClick = async () => {
+  await updateGameState();
+  singleClass(finalPlacePicture, `hudImagenone`);
+  showHud();
+};
 // tourUser.addEventListener('mousedown', function (event) {
 //   console.log(event);
 //     // Use elementFromPoint to determine which element is below the cursor

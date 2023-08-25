@@ -21,8 +21,8 @@
     handcursor="true"
     align="bottomleft"
     alpha="0"
-      onclcik=""
-    onloaded="configurebubblehs"
+    onclick=""
+    onloaded="delayedcall(0.2,configurebubblehs);"
  />
 
 
@@ -148,39 +148,39 @@
 
  <style name="indicator_bottom"
     align="bottom"
-    y="-15" 
+    y="5" 
  />
  <style name="indicator_bottomleft"
     align="bottomleft"
-    y="-15" 
-    x="10"
+    y="5" 
+    x="30"
 
  />
  <style name="indicator_bottomright"
     align="bottomright"
-    y="-15" 
-    x="10"
+    y="5" 
+    x="30"
 
  />
  <style name="indicator_left"
     align="left" 
-    x="-15"
+    x="5"
     y="0"
  />
  <style name="indicator_leftbottom"
     align="bottomleft" 
-    x="-15"
-    y="10"
+    x="5"
+    y="20"
  />
  <style name="indicator_right"
     align="right" 
-    x="-15"
+    x="5"
     y="0"
  />
  <style name="indicator_rightbottom"
     align="bottomright" 
-    x="-15"
-    y="10"
+    x="5"
+    y="20"
  />
  <style name="indicator_null"
     alpha="0"
@@ -259,46 +259,74 @@
             );
          );
       
-   ///////////////////////////hsindicator
-   addlayer((caller.name + 'indicator'),indicator);
-   indicator.parent=(caller.name + 'wrapper');
-   if (caller.s_position == 'bottom',
-      indicator.loadstyle('bubble_indicator|indicator_bottom');
-      ,caller.s_position == 'bottomleft',
-      indicator.loadstyle('bubble_indicator|indicator_bottomleft');
-      ,caller.s_position == 'bottomright',
-      indicator.loadstyle('bubble_indicator|indicator_bottomright');
-      ,caller.s_position == 'left',
-      indicator.loadstyle('bubble_indicator|indicator_left');
-      ,caller.s_position == 'right',
-      indicator.loadstyle('bubble_indicator|indicator_right');
-      ,caller.s_position == 'leftbottom',
-      indicator.loadstyle('bubble_indicator|indicator_leftbottom');
-      ,caller.s_position == 'rightbottom',
-      indicator.loadstyle('bubble_indicator|indicator_rightbottom');
-      ,caller.s_position == 'null',
-      indicator.loadstyle('bubble_indicator|indicator_null');
-     
-   );
-
-   indicator.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
-
-   caller.onclick=('if(layer[' + heart.name + '].crop !="56|0|56|56" ,jscall("Game.incPanoPoints()"););layer[' + heart.name + '].crop="56|0|56|56";jscall("Game.checkPanoPointsGoal(showNextPano)");');
+   
+trace('jbawjo okian ia pijna poijawe0',caller.name);
+   caller.onclick=('if(layer[' + heart.name + '].crop !="56|0|56|56" ,jscall("Game.incPanoPoints()"););layer[' + heart.name + '].crop="56|0|56|56";check_talents_and_next();');
   
    if (caller.s_heart == 'null',
       caller.enabled=false;
    );
 
-   asyncloop(layer[(wrapper.name)].loadedchilds LT 8,,
-      trace(layer[(wrapper.name)].loadedchilds);
+   asyncloop(layer[(wrapper.name)].loadedchilds LT 7,,
       caller.width=layer[(caller.name + 'wrapper')].pixelwidth;
       caller.height=layer[(caller.name + 'wrapper')].pixelheight;
-      tween(caller.alpha,1,0.2);
+      ///////////////////////////hsindicator
+         addlayer((caller.name + 'indicator'),indicator);
+         indicator.parent=('hotspot[' + caller.name + ']');
+      asyncloop(caller.pixelwidth !== layer[(caller.name + 'wrapper')].pixelwidth OR caller.pixelheight !== layer[(caller.name + 'wrapper')].pixelheight ,,  
+         indicator.loadstyle('bubble_indicator');
+            if (caller.s_position == 'bottom',
+               indicator.loadstyle('bubble_indicator|indicator_bottom');
+               ,caller.s_position == 'bottomleft',
+               indicator.loadstyle('bubble_indicator|indicator_bottomleft');
+               ,caller.s_position == 'bottomright',
+               indicator.loadstyle('bubble_indicator|indicator_bottomright');
+               ,caller.s_position == 'left',
+               indicator.loadstyle('bubble_indicator|indicator_left');
+               ,caller.s_position == 'right',
+               indicator.loadstyle('bubble_indicator|indicator_right');
+               ,caller.s_position == 'leftbottom',
+               indicator.loadstyle('bubble_indicator|indicator_leftbottom');
+               ,caller.s_position == 'rightbottom',
+               indicator.loadstyle('bubble_indicator|indicator_rightbottom');
+               ,caller.s_position == 'null',
+               indicator.loadstyle('bubble_indicator|indicator_null');         
+            ); 
+         trace(indicator.style);
+         trace(indicator.align);
+         trace(indicator.y);
+         trace(indicator.x);
+   <!-- align="bottomleft"
+    y="-15" 
+    x="10" -->
+                  if (!caller.s_invisible_at_start,
+                     tween(caller.alpha,1,0.2);
+                  );
+
+      );
    );
 
 </action>
 
+<action name="check_talents_and_next" scope="local">
+jscall("Game.checkPanoPointsGoal(showNextPano)"); 
+if(!isset(caller.allready_clicked),
+   if (isset(caller.s_talent),
+      jscall(('conqueredNowTalent(' + caller.s_talent + ');newTalentConqueredHud();'));
+      if (isset(caller.s_talent2),
+         jscall(('conqueredNowTalent(' + caller.s_talent2 + ')'));
+         if (isset(caller.s_talent3),
+            jscall(('conqueredNowTalent(' + caller.s_talent3 + ')'));
+            if (isset(caller.s_talent4),
+               jscall(('conqueredNowTalent(' + caller.s_talent3 + ')'));
+            );
+         );
+      );
+   );
+   caller.allready_clicked=true;
+);
 
+</action>
  		 <!-- 
        <hotspot name="htest" ath="0" atv="0" style="speech_bubbles"/>
        <layer name="test2wrapper" style="hstotalwrapper" >

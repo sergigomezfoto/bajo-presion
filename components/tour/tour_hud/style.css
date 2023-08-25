@@ -1,9 +1,12 @@
 #hudWrapper {
+    display:none;
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
+    opacity:0;
+    transition:all 0.2s ease-in-out;
     background-color: rgba(32, 0, 21, 0.8);
     backdrop-filter: blur(4px) saturate(150%);
     --hudcolor: #ff57f1;
@@ -67,6 +70,39 @@
     border-radius: 20px;
     text-transform: uppercase;
     font-size: 14px;
+    display:none;
+}
+.hudPricesActive{
+    display:block !important;
+}
+
+#finalPlacePicture{
+    height: 554px;
+    width: 368px;
+    position: absolute;
+    top: 175px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #ff57f1;
+    border-radius: 20px;
+    filter: drop-shadow(10px 20px 20px rgba(0,0,0,0.6));
+}
+.hudImagecentro{
+    background-image: url('../../../assets/hud/final_photo/centro.jpg');
+}
+.hudImagepolideportivo{
+    background-image: url('../../../assets/hud/final_photo/polideportivo.jpg');
+}
+.hudImageparque{
+    background-image: url('../../../assets/hud/final_photo/parque.jpg');
+}
+.hudImagecasa{
+    background-image: url('../../../assets/hud/final_photo/casa.jpg');
+}
+.hudImageinstituto{
+    background-image: url('../../../assets/hud/final_photo/instituto.jpg');
+}
+.hudImagenone{
     display:none;
 }
 #hudPositiveCard {
@@ -504,7 +540,7 @@
     padding: 0px 0px 0px 40px;
 }
 
-#hudReturnButton {
+#hudContiueButton {
     display: flex;
     position: absolute;
     right: 40px;
@@ -513,6 +549,9 @@
     justify-content: center;
     padding: 0 20px;
     width: auto;
+}
+.hudContinueButtonUnactive{
+    display:none !important;
 }
 
 #hudGoHomeButton {
@@ -539,8 +578,49 @@
     opacity: 0.20;
     font-family: 'bw_black';
     font-size: 50px;
+    text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50% );
     text-transform: uppercase;
+}
+
+
+#hudGohomeAdvisorWrapper{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.75);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+   
+}
+#hudGohomeAdvisorWrapper >:first-child{
+opacity:0.6;
+text-align: center;
+line-height: 28px;
+
+}
+#hudGohomeAdvisorWrapper >:first-child span{
+font-size: 20px;
+}
+#hudGohomeAdvisorWrapper >:last-child{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+#hudGoHomeYes, #hudGoHomeNo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

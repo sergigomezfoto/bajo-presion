@@ -1,6 +1,7 @@
 ﻿<krpano version="1.21" title="Virtual Tour">
 <include url="%FIRSTXML%/plugins/s_bundle/s_bundle.xml" />
 <include url="%FIRSTXML%/config/controls.xml" />
+<include url="%FIRSTXML%/../app/freestyle/freestyle.xml" />
 <include url="%FIRSTXML%/../components/tour/krpano_injections/injections.xml" />
 <include url="%FIRSTXML%/../components/tour/krpano_events/events.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_loadscene/loadscene.xml" />
@@ -13,14 +14,14 @@
 	<!-- <include url="skin/vtourskin.xml" /> -->
 	<action name="skin_onstart_loadscene" scope="local" autorun="onstart">
 		
-		<!-- load first scene -->
+<!-- 	
 		loadscene(calc(isset(startscene) ? startscene : 0), null, MERGE);
 	
-		<!-- set optional startup lookat -->
+
 		if(isset(startlookat),
 			txtsplit(startlookat, ',', hlookat,vlookat,fov,distortion,architectural);
 			lookat(get(hlookat),get(vlookat),get(fov),get(distortion),get(architectural));
-		);
+		); -->
 
 	</action>
 
@@ -37,8 +38,7 @@
 			<cube url="panos/casa_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
 
-
-
+	<include url="%FIRSTXML%/activities/casa1/hs.xml" />
 	</scene>
 
 	<scene name="scene_casa_2" title="casa_2" onstart="" thumburl="panos/casa_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -194,7 +194,7 @@
 		<image>
 			<cube url="panos/centro_3.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+		<include url="%FIRSTXML%/activities/centro3/hs.xml" />
 	</scene>
 
 	<scene name="scene_centro_4" title="centro_4" onstart="" thumburl="panos/centro_4.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -208,7 +208,7 @@
 		<image>
 			<cube url="panos/centro_4.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+		<include url="%FIRSTXML%/activities/centro4/hs.xml" />
 	</scene>
 
 	<scene name="scene_centro_5" title="centro_5" onstart="" thumburl="panos/centro_5.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -222,7 +222,7 @@
 		<image>
 			<cube url="panos/centro_5.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+		<include url="%FIRSTXML%/activities/centro5/hs.xml" />
 	</scene>
 
 	<scene name="scene_centro_6" title="centro_6" onstart="" thumburl="panos/centro_6.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -236,7 +236,7 @@
 		<image>
 			<cube url="panos/centro_6.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+		<include url="%FIRSTXML%/activities/centro6/hs.xml" />
 	</scene>
 
 	<scene name="scene_centro_7" title="centro_7" onstart="" thumburl="panos/centro_7.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -265,7 +265,7 @@
 		<image>
 			<cube url="panos/instituto_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+		<include url="%FIRSTXML%/activities/instituto1/hs.xml" />
 	</scene>
 
 	<scene name="scene_instituto_2" title="instituto_2" onstart="" thumburl="panos/instituto_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -377,7 +377,7 @@
 		<image>
 			<cube url="panos/parque_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+			<include url="%FIRSTXML%/activities/parque1/hs.xml" />
 	</scene>
 
 	<scene name="scene_parque_2" title="parque_2" onstart="" thumburl="panos/parque_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
@@ -461,7 +461,7 @@
 		<image>
 			<cube url="panos/polideportivo_1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-
+	<include url="%FIRSTXML%/activities/polideportivo1/hs.xml" />
 	</scene>
 
 	<scene name="scene_polideportivo_2" title="polideportivo_2" onstart="" thumburl="panos/polideportivo_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">

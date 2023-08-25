@@ -280,7 +280,7 @@ const fadeinAndPlayNewVideoIntro = async (videoId, transition = 0.3, player = yo
   }
 };
 const fadeinAndPlayNewPlaceVideo = async (videoId, transition = 0.3, player = youtubePlayer) => {
-  if (!Game.test) {
+  // if (!Game.test) {
     if (videoPlayerCanvas.classList.contains("panovideo")) {
       videoPlayerCanvas.classList.remove("panovideo");
     }
@@ -297,7 +297,7 @@ const fadeinAndPlayNewPlaceVideo = async (videoId, transition = 0.3, player = yo
       videoPlayerCanvas.style.opacity = "1";
       Game.videoVisible = true;
     }
-  }
+  // }
 };
 const fadeinAndPlayNewPanoVideo = async (videoId, transition = 0.3, player = youtubePlayer) => {
   if (!videoPlayerCanvas.classList.contains("tourvideo")) {

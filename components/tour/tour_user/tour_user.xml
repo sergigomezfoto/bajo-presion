@@ -13,7 +13,7 @@
     y="40"
     onhover="js:niknameTourClassAdd();"
     onout="js:niknameTourClassRemove();"
-    onclick="js:niknameTourClick();"	
+    onclick="js:nicknameTourClick();"	
 />
 
 

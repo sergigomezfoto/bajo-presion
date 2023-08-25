@@ -19,10 +19,17 @@ const sanitizeInput=(input)=> {
 const buttonFormIntro = document.getElementById("button_form_intro");
 const inputFormIntro = document.getElementById("input_form_intro");
 
-const sendNickName = () => {
- 
+const putNicknames = () => {
   const nikname= document.getElementById("nikname");
   const niknameTour= document.getElementById("niknameTour");
+  nikname.innerText = Game.nickName;
+  niknameTour.innerText = Game.nickName;
+}
+
+
+const sendNickName = () => {
+ 
+  
   // const hudUser = document.getElementById('hud-user');
   const inputValue = inputFormIntro.value.trim();
 
@@ -41,8 +48,7 @@ const sendNickName = () => {
   } else {
     passToVideo = true;
     Game.user = inputValue;
-    nikname.innerText = Game.nickName;
-    niknameTour.innerText = Game.nickName;
+    putNicknames();
     // hudUser.innerText = Game.nickName;
     window.removeEventListener("keyup", handleFormKeyUp);
   }

@@ -20,6 +20,7 @@ const skipIntro = async () => {
   startHome();
 };
 let localStorageSaved = false;
+let introLPInterval=null;
 const generalIntro = async () => {
 
   if (!Game.test && Game.intro && !freestyle) {
@@ -37,7 +38,7 @@ const generalIntro = async () => {
     await awaitStylecomplete(presentanIntro, "display", "none");
     introGradient.style.clipPath = "circle(100% at 50% 50%)";
     await sleep(timeShowIntroElements);
-    const introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wrapper", "shadow_lp_intro"), 50); // activa el planeta bottant
+    introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wrapper", "shadow_lp_intro"), 50); // activa el planeta bottant
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////lp + text
 
     firstTextIntro.style.width = "360px";

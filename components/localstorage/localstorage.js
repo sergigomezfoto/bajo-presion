@@ -29,6 +29,7 @@ loadLocalStorageYes.addEventListener("click", async () => {
   localStorageLoadDiv.style.display = "none";
   loadFromLocalStorage();
   putNicknames();
+  clearInterval(introLPInterval);
   await skipIntro();
   throw "desde localstorage";
 });

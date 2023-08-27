@@ -107,9 +107,12 @@
     height: 13px;
     background-color: #ff57f1;
     border-radius: 50%;
-    position: absolute;
+    /* position: absolute;
     top: 42px;
-    right: 29px;
+    right: 29px; */
+    position: relative;
+    top: -70px;
+    right: -36px;
     display:none;
     justify-content: center;
     align-items: center;

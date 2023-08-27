@@ -1,5 +1,6 @@
 // planetAnim.pause();
 const startHome = async () => {
+  console.log('faig això');
   const homeLittlePlanet = document.getElementById("homeLittlePlanet");
   const pano = document.getElementById("pano");
   updateGameState();

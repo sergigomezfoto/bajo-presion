@@ -151,6 +151,7 @@ const hudPlaceName = () => {
 };
 
 const updateHud = async () => {
+
   hudPlaceName();
   hudTimeElapsed();
   await talentCards();
@@ -159,6 +160,7 @@ const updateHud = async () => {
   updatePositiveCard();
   updateCounterHud();
   updateSkillsHud();
+
 };
 
 const newSkillConqueredHud = () => {

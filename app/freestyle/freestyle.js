@@ -87,9 +87,6 @@ const freeModeEnterPlacePano = async (dataValue) => {
 // </div>
 // </div>
 
-const freestyleMode = () => {
-  //   showTour();
-};
 const goToFreestyleList=document.getElementById("goToFreestyleList");
 const freestyleClassAdd = () => {
   // CRIDAT A KRPANO. FAKEBUTTONS AL HOVER OUT

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rueda de las emociones</title>
+    <link rel="stylesheet" href="../../styles/fonts.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="centered-container">
+            <div id="blackboard">
+                <div id="blackboardElementsWrapper">
+                    <div class="blackboardElement" id="optimismo" data-wellused="0">optimismo</div>
+                    <div class="blackboardElement" id="amor" data-wellused="0">amor</div>
+                    <div class="blackboardElement" id="sumision" data-wellused="0">sumisión</div>
+                    <div class="blackboardElement" id="susto" data-wellused="0">susto</div>
+                    <div class="blackboardElement" id="decepcion" data-wellused="0">decepción</div>
+                    <div class="blackboardElement" id="remordimiento" data-wellused="0">remordimiento</div>
+                    <div class="blackboardElement" id="desprecio" data-wellused="0">desprecio</div>
+                    <div class="blackboardElement" id="agresividad" data-wellused="0">agresividad</div>
+                </div>
+                <div id="blackboardIncorrect">¡incorrecto!<br><span>Vuelve a intentarlo</span></div>
+                <div id="blackboardcorrect">¡correcto!<br><span> Nueva emoción desbloqueada</span></div>
+                <div id="win">¡bien jugado!<br><span> Nueva emoción desbloqueada</span></div>
+            </div>
+            <div id="emotionsWrapper">
+                <div class="emotion" id="alegria" data-emotion1="optimismo" data-emotion2="amor">alegría</div>
+                <div class="emotion" id="confianza" data-emotion1="amor" data-emotion2="sumision">confianza</div>
+                <div class="emotion" id="miedo" data-emotion1="sumision" data-emotion2="susto">miedo</div>
+                <div class="emotion" id="sorpresa" data-emotion1="susto" data-emotion2="decepcion">sorpresa</div>
+                <div class="emotion" id="tristeza" data-emotion1="decepcion" data-emotion2="remordimiento">tristeza
+                </div>
+                <div class="emotion" id="asco" data-emotion1="remordimiento" data-emotion2="desprecio">asco</div>
+                <div class="emotion" id="ira" data-emotion1="desprecio" data-emotion2="agresividad">ira</div>
+                <div class="emotion" id="anticipacion" data-emotion1="agresividad" data-emotion2="optimismo">
+                    anticipación</div>
+            </div>
+        </div>
+    </div>
+    <div id="gameEntrance">
+        <h1>táctica emocional</h1><p>Haz tu mejor judaga y encuentra las emociones escondidas<br>detrás de una combinación de dos emociones distintas.</p>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

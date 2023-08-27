@@ -20,7 +20,7 @@ const gameOptions = {
 class GameClass {
   constructor({
     user = null,
-    freeMode = false,
+
     intro = true,
     test = false,
     places = [],
@@ -31,7 +31,7 @@ class GameClass {
   }) {
     this._obj = "Game";
     this.user = user;
-    this.freeMode = freeMode;
+
     this.intro = intro;
     this.test = test;
     (this.state = {
@@ -374,8 +374,8 @@ const updateGameState = async () => {
   Game.updateConqueredPlacesStats();
   Game.updateConqueredSkillsStats();
   updateCounterTour();
-  await updateHud();
   updateHome();
+  await updateHud();
 };
 
 

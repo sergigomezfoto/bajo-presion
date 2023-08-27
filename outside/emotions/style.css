@@ -1,0 +1,389 @@
+#gameEntrance {
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(43, 56, 109, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'bw_regular';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    opacity:1;
+    transition:opacity 0.3s;
+}
+
+#gameEntrance>p,
+#gameEntrance>h1 {
+    padding: 20px;
+    margin: 0;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Centrar elementos verticalmente */
+    flex-direction: column;
+    /* Alinear elementos como una columna */
+    font-family: 'untitled_sansmedium';
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    position: relative;
+    /* necesario para que #blackboard se posicione en relación a este */
+}
+
+#centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#blackboard {
+    background-color: #2c2c2c;
+    width: 830px;
+    height: 500px;
+    background-image: url(assets/pissarra.jpg);
+    background-size: cover;
+    position: relative;
+
+}
+
+#blackboardElementsWrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: turquoise; */
+}
+
+
+.blackboardElement {
+    position: absolute;
+    padding: 10px 20px;
+    border-radius: 40px;
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+
+/* Estilos específicos para cada elemento .blackboardElement */
+/* optimismo */
+#optimismo {
+    background-color: #ffcb67;
+    top: 60px;
+    left: 113px;
+    color: #fb0192;
+}
+
+/* amor */
+#amor {
+    background-color: #dee270;
+    top: 255px;
+    left: 449px;
+    color: #757820;
+
+}
+
+/* sumision */
+#sumision {
+    background-color: #9ace7d;
+    top: 149px;
+    left: 215px;
+    color: #43682e;
+
+}
+
+/* susto */
+#susto {
+    background-color: #73c4b5;
+    top: 373px;
+    left: 309px;
+    color: #397db0;
+
+}
+
+/* decepción */
+#decepcion {
+    background-color: #66afe6;
+    top: 333px;
+    left: 133px;
+    color: #397db0;
+
+}
+
+/* remordimiento */
+#remordimiento {
+    background-color: #7084d6;
+    top: 326px;
+    left: 563px;
+    color: #2b386d;
+
+}
+
+/* desprecio */
+#desprecio {
+    background-color: #b2749e;
+    top: 51px;
+    left: 560px;
+    color: #691e51;
+}
+
+/* agresividad */
+#agresividad {
+    background-color: #e68b68;
+    top: 128px;
+    left: 393px;
+    color: #7a371d;
+
+}
+
+/* Estilos específicos para cada elemento .blackboardElement */
+/* optimismo */
+.optimismo {
+    background-color: #ffcb67;
+    top: 60px;
+    left: 113px;
+    color: #fb0192;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* amor */
+.amor {
+    background-color: #dee270;
+    top: 255px;
+    left: 449px;
+    color: #757820;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+/* sumision */
+.sumision {
+    background-color: #9ace7d;
+    top: 149px;
+    left: 215px;
+    color: #43682e;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+/* susto */
+.susto {
+    background-color: #73c4b5;
+    top: 373px;
+    left: 309px;
+    color: #397db0;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+/* decepción */
+.decepcion {
+    background-color: #66afe6;
+    top: 333px;
+    left: 133px;
+    color: #397db0;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+/* remordimiento */
+.remordimiento {
+    background-color: #7084d6;
+    top: 326px;
+    left: 563px;
+    color: #2b386d;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+/* desprecio */
+.desprecio {
+    background-color: #b2749e;
+    top: 51px;
+    left: 560px;
+    color: #691e51;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* agresividad */
+.agresividad {
+    background-color: #e68b68;
+    top: 128px;
+    left: 393px;
+    color: #7a371d;
+    padding: 6px 22px;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+
+
+#optimismo:hover,
+#amor:hover,
+#sumision:hover,
+#susto:hover,
+#decepcion:hover,
+#remordimiento:hover,
+#desprecio:hover,
+#agresividad:hover {
+    color: #ffffff;
+}
+
+.inactive {
+    background-color: #6d6d6d !important;
+    color: #cacaca !important;
+    opacity: 0.7 !important;
+}
+
+.chosen {
+    /* border: green 2px solid ; */
+    color: white !important;
+    background-color: green !important;
+    pointer-events: none;
+}
+
+
+#blackboardcorrect,
+#blackboardIncorrect,
+#win {
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 43px;
+    display: none;
+}
+
+#blackboardcorrect>span,
+#blackboardIncorrect>span,
+#win>span {
+    font-size: 16px;
+    font-family: 'bw_regular';
+    padding-top: 21px;
+    text-transform: initial;
+
+}
+
+#blackboardIncorrect {
+    background-image: url(assets/error.png);
+}
+
+#blackboardcorrect {
+    background-image: url(assets/correct.png);
+}
+
+#win {
+    background-image: url(assets/win.png);
+    justify-content: flex-start;
+    padding-top: 6px;
+
+}
+
+#win>span {
+    padding-top: 2px;
+}
+
+#win #winTitle {
+    font-family: 'bw_black';
+    text-transform: uppercase;
+    font-size: 34px;
+    padding-top: 23px;
+}
+
+#emotionsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.emotion {
+    background-color: #f0f0f0;
+    color: #f0f0f0;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 44px;
+    pointer-events: none;
+    transition: background-color 0.3s;
+}
+
+
+.alegria {
+    background-color: #f9ea66;
+    color: white;
+}
+
+.confianza {
+    background-color: #c0dd77;
+    color: white;
+}
+
+.miedo {
+    background-color: #78c085;
+    color: white;
+}
+
+.sorpresa {
+    background-color: #9bdaf1;
+    color: white;
+}
+
+.tristeza {
+    background-color: #5f96e3;
+    color: white;
+}
+
+.asco {
+    background-color: #8b72c8;
+    color: white;
+}
+
+.ira {
+    background-color: #d97673;
+    color: white;
+}
+
+.anticipacion {
+    background-color: #eda266;
+    color: white;
+}

@@ -13,7 +13,7 @@
 <body>
     <div id="wrapper">
         <div class="heart-container">
-            <span>PUNTOS:</span>
+            <!-- <span>PUNTOS:</span> -->
             <!-- Els cors s'afegiran aquí amb JavaScript -->
         </div>
         <div id="centered-container">
@@ -27,22 +27,108 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             id="reloadImg" class="svgReplay" viewBox="0 0 63 63">
                             <path class="svgReplayBg" fill-rule="evenodd" fill="rgb(173, 173, 173)"
-                                d="M31.499,62.231 C14.554,62.231 0.767,48.445 0.767,31.499 C0.767,14.554 14.554,0.768 31.499,0.768 C48.444,0.768 62.231,14.554 62.231,31.499 C62.231,48.445 48.444,62.231 31.499,62.231 Z" />
+                            d="M31.499,62.231 C14.554,62.231 0.767,48.445 0.767,31.499 C0.767,14.554 14.554,0.768 31.499,0.768 C48.444,0.768 62.231,14.554 62.231,31.499 C62.231,48.445 48.444,62.231 31.499,62.231 Z" />
                             <path class="svgReplayPath" fill-rule="evenodd" fill="rgb(248, 243, 237)"
-                                d="M31.341,50.501 C24.686,50.501 18.574,46.631 15.771,40.641 C15.331,39.701 15.736,38.581 16.677,38.141 C17.617,37.701 18.736,38.106 19.177,39.047 C21.364,43.721 26.139,46.740 31.341,46.740 C38.728,46.740 44.737,40.794 44.737,33.484 C44.737,26.176 38.728,20.230 31.341,20.230 C29.167,20.230 27.055,20.758 25.161,21.733 L31.183,24.016 C32.154,24.384 32.643,25.470 32.275,26.441 C31.990,27.192 31.275,27.655 30.516,27.655 C30.295,27.655 30.070,27.616 29.850,27.533 L20.529,23.999 C20.474,23.978 20.434,23.932 20.381,23.906 C20.335,23.885 20.296,23.850 20.252,23.825 C20.100,23.734 19.957,23.641 19.837,23.512 C19.811,23.486 19.776,23.476 19.751,23.448 C19.668,23.354 19.632,23.240 19.571,23.136 C19.545,23.090 19.501,23.056 19.479,23.007 C19.472,22.992 19.475,22.975 19.469,22.960 C19.220,22.406 19.252,21.783 19.559,21.260 L23.071,12.163 C23.445,11.194 24.534,10.711 25.503,11.086 C26.471,11.460 26.954,12.548 26.579,13.517 L24.966,17.695 C26.976,16.898 29.134,16.469 31.341,16.469 C40.801,16.469 48.498,24.102 48.498,33.484 C48.498,42.867 40.801,50.501 31.341,50.501 Z" />
+                            d="M31.341,50.501 C24.686,50.501 18.574,46.631 15.771,40.641 C15.331,39.701 15.736,38.581 16.677,38.141 C17.617,37.701 18.736,38.106 19.177,39.047 C21.364,43.721 26.139,46.740 31.341,46.740 C38.728,46.740 44.737,40.794 44.737,33.484 C44.737,26.176 38.728,20.230 31.341,20.230 C29.167,20.230 27.055,20.758 25.161,21.733 L31.183,24.016 C32.154,24.384 32.643,25.470 32.275,26.441 C31.990,27.192 31.275,27.655 30.516,27.655 C30.295,27.655 30.070,27.616 29.850,27.533 L20.529,23.999 C20.474,23.978 20.434,23.932 20.381,23.906 C20.335,23.885 20.296,23.850 20.252,23.825 C20.100,23.734 19.957,23.641 19.837,23.512 C19.811,23.486 19.776,23.476 19.751,23.448 C19.668,23.354 19.632,23.240 19.571,23.136 C19.545,23.090 19.501,23.056 19.479,23.007 C19.472,22.992 19.475,22.975 19.469,22.960 C19.220,22.406 19.252,21.783 19.559,21.260 L23.071,12.163 C23.445,11.194 24.534,10.711 25.503,11.086 C26.471,11.460 26.954,12.548 26.579,13.517 L24.966,17.695 C26.976,16.898 29.134,16.469 31.341,16.469 C40.801,16.469 48.498,24.102 48.498,33.484 C48.498,42.867 40.801,50.501 31.341,50.501 Z" />
                         </svg>
-
+                        
                     </div>
                 </div>
+                <div id="decision"></div>
             </div>
         </div>
-        <div id="emotionsWrapper">hooola!!!</div>
+        <div id="emotionsWrapper">
+            <div id="characterWrapper">
+                <div id="question">¿QUÉ ESTÁ SINTIENDO EN EL VIDEO?</div>
+                <div id="character">
+                    <div id="heart"></div>
+                    <div id="brown"></div>
+                    <div id="red"></div>
+                    <div id="three"></div>
+                </div>
+            </div>
+            <div id="fake1">
+                <img src="assets/miedo.svg" alt="Miedo">
+                <span>fakefake</span>
+            </div>
+
+            <div id="fake2">
+                <img src="assets/miedo.svg" alt="Miedo">
+                <span>fakefake</span>
+            </div>
+
+            <div id="fake3">
+                <img src="assets/miedo.svg" alt="Miedo">
+                <span>fakefake</span>
+            </div>
+            <div id="answerWrapper">
+                <div id="miedo">
+                    <img src="assets/miedo.svg" alt="Miedo">
+                    <span>Miedo</span>
+                </div>
+
+                <div id="confusion">
+                    <img src="assets/confusion.svg" alt="Confusión">
+                    <span>Confusión</span>
+                </div>
+
+                <div id="sorpresa">
+                    <img src="assets/sorpresa.svg" alt="Sorpresa">
+                    <span>Sorpresa</span>
+                </div>
+
+                <div id="tristeza">
+                    <img src="assets/tristeza.svg" alt="Tristeza">
+                    <span>Tristeza</span>
+                </div>
+
+                <div id="ternura">
+                    <img src="assets/ternura.svg" alt="Ternura">
+                    <span>Ternura</span>
+                </div>
+
+                <div id="ansiedad">
+                    <img src="assets/ansiedad.svg" alt="Ansiedad">
+                    <span>Ansiedad</span>
+                </div>
+
+                <div id="optimismo">
+                    <img src="assets/optimismo.svg" alt="Optimismo">
+                    <span>Optimismo</span>
+                </div>
+
+                <div id="verguenza">
+                    <img src="assets/verguenza.svg" alt="Vergüenza">
+                    <span>Vergüenza</span>
+                </div>
+
+                <div id="admiracion">
+                    <img src="assets/admiracion.svg" alt="Admiración">
+                    <span>Admiración</span>
+                </div>
+
+                <div id="susto">
+                    <img src="assets/susto.svg" alt="Susto">
+                    <span>Susto</span>
+                </div>
+
+                <div id="desaprobacion">
+                    <img src="assets/desaprobacion.svg" alt="Desaprobación">
+                    <span>Desaprobación</span>
+                </div>
+            </div>
+
+
+        </div>
     </div>
     <div id="gameEntrance">
-        <h1>In a Heartbeat</h1>
-        <p>Mira este vídeo que habla de amor. Fijate bien porque luego</p>
+        <h1>En un Latido</h1>
+        <p>Esto es una vídeo de amor en el que bla bla blabla bla bala bli<br> blo bal balou bala blab bakakb balk bala l al</p>
+        <p>
+            <span>Instrucciones</span><br> En la parte inferior de la película, de vez en cuando, se te preguntará <br>qué es lo que siente un penrsonaje en ese momento.<br>Tendrás que pensar brevemente la respuesta y clickar a la emoción <br> que creas la que es correcta.<br>¡Buena Suerte!
+        </p>
     </div>
-    <script src="video_controler.js"></script>
+    <script src="game_controler.js"></script>
     <script src="youtube_api.js"></script>
     <script src="app.js"></script>
 </body>

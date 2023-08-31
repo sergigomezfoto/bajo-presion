@@ -50,6 +50,8 @@ const handleBlackboardElementClick = (element) => {
 const allEmotionsUnlocked = () => {
   return unlockedEmotions.length === totalEmotions;
 };
+let timeoutId;
+
 const checkEmotionMatch = () => {
   let matchingEmotion = null;
   let timeoutDelay = LOOSE_DELAY_TIME;
@@ -153,8 +155,9 @@ const checkEmotionMatch = () => {
     document.getElementById("blackboardcorrect").style.display = "none";
   }
 
-  setTimeout(() => {
+  timeoutId = setTimeout(() => {
     if (document.getElementById("win").style.display !== "flex") {
+      //si no estan en none
       document.getElementById("blackboardcorrect").style.display = "none";
       document.getElementById("blackboardIncorrect").style.display = "none";
     }
@@ -180,3 +183,16 @@ document.getElementById("gameEntrance").addEventListener("click", () => {
     document.getElementById("gameEntrance").style.display = "none";
   }, 800);
 });
+
+const blackboardCorrect = document.getElementById("blackboardcorrect");
+const blackboardIncorrect = document.getElementById("blackboardIncorrect");
+
+const cancelTimeoutAndHide = (element) => {
+    element.addEventListener('click', () => {
+        element.style.display = "none";
+        clearTimeout(timeoutId);
+    });
+};
+
+cancelTimeoutAndHide(blackboardCorrect);
+cancelTimeoutAndHide(blackboardIncorrect);

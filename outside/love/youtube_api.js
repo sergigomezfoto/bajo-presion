@@ -38,8 +38,9 @@ function onYouTubeIframeAPIReady() {
 function onYoutubePlayerReady(event) {
   youtubePlayerReady = true;
   console.log("youtubePlayerReady: ", youtubePlayerReady);
-  loadVideo("orbkg5JH9C8");
-    // loadVideo("sAaqLIsOmCE");
+  // loadVideo("orbkg5JH9C8");
+    loadVideo("sAaqLIsOmCE");
+    
 }
 
 function onYoutubePlayerError(e) {
@@ -54,41 +55,26 @@ function onYoutubePlayerError(e) {
  *                                        ACCIÓ PER DETECTAR MOMENTS DEL VIDEO I EXECUTAR ACCIONS
  * ***************************************************************************************************************************
  */
+////////////////////////////////////////////////////////////////TEST
 let currentAction = 0;
 let interval;
-let lastKnownTime = 0;
-// Creem un array per rastrejar les accions executades
-const executedActions = new Array(actions.length).fill(false);
 
 const monitorTime = (player) => {
     if (interval) clearInterval(interval);
+
+    // Ajusta el índice currentAction para que apunte a la próxima acción después del tiempo actual
+    while (currentAction < actions.length && player.getCurrentTime() > actions[currentAction].time) {
+        currentAction++;
+    }
   
     interval = setInterval(() => {
       const currentTime = player.getCurrentTime();
-    //   console.log("Temps actual del vídeo:", currentTime);
+      // console.log("Temps actual del vídeo:", currentTime);
   
-      if (currentTime < lastKnownTime) {
-        // Si s'ha retrocedit en el vídeo, es recalcula l'index currentAction
-        currentAction = actions.findIndex(action => action.time > currentTime);
-      }
-      lastKnownTime = currentTime;
-  
-      // Comprovem si hem perdut alguna acció anterior
-      for (let i = 0; i < currentAction; i++) {
-        if (currentTime > actions[i].time && !executedActions[i]) {
-          console.log("Executant acció perduda en el temps:", actions[i].time);
-          actions[i].action();
-          executedActions[i] = true;
-        }
-      }
-  
-      // Comprovem les accions futures
-      while (currentAction < actions.length && currentTime > actions[currentAction].time) {
-        if (!executedActions[currentAction]) {
-          console.log("Executant acció en el temps:", actions[currentAction].time);
-          actions[currentAction].action();
-          executedActions[currentAction] = true;
-        }
+      // Comprovem la próxima acción
+      if (currentAction < actions.length && currentTime > actions[currentAction].time) {
+        console.log("Executant acció en el temps:", actions[currentAction].time);
+        actions[currentAction].action();
         currentAction++;
       }
   
@@ -98,7 +84,56 @@ const monitorTime = (player) => {
       }
   
     }, 100);
-  };
+};
+
+
+
+/////////////////////////////////////////////////////////////////BONA!!!
+// let currentAction = 0;
+// let interval;
+// let lastKnownTime = 0;
+// // Creem un array per rastrejar les accions executades
+// const executedActions = new Array(actions.length).fill(false);
+
+// const monitorTime = (player) => {
+//     if (interval) clearInterval(interval);
+  
+//     interval = setInterval(() => {
+//       const currentTime = player.getCurrentTime();
+//     //   console.log("Temps actual del vídeo:", currentTime);
+  
+//       if (currentTime < lastKnownTime) {
+//         // Si s'ha retrocedit en el vídeo, es recalcula l'index currentAction
+//         currentAction = actions.findIndex(action => action.time > currentTime);
+//       }
+//       lastKnownTime = currentTime;
+  
+//       // Comprovem si hem perdut alguna acció anterior
+//       for (let i = 0; i < currentAction; i++) {
+//         if (currentTime > actions[i].time && !executedActions[i]) {
+//           console.log("Executant acció perduda en el temps:", actions[i].time);
+//           actions[i].action();
+//           executedActions[i] = true;
+//         }
+//       }
+  
+//       // Comprovem les accions futures
+//       while (currentAction < actions.length && currentTime > actions[currentAction].time) {
+//         if (!executedActions[currentAction]) {
+//           console.log("Executant acció en el temps:", actions[currentAction].time);
+//           actions[currentAction].action();
+//           executedActions[currentAction] = true;
+//         }
+//         currentAction++;
+//       }
+  
+//       if (currentAction >= actions.length) {
+//         console.log("Totes les accions han estat executades.");
+//         clearInterval(interval);
+//       }
+  
+//     }, 100);
+//   };
 
 /**
  * ***************************************************************************************************************************
@@ -185,6 +220,9 @@ function onYoutubePlayerStateChange(event) {
 const loadVideo = (videoId, player = youtubePlayer) => {
   player.cueVideoById(videoId);
 };
+const seekVideo = (time, player = youtubePlayer) => {
+  player.seekTo(time);
+};
 
 const loadAndPlayVideo = (videoId, player = youtubePlayer) => {
   player.loadVideoById(videoId);
@@ -203,17 +241,23 @@ const stopVideo = (returnsecond = 0.5, player = youtubePlayer) => {
   player.pauseVideo();
 };
 
+
+
+// const TESTTIME=160;
+
 ///////////////////////////////////////////////////////////////////////////////////////VIDEO controls
 let initialPlay = false;
 const togglePlayPause = (player = youtubePlayer) => {
   console.log("player.getPlayerState(): ", player.getPlayerState());
   if (player.getPlayerState() === 5 && !initialPlay) {
+    // seekVideo(TESTTIME);
     playVideo();
     initialPlay = true;
   }
   if (window.getComputedStyle(replay).display === "none") {
     if (player.getPlayerState() === 1) {
       pauseVideo(player);
+      console.log('SEEKTIME: ',player.getCurrentTime());
     } else if (player.getPlayerState() === 2) {
       playVideo(player);
     }
@@ -240,9 +284,11 @@ const replay = document.getElementById("replay");
     togglePlayPause(youtubePlayer);
   });
   replay.addEventListener("click", () => {
+    
     replayFunction(youtubePlayer);
   });
   replay.addEventListener("touchend", () => {
+    
     replayFunction(youtubePlayer);
   });
 })();

@@ -78,16 +78,3 @@ const resetHearts = () => {
   hearts.forEach((heart) => {heart.classList.remove("HeartConquered"); heart.classList.remove("heartGray");});
   currentHeart = 0; // Reset the current heart index
 };
-/**
- * ***************************************************************************************************************************
- *                                        GAME ENTRANCE
- * ***************************************************************************************************************************
- */
-
-//#gameEntrance asigna evento para que cuando se clique se ponga la opacidad a 0 y finalmente en display none
-document.getElementById("gameEntrance").addEventListener("click", () => {
-  document.getElementById("gameEntrance").style.opacity = "0";
-  setTimeout(() => {
-    document.getElementById("gameEntrance").style.display = "none";
-  }, 800);
-});

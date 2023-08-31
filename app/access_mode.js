@@ -1,5 +1,5 @@
 let passToVideo = false; // activat a form
-const timeShowIntroElements = 500;
+const timeShowIntroElements = 400;
 const intro = document.getElementById("intro");
 const startcontainer = document.getElementById("startcontainer");
 const intro_black = document.getElementById("intro_black");
@@ -23,7 +23,7 @@ let localStorageSaved = false;
 let introLPInterval=null;
 const generalIntro = async () => {
 
-  if (!Game.test && Game.intro && !freestyle) {
+  if (!Game.test && !freestyle && !Game.directPano) {
     for (const logo of logosIntro) {
       await fadeInFadeOut(logo.id, 1, "block");
     }
@@ -37,7 +37,7 @@ const generalIntro = async () => {
     fadeInFadeOut(presentanIntro.id, 0);
     await awaitStylecomplete(presentanIntro, "display", "none");
     introGradient.style.clipPath = "circle(100% at 50% 50%)";
-    await sleep(timeShowIntroElements);
+    // await sleep(timeShowIntroElements);
     introLPInterval = setInterval(() => effectShadowDiv("first_little_planet_wrapper", "shadow_lp_intro"), 50); // activa el planeta bottant
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////lp + text
 
@@ -84,16 +84,13 @@ const generalIntro = async () => {
     intro.remove();
     startHome();
     return true;
-  } else if (Game.test) {
+  } else if (Game.test || Game.directPano) {
     console.log("this is test o freestyle");
     skipIntro();
-    // showTour();
-    //  await enterPlace("centro");
-    await freeModeEnterPlacePano("centro_1");
+    if (Game.directPano) {
+      freeModeEnterPlacePano(Game.directPano);
+    }
     return true;
   }
-  else if (!Game.intro) {
-    skipIntro();
-    return true;
-  }
+  
 };

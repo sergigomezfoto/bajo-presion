@@ -46,7 +46,6 @@
     font-style: normal;
 
 }
-/* 
 @font-face {
     font-family: 'untitled_sansblack';
     src: url('./fonts/untitledsans-black-webfont.woff2') format('woff2'),
@@ -55,6 +54,7 @@
     font-style: normal;
 
 }
+/* 
 @font-face {
     font-family: 'untitled_sansblack_italic';
     src: url('./fonts/untitledsans-blackitalic-webfont.woff2') format('woff2'),

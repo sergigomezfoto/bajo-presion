@@ -9,6 +9,7 @@
     <script>
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
 
+        // // EVITAR QUE ES PUGUI FER ZOOM    
         // document.addEventListener('keydown', function (event) {
         //     if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
         //         event.preventDefault();
@@ -22,40 +23,71 @@
         //     }
         // });
 
-
-        document.addEventListener(" DOMContentLoaded", function () {
+console.log('hoola');
+        document.addEventListener("DOMContentLoaded", function () {
             function scaleBodyAndHtml(scaleFactor) {
-                const
-                elements = [document.body, document.documentElement]; elements.forEach(el => {
+                const elements = [document.body, document.documentElement]; elements.forEach(el => {
                     el.style.transform = `scale(${scaleFactor})`;
                     el.style.transformOrigin = 'top left';
                     el.style.width = `${100 / scaleFactor}%`;
                     el.style.height = `${100 / scaleFactor}%`;
                 });
+                console.log("scaleBodyAndHtml");
             }
 
             // Si el zoom es prácticament 100%, no fa res.
-            if (Math.abs(window.devicePixelRatio - 1) < 0.05) return; const originalScale = 1 / window.devicePixelRatio;
-            console.log(window.devicePixelRatio); let adjustmentFactor; if (window.devicePixelRatio > 1 &&
-                window.devicePixelRatio < 1.24) { adjustmentFactor = 1.1; } else { console.log("entra"); adjustmentFactor = 1.1; }
-            const finalScale = originalScale * adjustmentFactor; scaleBodyAndHtml(finalScale);
-        }); let freestyle = false;
-        const checkParamAndAct = (expectedKey, expectedValue, callback) => {
-            const params = new URLSearchParams(window.location.search);
+            if (Math.abs(window.devicePixelRatio - 1) < 0.05) return; 
+            const originalScale = 1 / window.devicePixelRatio;
+            console.log(window.devicePixelRatio); let adjustmentFactor; 
+            if (window.devicePixelRatio > 1 &&
+                window.devicePixelRatio < 1.24) { adjustmentFactor = 1.1; } 
+                else { console.log("entra"); adjustmentFactor = 1.1; }
+            const finalScale = originalScale * adjustmentFactor; 
+            scaleBodyAndHtml(finalScale);
+        }); 
+/**
+ * ***************************************************************************************************************************
+ *                                        COMPROVACIÓ DE PARÀMETRES I ACCIÓ
+ * ***************************************************************************************************************************
+ */
 
-            if (params.has(expectedKey) && params.get(expectedKey) === expectedValue) {
-                if (typeof callback === 'function') {
-                    callback();
-                } else {
-                    console.error('Provided callback is not a function.');
-                }
-            } else {
-                console.log(`Parameter doesn't match or doesn't exist.`);
-            }
+ let freestyle = false;
+
+/**
+ * Aquesta funció comprova si un paràmetre específic amb un valor esperat existeix a la URL.
+ * Si el valor esperat és null, simplement comprova l'existència del paràmetre i passa el seu valor al callback.
+ *
+ * @param {string} expectedKey - La clau del paràmetre a comprovar.
+ * @param {string|null} expectedValue - El valor esperat del paràmetre o null per qualsevol valor.
+ * @param {Function} callback - Una funció que serà cridada si es compleixen les condicions.
+ */
+
+const checkParamAndAct = (expectedKey, expectedValue, callback) => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has(expectedKey) && (expectedValue === null || params.get(expectedKey) === expectedValue)) {
+        if (typeof callback === 'function') {
+            callback(params.get(expectedKey));
+        } else {
+            console.error('Provided callback is not a function.');
         }
-        checkParamAndAct('access', 'freestyle', () => {
-            freestyle = true;
-        });
+    } else {
+        console.log(`Parameter doesn't match or doesn't exist.`);
+    }
+}
+
+checkParamAndAct('access', 'freestyle', () => {
+    freestyle = true;
+});
+
+let directPano;
+checkParamAndAct('test', null, (valor) => {
+    console.log(`El valor del paràmetre 'p' és: ${valor}`);
+    freestyle = true;
+    directPano=valor;
+    ///////////////////////////////////////  ?test=casa_5 ///////////////////////////////////////
+});
+
     </script>
             <script src=" ./app/perfect_scrollbar.js">
             </script>
@@ -151,7 +183,7 @@
                         <div id="tourPanoTextContent">
                         </div>
                     </div>
-                    <div id="tourUiPlace">Centro cívico</div>
+                    <div id="tourUiPlace"></div>
                     <div id="tourUiPlaceTime"></div>
                     <div id="tourUser">
                         <div id="tourUserWrapper">

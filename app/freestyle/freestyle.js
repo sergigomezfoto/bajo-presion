@@ -70,7 +70,7 @@ const freeModeEnterPlacePano = async (dataValue) => {
   ps.update();
   tourPanoTextContent.scrollTop = 1;
   //HomeState.hidden
-  if (Game.panoVideo) {
+  if (Game.panoVideo &&  !Game.directPano) {
     await asyncLoopPositive((_) => HomeState.hidden, 10);
     fadeinAndPlayNewPanoVideo(Game.panoVideo);
     await waitForEventToTrigger(document.getElementById("skipVideoButton"), "click");

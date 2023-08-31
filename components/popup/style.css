@@ -1,74 +1,90 @@
 .no-scroll {
     overflow: hidden;
-    height: 100%; 
-  }
+    height: 100%;
+}
 
 .popupScrollContainer .ps__thumb-y {
-    background-color: #888; /* Cambia a tu color preferido */
+    background-color: #888;
+    /* Cambia a tu color preferido */
     border-radius: 8px;
-    width: 8px; /* Puedes ajustar el ancho si lo prefieres */
+    width: 8px;
+    /* Puedes ajustar el ancho si lo prefieres */
 }
 
 .popupScrollContainer .ps__rail-y {
-    background-color: #e0e0e0; /* Cambia a tu color preferido para el riel */
+    background-color: #e0e0e0;
+    /* Cambia a tu color preferido para el riel */
     opacity: 0.6;
-    width: 8px; /* Asegúrate de que esto coincida con el ancho del thumb */
+    width: 8px;
+    /* Asegúrate de que esto coincida con el ancho del thumb */
 }
 
-.popupScrollContainer .ps__rail-y:hover > .ps__thumb-y,
-.popupScrollContainer .ps__rail-y:focus > .ps__thumb-y,
-.popupScrollContainer .ps__rail-y:active > .ps__thumb-y {
-    color: #000; /* Cambia a tu color preferido */
-    background-color: #555; /* Cambia a tu color preferido */
+.popupScrollContainer .ps__rail-y:hover>.ps__thumb-y,
+.popupScrollContainer .ps__rail-y:focus>.ps__thumb-y,
+.popupScrollContainer .ps__rail-y:active>.ps__thumb-y {
+    color: #000;
+    /* Cambia a tu color preferido */
+    background-color: #555;
+    /* Cambia a tu color preferido */
 }
 
 
 
 
 @keyframes iframe_spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .iframeOverlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7); /* Este valor se puede sobreescribir desde JavaScript */
-      opacity: 0;
-      transition: opacity 0.2s;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  
-  .iframeContainer {
-      opacity: 0;
-      transition: opacity 0.5s;
-      position: relative;
-      background-color: #FFFFFF;
-  }
-  
-  .iframeLoader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #555;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: iframe_spin 1s linear infinite;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-  }
-  
-  .iframeCloseButton {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 2;
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.iframeOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Este valor se puede sobreescribir desde JavaScript */
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iframeContainer {
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: relative;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iframeLoader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #555;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: iframe_spin 1s linear infinite;
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    z-index: 1;
+}
+
+.iframeCloseButton {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    z-index: 2;
+}

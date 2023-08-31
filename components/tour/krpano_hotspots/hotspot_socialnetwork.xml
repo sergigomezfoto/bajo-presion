@@ -21,6 +21,7 @@
     handcursor="true"
     align="bottomleft"
     alpha="0"
+    autoalpha="true"
     onclick=""
     onloaded="delayedcall(0.2,configurebubblehs);"
  />
@@ -82,7 +83,7 @@
                                  bg="get:tesths.bg"
                                  bgcolor="0x635498"
                                  text="Palindromo"
-                                 css="color:balck;font-family:'untitled_sansbold'; font-size: 14px; "
+                                 css="color:balck;font-family:'untitled_sansbold'; font-size: 15px; "
                                  align="topleft"
                                  renderer="webgl"
 
@@ -96,7 +97,7 @@
                                  bg="get:tesths.bg"
                                  bgcolor="0x63ff987"
                                  text="1w"
-                                 css="color:#aaaaaa;font-family: 'untitled_sansregular'; font-size: 14px; "
+                                 css="color:#aaaaaa;font-family: 'untitled_sansregular'; font-size: 15px; "
                                  align="topleft"
                                  renderer="webgl"
 
@@ -110,6 +111,14 @@
                               width="56"
                               flow="false"
 
+                              />
+                              <style name="nohsheart"
+                              crop="hol"
+                              type="text"
+                              bg="false"
+                              width="0"
+                              height="0"
+                              flow="false"
                               />
                               
 
@@ -235,11 +244,24 @@
    ///////////////////////////hsheart
    if (caller.s_heart == 'null',
       inc(('layer[' + wrapper.name + '].loadedchilds'));
-   ,
+   ,caller.s_heart == 'true' OR !isset(caller.s_heart),
+      trace('aqui');
       addlayer((caller.name + 'heart'),heart);
       heart.parent=(caller.name + 'userdatewrapper');
       heart.loadstyle('hsheart');
       heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
+   ,caller.s_heart == 'false',
+      addlayer((caller.name + 'heart'),heart);
+      heart.parent=(caller.name + 'userdatewrapper');
+      heart.loadstyle('nohsheart');
+      heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
+   
+   ,caller.s_heart == 'transparent',
+      addlayer((caller.name + 'heart'),heart);
+      heart.parent=(caller.name + 'userdatewrapper');
+      heart.loadstyle('nohsheart');
+      heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
+   
    );
    ///////////////////////////hscontent
      
@@ -260,20 +282,31 @@
          );
       
    
-trace('jbawjo okian ia pijna poijawe0',caller.name);
-   caller.onclick=('if(layer[' + heart.name + '].crop !="56|0|56|56" ,jscall("Game.incPanoPoints()"););layer[' + heart.name + '].crop="56|0|56|56";check_talents_and_next();');
-  
-   if (caller.s_heart == 'null',
+if (caller.s_heart == 'true' OR !isset(caller.s_heart) OR caller.s_heart == 'transparent',
+      caller.onclick=('if(layer[' + heart.name + '].crop !="56|0|56|56" ,trace("sumo punt");jscall("Game.incPanoPoints()"););layer[' + heart.name + '].crop="56|0|56|56";check_talents_and_next();');
+   ,caller.s_heart == false, 
+   trace('s_heart false');
+      caller.onclick=('trace("no suma de punts")');
+   ,caller.s_heart == 'null',
+      caller.onclick=('trace("no suma de punts")');
       caller.enabled=false;
-   );
+);
+  
 
    asyncloop(layer[(wrapper.name)].loadedchilds LT 7,,
+   trace('primer asyncloop passat:',layer[(wrapper.name)].loadedchilds);
       caller.width=layer[(caller.name + 'wrapper')].pixelwidth;
       caller.height=layer[(caller.name + 'wrapper')].pixelheight;
       ///////////////////////////hsindicator
          addlayer((caller.name + 'indicator'),indicator);
          indicator.parent=('hotspot[' + caller.name + ']');
-      asyncloop(caller.pixelwidth !== layer[(caller.name + 'wrapper')].pixelwidth OR caller.pixelheight !== layer[(caller.name + 'wrapper')].pixelheight ,,  
+      asyncloop(caller.pixelwidth !== layer[(caller.name + 'wrapper')].pixelwidth AND caller.pixelheight !== layer[(caller.name + 'wrapper')].pixelheight ,
+      trace('caller.pixelwidth:', caller.pixelwidth);
+      trace('layer[(caller.name + "wrapper")].pixelwidth:', layer[(caller.name + 'wrapper')].pixelwidth);
+      trace('caller.pixelheight:', caller.pixelheight);
+      trace('layer[(caller.name + "wrapper")].pixelheight:',layer[(caller.name + 'wrapper')].pixelheight);
+      , 
+      trace('segon asyncloop passat'); 
          indicator.loadstyle('bubble_indicator');
             if (caller.s_position == 'bottom',
                indicator.loadstyle('bubble_indicator|indicator_bottom');
@@ -292,15 +325,17 @@ trace('jbawjo okian ia pijna poijawe0',caller.name);
                ,caller.s_position == 'null',
                indicator.loadstyle('bubble_indicator|indicator_null');         
             ); 
-         trace(indicator.style);
+         <!-- trace(indicator.style);
          trace(indicator.align);
          trace(indicator.y);
-         trace(indicator.x);
+         trace(indicator.x); -->
    <!-- align="bottomleft"
     y="-15" 
     x="10" -->
-                  if (!caller.s_invisible_at_start,
+                  if (!isset(caller.s_invisible_at_start),
+                    delayedcall (0.5,
                      tween(caller.alpha,1,0.2);
+                    );
                   );
 
       );

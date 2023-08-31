@@ -177,12 +177,7 @@ const resetSelection = () => {
 };
 
 //#gameEntrance asigna evento para que cuando se clique se ponga la opacidad a 0 y finalmente en display none
-document.getElementById("gameEntrance").addEventListener("click", () => {
-  document.getElementById("gameEntrance").style.opacity = "0";
-  setTimeout(() => {
-    document.getElementById("gameEntrance").style.display = "none";
-  }, 800);
-});
+
 
 const blackboardCorrect = document.getElementById("blackboardcorrect");
 const blackboardIncorrect = document.getElementById("blackboardIncorrect");

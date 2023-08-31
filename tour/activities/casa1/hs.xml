@@ -1,13 +1,112 @@
 <krpano>
-<hotspot name="htest2" ath="-1.668472618807641" atv="-8.251196353633475"  style="speech_bubbles"
-    s_position="rightbottom"
-    s_photo="mariona"
-    s_user="Mariona"
+
+
+<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alex"
+    s_user="hola"
     s_date="1w"
-    s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    onclick.addevent="trace('caaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssaaaaaaaaaaaaaa')"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui'); trace('equesiguiescritaqui només es vàlid a data.casa.panos.1.extra.elqusiguiescritaqui');"
+    
 />
-    
-    
+
 
 </krpano>
+
+
+<!-- 
+(AL FINAL DE TOT POSARÉ TOTS ELS HOTSPOTS CAPTURE FALSE).
+DISSENY DEL HOTSPOT
+s_position ==> right | rightbottom | left | leftbottom | bottom | bottomleft | bottomright | null 
+s_photo ==> nom de l'arxiu a index.html/assets/img/users/[nom] ==> alex = alex.jpg | greta=greta.jpg | null
+s_user (nom curt, sempre) ==> nom de l'usuari | null
+s_date ==> el text que es vulgui posar expempe: 1h o 1w  coses curtes | null
+s_content (pot ser llarg)==> el text que es vulgui posar expempe: 1h o 1w  coses curtes | null
+FUNCTIONALITAT DEL HOTSPOT
+s_heart ==> | true (o absent) = hi ha cor, suma 1 punt i fa el que es digui a onclick.addevent 
+            | transparent = no hi ha cor, suma 1 punt i fa el que es digui a onclick.addevent
+            | false = no hi ha cor no suma punts,fa el que es digui a onclick.addevent 
+            | null= no hi ha cor i hs enabled=false
+
+
+s_talent ==> conquereix el talent per index (0,1,2,3,4) de el seu objecte 
+             Exemple: 
+             (data.casa.talents: ["Conocimiento propio", "Autoaceptación", "Construir autoestima", "Identificar los límites"]),
+             s_talent="0" ==> "Conocimiento propio" conquerit.
+s_invisible_at_start ==> si hi es en qualsevol valor, el hs está en alpha 0 fins que es posa en 1 per programacio.
+
+POPUPS:
+onclick.addevent = js:launchPopup('link1'); ==> 
+                                  link1 = URL a (exemple casa_1) index.html/data/data.js -> data.casa.panos.1.extra.elqusiguiescritaqui 
+                                  arg 2 80% = width
+                                  arg 3 80% = height
+                                  arg 4 objecte per defete 
+                                  const popupDefaultOptions ={
+                                    overlayColor: "rgba(0,0,0,0.7)",
+                                    onClose: function () {
+                                            console.log("popup tancat");
+                                            }
+                                    };
+
+EXEMPLES:
+-->
+
+
+
+
+<!-- //posar una altra foto millor a multi.jpg
+<hotspot name="testmultiambcor_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="null"
+    s_photo="multi"
+    s_user="todos"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testpuntinfosensecor_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="paraula curta"
+    s_date="null"
+    s_heart="transparent"
+    s_content="Això és un video guai[br] que parla de mi"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testpuntinfosensecor_no_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="paraula curta"
+    s_date="null"
+    s_heart="false"
+    s_content="Això és un video guai[br] que parla de mi"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testnormal_sumapunts_inici_no_alpha" ath="0" atv="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alex"
+    s_user="hola"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    s_invisible_at_start="true"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+/> 
+
+
+<action name="" autorun="true">
+
+  delayedcall (3,
+    tween(hotspot[testnormal_sumapunts_inici_no_alpha].alpha,1);
+  );
+
+</action>    -->
+

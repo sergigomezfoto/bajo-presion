@@ -20,7 +20,7 @@ const enterPlace = async (dataValue) => {
   setPlaceTitle(Game.placeTitle);
   enterPano(Game.panoIndex);
 
-    if (!Game.test) {
+    if (!Game.test && !Game.directPano) {
   fadeinAndPlayNewPlaceVideo(Game.placeIntroVideo);
   await waitForEventToTrigger(document.getElementById("skipVideoButton"), "click");
     }

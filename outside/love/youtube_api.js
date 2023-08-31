@@ -39,8 +39,22 @@ function onYoutubePlayerReady(event) {
   youtubePlayerReady = true;
   console.log("youtubePlayerReady: ", youtubePlayerReady);
   // loadVideo("orbkg5JH9C8");
-    loadVideo("sAaqLIsOmCE");
-    
+  loadVideo("sAaqLIsOmCE");
+
+  /**
+   * ***************************************************************************************************************************
+   *                                        GAME ENTRANCE
+   * ***************************************************************************************************************************
+   */
+
+  //#gameEntrance asigna evento para que cuando se clique se ponga la opacidad a 0 y finalmente en display none
+  document.getElementById("gameEntrance").addEventListener("click", () => {
+    document.getElementById("gameEntrance").style.opacity = "0";
+    setTimeout(() => {
+      // playVideo();
+      document.getElementById("gameEntrance").style.display = "none";
+    }, 800);
+  });
 }
 
 function onYoutubePlayerError(e) {
@@ -60,80 +74,30 @@ let currentAction = 0;
 let interval;
 
 const monitorTime = (player) => {
-    if (interval) clearInterval(interval);
+  if (interval) clearInterval(interval);
 
-    // Ajusta el índice currentAction para que apunte a la próxima acción después del tiempo actual
-    while (currentAction < actions.length && player.getCurrentTime() > actions[currentAction].time) {
-        currentAction++;
+  // Ajusta el índice currentAction para que apunte a la próxima acción después del tiempo actual
+  while (currentAction < actions.length && player.getCurrentTime() > actions[currentAction].time) {
+    currentAction++;
+  }
+
+  interval = setInterval(() => {
+    const currentTime = player.getCurrentTime();
+    // console.log("Temps actual del vídeo:", currentTime);
+
+    // Comprovem la próxima acción
+    if (currentAction < actions.length && currentTime > actions[currentAction].time) {
+      console.log("Executant acció en el temps:", actions[currentAction].time);
+      actions[currentAction].action();
+      currentAction++;
     }
-  
-    interval = setInterval(() => {
-      const currentTime = player.getCurrentTime();
-      // console.log("Temps actual del vídeo:", currentTime);
-  
-      // Comprovem la próxima acción
-      if (currentAction < actions.length && currentTime > actions[currentAction].time) {
-        console.log("Executant acció en el temps:", actions[currentAction].time);
-        actions[currentAction].action();
-        currentAction++;
-      }
-  
-      if (currentAction >= actions.length) {
-        console.log("Totes les accions han estat executades.");
-        clearInterval(interval);
-      }
-  
-    }, 100);
+
+    if (currentAction >= actions.length) {
+      console.log("Totes les accions han estat executades.");
+      clearInterval(interval);
+    }
+  }, 100);
 };
-
-
-
-/////////////////////////////////////////////////////////////////BONA!!!
-// let currentAction = 0;
-// let interval;
-// let lastKnownTime = 0;
-// // Creem un array per rastrejar les accions executades
-// const executedActions = new Array(actions.length).fill(false);
-
-// const monitorTime = (player) => {
-//     if (interval) clearInterval(interval);
-  
-//     interval = setInterval(() => {
-//       const currentTime = player.getCurrentTime();
-//     //   console.log("Temps actual del vídeo:", currentTime);
-  
-//       if (currentTime < lastKnownTime) {
-//         // Si s'ha retrocedit en el vídeo, es recalcula l'index currentAction
-//         currentAction = actions.findIndex(action => action.time > currentTime);
-//       }
-//       lastKnownTime = currentTime;
-  
-//       // Comprovem si hem perdut alguna acció anterior
-//       for (let i = 0; i < currentAction; i++) {
-//         if (currentTime > actions[i].time && !executedActions[i]) {
-//           console.log("Executant acció perduda en el temps:", actions[i].time);
-//           actions[i].action();
-//           executedActions[i] = true;
-//         }
-//       }
-  
-//       // Comprovem les accions futures
-//       while (currentAction < actions.length && currentTime > actions[currentAction].time) {
-//         if (!executedActions[currentAction]) {
-//           console.log("Executant acció en el temps:", actions[currentAction].time);
-//           actions[currentAction].action();
-//           executedActions[currentAction] = true;
-//         }
-//         currentAction++;
-//       }
-  
-//       if (currentAction >= actions.length) {
-//         console.log("Totes les accions han estat executades.");
-//         clearInterval(interval);
-//       }
-  
-//     }, 100);
-//   };
 
 /**
  * ***************************************************************************************************************************
@@ -153,8 +117,8 @@ const videoPreEnded = (rettosecond = 0.5, player = youtubePlayer) => {
   replay.style.display = "flex";
   stopVideo(rettosecond, player);
   currentAction = 0;
-  executedActions.fill(false);
-  lastKnownTime = 0;
+  // executedActions.fill(false);
+  // lastKnownTime = 0;
 };
 
 const startCheckInterval = (duration, player = youtubePlayer) => {
@@ -188,10 +152,8 @@ const checkIfPreended = (event) => {
   } else {
     clearTimeout(checkVideoTimeTimeout);
     clearInterval(checkVideoTimeInterval);
-
   }
 };
-
 
 /**
  * ***************************************************************************************************************************
@@ -203,15 +165,19 @@ function onYoutubePlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
     console.log("Vídeo en reproducció. Iniciant monitorització.");
     monitorTime(youtubePlayer);
-  } else if (youtubePlayer.getPlayerState() === YT.PlayerState.ENDED) {
-    //pos si aca no funciona faig el mateix al final
-
+    const realIndex = actions.findIndex((action) => youtubePlayer.getCurrentTime() < action.time) - 1;
+    if (realIndex >= 0) {
+      startCounter(realIndex);
+    }
+  } else if (event.data === YT.PlayerState.ENDED) {
     videoPreEnded(returnToSecond);
-  } else {
-    console.log("Vídeo pausat o aturat. Aturant monitorització.");
+  } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.BUFFERING) {
+    // Tractem l'estat de buffering igual que l'estat de pausa
+    console.log("Vídeo pausat, aturat o en buffering. Aturant monitorització.");
     clearInterval(interval); // Atura l'interval si el vídeo no està reproduint-se
   }
 }
+
 /**
  * ***************************************************************************************************************************
  *                                          funcionalitat dels controls
@@ -241,8 +207,6 @@ const stopVideo = (returnsecond = 0.5, player = youtubePlayer) => {
   player.pauseVideo();
 };
 
-
-
 // const TESTTIME=160;
 
 ///////////////////////////////////////////////////////////////////////////////////////VIDEO controls
@@ -257,7 +221,7 @@ const togglePlayPause = (player = youtubePlayer) => {
   if (window.getComputedStyle(replay).display === "none") {
     if (player.getPlayerState() === 1) {
       pauseVideo(player);
-      console.log('SEEKTIME: ',player.getCurrentTime());
+      console.log("SEEKTIME: ", player.getCurrentTime());
     } else if (player.getPlayerState() === 2) {
       playVideo(player);
     }
@@ -284,11 +248,14 @@ const replay = document.getElementById("replay");
     togglePlayPause(youtubePlayer);
   });
   replay.addEventListener("click", () => {
-    
     replayFunction(youtubePlayer);
   });
   replay.addEventListener("touchend", () => {
-    
     replayFunction(youtubePlayer);
   });
 })();
+
+///////////////////////////////////////////////////
+// DEPURACIÓ
+
+////////////////////////////////////////////////////

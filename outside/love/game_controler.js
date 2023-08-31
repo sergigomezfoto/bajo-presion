@@ -180,7 +180,7 @@ const actions = [
     },
   },
   {
-    time: 233,
+    time: 232,
     actionIndex: 10,
     solution: "ternura",
     action: function () {
@@ -188,12 +188,51 @@ const actions = [
     },
   },
 ];
+
+let lastUpdateTime = null;
+let isPaused = false;
+const startCounter = (realIndex) => {
+  const startTime = actions[realIndex].time;
+  const endTime = actions[realIndex + 1]?.time || startTime;
+  const counterDiv = document.getElementById("counterDiv");
+
+  const update = () => {
+    const currentTime = youtubePlayer.getCurrentTime();
+    const remainingTime = Math.ceil(endTime - currentTime);
+    counterDiv.textContent = remainingTime;
+
+    if (remainingTime <= 0 || youtubePlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+        return;
+    }
+
+    requestAnimationFrame(update);
+};
+
+
+  update();
+};
+
+const updateCounter = (realIndex) => {
+  const startTime = actions[realIndex].time;
+  const endTime = actions[realIndex + 1]?.time || startTime;
+  const counterDiv = document.getElementById("counterDiv");
+  counterDiv.style.display = "flex";
+  counterDiv.textContent = Math.ceil(endTime - youtubePlayer.getCurrentTime());
+
+  // Start the counter
+  startCounter(realIndex);
+};
 const ask = ({ character, possibleEmotions, actionIndex }) => {
+
+  const realIndex = actions.findIndex(action => action.actionIndex === actionIndex);
+
+  // Inicia el comptador
+  updateCounter(realIndex);
+
   showQuestion(character);
   showPossibleEmotions(possibleEmotions);
   applyBlinkClassToHeart(actionIndex);
 };
-
 const respond = ({ solution, actionIndex }) => {
   const answerWrapper = document.getElementById("answerWrapper");
   const decision = document.getElementById("decision");
@@ -241,11 +280,16 @@ const respond = ({ solution, actionIndex }) => {
   
   setTimeout(() => {
     normalState();
+
     correctAnswer.style.backgroundColor = "";
   }, 1500);
 };
 
+
+
 const normalState = () => {
+  const counterDiv = document.getElementById("counterDiv");
+  counterDiv.style.display = "none";
   const answerWrapper = document.getElementById("answerWrapper");
   const answers = answerWrapper.querySelectorAll(".possibleEmotionsActive");
   for (const answer of answers) {

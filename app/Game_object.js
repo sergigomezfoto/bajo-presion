@@ -4,13 +4,13 @@
 ///////////////////////////////////////////////////////////////////////
 
 //const test = false;
-
+console.log(directPano,'<------------------directPano');
 const gameOptions = {
   test: false,
-  intro: true,
+  directPano,
   user: "anonimus",
   places: ["casa", "polideportivo", "instituto", "centro", "parque"],
-  // placesConquered: ["casa", "polideportivo", "instituto", "centro", ],
+  // placesConquered: ["casa", "polideportivo", "instituto", "parque" ],
   // skillsConquered: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad"],
   skills: ["autoconocimiento", "gestión emocional", "empatía", "sociabilidad", "criterio própio"],
   timerTime: 60 * 20, //20 minuts
@@ -20,8 +20,7 @@ const gameOptions = {
 class GameClass {
   constructor({
     user = null,
-
-    intro = true,
+    directPano = null,
     test = false,
     places = [],
     skills = [],
@@ -34,6 +33,7 @@ class GameClass {
 
     this.intro = intro;
     this.test = test;
+    this.directPano = directPano;
     (this.state = {
       _obj: "Game.state",
       places: places,

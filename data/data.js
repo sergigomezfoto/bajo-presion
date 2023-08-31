@@ -28,7 +28,7 @@ const data = {
         points: 2,
         aptitudes: ["creatividad", "adaptabilidad"],
         extra: {
-          link1: "sergigomez.com",
+          elqusiguiescritaqui: "https://noupunt.com",
           link2: "sergigomez.com",
           link3: "sergigomez.com",
         },
@@ -40,7 +40,7 @@ const data = {
         points: 12,
         aptitudes: ["análisis", "colaboración"],
         extra: {
-          link1: "sergigomez.com",
+          casadoslink: "https://sergigomez.com",
           link2: "sergigomez.com",
           link3: "sergigomez.com",
         },
@@ -167,7 +167,7 @@ const data = {
   },
   centro: {
     name: "centro",
-    title: "Centro cívico",
+    title: "Espacio joven",
     introVideo: "W3u2_haS8DM",
     finalVideo: "HqipozfMXmo",
     talents: ["Mejorar vínculos personales", "Tomar decisiones", "Resolver problemas", "Escuchar activamente"],
@@ -177,8 +177,8 @@ const data = {
         points: 1,
         aptitudes: ["dedicación", "compromiso"],
         extra: {
-          link1: "mami.com",
-          link2: "sergigomez.com",
+          elnomquesigui: "https://lacasitos.com/",
+          centro1link2: "https://www.youtube.com/embed/X2yBTv_ISMs?si=S6p-Zi3vTlFT9qyS",
           link3: "sergigomez.com",
         },
       },

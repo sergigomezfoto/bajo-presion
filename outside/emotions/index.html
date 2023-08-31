@@ -24,9 +24,9 @@
                     <div class="blackboardElement" id="desprecio" data-wellused="0">desprecio</div>
                     <div class="blackboardElement" id="agresividad" data-wellused="0">agresividad</div>
                 </div>
-                <div id="blackboardIncorrect">¡incorrecto!<br><span>Vuelve a intentarlo</span></div>
-                <div id="blackboardcorrect">¡correcto!<br><span> Nueva emoción desbloqueada</span></div>
-                <div id="win">¡bien jugado!<br><span> Nueva emoción desbloqueada</span></div>
+                <div id="blackboardIncorrect" class="loading">¡incorrecto!<br><span>Vuelve a intentarlo</span></div>
+                <div id="blackboardcorrect" class="loading">¡correcto!<br><span> Nueva emoción desbloqueada</span></div>
+                <div id="win" class="loading">¡bien jugado!<br><span> Nueva emoción desbloqueada</span></div>
             </div>
             <div id="emotionsWrapper">
                 <div class="emotion" id="alegria" data-emotion1="optimismo" data-emotion2="amor">alegría</div>
@@ -48,10 +48,12 @@
             distintas.</p>
         <p>
             <span>Instrucciones</span><br>Clicka a una emoción de la pizarra y luego a otra para ver si has
-            acertado.<br>¡Buena Suerte!
+            acertado.<br>Ten en cuenta que cada emoción combina solo dos veces. <br>¡Buena Suerte!
         </p>
 
     </div>
+    <script src="helpers.js"></script>
+    <script src="general_loader.js"></script>
     <script src="app.js"></script>
 </body>
 

@@ -1,6 +1,6 @@
 <krpano>
 
-<hotspot name="htest22" ath="17.71472927628298" atv="-10.627818456310536"  style="speech_bubbles"
+<hotspot name="htest22"  ath="-87.38468388396853" atv="-22.66764997664434"   style="speech_bubbles"
         s_position="null"
         s_photo="null"
         s_user="PARAULA"
@@ -8,13 +8,13 @@
         s_content="null"
         s_heart=""
         s_invisible_at_start="true"
-        enabled="false"
+        enabled="true"
             onloaded.addevent="s_localize()"
                 s_localize_editmode="true"
                 s_onlocalize="hotspot[htest22].alpha=1;"
                 s_onunlocalize="hotspot[htest22].alpha=0;"
                 s_localize_radius="30|5"
-            onclick.addevent="trace('lalala')"
+            onclick.addevent="js:launchPopup('elnomquesigui');"
         />
 
 
@@ -29,13 +29,15 @@
  -->
 
 
-<hotspot name="htest44" ath="-87.38468388396853" atv="-22.66764997664434"   style="speech_bubbles"
+<hotspot name="htest44" ath="-8.99965476385239" atv="-20.391371394153683" rx="1" ry="-40.5" rz="-8.5"  style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex2"
+    s_photo="alex"
     s_user="Alex"
+    s_heart="true"
     s_date="1w"
     s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     s_talent="0"
+    onclick.addevent="js:launchPopup('centro1link2');"
 
 /> 
 

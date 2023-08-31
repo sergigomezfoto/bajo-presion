@@ -12,7 +12,9 @@ embedpano({
   passQueryParameters: true,
   bgcolor: "transparent",
   initvars: {
-    test: gameOptions.test,
+    test: Game.test,
+    direct_pano: Game.directPano,
+
   },
   consolelog: true,
   onready: krpano_onready_callback,

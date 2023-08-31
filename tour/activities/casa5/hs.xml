@@ -1,5 +1,16 @@
 <krpano>
 
+
+<hotspot name="testnormal_sumapunts" ath="7.000983584314781" atv="-18.33138341956377"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alex"
+    s_user="hola"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
     
+/>
+
 
 </krpano>

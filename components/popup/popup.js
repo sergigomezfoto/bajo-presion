@@ -10,11 +10,11 @@ const closePopup = async (overlay, iframeContainer, options) => {
       options.onClose();
     }
   } catch (error) {
-    console.error("Error al cerrar el popup:", error.message);
+    console.error("Error al tancar el popup:", error.message);
   }
 };
 
-const launchPopup = async (url, width, height, options = {}) => {
+const launchPopup = async (extraNode, width='80%', height='80%', options = popupDefaultOptions) => {
   const overlay = document.createElement("div");
   overlay.className = "iframeOverlay";
   if (options.overlayColor) {
@@ -31,8 +31,8 @@ const launchPopup = async (url, width, height, options = {}) => {
   iframeContainer.appendChild(iframeLoader);
 
   const iframe = document.createElement("iframe");
-
-  iframe.src = url;
+  const URL =data[Game.place].panos[Game.panoIndex].extra[extraNode]
+  iframe.src =URL;
   iframe.width = "100%";
   iframe.height = "100%";
   iframe.style.opacity = "0";
@@ -47,10 +47,10 @@ const launchPopup = async (url, width, height, options = {}) => {
   overlay.appendChild(iframeContainer);
 
   const closeButton = document.createElement("button");
-  closeButton.innerText = "Cerrar";
+  closeButton.innerText = "X";
   closeButton.className = "iframeCloseButton";
   closeButton.addEventListener("click", () => closePopup(overlay, iframeContainer, options));
-  overlay.appendChild(closeButton);
+  iframeContainer.appendChild(closeButton);
 
   overlay.addEventListener("click", function (event) {
     if (event.target === overlay) {
@@ -65,11 +65,14 @@ const launchPopup = async (url, width, height, options = {}) => {
   iframeContainer.style.opacity = "1";
 
 }
+
+const popupDefaultOptions={
+  overlayColor: "rgba(0,0,0,0.7)",
+  onClose: function () {
+    console.log("popup tancat");
+  },
+}
+
 // setTimeout(function () {
-//   launchPopup("https://noupunt.com", "80%", "80%", {
-//     overlayColor: "rgba(255,0,0,0.7)",
-//     onClose: function () {
-//       console.log("popup tancat");
-//     },
-//   });
+//   launchPopup('link1');
 // }, 2000);

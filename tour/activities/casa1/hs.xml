@@ -1,16 +1,17 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui'); trace('equesiguiescritaqui només es vàlid a data.casa.panos.1.extra.elqusiguiescritaqui');"
-    
-/>
+<hotspot name="testpuntinfosensecor_no_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="paraula curta"
+    s_date="null"
+    s_heart="false"
+    s_content="Això és un video guai[br] que parla de mi"
+    onclick.addevent="js(launchPopup('leinkquemagradamolt'));trace('hola');"
+
+/> 
+
 
 
 </krpano>

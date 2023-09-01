@@ -110,7 +110,7 @@
 		</image>
 	<include url="%FIRSTXML%/activities/casa6/hs.xml" />
 	</scene>
-<!-- 
+
 	<scene name="scene_casa_7" title="casa_7" onstart="" thumburl="panos/casa_7.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
@@ -151,7 +151,7 @@
 			<cube url="panos/casa_9.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
 	<include url="%FIRSTXML%/activities/casa9/hs.xml" />
-	</scene> -->
+	</scene>
 
 	<scene name="scene_centro_1" title="centro_1" onstart="" thumburl="panos/centro_1.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		

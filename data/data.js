@@ -28,8 +28,8 @@ const data = {
         points: 2,
         aptitudes: ["creatividad", "adaptabilidad"],
         extra: {
-          elqusiguiescritaqui: "https://noupunt.com",
-          link2: "sergigomez.com",
+          leinkquemagradamolt: "https://noupunt.com",
+          link2: "https://sergigomez.com",
           link3: "sergigomez.com",
         },
       },

@@ -38,6 +38,7 @@ const freeModeEnterPlacePano = async (dataValue) => {
   let panoIndex = Number(dataValue.split("_")[1]);
   const tourUiPlace = document.getElementById("tourUiPlace");
   tourUiPlace.innerHTML = data[place].title;
+  await asyncLoopPositive((_) => krpano.layer.getItem("niknameTour"), 10);
   if (!Game.test) {
       const tourUserKrpano = krpano.layer.getItem("niknameTour");
       tourUserKrpano.enabled = false;

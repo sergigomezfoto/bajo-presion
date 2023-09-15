@@ -1,4 +1,4 @@
-﻿<krpano version="1.21" title="Virtual Tour">
+﻿<krpano version="1.21" title="Virtual Tour" >
 <include url="%FIRSTXML%/plugins/s_bundle/s_bundle.xml" />
 <include url="%FIRSTXML%/config/controls.xml" />
 <include url="%FIRSTXML%/../app/freestyle/freestyle.xml" />
@@ -14,8 +14,8 @@
 	<!-- <include url="skin/vtourskin.xml" /> -->
 	<action name="skin_onstart_loadscene" scope="local" autorun="onstart">
 		
-<!-- 	
-		loadscene(calc(isset(startscene) ? startscene : 0), null, MERGE);
+	
+		<!-- loadscene(calc(isset(startscene) ? startscene : 0), null, MERGE);
 	
 
 		if(isset(startlookat),
@@ -30,7 +30,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/casa_1.tiles/preview.jpg" />
 

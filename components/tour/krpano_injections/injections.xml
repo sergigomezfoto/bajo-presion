@@ -6,13 +6,12 @@ onnewscene="efimer_injections"
 />
 
 <action name="efimer_injections">
-trace('hofaig');
-    if (!a987987765,
-        trace('efimer_injections');
-        view.maxpixelzoom=1;
-    );
 
-    a987987765=true;
+
+        view.maxpixelzoom=1;
+
+
+
 </action>
 
 <action  autorun="true">

@@ -1,12 +1,16 @@
 
 <krpano>
-<set var="blendmode" val="OPENBLEND(1.0, 0.0, 0.2, 0.0, linear)"/>
+
 
 
 
 <action name="kp_load_scene" scope="local" args="scenename" >
-       
-    loadscene((scenename), null, MERGE,get(blendmode));
+    delete(global.s_newscene);
+
+    forall(hotspot,h,tween(hotspot[(h.name)].alpha,0,0.3););
+    delayedcall (0.4,
+    loadscene((scenename), null, MERGE,OPENBLEND(0.5, 0.0, 0.1, 0.0, linear), delayedcall (0.5,set(global.s_newscene,true)););
+    );
     
 </action>
 

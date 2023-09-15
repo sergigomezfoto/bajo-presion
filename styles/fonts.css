@@ -47,13 +47,29 @@
 
 }
 @font-face {
+    font-family: 'chalk';
+    src: url('./fonts/ChalkBoard.woff2') format('woff2'),
+         url('./fonts/ChalkBoard.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'chalk2';
+    src: url('./fonts/DKCoolCrayon.woff2') format('woff2'),
+         url('./fonts/DKCoolCrayon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* @font-face {
     font-family: 'untitled_sansblack';
     src: url('./fonts/untitledsans-black-webfont.woff2') format('woff2'),
          url('./fonts/untitledsans-black-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
-}
+} */
 /* 
 @font-face {
     font-family: 'untitled_sansblack_italic';

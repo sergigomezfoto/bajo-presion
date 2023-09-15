@@ -12,6 +12,7 @@
 				type=text,
 				keep=true,
 				align='lefttop',
+				oy=10,
 				css=calc('font-size:'+(device.mobile AND stagescale LT 1.0 ? 24 : 12)+'px; color:#FFFFFF;'),
 				txtshadow='0 0 1 0x000000 1.0',
 				bg=false,

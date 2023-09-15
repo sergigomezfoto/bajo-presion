@@ -71,7 +71,7 @@
                         bg="get:tesths.bg"
                         bgcolor="0x5487ff"
                         bgalpha="1"
-                        
+                        width="100%"
                         flowchildren="h"
                         childflowspacing="10"
                      />
@@ -106,11 +106,10 @@
                               <style name="hsheart"
                               url="%FIRSTXML%/../assets/img/users/heart.png"
                               crop="0|0|56|56"
-                              align="topright"
-                              oy="5"
+                              align="right"
                               scale="0.25"
                               width="56"
-                              flow="true"
+                              flow="false"
 
                               />
                               <style name="nohsheart"
@@ -119,7 +118,7 @@
                               bg="false"
                               width="0"
                               height="0"
-                              flow="true"
+                              flow="false"
                               />
                               
 
@@ -127,7 +126,7 @@
 
                      <style name="hscontent"
                         type="text"
-                        
+                        width="150"
                         autoheight="true"
                         bg="get:tesths.bg"
                         bgcolor="0x978665"
@@ -232,13 +231,6 @@
    user.loadstyle('hsuser');
    user.text=caller.s_user;
    user.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
-   if (isset(caller.s_only_soft_text),
-   trace('ijhgawolkaqwfkpn');
-   userdatewrapper.height=0;
-   userdatewrapper.width=0;
-   userdatewrapper.visible=false;
-
-   );
    ///////////////////////////hsdate
    if (caller.s_date == 'null',
       inc(('layer[' + wrapper.name + '].loadedchilds'));
@@ -255,18 +247,18 @@
    ,caller.s_heart == 'true' OR !isset(caller.s_heart),
       trace('aqui');
       addlayer((caller.name + 'heart'),heart);
-      heart.parent=(caller.name + 'wrapper');
+      heart.parent=(caller.name + 'userdatewrapper');
       heart.loadstyle('hsheart');
       heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
    ,caller.s_heart == 'false',
       addlayer((caller.name + 'heart'),heart);
-      heart.parent=(caller.name + 'wrapper');
+      heart.parent=(caller.name + 'userdatewrapper');
       heart.loadstyle('nohsheart');
       heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
    
    ,caller.s_heart == 'transparent',
       addlayer((caller.name + 'heart'),heart);
-      heart.parent=(caller.name + 'wrapper');
+      heart.parent=(caller.name + 'userdatewrapper');
       heart.loadstyle('nohsheart');
       heart.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
    
@@ -284,13 +276,9 @@
          content.height=0;
          content.autowidth=true;
          user.oy=5;
-         
             if (caller.s_heart == 'null',
                user.align='top';
-               ,
-               heart.oy=0;
             );
-
          );
       
    
@@ -301,31 +289,24 @@ if (caller.s_heart == 'true' OR !isset(caller.s_heart) OR caller.s_heart == 'tra
       caller.onclick=('trace("no suma de punts")');
    ,caller.s_heart == 'null',
       caller.onclick=('trace("no suma de punts")');
-      <!-- caller.enabled=false; -->
+      caller.enabled=false;
 );
   
 
-   asyncloop(layer[(wrapper.name)].loadedchilds LT 7,trace('no s ha creat tot');,
+   asyncloop(layer[(wrapper.name)].loadedchilds LT 7,,
    trace('primer asyncloop passat:',layer[(wrapper.name)].loadedchilds);
-      wrapper_width=(layer[(caller.name + 'wrapper')].pixelwidth);
-      wrapper_height=(layer[(caller.name + 'wrapper')].pixelheight);
-    
-      asyncloop(wrapper_width !== layer[(caller.name + 'wrapper')].pixelwidth AND wrapper_height !== layer[(caller.name + 'wrapper')].pixelheight ,
-      trace(wrapper_width);
-      trace(layer[(caller.name + 'wrapper')].pixelwidth);
-      trace(wrapper_height);
-      trace(layer[(caller.name + 'wrapper')].pixelheight);
-      trace('encara son iguals');
-      , 
-      trace('caller.name:', (caller.name));
-      trace('caller.width:', (caller.width));
-      trace('caller.height:', (caller.height));
-      caller.width=(layer[(caller.name + 'wrapper')].pixelwidth);
-      caller.height=(layer[(caller.name + 'wrapper')].pixelheight);   
-     ///////////////////////////hsindicator
+      caller.width=layer[(caller.name + 'wrapper')].pixelwidth;
+      caller.height=layer[(caller.name + 'wrapper')].pixelheight;
+      ///////////////////////////hsindicator
          addlayer((caller.name + 'indicator'),indicator);
          indicator.parent=('hotspot[' + caller.name + ']');
-         trace('segon asyncloop passat'); 
+      asyncloop(caller.pixelwidth !== layer[(caller.name + 'wrapper')].pixelwidth AND caller.pixelheight !== layer[(caller.name + 'wrapper')].pixelheight ,
+      trace('caller.pixelwidth:', caller.pixelwidth);
+      trace('layer[(caller.name + "wrapper")].pixelwidth:', layer[(caller.name + 'wrapper')].pixelwidth);
+      trace('caller.pixelheight:', caller.pixelheight);
+      trace('layer[(caller.name + "wrapper")].pixelheight:',layer[(caller.name + 'wrapper')].pixelheight);
+      , 
+      trace('segon asyncloop passat'); 
          indicator.loadstyle('bubble_indicator');
             if (caller.s_position == 'bottom',
                indicator.loadstyle('bubble_indicator|indicator_bottom');
@@ -344,16 +325,21 @@ if (caller.s_heart == 'true' OR !isset(caller.s_heart) OR caller.s_heart == 'tra
                ,caller.s_position == 'null',
                indicator.loadstyle('bubble_indicator|indicator_null');         
             ); 
-//TODOO ASSEGURAR QUE ES FA L'ALPHA!!! NO MOLA EL DELAIEDCALL
+         <!-- trace(indicator.style);
+         trace(indicator.align);
+         trace(indicator.y);
+         trace(indicator.x); -->
+   <!-- align="bottomleft"
+    y="-15" 
+    x="10" -->
                   if (!isset(caller.s_invisible_at_start),
                     delayedcall (0.5,
-                     tween(caller.alpha,1,0.3);
+                     tween(caller.alpha,1,0.2);
                     );
                   );
 
-         );
       );
-
+   );
 
 </action>
 
@@ -393,4 +379,3 @@ if(!isset(caller.allready_clicked),
   
   
 </krpano>
-

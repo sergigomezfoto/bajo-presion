@@ -10,9 +10,9 @@ embedpano({
   html5: "prefer",
   mobilescale: 1.0,
   passQueryParameters: true,
-  bgcolor: "transparent",
+  bgcolor: "0xff7007",
   initvars: {
-    test: Game.test,
+    test: Game.test ,
     direct_pano: Game.directPano,
 
   },

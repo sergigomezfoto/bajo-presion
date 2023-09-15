@@ -10,7 +10,7 @@
 /> -->
 
 <printvars 
-    value="panopoints"
+    value="direct_pano|test|layer[('pissarra' + 'wrapper')].pixelwidth"
   
 />
 

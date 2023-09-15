@@ -25,7 +25,7 @@ const data = {
       1: {
         instructions:
           "<p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p><p><b>Introducción:</b> Aprende sobre la historia del arte.</p><p>Descubre las maravillas del Renacimiento y cómo impactaron al mundo.</p>",
-        points: 2,
+        points: 1,
         aptitudes: ["creatividad", "adaptabilidad"],
         extra: {
           leinkquemagradamolt: "https://noupunt.com",
@@ -37,7 +37,7 @@ const data = {
         video: "efHOIAOjHCM",
         instructions:
           "<p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p>",
-        points: 12,
+        points: 1,
         aptitudes: ["análisis", "colaboración"],
         extra: {
           casadoslink: "https://sergigomez.com",
@@ -48,7 +48,7 @@ const data = {
       3: {
         instructions:
           "<p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p><p><b>Capítulo 2:</b> La música y su evolución.</p><br><p>Del clasicismo al rock, un viaje emocionante.</p>",
-        points: 15,
+        points: 1,
         aptitudes: ["escucha activa", "comunicación"],
         extra: {
           link1: "sergigomez.com",
@@ -59,7 +59,7 @@ const data = {
       4: {
         video: "RpLm69FLs74",
         instructions: "<p><b>Capítulo 3:</b> Arquitectura del siglo XX.</p><br><p>Los edificios que definieron una era.</p>",
-        points: 20,
+        points: 1,
         aptitudes: ["liderazgo", "visión espacial"],
         extra: {
           link1: "sergigomez.com",
@@ -70,7 +70,7 @@ const data = {
       5: {
         video: "BOUlQUAen-c",
         instructions: "<p><b>Conclusión:</b> La influencia del arte en la sociedad.</p><br><p>Una retrospectiva del impacto cultural.</p>",
-        points: 25,
+        points: 1,
         aptitudes: ["empatía", "innovación"],
         extra: {
           link1: "sergigomez.com",
@@ -80,7 +80,7 @@ const data = {
       },
       6: {
         instructions: "<p><b>Bonus:</b> Entrevistas con expertos.</p><br><p>Conversaciones enriquecedoras con figuras clave.</p>",
-        points: 30,
+        points: 1,
         aptitudes: ["perseverancia", "resiliencia"],
         extra: {
           link1: "sergigomez.com",

@@ -7,11 +7,13 @@
     s_date="1h"
     s_content="Míra qué[span style='color:blue;'] vídeo [/span]más pro🤩🤩[br] ¿Lo probamos bró?💪"
     s_heart="true"
-    onclick.addevent="jscall(
-        launchPopup('linkmarc','80%','80%',{onClose: function(){krpano.call('set_robot_popup()');}})
-        );"
+    onclick.addevent="jscall(launchPopup('linkmarc','80%','80%',{onClose: function(){krpano.call('set_robot_popup()');}}));"
  
 />
+    <action name="set_robot_popup">
+        lookto(-134,-4.4,110,tween(easeinoutquad,0.6));
+        hotspot[robot].alpha=1;
+    </action>
 
 
 <hotspot name="robot" ath="-147.77354377884754" atv="-25.61631229479968" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
@@ -24,28 +26,16 @@
     onclick.addevent="robot_action();"
     s_invisible_at_start="true"
 />
-    <!-- s_invisible_at_start="true" -->
-
-<action name="set_robot_popup">
-
-
-    lookto(-134,-4.4,110,tween(easeinoutquad,0.6));
-    hotspot[robot].alpha=1;
-    
-
-
-</action>
-
 <action name="robot_action">
-
+s_blockall(true,'none');
     forall(hotspot,h,
         if (contains(h.name,'gamelocalize') AND !contains(h.name,'phantom'),
            h.s_localize_loked=false;
         );  
     );
-    
-    tween(view.hlookat|view.vlookat|view.fov,220|0|100,12,linear);
+    tween(view.hlookat|view.vlookat|view.fov,220|0|100,12,linear,s_blockall(false,'auto'););
 </action>
+
 
 <style name="robot_emocions"
     s_position="bottom"
@@ -114,41 +104,5 @@
     s_user="RABIA"
     s_photo="expressions/rage.gif"
 /> 
-
-<action name="" autorun="true">
-
-
-
-</action>
-
-//   s_invisible_at_start="true"
-//onloaded.addevent="s_localize()"
-//s_localize_editmode="true"
-//s_onlocalize="hotspot[htest22].alpha=1;"
-//s_onunlocalize="hotspot[htest22].alpha=0;"
-//s_localize_radius="30|5"
-//onclick.addevent="js:launchPopup('elnomquesigui');"
-<!-- 
-        enabled="false"
-        onloaded.addevent="s_localize()"
-            s_localize_editmode="true"
-            s_onlocalize="hotspot[htest22].alpha=1;"
-            s_onunlocalize="hotspot[htest22].alpha=0;"
-            s_localize_radius="30|5"
-        onclick.addevent="trace('lalala')"
- -->
-
-<!-- 
-<hotspot name="htest44" ath="-8.99965476385239" atv="-20.391371394153683" rx="1" ry="-40.5" rz="-8.5"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="Alex"
-    s_heart="true"
-    s_date="1w"
-    s_content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    s_talent="0"
-    onclick.addevent="js:launchPopup('centro1link2');"
-
-/>  -->
 
 </krpano>

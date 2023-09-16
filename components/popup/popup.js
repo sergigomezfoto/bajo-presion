@@ -1,26 +1,30 @@
 const closePopup = async (overlay, iframeContainer, options) => {
+  // Executem l'acció onClose immediatament
+  if (typeof options.onClose === "function") {
+      options.onClose();
+  }
+
   overlay.style.opacity = "0";
   iframeContainer.style.opacity = "0";
 
   try {
-    await awaitStylecomplete(overlay, "opacity", "0");
-    // ps.destroy();
-    document.body.removeChild(overlay);
-    if (typeof options.onClose === "function") {
-      options.onClose();
-    }
+      await awaitStylecomplete(overlay, "opacity", "0");
+      // ps.destroy();
+      document.body.removeChild(overlay);
   } catch (error) {
-    console.error("Error al tancar el popup:", error.message);
+      console.error("Error al tancar el popup:", error.message);
   }
 };
 
-const launchPopup = async (extraNode, width='80%', height='80%', options = popupDefaultOptions) => {
+const launchPopup = async (extraNode, width='80%', height='80%',  providedOptions = {}) => {
+  const options = { ...popupDefaultOptions, ...providedOptions }; // Combinar opcions predeterminades amb les proporcionades
+
   const overlay = document.createElement("div");
   overlay.className = "iframeOverlay";
   if (options.overlayColor) {
     overlay.style.backgroundColor = options.overlayColor;
   }
-
+  
   const iframeContainer = document.createElement("div");
   iframeContainer.className = "iframeContainer";
   iframeContainer.style.width = width;
@@ -67,7 +71,7 @@ const launchPopup = async (extraNode, width='80%', height='80%', options = popup
 }
 
 const popupDefaultOptions={
-  overlayColor: "rgba(0,0,0,0.7)",
+  overlayColor: "rgba(0,0,0,0..7)",
   onClose: function () {
     console.log("popup tancat");
   },

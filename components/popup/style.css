@@ -1,32 +1,32 @@
-.no-scroll {
+/* .no-scroll {
     overflow: hidden;
     height: 100%;
 }
 
 .popupScrollContainer .ps__thumb-y {
     background-color: #888;
-    /* Cambia a tu color preferido */
+    
     border-radius: 8px;
     width: 8px;
-    /* Puedes ajustar el ancho si lo prefieres */
+
 }
 
 .popupScrollContainer .ps__rail-y {
     background-color: #e0e0e0;
-    /* Cambia a tu color preferido para el riel */
+
     opacity: 0.6;
     width: 8px;
-    /* Asegúrate de que esto coincida con el ancho del thumb */
+
 }
 
 .popupScrollContainer .ps__rail-y:hover>.ps__thumb-y,
 .popupScrollContainer .ps__rail-y:focus>.ps__thumb-y,
 .popupScrollContainer .ps__rail-y:active>.ps__thumb-y {
     color: #000;
-    /* Cambia a tu color preferido */
+
     background-color: #555;
-    /* Cambia a tu color preferido */
-}
+
+} */
 
 
 
@@ -48,13 +48,13 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    /* Este valor se puede sobreescribir desde JavaScript */
     opacity: 0;
     transition: opacity 0.2s;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(5px);
 }
 
 .iframeContainer {
@@ -69,8 +69,8 @@
 }
 
 .iframeLoader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #555;
+    border: 8px solid rgba(184, 0, 95, 0.05) ;
+    border-top: 8px solid #f5005d;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -84,7 +84,16 @@
 
 .iframeCloseButton {
     position: absolute;
-    top: -30px;
-    right: -30px;
+    top: -22px;
+    right: -27px;
     z-index: 2;
+    color: #f5005d;
+    font-family: 'untitled_sansmedium';
+    border: none;
+    border-radius: 20px;
+    padding: 4px 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 8px 1px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 2px 8px 1px rgba(0,0,0,0.75);
+box-shadow: 2px 2px 8px 1px rgba(0,0,0,0.75);
 }

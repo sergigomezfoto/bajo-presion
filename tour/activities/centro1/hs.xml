@@ -7,7 +7,9 @@
     s_date="1h"
     s_content="Míra qué[span style='color:blue;'] vídeo [/span]más pro🤩🤩[br] ¿Lo probamos bró?💪"
     s_heart="true"
-    onclick.addevent="js(launchPopup('linkmarc')); set_robot_popup();"
+    onclick.addevent="jscall(
+        launchPopup('linkmarc','80%','80%',{onClose: function(){krpano.call('set_robot_popup()');}})
+        );"
  
 />
 
@@ -26,11 +28,11 @@
 
 <action name="set_robot_popup">
 
-   delayedcall (1,
+
     lookto(-134,-4.4,110,tween(easeinoutquad,0.6));
     hotspot[robot].alpha=1;
     
-   ); 
+
 
 </action>
 
@@ -42,7 +44,7 @@
         );  
     );
     
-    tween(view.hlookat|view.vlookat|view.fov,220|0|100,15,linear);
+    tween(view.hlookat|view.vlookat|view.fov,220|0|100,12,linear);
 </action>
 
 <style name="robot_emocions"
@@ -113,7 +115,11 @@
     s_photo="expressions/rage.gif"
 /> 
 
+<action name="" autorun="true">
 
+
+
+</action>
 
 //   s_invisible_at_start="true"
 //onloaded.addevent="s_localize()"

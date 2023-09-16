@@ -3,8 +3,8 @@
     <include url="01_s_framework/s_framework.xml"/>
     <include url="10_s_localize/s_localize.xml" />
     <include url="02_s_element_effects/s_element_effects.xml" />
-    <!-- 
     <include url="03_s_ui_effects/s_ui_effects.xml" />
+    <!-- 
     <include url="04_s_popups/s_popups.xml" />
     <include url="05_s_constructors/s_constructors.xml" />
     <include url="07_s_time/s_time.xml" />

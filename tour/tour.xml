@@ -22,9 +22,18 @@
 			txtsplit(startlookat, ',', hlookat,vlookat,fov,distortion,architectural);
 			lookat(get(hlookat),get(vlookat),get(fov),get(distortion),get(architectural));
 		); -->
-
 	</action>
 
+<action name="set_robot_popup">
+    <!-- lookto(-174,-4.4,90,tween(easeinoutquad,0.6)); -->
+   <!-- delayedcall (1,
+    hotspot[robot].alpha=1;
+    trace(view.hlookat);
+    tween(view.hlookat,-126,1,easeinoutquad);
+    
+   );  -->
+
+</action>
 
 	<scene name="scene_casa_1" title="casa_1" onstart="" thumburl="panos/casa_1.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
@@ -157,7 +166,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-92" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/centro_1.tiles/preview.jpg" />
 

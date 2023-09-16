@@ -174,12 +174,10 @@ const data = {
     panos: {
       1: {
         instructions: "<p><b>Instrucción Uno:</b></p> Comienza con los fundamentos básicos. <br> La base de cualquier habilidad.",
-        points: 1,
+        points: 2,
         aptitudes: ["dedicación", "compromiso"],
         extra: {
-          elnomquesigui: "https://lacasitos.com/",
-          centro1link2: "https://www.youtube.com/embed/X2yBTv_ISMs?si=S6p-Zi3vTlFT9qyS",
-          link3: "sergigomez.com",
+          linkmarc: "https://www.youtube.com/embed/99kixEMF0Sw?si=vHJyIiQHLNKtNADr",
         },
       },
       2: {

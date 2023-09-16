@@ -9,6 +9,8 @@ onnewscene="efimer_injections"
 
 
         view.maxpixelzoom=1;
+        view.fov=125;
+        view.fovmax=130;
 
 
 

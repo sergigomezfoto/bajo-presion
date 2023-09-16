@@ -25,6 +25,7 @@
     onclick=""
     onloaded="delayedcall(0.2,configurebubblehs);"
  />
+ //capture="false" // al final
 
 
 
@@ -209,11 +210,15 @@
    if (caller.s_photo == 'null',
       inc(('layer[' + wrapper.name + '].loadedchilds'));
    ,
-      addlayer((caller.name + 'image'),image);
-      image.parent=(caller.name + 'wrapper');
-      image.loadstyle('hsimage');
-      image.url=('%FIRSTXML%/../assets/img/users/' + caller.s_photo + '.jpg');
-      image.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
+      addlayer((caller.name + 'image'),s_image);
+      s_image.parent=(caller.name + 'wrapper');
+      s_image.loadstyle('hsimage');
+      if (!contains(caller.s_photo,'.'),
+         s_image.url=('%FIRSTXML%/../assets/img/users/' + caller.s_photo + '.jpg');
+         ,
+         s_image.url=('%FIRSTXML%/../assets/img/users/' + caller.s_photo);
+      );
+      s_image.onloaded=('inc(layer[' + wrapper.name + '].loadedchilds);');
    );
    ///////////////////////////hsuserinfocontentwrapper
    addlayer((caller.name + 'infocontentwrapper'),infocontentwrapper); 
@@ -287,6 +292,7 @@
          
             if (caller.s_heart == 'null',
                user.align='top';
+               //caller.enabled="false";// AL FINAL
                ,
                heart.oy=0;
             );

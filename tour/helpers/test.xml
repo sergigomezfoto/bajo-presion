@@ -289,7 +289,7 @@ if(click
 
 	<!-- roundval(view.hlookat,2);
 	roundval(view.vlookat,2); -->
-	set( plugin[test_textos1].html, calc:' ath="' + cur_hlookat  + '" atv="' + cur_vlookat + '"');
+	set( plugin[test_textos1].html, calc:' ath="' + cur_hlookat  + '" atv="' + cur_vlookat + '"' + '" fov="' + cur_fov + '"');
 	set( plugin[test_textos2].html, calc:' stagewidth="' + stagewidth  + '" stageheight"' + stageheight + '"');
 
 

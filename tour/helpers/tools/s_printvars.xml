@@ -10,7 +10,8 @@
 /> -->
 
 <printvars 
-    value="direct_pano|test|layer[('pissarra' + 'wrapper')].pixelwidth"
+
+    value="socker_game_questions_length|socker_game_counter|socker_answer_per_match|socker_current_match|socker_game_position|socker_game_current_social"
   
 />
 

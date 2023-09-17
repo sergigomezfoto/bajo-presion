@@ -397,6 +397,10 @@ if(!isset(caller.allready_clicked),
 				<layer name="hsindicator" keep="true" style="bubble_indicator"/>
 			</layer>  -->
   
-  
+<action name="inc_points_external">
+
+   jscall("Game.incPanoPoints();Game.checkPanoPointsGoal(showNextPano)");
+
+</action>  
 </krpano>
 

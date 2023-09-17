@@ -183,7 +183,7 @@ const data = {
       2: {
         video: "W_QZucbALkw",
         instructions: "<p><b>Instrucción Dos:</b></p> No temas a los errores. <br> Son parte del proceso de aprendizaje.",
-        points: 1,
+        points: 2,
         aptitudes: ["perseverancia", "adaptabilidad"],
         extra: {
           link1: "caqui.com",

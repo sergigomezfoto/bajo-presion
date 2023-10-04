@@ -1,16 +1,134 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+
+
+<hotspot name="laura-pilota" ath="3.9026286560747963" atv="-2.389091315211292" scale="1" rx="1" ry="17.5" rz="-9"  style="speech_bubbles"
+    s_position="left"
+    s_photo="laura"
+    s_user="@laura"
+    s_date="12h"
+    s_heart="null"
+    s_content="Cuanta presión [br]en las gradas..."
+    enabled="false"  handcursor="false"
+
     
 />
+
+<hotspot name="pasa-pasa" ath="153.51397828090606" atv="-23.262678541340257"   style="speech_bubbles"
+    s_position="bottomright"
+    s_photo="alex"
+    s_user="@alexandra"
+    s_date="6h"
+    s_heart="null"
+    s_content="Pasa, pasa! Aquí!"
+    enabled="false"  handcursor="false"
+    
+/>
+
+<hotspot name="julia-cubre" ath="-170.5345481640523" atv="-5.984310681995706" scale="1" rx="-23.5" ry="11.5" rz="-32"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@júlia"
+    s_date="1d"
+    s_heart="null"
+    s_content="Marc, te cubro!"
+    enabled="false"  handcursor="false"
+/>
+
+<hotspot name="miki-indica" ath="95.3948673706258" atv="-10.695296401685036" scale="1" rx="0" ry="0" rz="-16.5"  style="speech_bubbles"
+    s_position="bottomright"
+    s_photo="miki"
+    s_user="@miki_entrenador"
+    s_date="3w"
+    s_heart="null"
+    s_content="Etna, desmárcate, [br]muévete, ayuda al pase!"
+    enabled="false"  handcursor="false"
+/>
+
+
+
+
+<action name="presion_accio-no-la-faig-servir">
+    tween(hotspot[presion1].alpha,0,1);
+    tween(hotspot[presion2].alpha,0,1);
+    tween(hotspot[presion3].alpha,0,1);
+    tween(hotspot[presion4].alpha,0,1);
+    tween(hotspot[presion5].alpha,0,1);
+    tween(hotspot[presion6].alpha,0,1);
+    tween(hotspot[presion7].alpha,0,1);
+    skin_hotspotstyle_click-presion();
+    
+
+</action>
+
+		
+
+    <style name="hotspot-presion"
+      distorted="true"
+      width="auto" height="auto"
+      handcursor="true" 
+      enabled="true"
+      visible="true" 
+      alpha="1"
+      zorder="30"
+      bgcapture="false"
+      capture="false"
+      onclick.addevent="loadscene(scene_poliesportiu_3-public, null, MERGE|KEEPVIEW, BLEND(0.5));"
+      onover.addevent=""
+    />
+
+    <action name="action_presion2">
+        tween(hotspot[presion1].scale,0.22,1);
+        delayedcall (1,tween(hotspot[presion1].scale,0.19,1););
+        action_presion2();
+    </action>     
+
+    <hotspot name="presion1" 
+        ath="-150.92124865684437" atv="-4.175059035924315" scale="0.19" rx="-5.5" ry="51.5" rz="0"
+        style="hotspot-presion" 
+        url="assets/presion1.png"  
+        
+    />
+
+
+
+    <hotspot name="presion2" 
+        ath="-140.08875312311986" atv="-5.405107469791337" scale="0.26499999999999935" rx="-11.5" ry="27" rz="0"        
+        style="hotspot-presion" 
+        url="assets/presion2.png" 
+    />  
+
+    <hotspot name="presion3" 
+        ath="-120.7712563721986" atv="-7.183975041511718" scale="0.48499999999999954" rx="-12.5" ry="17.5" rz="0" 
+        style="hotspot-presion" 
+        url="assets/presion3.png"  
+    />   
+
+    <hotspot name="presion4" 
+        ath="-90.60112367466667" atv="-8.935103120769352" scale="0.637900000000001" rx="-6.5" ry="3" rz="0" 
+        style="hotspot-presion" 
+        url="assets/presion4.png"  
+    />   
+
+    <hotspot name="presion5" 
+        ath="-59.44889604668214" atv="-8.078194186171459" scale="0.5505000000000001" rx="-8" ry="-29" rz="0"
+        style="hotspot-presion" 
+        url="assets/presion5.png"  
+    />   
+
+    <hotspot name="presion6" 
+        ath="-40.444200639942665" atv="-6.066613053654333" scale="0.3099999999999994" rx="-8.5" ry="-33.5" rz="0"
+        style="hotspot-presion" 
+        url="assets/presion6.png"  
+    />   
+
+    <hotspot name="presion7" 
+        ath="-29.51133575163192" atv="-4.660287907726192" scale="0.16579999999999973" rx="-10" ry="-34.5" rz="0" 
+        style="hotspot-presion" 
+        url="assets/presion7.png"  
+    />     
+
 
 
 </krpano>

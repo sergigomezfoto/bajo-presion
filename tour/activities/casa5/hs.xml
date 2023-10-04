@@ -1,14 +1,14 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunt" ath="7.000983584314781" atv="-18.33138341956377"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="testnormal_sumapunts" ath="31.667069121695647" atv="-12.13983255629401" scale="1" rx="-11.5" ry="-19.5" rz="-3.8499999999999943"  style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="null"
+    s_user="Situaciones y reflexiones"
+    s_date="3w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Vamos a ver algunas situaciones[br]a ver si sabemos poner límites!"
+    onclick.addevent="js:launchPopup('link1casa5');"
     
 />
 

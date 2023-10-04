@@ -1,14 +1,14 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="testnormal_sumapunts" ath="-49.61586516518696" atv="-13.284201765102853" scale="1" rx="-15.5" ry="-26" rz="3.5"  style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_photo="viktor"
+    s_user="@viktor"
+    s_date="16d"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Marc, ¿te apetece[br]ver este vídeo juntos?"
+    onclick.addevent="js:launchPopup('link1poli1ok');"
     
 />
 

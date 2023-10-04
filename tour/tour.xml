@@ -22,18 +22,9 @@
 			txtsplit(startlookat, ',', hlookat,vlookat,fov,distortion,architectural);
 			lookat(get(hlookat),get(vlookat),get(fov),get(distortion),get(architectural));
 		); -->
+
 	</action>
 
-<action name="set_robot_popup">
-    <!-- lookto(-174,-4.4,90,tween(easeinoutquad,0.6)); -->
-   <!-- delayedcall (1,
-    hotspot[robot].alpha=1;
-    trace(view.hlookat);
-    tween(view.hlookat,-126,1,easeinoutquad);
-    
-   );  -->
-
-</action>
 
 	<scene name="scene_casa_1" title="casa_1" onstart="" thumburl="panos/casa_1.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
@@ -166,7 +157,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="-92" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/centro_1.tiles/preview.jpg" />
 
@@ -307,7 +298,7 @@
 
 	<scene name="scene_instituto_4" title="instituto_4" onstart="" thumburl="panos/instituto_4.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
-		<control bouncinglimits="calc:image.cube ? true : false" />
+			<control bouncinglimits="calc:image.cube ? true : false" />
 
 		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -463,7 +454,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-87" vlookat="1" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/polideportivo_1.tiles/preview.jpg" />
 
@@ -475,6 +466,25 @@
 
 	<scene name="scene_polideportivo_2" title="polideportivo_2" onstart="" thumburl="panos/polideportivo_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
+	<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-110" vlookat="-1" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/poliesportiu_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/poliesportiu_2.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
+		</image>
+		
+	<include url="%FIRSTXML%/activities/polideportivo2/hs.xml" />
+	</scene>
+
+		<!-- 
+			escena original. ara la carpeta es diu -bak
+
+
+			<scene name="scene_polideportivo_2" title="polideportivo_2" onstart="" thumburl="panos/polideportivo_2.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
 		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
@@ -485,13 +495,13 @@
 			<cube url="panos/polideportivo_2.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
 	<include url="%FIRSTXML%/activities/polideportivo2/hs.xml" />
-	</scene>
+	</scene> -->
 
 	<scene name="scene_polideportivo_3" title="polideportivo_3" onstart="" thumburl="panos/polideportivo_3.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-97" vlookat="4.5" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/polideportivo_3.tiles/preview.jpg" />
 
@@ -500,6 +510,20 @@
 		</image>
 	<include url="%FIRSTXML%/activities/polideportivo3/hs.xml" />
 	</scene>
+
+			<scene name="scene_poliesportiu_3-public" title="poliesportiu_3-public" onstart="" thumburl="panos/poliesportiu_3-public.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+			
+			<control bouncinglimits="calc:image.cube ? true : false" />
+
+			<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+			<preview url="panos/poliesportiu_3-public.tiles/preview.jpg" />
+
+			<image>
+				<cube url="panos/poliesportiu_3-public.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,640,1280,2560" />
+			</image>
+				<include url="%FIRSTXML%/activities/polideportivo3-public/hs.xml" />
+			</scene>
 
 	<scene name="scene_polideportivo_4" title="polideportivo_4" onstart="" thumburl="panos/polideportivo_4.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		

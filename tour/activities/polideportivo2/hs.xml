@@ -1,16 +1,54 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+
+<hotspot name="nil-pregunta" ath="125.08116062411486" atv="-10.069100594201796" style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="nil"
+    s_user="@nil"
+    s_date="15s"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Entrenador, queremos [br]ir ya a la pista a jugar!"
+    onclick.addevent="nil_action();"
     
 />
+
+<action name="nil_action">
+lookto(-103.65,0.35,105,tween(easeinoutquad,0.6));
+tween(hotspot[entrenador-respon].alpha,1,1);
+tween(hotspot[nil-pregunta].alpha,0,1);
+</action>
+
+
+<hotspot name="entrenador-respon" ath="-83.2699472600608" atv="-18.021305815451004" scale="1" rx="-16" ry="0" rz="0" style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="miki"
+    s_user="@miki_entrenador"
+    s_date="36s"
+    s_heart="true"
+    s_content="Enseguida lo haremos, pero antes [br]quiero que repasemos la táctica..."
+    onclick.addevent="entrenador_action(); "
+    s_invisible_at_start="true"
+    
+/>
+
+<action name="entrenador_action">
+    lookto(-87.33,13.95,50,tween(easeinoutquad,0.6));
+    <!-- jscall(launchPopup('link1poli2','80%','80%',{onClose: function(){krpano.call('zoom-out-pissarra()');}});) -->
+
+jscall(
+   launchPopup('link1poli2','80%','80%',
+      {
+            onClose: function(){krpano.call('zoom-out-pissarra()');}
+       }
+   )
+);
+</action>
+
+<action name="zoom-out-pissarra">
+
+    lookto(-103.65,0.35,105,tween(easeinoutquad,0.6));
+</action>
 
 
 </krpano>

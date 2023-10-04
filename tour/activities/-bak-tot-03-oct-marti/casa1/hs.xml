@@ -1,0 +1,306 @@
+<krpano>
+
+
+<hotspot name="pissarra" ath="-170.15370270681444" atv="-35.17924923088549" scale="1" rx="-37.40000000000011" ry="-7.2999999999999945" rz="0.450000000000004" distorted="true"  style="speech_bubbles" 
+    s_position="bottom"
+    s_photo="null"
+    s_user="¿Has acabado la lísta?🤓🤗"
+    s_date="null"
+    s_heart="true"
+    s_content="Descarga la pizarra en tu [br]dispositivo y si quieres, compártela."
+    onclick.addevent="screenshoot()"
+    s_invisible_at_start="true"
+
+/> 
+<hotspot name="etna" ath="0" atv="0" distorted="true"  style="speech_bubbles" 
+    s_position="left"
+    s_photo="null"
+    s_user="¿Has visto la pizarra?👩‍🏫😍[br]Te ayudo con la lista..."
+    s_date="null"
+    s_heart="null"
+    s_content="¿te gusta tu altura?[br] ¿crees que tienes buena voz? [br]¿la valentía és importante para tí?[br] ¿y tu estilo de vestir?[br]..."
+    onclick.addevent="lookto(-174,-4.4,90,tween(easeinoutquad,0.6));"
+  
+  
+
+/> 
+    s_only_soft_text="true"
+<chalkcss 
+value="font-family:'chalk2';font-size:14px;opacity:1;letter-spacing:1px;line-height:18px;padding:10px;"
+/>
+<cssstyles>
+
+
+.section_title{
+  font-family:'chalk2';
+    font-size:20px;
+    opacity:1;
+    letter-spacing:1px;
+    line-height:18px;
+    padding:10px;
+}
+  .blackboard_like,.blackboard_no_like,.blackboard_indiferent{
+    font-family:'chalk2';
+    font-size:14px;
+    opacity:1;
+    letter-spacing:1px;
+    line-height:18px;
+    padding:10px;
+    caret-shape: block;
+
+  }
+  .section_title_like,.blackboard_like,.blackboard_like span{
+    color:#ccfb89 !important;
+  }
+  .section_title_no_like,.blackboard_no_like,.blackboard_no_like span{
+    color:#ffb8b8 !important;
+  }
+  .section_title_indiferent,.blackboard_indiferent,.blackboard_indiferent span{
+   color:#f5f9ad !important;
+  }
+
+</cssstyles>
+<style name="blackboard_drawings"
+  url="assets/blackboard.png"
+  capture="true"
+  distorted="true"
+  enabled="false"
+/>
+
+<style name="section_title"
+  type="text"
+  distorted="true"
+  textalign="top"
+  editable="false"
+  capture="false"
+  selectable="false"
+  editenterkey="shiftnewline"
+  bg="true"
+  bgcolor="0xffffff"
+  bgcapture="true"
+  edge="topleft"
+  width="180"
+  height="40"
+  
+
+/>
+
+<style name="blackboard_write"
+  type="text"
+  text="get:blackboard.initialtext"
+  alpha="get:blackboard.initialalpha"
+  distorted="true"
+  textalign="top"
+  editable="true"
+  selectable="false"
+  editenterkey="shiftnewline"
+  bg="true"
+  bgcolor="0xffffff"
+  bgcapture="true"
+  edge="topleft"
+  width="180"
+  minheight="40"
+  maxheight="260"
+  mipmapping="true"
+  maskchildren="true"
+  oneditstart="blackboard_editstart();"
+  oneditstop="blackboard_editstop();"
+
+/>
+<blackboard 
+initialtext="escribe aquí! "
+initialalpha="0.3"
+/>
+<action name="blackboard_editstart">
+if (text === blackboard.initialtext ,text='';alpha=1;);
+</action>
+<action name="blackboard_editstop">
+if (text === '',text=blackboard.initialtext;alpha=blackboard.initialalpha;);
+</action>
+
+
+<action name="blackboard_diveditchange">
+  
+</action>
+<hotspot name="blackboard_drawings" style="blackboard_drawings"
+  
+ ath="-163.83772037565632" atv="-5.901809099985218" scale="0.3049999999999994" rx="1.1999999999999957" ry="-22.15000000000011" 
+  
+/>
+<hotspot name="section_title_like" style="section_title"
+
+text="ME GUSTAN"
+cssclass="section_title section_title_like"
+ath="156.49753748241432" atv="-18.66274765097876" scale="1" rx="-11" ry="41" rz="0"
+/>
+<hotspot name="section_title_no_like" style="section_title"
+text="NO ME GUSTAN"
+cssclass="section_title section_title_no_like"
+ath="-179.66512928063977" atv="-20.57873119457349" scale="1.1299999999999972" rx="-11" ry="4" rz="0"
+/>
+<hotspot name="section_title_indiferent" style="section_title"
+ width="200"
+text="NO ME IMPORTAN"
+cssclass="section_title section_title_indiferent"
+ath="-153.08089902490872" atv="-19.026754917111194" scale="1.1299999999999972" rx="-11" ry="-34" rz="0"
+/>
+
+
+<action name="" autorun="true">
+
+all_inputs_completed=0; 
+
+</action>
+<action name="check_allcompleted">
+
+ inc(all_inputs_completed);
+trace(all_inputs_completed,'allcompleted');
+ if (all_inputs_completed GE 3,
+ tween(hotspot[pissarra].alpha,1);
+ 
+ ); 
+
+</action>
+
+<hotspot name="blackboard_like" style="blackboard_write"
+oneditchange="if (textheight GE 238 ,trace(textheight);text=(substr(text,0,238));); if(!hotspot[blackboard_like].allcompleted, check_allcompleted());set(hotspot[blackboard_like].allcompleted,true);"
+  cssclass="blackboard_like"
+
+ ath="155.54942926025194" atv="-14.40705431121806"  scale="1" rx="-15.299999999999969" ry="26.000000000000057" rz="-0.1499999999999999"
+/>
+<hotspot name="blackboard_no_like" style="blackboard_write"
+oneditchange="if (textheight GE 230 ,trace(textheight);text=(substr(text,0,230));); if(!hotspot[blackboard_no_like].allcompleted, check_allcompleted());set(hotspot[blackboard_no_like].allcompleted,true);"
+  cssclass="blackboard_no_like"
+
+ ath="-178.30238500761294" atv="-15.681283472467804" scale="1.0903999999999971" rx="-17.79999999999997" ry="-0.6499999999999435" rz="-0.4999999999999981"
+  />
+<hotspot name="blackboard_indiferent" style="blackboard_write"
+oneditchange="if (textheight GE 238 ,trace(textheight);text=(substr(text,0,238));); if(!hotspot[blackboard_indiferent].allcompleted, check_allcompleted());set(hotspot[blackboard_indiferent].allcompleted,true);"
+  cssclass="blackboard_indiferent"
+
+
+  ath="-152.31990409774014" atv="-14.380159145233492" scale="0.9781000000000024" rx="-15.399999999999899" ry="-24.950000000000134" rz="-0.9499999999999984"
+/>
+	<style name="button" type="text"
+	       css="text-align:center;"
+	       padding="4 8"
+	       bgborder="4 0xFFFFFF 1"
+	       bgroundedge="1"
+	       bgshadow="0 1 4 0x000000 1.0"
+	       onover="set(bgcolor, 0xC7E4FC);"
+	       onout="calc(bgcolor, pressed ? 0x90CAF9 : 0xFFFFFF);"
+	       ondown="set(bgcolor, 0x90CAF9);"
+	       onup="calc(bgcolor, hovering ? 0xC7E4FC : 0xFFFFFF);"
+	       />
+
+
+<action name="screenshoot" >
+
+loadjs('%FIRSTXML%/activities/casa1/js.js',
+js(krpano.actions.creaDivAmbTresColumnes((hotspot[blackboard_like].text),(hotspot[blackboard_no_like].text),(hotspot[blackboard_indiferent].text),'save'););
+
+);
+
+//(hotspot[blackboard_like].text),(hotspot[blackboard_no_like].text),(hotspot[blackboard_indiferent].text)
+</action>
+
+
+
+
+</krpano>
+
+
+<!-- 
+(AL FINAL DE TOT POSARÉ TOTS ELS HOTSPOTS CAPTURE FALSE).
+DISSENY DEL HOTSPOT
+s_position ==> right | rightbottom | left | leftbottom | bottom | bottomleft | bottomright | null 
+s_photo ==> nom de l'arxiu a index.html/assets/img/users/[nom] ==> alex = alex.jpg | greta=greta.jpg | null
+s_user (nom curt, sempre) ==> nom de l'usuari | null
+s_date ==> el text que es vulgui posar expempe: 1h o 1w  coses curtes | null
+s_content (pot ser llarg)==> el text que es vulgui posar expempe: 1h o 1w  coses curtes | null
+FUNCTIONALITAT DEL HOTSPOT
+s_heart ==> | true (o absent) = hi ha cor, suma 1 punt i fa el que es digui a onclick.addevent 
+            | transparent = no hi ha cor, suma 1 punt i fa el que es digui a onclick.addevent
+            | false = no hi ha cor no suma punts,fa el que es digui a onclick.addevent 
+            | null= no hi ha cor i hs enabled=false
+
+
+s_talent ==> conquereix el talent per index (0,1,2,3,4) de el seu objecte 
+             Exemple: 
+             (data.casa.talents: ["Conocimiento propio", "Autoaceptación", "Construir autoestima", "Identificar los límites"]),
+             s_talent="0" ==> "Conocimiento propio" conquerit.
+s_invisible_at_start ==> si hi es en qualsevol valor, el hs está en alpha 0 fins que es posa en 1 per programacio.
+
+POPUPS:
+onclick.addevent = js:launchPopup('link1'); ==> 
+                                  link1 = URL a (exemple casa_1) index.html/data/data.js -> data.casa.panos.1.extra.elqusiguiescritaqui 
+                                  arg 2 80% = width
+                                  arg 3 80% = height
+                                  arg 4 objecte per defete 
+                                  const popupDefaultOptions ={
+                                    overlayColor: "rgba(0,0,0,0.7)",
+                                    onClose: function () {
+                                            console.log("popup tancat");
+                                            }
+                                    };
+
+EXEMPLES:
+-->
+
+
+
+
+<!-- //posar una altra foto millor a multi.jpg
+<hotspot name="testmultiambcor_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="null"
+    s_photo="multi"
+    s_user="todos"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testpuntinfosensecor_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="paraula curta"
+    s_date="null"
+    s_heart="transparent"
+    s_content="Això és un video guai[br] que parla de mi"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testpuntinfosensecor_no_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="paraula curta"
+    s_date="null"
+    s_heart="false"
+    s_content="Això és un video guai[br] que parla de mi"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    
+/> -->
+
+<!-- <hotspot name="testnormal_sumapunts_inici_no_alpha" ath="0" atv="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alex"
+    s_user="hola"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    s_invisible_at_start="true"
+    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+/> 
+
+
+<action name="" autorun="true">
+
+  delayedcall (3,
+    tween(hotspot[testnormal_sumapunts_inici_no_alpha].alpha,1);
+  );
+
+</action>    -->
+

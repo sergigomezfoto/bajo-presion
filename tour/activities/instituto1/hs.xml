@@ -1,16 +1,64 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="insti-nil" ath="-63.422458990141365" atv="-19.890998172586194" scale="1" rx="-16" ry="-3.5" rz="0"  style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_photo="nil"
+    s_user="@nil"
+    s_date="3w"
+    s_heart="null"
+    s_content="Jajaja lo grabo lo grabo!!🎥"
+    enabled="false"  handcursor="false"
     
 />
 
+<hotspot name="mariona-insti" ath="12.923667302388367" atv="6.213993404367426" scale="0.8099999999999998" rx="-15" ry="-46.5" rz="19.5"  style="speech_bubbles"
+    s_position="left"
+    s_photo="mariona"
+    s_user="@mariona"
+    s_date="9w"
+    s_heart="null"
+    s_content="Devolverme la mochila! 😰"
+    enabled="false"  handcursor="false"  
+/>
 
+<hotspot name="ruth-insti" ath="-124.07949032249277" atv="-15.692228225591757" scale="1" rx="-15.5" ry="-27" rz="0" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="ruth"
+    s_user="@ruth"
+    s_date="36w"
+    s_heart="null"
+    s_content="Mira estos dos... 😵💩¿Tu crees que es normal eso?"
+    enabled="false"  handcursor="false"  
+/>
+<hotspot name="laura-insti" ath="-92.07002226618044" atv="1.23951714556627" scale="1" rx="8" ry="-24.5" rz="10" style="speech_bubbles"
+    s_position="left"
+    s_photo="laura"
+    s_user="@laura"
+    s_date="48m"
+    s_heart="null"
+    s_content="Yo que sé... Random...🥱"
+    enabled="false"  handcursor="false"  
+/>
+
+<hotspot name="greta-insti" ath="39.467066863501316" atv="-13.062914475907869" scale="0.8099999999999998" rx="0" ry="0" rz="-23.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="greta"
+    s_user="@greta"
+    s_date="12w"
+    s_heart="null"
+    s_content="Jajajaaj la tengo!!😈🤣"
+    enabled="false"  handcursor="false"  
+/>
+
+<hotspot name="cotxe" ath="102.64547141056374" atv="-10.300138647476231" scale="1" rx="0" ry="-8" rz="9.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="ayrton_senna"
+    s_user="@conductor_random"
+    s_date="12h"
+    s_heart="true"
+    s_content="Que tipos de violéncia crees que están ejerciendo estos jóvenes? 🧐"
+    onclick.addevent="js:launchPopup('link1insti1');"
+    
+/>
 </krpano>

@@ -1,0 +1,66 @@
+﻿<krpano>
+
+<!-- krpano 1.20.7 - Virtual Tour Skin -->
+
+
+<!-- ACCIO ANIMACIO HOTSPOTS ANIMATS -->
+  <action name="animate">
+    if (tour_stopsequence == false,
+      if (stopspotsequence == false,
+        txtadd(delayedname, %1, 'delay');
+        if(hotspot[%1].loaded,
+          inc(hotspot[%1].frame,1,get(hotspot[%1].lastframe),0);
+          mul(hotspot[%1].ypos,get(hotspot[%1].frame),get(hotspot[%1].frameheight));
+          txtadd(hotspot[%1].crop,'0|',get(hotspot[%1].ypos),'|',get(hotspot[%1].framewidth),'|',get(hotspot[%1].frameheight));
+        );
+        delayedcall(get(delayedname),%2,animate(%1,%2));
+      );
+    );
+  </action>
+  <action name="startspotanimation">
+    set(tour_stopsequence, false);
+    set(stopspotsequence , false);
+    animate(get(name), %1);
+  </action>
+  <action name="stopspotanimation">
+    set(hotspot[%1].stopspotsequence, true);
+    txtadd(delayedname, %1, 'delay');
+    stopdelayedcall(get(delayedname));
+  </action>
+  <action name="interruptAnimation">
+    if(tour_stopsequence == false,
+      set(tour_stopsequence, true);
+      wait(0.1);
+    );
+  </action>
+<!-- FI ACCIO ANIMACIO HOTSPOTS ANIMATS -->
+
+
+  <action name="calc_pos_from_hfov_yaw_pitch_roll">
+    div(hfov,%1,57.295779);
+    div(yaw,%2,-57.295779);
+    div(pitch,%3,57.295779);
+    div(roll,%4,-57.295779);
+    mul(hfov,0.5);Math.tan(hfov);mul(width,hfov,1000);set(height,'prop');
+    Math.cos(ch,yaw);Math.sin(sh,yaw);
+    Math.cos(ca,pitch);Math.sin(sa,pitch);
+    Math.cos(cb,roll);Math.sin(sb,roll);
+    mul(m0,ca,ch);
+    mul(tmp,cb,sa);mul(tmp,ch);mul(tmp2,sb,sh);add(m3,tmp,tmp2);
+    mul(m4,cb,ca);
+    mul(tmp,cb,sa);mul(tmp,sh);mul(tmp2,sb,ch);sub(m5n,tmp,tmp2);mul(m5n,-1);
+    mul(tmp,sb,sa);mul(tmp,ch);mul(tmp2,cb,sh);sub(m6n,tmp,tmp2);mul(m6n,-1);
+    Math.atan2(yaw,m6n,m0);
+    Math.atan2(roll,m5n,m4);
+    Math.asin(pitch,m3);
+    mul(ath,yaw,57.295779);
+    mul(atv,pitch,57.295779);
+    mul(rotate,roll,57.295779);
+  </action>
+
+
+
+
+
+
+</krpano>

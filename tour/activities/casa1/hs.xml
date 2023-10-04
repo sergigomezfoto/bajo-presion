@@ -1,5 +1,45 @@
 <krpano>
 
+<hotspot name="help" ath="148.48984527674335" atv="-20.98265160565206" scale="0.7899999999999998" rx="-22" ry="34" rz="0" distorted="true"  
+    alpha="0.5"
+    s_invisible_at_start="true"
+    type="image" 
+    url="assets/help-black.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="tween(hotspot[help-pop-up].alpha,1,1);"
+/> 
+
+
+    
+
+
+<hotspot name="help-pop-up" ath="180" atv="0" distorted="true" style="speech_bubbles" 
+    s_position="null"
+    s_photo="null"
+    s_user="null"
+    s_date="null"
+    s_heart="null"
+    s_content="Te damos ideas de algunos aspectos en los que te puedes fijar para describirte: [br] [br]
+PARTES Y FORMAS DEL CUERPO -  ALTURA -  PEINADO -  ESTILO DE VESTIR [br]
+MODO DE HABLAR O REÍR - MODO DE BAILAR, CAMINAR, MOVERTE - SOLIDARIDAD [br]
+AUTOCONTROL - CAPACIDAD DE CONCENTRACIÓN - GENEROSIDAD - TIPO DE VOZ   [br]
+IMAGINACIÓN - CAPACIDAD PARA HACER AMISTADES -  CREATIVIDAD[br]
+AGILIDAD, RAPIDEZ, HABILIDAD EN DEPORTES - SIMPATÍA - AMABILIDAD [br]
+CAPACIDAD DE RESOLUCIÓN DE PROBLEMAS - SER PRUDENTE - SER COMUNICATIVO/A[br]
+SER FIABLE - ORGANIZACIÓN - SER RESPETUOSO/A - SER TOLERANTE[br]
+INDEPENDENCIA - SABER GUARDAR UN SECRETO - SENSIBILIDAD - IMPULSIVIDAD [br]
+AFECTIVIDAD - VALENTÍA - SER PREVISOR/A - PACIENCIA - INTELIGENTE EN... 
+"
+    onclick.addevent="tween(hotspot[help-pop-up].alpha,0,1);"
+    s_invisible_at_start="true"
+  
+  
+
+/> 
+
 
 <hotspot name="pissarra" ath="-170.15370270681444" atv="-35.17924923088549" scale="1" rx="-37.40000000000011" ry="-7.2999999999999945" rz="0.450000000000004" distorted="true"  style="speech_bubbles" 
     s_position="bottom"
@@ -7,7 +47,7 @@
     s_user="¿Has acabado la lísta?🤓🤗"
     s_date="null"
     s_heart="true"
-    s_content="Descarga la pizarra en tu [br]dispositivo y si quieres, compártela."
+    s_content="Puedes descargar la pizarra en tu [br]dispositivo y si quieres, compartirla."
     onclick.addevent="screenshoot()"
     s_invisible_at_start="true"
 
@@ -18,7 +58,7 @@
     s_user="¿Has visto la pizarra?👩‍🏫😍[br]Te ayudo con la lista..."
     s_date="null"
     s_heart="null"
-    s_content="¿te gusta tu altura?[br] ¿crees que tienes buena voz? [br]¿la valentía és importante para tí?[br] ¿y tu estilo de vestir?[br]..."
+    s_content="¿Te gusta tu altura?[br] ¿Crees que tienes buena voz? [br]¿La valentía és importante para tí?[br] ¿Y tu estilo de vestir?[br]..."
     onclick.addevent="lookto(-174,-4.4,90,tween(easeinoutquad,0.6));"
   
   

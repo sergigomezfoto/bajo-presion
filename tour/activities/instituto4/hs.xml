@@ -1,16 +1,352 @@
 <krpano>
 
+<!-- <<<<<<<<<<<<<<<<<< VIDEO MOTXILLA >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="boto-play-mochilla" ath="-47.096738926866806" atv="-9.35589567562806" scale="0.3199999999999996"  distorted="true"  
+    type="image" 
+    url="assets/play.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="action_play-mochilla();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-mochilla-1" ath="-26.927764613016848" atv="-17.47334260196577" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-mochilla-2" ath="-26.927764613016848" atv="-17.47334260196577" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+    <hotspot name="mobil_motxilla"
+        url="assets/mobil-motxilla.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(53.3251, 47.5638, -6.80375, -7.06272); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="1"
+        zorder="2"
+        bgcapture="false"
+    />
+    <hotspot name="video_mochila"
+         url.html5="%FIRSTXML%/plugins/videoplayer.js"
+         url.flash="%FIRSTXML%/plugins/videoplayer.swf"
+         videourl="assets/mochila.m4v"
+         posterurl="assets/mochila.jpg"
+         distorted="true"
+         ath="-46.29908893414557" atv="-9.896731256597684" scale="0.22009999999999907" rx="-5.600000000000003" ry="-7.2999999999999945" rz="-1.4"
+         edge="center"
+         ox="0"
+         oy="0"
+         loop="false"
+         pausedonstart="true"
+         onclick="togglepause();"
+         volume="1.0"
+         onvideoready=""
+         onvideoplay=""
+         onvideopaused=""
+         onvideocomplete="finish_video_motxilla();"
+         onerror=""
+         alpha="1"
+         handcursor="false"
+         enabled="false"
+         zorder="1"
+         capture="false"
+    />
+<action name="action_play-mochilla">
+        hotspot[video_mochila].play();
+        tween(hotspot[boto-play-mochilla].alpha, 0, 0.5);
+        set(hotspot[boto-play-mochilla].handcursor, false);
+        set(hotspot[boto-play-mochilla].enabled, false);
+        set(hotspot[cor-mochilla-1].alpha, 0);
+        set(hotspot[cor-mochilla-2].alpha, 1);
+        set(hotspot[video_mochila].handcursor, true);
+        set(hotspot[video_mochila].enabled, true);
+</action>
+   
+      
+    <action name="finish_video_motxilla">
+        tween(hotspot[boto-play-mochilla].alpha, 0.65, 0.5);
+        set(hotspot[boto-play-mochilla].handcursor, true);
+        set(hotspot[boto-play-mochilla].enabled, true);
+        set(hotspot[video_mochila].handcursor, false);
+        set(hotspot[video_mochila].enabled, false);
+        
+     </action>
+<!-- <<<<<<<<<<<<<<<<<< FINAL DEL VIDEO MOTXILLA >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
-/>
+
+<!-- <<<<<<<<<<<<<<<<<< VIDEO WC >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="boto-play-wc" ath="75.89550043514095" atv="-2.827775664872548" scale="0.307600000000001"  distorted="true"  
+    type="image" 
+    url="assets/play.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="action_play-wc();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-wc-1" ath="82.78516766098357" atv="-20.336523255563144" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-wc-2" ath="82.78516766098357" atv="-20.336523255563144" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+    <hotspot name="mobil_wc"
+        url="assets/mobil-wc.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(28.786, -75.7926, -1.24707, 3.46009); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="1"
+        zorder="2"
+        bgcapture="false"
+    />
+    <hotspot name="video_wc"
+         url.html5="%FIRSTXML%/plugins/videoplayer.js"
+         url.flash="%FIRSTXML%/plugins/videoplayer.swf"
+         videourl="assets/wc.m4v"
+
+         distorted="true"
+         ath="76.24304504182606" atv="-2.988163758200893" scale="0.4094999999999993" rx="2" ry="0" rz="0.7500000000000006"
+         edge="center"
+         ox="0"
+         oy="0"
+         loop="false"
+         pausedonstart="true"
+         onclick="togglepause();"
+         volume="1.0"
+         onvideoready=""
+         onvideoplay=""
+         onvideopaused=""
+         onvideocomplete="finish_video_wc();"
+         onerror=""
+         alpha="1"
+         handcursor="false"
+         enabled="false"
+         zorder="1"
+         capture="false"
+    />
+<action name="action_play-wc">
+        hotspot[video_wc].play();
+        tween(hotspot[boto-play-wc].alpha, 0, 0.5);
+        set(hotspot[boto-play-wc].handcursor, false);
+        set(hotspot[boto-play-wc].enabled, false);
+        set(hotspot[cor-wc-1].alpha, 0);
+        set(hotspot[cor-wc-2].alpha, 1);
+        set(hotspot[video_wc].handcursor, true);
+        set(hotspot[video_wc].enabled, true);
+</action>
+   
+      
+    <action name="finish_video_wc">
+        tween(hotspot[boto-play-wc].alpha, 0.65, 0.5);
+        set(hotspot[boto-play-wc].handcursor, true);
+        set(hotspot[boto-play-wc].enabled, true);
+        set(hotspot[video_wc].handcursor, false);
+        set(hotspot[video_wc].enabled, false);
+        
+     </action>
+<!-- <<<<<<<<<<<<<<<<<< FINAL DEL VIDEO WC >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 
 
+<!-- <<<<<<<<<<<<<<<<<< VIDEO TANGA >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="boto-play-tanga" ath="113.8410394560193" atv="-2.729902049410887" scale="0.307600000000001"  distorted="true"  
+    type="image" 
+    url="assets/play.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="action_play-tanga();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-tanga-1" ath="121.98072494798521" atv="-22.479674961387968" scale="0.7199999999999998"   distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-tanga-2" ath="121.98072494798521" atv="-22.479674961387968" scale="0.7199999999999998"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+    <hotspot name="mobil_tanga"
+        url="assets/mobil-tanga.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(28.4198, -112.809, 2.4094, 3.205); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="1"
+        zorder="2"
+        bgcapture="false"
+    />
+    <hotspot name="video_tanga"
+         url.html5="%FIRSTXML%/plugins/videoplayer.js"
+         url.flash="%FIRSTXML%/plugins/videoplayer.swf"
+         videourl="assets/tanga.m4v"
+
+         distorted="true"
+         ath="112.99167440043792" atv="-2.6535667904161304" scale="0.4565999999999991" rx="6.950000000000003" ry="-4.099999999999993" rz="0.25"
+         edge="center"
+         ox="0"
+         oy="0"
+         loop="false"
+         pausedonstart="true"
+         onclick="togglepause();"
+         volume="1.0"
+         onvideoready=""
+         onvideoplay=""
+         onvideopaused=""
+         onvideocomplete="finish_video_tanga();"
+         onerror=""
+         alpha="1"
+         handcursor="false"
+         enabled="false"
+         zorder="1"
+         capture="false"
+    />
+<action name="action_play-tanga">
+        hotspot[video_tanga].play();
+        tween(hotspot[boto-play-tanga].alpha, 0, 0.5);
+        set(hotspot[boto-play-tanga].handcursor, false);
+        set(hotspot[boto-play-tanga].enabled, false);
+        set(hotspot[cor-tanga-1].alpha, 0);
+        set(hotspot[cor-tanga-2].alpha, 1);
+        set(hotspot[video_tanga].handcursor, true);
+        set(hotspot[video_tanga].enabled, true);
+</action>
+   
+      
+    <action name="finish_video_tanga">
+        tween(hotspot[boto-play-tanga].alpha, 0.65, 0.5);
+        set(hotspot[boto-play-tanga].handcursor, true);
+        set(hotspot[boto-play-tanga].enabled, true);
+        set(hotspot[video_tanga].handcursor, false);
+        set(hotspot[video_tanga].enabled, false);
+        
+     </action>
+<!-- <<<<<<<<<<<<<<<<<< FINAL DEL VIDEO TANGA >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+
+<!-- <<<<<<<<<<<<<<<<<< play vídeo extern >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="ciberacoso-play" ath="-142.19957876096026" atv="-5.057425811932355" scale="0.307600000000001"  distorted="true"  
+    type="image" 
+    url="assets/play.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="ciberacoso_action();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-ciberacoso-1" ath="-121.26303721072117" atv="-12.895570886543544" scale="0.7199999999999998" rx="-21.5" ry="-18" rz="0"   distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-ciberacoso-2" ath="-121.26303721072117" atv="-12.895570886543544" scale="0.7199999999999998" rx="-21.5" ry="-18" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+<action name="ciberacoso_action">
+        set(hotspot[cor-ciberacoso-1].alpha, 0);
+        set(hotspot[cor-ciberacoso-2].alpha, 1);
+        jscall(launchPopup('link1insti4'));
+</action>
+<!-- <<<<<<<<<<<<<<<<<< fi play vídeo extern >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+
+<!-- <<<<<<<<<<<<<<<<<< sexting >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="sexting" ath="54.025223313940614" atv="4.4700771546965035" scale="0.6749999999999997"  distorted="true"  
+    type="image" 
+    url="assets/info.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="sexting_action();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-sexting-1" ath="56.82181770215624" atv="-6.493426947285844" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-sexting-2" ath="56.82181770215624" atv="-6.493426947285844" scale="0.7199999999999998" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+<action name="sexting_action">
+        set(hotspot[cor-sexting-1].alpha, 0);
+        set(hotspot[cor-sexting-2].alpha, 1);
+        jscall(launchPopup('link2insti4'));
+</action>
+<!-- <<<<<<<<<<<<<<<<<< fi sexting >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 </krpano>

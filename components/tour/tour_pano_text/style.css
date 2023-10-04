@@ -4,7 +4,8 @@
     left: 0;
     width: 245px;
     padding-left: var(--margin);
-    height: 500px;
+    /* height: 300px; */
+    max-height: 28%;
     display: flex;
     flex-direction: column;
     gap: 10px;

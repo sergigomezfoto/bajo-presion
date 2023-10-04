@@ -1,16 +1,62 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
+<hotspot name="testnormal_sumapunts" ath="25.53193157035406" atv="-11.509267583774788" scale="1" rx="8" ry="-15.5" rz="-14" style="speech_bubbles"
+    s_position="left"
+    s_photo="alexandra"
+    s_user="@alexandra"
     s_date="1w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="El equipo depende de mi..."
+    onclick.addevent="tir_action();"
     
 />
+
+
+<action name="tir_action">
+<!-- lookto(-30,-30,70,tween(linear,0.4));
+lookto(-60,-60,70,tween(linear,0.4));
+lookto(-115,-80,70,tween(linear,0.4));
+lookto(-180,-37,5,70,tween(linear,1)); -->
+set(hotspot[poliesportiu_5-tir].alpha,1);
+tween(hotspot[ball].ath,3,0.8,easeOutQuad);
+tween(hotspot[ball].atv,-80,0.8,easeOutQuad);
+<!-- tween(hotspot[ball].ath,178,2.2);
+tween(hotspot[ball].atv,-36,2.2); -->
+
+
+
+  delayedcall (0.8,
+        jscall(
+          launchPopup('link1poli5')
+        );
+        tween(hotspot[ball].alpha,0,0.8);
+ );
+</action>
+
+<hotspot name="ball" ath="0.20410846166981855" atv="-11.780884625133165" scale="0.8949999999999999" rx="0" ry="0" rz="0" distorted="true"  
+    alpha="1"
+    s_invisible_at_start="true"
+    type="image" 
+    url="assets/basket_ball.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="false"
+  
+/> 
+ <hotspot name="poliesportiu_5-tir"
+			 	 url="assets/poliesportiu_5-tir.png"
+			 	 distorted="true"
+			 	 onloaded="calc_pos_from_hfov_yaw_pitch_roll(20.7284, -3.06751, 6.47836, -0.301679); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+			 handcursor="false"
+			 	 enabled="false"
+			 visible="true"
+			 alpha="0"
+			 zorder="10"
+			 bgcapture="false"
+			 />
+
 
 
 </krpano>

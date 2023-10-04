@@ -1,15 +1,34 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="insti3-julia" ath="76.34265608179862" atv="-29.641667346963345" scale="1.2108999999999954" rx="-31" ry="10" rz="-1.2999999999999992"  style="speech_bubbles"
+    s_position="right"
+    s_photo="julia"
+    s_user="JuliaStarz_12"
+    s_date="13h"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="¿Quién es quién?"
+    onclick.addevent="js:launchPopup('link2insti3');"  
+/>
+
+<hotspot name="insti3-j" ath="-45.81452808587568" atv="15.225649443679096" scale="1" rx="2" ry="-47.5" rz="36"  style="speech_bubbles"
+    s_position="right"
+    s_photo="mariona"
+    s_user="Chispis_Marions"
+    s_date="18h"
+    s_heart="true"
+    s_content="¿Quién es quién?"
+    onclick.addevent="js:launchPopup('link1insti3');"  
+/>
+
+<hotspot name="insti3-jp" ath="35.9345100190493" atv="8.578429680728396" scale="1.1606999999999965" rx="13.5" ry="9" rz="22.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="laura"
+    s_user="Wave_Laurii"
+    s_date="58m"
+    s_heart="true"
+    s_content="¿Quién es quién?"
+    onclick.addevent="js:launchPopup('link2insti3');"  
 />
 
 

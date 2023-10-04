@@ -1,14 +1,14 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapuntsssss" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="testnormal_sumapunts" ath="-8.094932171552614" atv="2.2449975859656206" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
+    s_position="rightbottom"
+    s_photo="null"
+    s_user="Hacemos un crucigrama?"
+    s_date="23h"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Sabías que gramma viene del [br]griego γράμμα y significa letra?"
+    onclick.addevent="js:launchPopup('link1casa6');"
     
 />
 

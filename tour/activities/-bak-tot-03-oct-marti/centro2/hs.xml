@@ -1,0 +1,379 @@
+<krpano>
+
+
+
+
+<hotspot name="futbolin_primera"   style="speech_bubbles"
+ath="40.72862750832758" atv="-32.76273513135083" scale="1" rx="-13.5" ry="-24" rz="3"
+    s_position="leftbottom"
+    s_photo="alex"
+    s_user="Alex18"
+    s_date="1s"
+    s_heart="true"
+    s_content="¿Jugamos una partida al futbolín?[span style='font-size:10px;']⚽[/span][span style='font-size:20px;']🏃[/span][br]¡A cuatro preguntas! 🎉¡Sacamos nosotras!🙋‍♀️"
+    onclick.addevent="socker_game_start(get(name))"
+    onloaded.addevent=""    
+/>
+
+<hotspot name="futbolin_otra"   style="speech_bubbles"
+ath="40.72862750832758" atv="-32.76273513135083" scale="1" rx="-13.5" ry="-24" rz="3"
+    s_position="leftbottom"
+    s_photo="alex"
+    s_user="Alex18"
+    s_date="1s"
+    s_heart="true"
+    s_content="¿Hacemos otra parida? 🎉🎉🎉"
+    onclick.addevent="socker_game_repeat(get(name))"
+    onloaded.addevent="" 
+    s_invisible_at_start="true"   
+/>
+    
+<set var="socker_game_counter" val="0"/>
+<set var="socker_movetime" val="0.4"/>
+
+<action name="socker_game_start">
+    loadjs('%FIRSTXML%/activities/centro2/js.js',
+        socker_answer_per_match = 4;
+        socker_game_position = 0;
+        socker_current_match=0;
+        txtsplit(socker_game_questions,'||',socker_game_actual_question); 
+        socker_game_questions_length = socker_game_actual_question.count;
+        socker_new_question();
+        tween(hotspot[%1].alpha,0);
+        tween(layer[socker_balls_container].alpha,1);
+    );
+</action>
+<action name="socker_game_repeat">
+
+        socker_game_position = 0;
+        socker_current_match=0;
+        txtsplit(socker_game_questions,'||',socker_game_actual_question); 
+        socker_game_questions_length = socker_game_actual_question.count;
+        socker_new_question();
+        tween(hotspot[%1].alpha,0);
+        tween(layer[socker_balls_container].alpha,1);
+
+</action>
+
+
+<action name="socker_new_question">
+
+if (socker_game_counter === socker_game_questions_length ,
+    loadjs('%FIRSTXML%/activities/centro2/js.js', socker_game_counter=0;);
+);
+
+if (socker_game_counter LT socker_game_questions_length ,
+    if (socker_current_match LT socker_answer_per_match,
+            hotspot[socker_button0].enabled=true;
+            hotspot[socker_button1].enabled=true;
+        if (!socker_game_position,
+            socker_current_canvas="socker_question0";    
+            socker_game_position=1;
+        ,
+            socker_current_canvas="socker_question1";
+            socker_game_position=0;
+        );
+
+        if (number(socker_game_position) == 0,
+            lookto(-171,1.5,120,tween(easeinoutquad,socker_movetime),true);
+        ,number(socker_game_position) == 1,
+            lookto(5.5,1.5,120,tween(easeinoutquad,socker_movetime),true);
+        );
+        txtsplit(socker_game_actual_question[(socker_game_counter)].value,'::',socker_game_actual_asking,socker_game_actual_answer,socker_game_current_social);
+        hotspot[*socker_current_canvas].text=(socker_game_actual_asking);
+        tween(hotspot[*socker_current_canvas].alpha,1);     
+
+        if (Number(socker_game_current_social) === 0,
+
+            hotspot[socker_answer0].text=(socker_game_actual_answer +  (socker_current_match LT (socker_answer_per_match - 1) ? data[socker_next_question].content : data[socker_end_question].content));
+            hotspot[socker_answer1].text="";       
+        ,
+            hotspot[socker_answer1].text=(socker_game_actual_answer +  (socker_current_match LT (socker_answer_per_match - 1) ? data[socker_next_question].content : data[socker_end_question].content));
+            hotspot[socker_answer0].text="";
+
+        );
+        inc(socker_game_counter);
+        inc(socker_current_match);
+        blink_socker_ball(('socker_ball' + Number(socker_current_match)));
+    );
+,
+   
+);
+</action>
+
+
+
+<data name="socker_next_question"><![CDATA[
+    <style>
+    .socker_next_question {
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 20px;
+        padding: 10px 20px;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 22px;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    .socker_next_question:hover {
+        background-color: white;
+        color: #ff073b;
+    }
+    </style>
+    <br> <div class="socker_next_question" onclick="krpano.call('socker_continue_match();')"> SIGUIENTE BOLA </div>
+
+]]></data>
+
+<data name="socker_end_question"><![CDATA[
+    <style>
+    .socker_next_question {
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 20px;
+        padding: 10px 20px;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 22px;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    .socker_next_question:hover {
+        background-color: white;
+        color: #ff073b;
+    }
+    </style>
+    <br> <div class="socker_next_question" onclick="krpano.call('socker_end_match();')"> FÍN DE JUEGO </div>
+
+]]></data>
+
+///////////////////////////////////////////////////QUESTIONS///////////////////////////////////////////////
+
+<style name="socker_question"
+    type="text"
+    bgcolor="0x000000"
+    bgalpha="0.4"
+    edge="bottom"
+    width="460"
+    autoheight="true"   
+    distorted="true"
+    padding="40"
+    css="color:white;font-family: 'untitled_sansregular'; font-size: 18px;"
+    alpha="0"
+    enabled="false"
+    cursor="auto"
+    capture="false"
+     renderer="css3d"
+   
+/>
+     <!-- onloaded="s_capture_html_element(s,get(name),true);socker_backdrop_to_hotspot();" -->
+
+<hotspot name="socker_question0"   style="socker_question"
+    ath="6.9536217206227775" atv="21.10816725063797" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"
+    text=""
+    
+/>
+<hotspot name="socker_question1"   style="socker_question"
+    ath="-172.71632994105516" atv="19.223909354256573" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"
+    text=""   
+   
+/>
+<action name="socker_backdrop_to_hotspot" scope="local" type="js"><![CDATA[
+
+
+    console.log(caller.name);
+document.getElementById('kp_s_' + caller.name).style.cssText += "backdrop-filter: blur(3px);";
+]]></action>
+
+
+/////////////////////////////////////////////////////////////ANSWER BUTTONS//////////////////////////////////////////////
+<style name="socker_button"
+    type="text"
+    bgcolor="0xff0000"
+    bgalpha="0"
+    edge="bottom"
+    width="70"
+    height="70"
+    distorted="true"
+    alpha="1"
+    onclick="socker_reveal_answer"
+    enabled="false"
+/>
+
+<action name="socker_reveal_answer">
+
+    hotspot[socker_button0].enabled=false;
+    hotspot[socker_button1].enabled=false;
+
+ if (socker_current_match LE socker_answer_per_match,
+    
+    if (Number(socker_game_current_social) === 0,
+        lookto(101,-3,120,tween(easeinoutquad,socker_movetime),true);
+        ,
+        lookto(-84,-3,120,tween(easeinoutquad,socker_movetime),true);
+    );
+
+    // visual answer (fail or success)
+    if (Number(socker_game_current_social) === Number(alias),
+        //hotspot[*answer_name].bgcolor="0x7ed521";
+        blink_stop_socker_ball(('socker_ball' + Number(socker_current_match)),true);
+    ,
+        //hotspot[*answer_name].bgcolor="0xf40e39";    
+        blink_stop_socker_ball(('socker_ball' + Number(socker_current_match)),false);
+    ); 
+    
+    answer_name=('socker_answer' + Number(socker_game_current_social));
+    hotspot[*answer_name].alpha="1"; 
+
+ );
+
+</action>
+
+<action name="socker_continue_match">
+
+        hotspot[socker_answer0].alpha=0;
+        hotspot[socker_answer1].alpha=0;
+        hotspot[socker_button0].enabled=true;
+        hotspot[socker_button1].enabled=true;
+        hotspot[socker_question0].alpha=0;
+        hotspot[socker_question1].alpha=0;
+        hotspot[socker_question0].text="";
+        hotspot[socker_question1].text="";
+        socker_new_question();
+
+</action>
+
+
+
+<hotspot name="socker_button0"   style="socker_button" alias="0"
+    ath="99.99560872620984" atv="23.11343097470881" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"    
+/>
+
+<hotspot name="socker_button1"   style="socker_button" alias="1"
+    ath="-81.68933428303086" atv="23.889716954910266" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"  
+/>
+/////////////////////////////////////////////////// ANSWERS ///////////////////////////////////////////////
+
+<style name="socker_answer"
+    type="text"
+    bgcolor="0x1b1bb9"
+    bgalpha="0.5"
+    edge="bottom"
+    width="400"
+    autoheight="true"   
+    distorted="true"
+    padding="40"
+    css="color:white;font-family: 'untitled_sansregular'; font-size: 18px;"
+    alpha="0"
+    autoalpha="true"
+    capture="false"
+    interactive="true"
+    enabled="true"
+    renderer="css3d"
+/>
+    <!-- onloaded="s_capture_html_element(s,get(name),true);socker_backdrop_to_hotspot();" -->
+
+<hotspot name="socker_answer0"   style="socker_answer"
+ath="101.5207773582101" atv="13.29129566291344" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"
+text=""
+    
+/>
+<!-- bgcolor="0x7ed521" -->
+<hotspot name="socker_answer1"   style="socker_answer"
+ath="-82.34574318938729" atv="13.847228488060527" scale="1" rx="21.000000000000043" ry="2.0000000000000036" rz="0"
+text=""   
+/>
+<!-- bgcolor="0xf40e39" -->
+/////////////////////////////////////////////////////////////BALLS//////////////////////////////////////////////
+
+<style name="socker_balls_container"
+    type="text"
+    bg="false"
+    bgcolor="0x000000"
+    bgalpha="0.6"
+    flowchildren="h"
+    childflowspacing="10"
+    align="top"  
+    y="130"  
+    alpha="0"
+    enabled="false"
+
+/>
+    <style name="socker_ball"
+        type="text"
+        bg="true"
+        bgcolor="0xffffff"
+        bgborder="1 0x000000 1"
+        bgroundedge="20"
+        bgalpha="1"
+        width="20"
+        height="20"
+        align="left"
+        alpha="0.1"
+        enabled="false"
+    />
+
+
+
+<layer name="socker_balls_container"  style="socker_balls_container">
+    <layer name="socker_ball1"  style="socker_ball"/>
+    <layer name="socker_ball2"  style="socker_ball"/>
+    <layer name="socker_ball3"  style="socker_ball"/>
+    <layer name="socker_ball4"  style="socker_ball"/>
+</layer>
+
+<action name="blink_socker_ball" scope="local" args="s_ball">
+
+
+    tween(layer[*s_ball].alpha,0.9,0.2,,
+        tween(layer[*s_ball].alpha,0.1,0.2,,blink_socker_ball(*s_ball));
+    );
+
+    
+</action>
+<!-- <action name="" autorun="true">
+
+</action> -->
+<action name="blink_stop_socker_ball" scope="local" args="s_ball,success">
+
+    stoptween(layer[*s_ball].alpha);
+    layer[*s_ball].alpha=1;
+    layer[*s_ball].bgcolor=(success ? "0x7ed521" : "0xc40d2f");       
+
+</action>
+
+<action name="reset_socker_balls">
+
+    forall(layer,l,
+        if(contains(l.name,'socker_ball'),
+            l.bgcolor="0xffffff";
+            l.alpha=0.1;
+        );
+    );
+</action>
+
+//////////////////////////////////////////////////////////////////////////FINAL JOC//////////////////////////////////////////////
+
+<action name="socker_end_match">
+
+tween(hotspot[socker_question0].alpha,0);
+tween(hotspot[socker_question1].alpha,0);
+tween(hotspot[socker_answer0].alpha,0);
+tween(hotspot[socker_answer1].alpha,0);
+tween(hotspot[futbolin_otra].alpha,1);
+lookto(24,1.5,120,tween(easeinoutquad,socker_movetime),true);
+reset_socker_balls();
+layer[socker_balls_container].alpha=0;
+inc_points_external();
+
+</action>
+
+
+
+</krpano>

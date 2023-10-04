@@ -1,0 +1,108 @@
+<krpano>
+
+<hotspot name="marc" ath="-65.93025647956205" atv="-22.136355006687833" scale="1" rx="0" ry="0" rz="0"  style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="marc"
+    s_user="Supermarc92"
+    s_date="1h"
+    s_content="Míra qué[span style='color:blue;'] vídeo [/span]más pro🤩🤩[br] ¿Lo probamos bró?💪"
+    s_heart="true"
+    onclick.addevent="jscall(launchPopup('linkmarc','80%','80%',{onClose: function(){krpano.call('set_robot_popup()');}}));"
+ 
+/>
+    <action name="set_robot_popup">
+        lookto(-134,-4.4,110,tween(easeinoutquad,0.6));
+        hotspot[robot].alpha=1;
+    </action>
+
+
+<hotspot name="robot" ath="-147.77354377884754" atv="-25.61631229479968" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
+    s_position="rightbottom"
+    s_photo="robot"
+    s_user="R2D3"
+    s_date="1s"
+    s_content="Este vídeo es muy yó. Ja,ja,ja.[br] Me siento reflejado.🤖🦾🦾[br] ¿Jugamos a cual es la emoción?"
+    s_heart="true"
+    onclick.addevent="robot_action();"
+    s_invisible_at_start="true"
+/>
+<action name="robot_action">
+s_blockall(true,'none');
+    forall(hotspot,h,
+        if (contains(h.name,'gamelocalize') AND !contains(h.name,'phantom'),
+           h.s_localize_loked=false;
+        );  
+    );
+    tween(view.hlookat|view.vlookat|view.fov,220|0|100,12,linear,s_blockall(false,'auto'););
+</action>
+
+
+<style name="robot_emocions"
+    s_position="bottom"
+    s_photo="null"
+    s_heart="null"
+    s_date="null"
+    s_content="null"
+    onloaded.addevent="onloadedrobotemotions"
+    s_localize_editmode="false"
+    s_localize_radius="30|40"
+    s_localize_loked="true"
+    s_invisible_at_start="true"
+/>
+
+<action name="onloadedrobotemotions">
+
+  s_localize();
+  hotspot[*name].s_onlocalize=('robot_localize(' + name + ');');
+  hotspot[*name].s_onunlocalize=('robot_unlocalize(' + name + ');');
+
+</action>
+
+    <action name="robot_localize" scope="local" args="robot_emotion_name">
+    
+        if (!hotspot[*robot_emotion_name].s_localize_loked,
+                tween(hotspot[*robot_emotion_name].alpha,1,0.2);
+                ,
+                trace('localized ',robot_emotion_name);
+        );
+    
+    </action>
+
+    <action name="robot_unlocalize" scope="local" args="robot_emotion_name">
+    
+        if (!hotspot[*robot_emotion_name].s_localize_loked,
+                tween(hotspot[*robot_emotion_name].alpha,0,0.2);
+                ,
+                trace('unlocalized ',robot_emotion_name);
+        );
+        
+    </action>
+
+<hotspot name="robot_gamelocalize_miedo"   style="speech_bubbles|robot_emocions"
+    ath="-8.99965476385239" atv="-20.391371394153683"
+    s_user="MIEDO"
+    s_photo="expressions/fear.gif"
+
+/> 
+<hotspot name="robot_gamelocalize_alegria"   style="speech_bubbles|robot_emocions"
+    ath="19.25331477988027" atv="-15.086289896487797" scale="1" rx="0" ry="0" rz="0"
+    s_user="ALEGRÍA"
+    s_photo="expressions/happy.gif"
+/> 
+<hotspot name="robot_gamelocalize_tristeza"   style="speech_bubbles|robot_emocions"
+    ath="74.8435358277759" atv="-1.9541129055408029" scale="1" rx="0" ry="0" rz="0"
+    s_user="TRISTEZA"
+    s_photo="expressions/sad.gif"
+/> 
+<hotspot name="robot_gamelocalize_asco"   style="speech_bubbles|robot_emocions"
+    ath="106.090220982739" atv="-2.5098368978926384" scale="1" rx="0" ry="0" rz="0"
+    s_user="ASCO"
+    s_photo="expressions/disgust.gif"
+/> 
+<hotspot name="robot_gamelocalize_rabia"   style="speech_bubbles|robot_emocions"
+    ath="143.62356894703095" atv="-13.810478200901802" scale="1" rx="0" ry="0" rz="0"
+    s_user="RABIA"
+    s_photo="expressions/rage.gif"
+/> 
+
+</krpano>

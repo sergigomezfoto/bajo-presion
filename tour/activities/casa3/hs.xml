@@ -1,16 +1,37 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapaaunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="etna-pc" ath="42.208530389016744" atv="-24.705535537440802" scale="1.184999999999996" rx="10" ry="-16.5" rz="1.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="¿Vemos el vídeo juntas?"
+    s_date="null"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Yo a veces confundo [br]la envidia con la admiración... [br]A ver que te parece el vídeo!"
+    onclick.addevent="etna-play-pc();"
     
 />
+
+
+<action name="etna-play-pc">
+lookto(169.55,-13.66,100,tween(easeinoutquad,0.6));
+tween(hotspot[play].alpha,0.5,0.7);
+</action>    
+
+
+
+<hotspot name="play" ath="171.15844035955206" atv="-24.507024574646646" scale="0.8" rx="-23" ry="0" rz="0"  distorted="true"  
+    
+    
+    type="image" 
+    url="assets/play.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="js:launchPopup('link1casa3');"
+    alpha="0"
+/> 
 
 
 </krpano>

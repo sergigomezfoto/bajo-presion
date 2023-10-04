@@ -1,16 +1,249 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="p01" ath="146.9447920780254" atv="-7.567606804035347" scale="1" rx="0.5" ry="12" rz="-2.5"  style="speech_bubbles"
+    s_position="right"
+    s_photo="miki"
+    s_user="@miki_entrenador"
+    s_date="1m"
+    s_heart="true"
+    s_content="Time Out! [br]Quien quiere compartirle a Etna [br]alguna situación en la que no[br] se sintiera cómoda?"
+    onclick.addevent="p01_action();"
+/>
+<action name="p01_action">
+    looktohotspot(p02,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p01].alpha,0,1);
+    tween(hotspot[p02].alpha,1,1);
+</action>
+
+
+<hotspot name="p02"  ath="-50.79368517385757" atv="-13.258474821323231" scale="1" rx="0" ry="0" rz="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="maria"
+    s_user="@maria"
+    s_date="6m"
+    s_heart="true"
+    s_content="Va a venir a verme al partido la chica [br]que me gusta y seguro que me paso[br] todo el entreno en el banquillo... "
+    onclick.addevent="p02_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p02_action">
+    looktohotspot(p03,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p02].alpha,0,1);
+    tween(hotspot[p03].alpha,1,1);
+</action>
+
+<hotspot name="p03"  ath="34.57576920111393" atv="-15.954877755653346" scale="1" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alexandra"
+    s_user="@alexandra"
+    s_date="12m"
+    s_heart="true"
+    s_content="Me ha venido la regla y he [br]
+                manchado mis pantalones,[br]
+                además son blancos... "
+    onclick.addevent="p03_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p03_action">
+    looktohotspot(p04,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p03].alpha,0,1);
+    tween(hotspot[p04].alpha,1,1);
+</action>
+
+<hotspot name="p04"  ath="-15.63865242335828" atv="-12.949441918454838" scale="1" rx="-8" ry="-4" rz="17" style="speech_bubbles"
+    s_position="bottomright"
+    s_photo="nil"
+    s_user="@nil"
+    s_date="14m"
+    s_heart="true"
+        s_content="Han descubierto que me gusta Marc y [br]
+                    me hacen muchas bromas al respeto.   "
+    onclick.addevent="p04_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p04_action">
+    looktohotspot(p05,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p04].alpha,0,1);
+    tween(hotspot[p05].alpha,1,1);
+</action>
+
+<hotspot name="p05"  ath="-112.14764959813294" atv="1.3548778467989044" scale="1" rx="9.5" ry="-10" rz="0" style="speech_bubbles"
+    s_position="right"
+    s_photo="julia"
+    s_user="@julia"
+    s_date="16m"
+    s_heart="true"
+        s_content="Alguien ha estado pasando fotos mías [br]
+                    íntimas. Han llegado a todo el equipo, [br]
+                    incluido el entrenador... "
+    onclick.addevent="p05_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p05_action">
+    looktohotspot(p06,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p05].alpha,0,1);
+    tween(hotspot[p06].alpha,1,1);
+</action>
+
+<hotspot name="p06"  ath="42.00194992879983" atv="-17.55190442799158" scale="1" rx="4.5" ry="-24.5" rz="-11.5" style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="viktor"
+    s_user="@viktor"
+    s_date="21m"
+    s_heart="true"
+        s_content="Se ha creado un rumor sobre mí: “la  [br]
+                    gente no puede tocarme o les pasaré  [br]
+                    una enfermedad. Todo el mundo me  evita..."
+    onclick.addevent="p06_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p06_action">
+    looktohotspot(p07,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p06].alpha,0,1);
+    tween(hotspot[p07].alpha,1,1);
+</action>
+
+<hotspot name="p07" ath="103.21053952648407" atv="-2.202965059148845" scale="1" rx="13.5" ry="-15.5" rz="-3" style="speech_bubbles"
+    s_position="left"
+    s_photo="laura"
+    s_user="@laura"
+    s_date="26m"
+    s_heart="true"
+        s_content="Teníamos que hacer un recorrido  [br]
+                    corriendo alrededor del polideportivo  [br]
+                    y he llegado la última. Todos estaban  [br]
+                    cansados de esperarme. "
+    onclick.addevent="p07_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p07_action">
+    looktohotspot(p08,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p07].alpha,0,1);
+    tween(hotspot[p08].alpha,1,1);
+</action>
+
+
+<hotspot name="p08"  ath="-48.16563107276971" atv="2.925026036985194" scale="1" rx="13.5" ry="-21.5" rz="1" style="speech_bubbles"
+    s_position="right"
+    s_photo="miriam"
+    s_user="@aiko"
+    s_date="30m"
+    s_heart="true"
+        s_content="Se ríen de mi hermana pequeña  [br]
+furante el entreno delante de mí  [br]
+por la forma cómo corre.  "
+    onclick.addevent="p08_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p08_action">
+    looktohotspot(p09,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p08].alpha,0,1);
+    tween(hotspot[p09].alpha,1,1);
+</action>
+
+
+<hotspot name="p09" ath="6.23576100267411" atv="-9.985002220854728" scale="1" rx="18" ry="-24" rz="-5.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@marc"
+    s_date="39m"
+    s_heart="true"
+        s_content="Le he dicho papá al entrenador.  "
+    onclick.addevent="p09_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p09_action">
+    looktohotspot(p10,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p09].alpha,0,1);
+    tween(hotspot[p10].alpha,1,1);
+</action>
+
+<hotspot name="p10"  ath="-52.5983361504276" atv="-11.984372541210064" scale="1" rx="18" ry="-24" rz="-16" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="maria"
+    s_user="@maria"
+    s_date="43m"
+    s_heart="true"
+        s_content="En el último verano me han crecido[br]
+ los pechos, y en el equipo me están [br]
+haciendo comentarios al respeto. "
+    onclick.addevent="p10_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p10_action">
+    looktohotspot(p11,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p10].alpha,0,1);
+    tween(hotspot[p11].alpha,1,1);
+</action>
+
+<hotspot name="p11" ath="49.901195997856576" atv="-10.176466505006287" scale="1" rx="-12.5" ry="-15.5" rz="18.5" style="speech_bubbles"
     s_position="bottom"
     s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_user="@alex"
+    s_date="48m"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+        s_content="Se me ha escapado un pedo. "
+    onclick.addevent="p11_action();"
+    s_invisible_at_start="true"
 />
+<action name="p11_action">
+    looktohotspot(p12,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p11].alpha,0,1);
+    tween(hotspot[p12].alpha,1,1);
+</action>
+
+<hotspot name="p12" ath="-17.994232853512074" atv="-13.737451444368904" scale="1" rx="-22" ry="-27" rz="18.5" style="speech_bubbles"
+    s_position="bottomright"
+    s_photo="laia"
+    s_user="@laia"
+    s_date="50m"
+    s_heart="true"
+        s_content="El entrenador me ha pedido en [br]
+                el partido que haga un bloqueo[br]
+                y no he sabido qué hacer. "
+    onclick.addevent="p12_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p12_action">
+    looktohotspot(p13,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p12].alpha,0,1);
+    tween(hotspot[p13].alpha,1,1);
+</action>
+
+<hotspot name="p13" ath="-86.69766460270284" atv="-13.081383717020872" scale="1" rx="21.5" ry="10.5" rz="-21" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@julia"
+    s_date="54m"
+    s_heart="true"
+        s_content="No me gusta mi cuerpo y mis [br]
+compañeras están haciendo burla de [br]
+alguien con un cuerpo parecido al mío."
+    onclick.addevent="p13_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p13_action">
+    looktohotspot(p14,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p13].alpha,0,1);
+    tween(hotspot[p14].alpha,1,1);
+</action>
 
 
+<hotspot name="p14" ath="146.9447920780254" atv="-7.567606804035347" scale="1" rx="0.5" ry="12" rz="-2.5"  style="speech_bubbles"
+    s_position="right"
+    s_photo="miki"
+    s_user="@miki_entrenador"
+    s_date="1h"
+    s_heart="false"
+    s_content="Fin del Time Out! [br]¿Quereis volver a escuchar a vuestros[br] compañeros o vamos con unos tiros libres?"
+    onclick.addevent="p14_action();"
+    s_invisible_at_start="true"
+/>
+<action name="p14_action">
+    looktohotspot(p02,105,tween(easeinoutquad,0.8));
+    tween(hotspot[p14].alpha,0,1);
+    tween(hotspot[p02].alpha,1,1);
+</action>
 </krpano>
+

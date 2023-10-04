@@ -1,0 +1,28 @@
+<krpano>
+
+
+<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="alex"
+    s_user="hola"
+    s_date="1w"
+    s_heart="true"
+    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    onclick.addevent="cards"
+    
+/>
+
+<action name="cards" >
+
+s_random(1,13,cards_random);
+jscall(
+    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const ampleDesitjat = `${amplePantalla * 0.6}px`;
+    launchImagePopup('outside/cards/assets/' + krpano.cards_random + '.jpg','600px');
+);
+
+</action>
+
+
+
+</krpano>

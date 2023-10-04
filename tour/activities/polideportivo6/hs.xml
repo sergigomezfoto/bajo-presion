@@ -1,16 +1,136 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="viktor-redbull" ath="-137.45956036091277" atv="0.9305020852570149" scale="1" rx="2.5" ry="14.5" rz="10" style="speech_bubbles"
+    s_position="right"
+    s_photo="viktor"
+    s_user="@viktor"
+    s_date="3w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="¿Quieres una [b]Energy Drink?🍾[/b] Esto te va a [br]hacer sentir bien, después del entreno!🤩"
+    onclick.addevent="action_01();" 
 />
+<action name="action_01">
+    tween(hotspot[poliesportiu_6-si].alpha,1,0.1);
+    lookto(-95,25,105,tween(easeinoutquad,0.6));
+    tween(hotspot[viktor-redbull].alpha,0,0.4);
+    tween(hotspot[alex-redbull-si].alpha,1,0.4);
+</action>
+
+<hotspot name="alex-redbull-si" ath="-66.10555681923819" atv="5.639658189588095" scale="1" rx="14.699999999999998" ry="30" rz="0" style="speech_bubbles"
+    s_position="left"
+    s_photo="alex"
+    s_user="@alex"
+    s_date="5w"
+    s_heart="true"
+    s_content="Claro!!🍾🍾 [br]Brindemos!"
+    onclick.addevent="action_02();" 
+    s_invisible_at_start="true"
+/>
+<action name="action_02">
+    tween(hotspot[poliesportiu_6-si].alpha,0,0.1);
+    lookto(-113,18,126,tween(easeinoutquad,0.6));
+    tween(hotspot[alex-redbull-si].alpha,0,0.4);
+    tween(hotspot[viktor-redbull2].alpha,1,0.4);
+</action>
+
+    <hotspot name="poliesportiu_6-si"
+            url="assets/poliesportiu_6-si.png"
+            distorted="true"
+            onloaded="calc_pos_from_hfov_yaw_pitch_roll(52.5926, 95.6654, -6.46448, 19.4015); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+            handcursor="false"
+            enabled="false"
+            visible="true"
+            alpha="0"
+            zorder="10"
+            bgcapture="false"
+    />
+
+<hotspot name="viktor-redbull2" ath="-130.1250696590971" atv="-1.3276973663931384" scale="1" rx="2.5" ry="4" rz="16" style="speech_bubbles"
+    s_position="right"
+    s_photo="viktor"
+    s_user="@viktor"
+    s_date="3w"
+    s_heart="true"
+    s_content="¿De verdad te apetece...?"
+    onclick.addevent="action_03();" 
+    s_invisible_at_start="true"
+/>
+<action name="action_03">
+    tween(hotspot[poliesportiu_6-no].alpha,1,0.1);
+    lookto(-95,25,105,tween(easeinoutquad,0.6));
+    tween(hotspot[alex-redbull-no].alpha,1,0.4);
+    tween(hotspot[viktor-redbull2].alpha,0,0.4);
+</action>
+
+<hotspot name="alex-redbull-no" ath="-61.22189234868449" atv="10.394105942957237" scale="1" rx="14.699999999999998" ry="30" rz="0" style="speech_bubbles"
+    s_position="left"
+    s_photo="alex"
+    s_user="@alex"
+    s_date="5w"
+    s_heart="true"
+    s_content="En realidad... No me apetece, [br]pero no siempre se es tan asertivo..."
+    onclick.addevent="action_04();" 
+    s_invisible_at_start="true"
+/>
+<action name="action_04">
+    tween(hotspot[poliesportiu_6-no].alpha,0,0.1);
+    lookto(-113,18,126,tween(easeinoutquad,0.6));
+    tween(hotspot[alex-redbull-no].alpha,0,0.4);
+    tween(hotspot[viktor-redbull3].alpha,1,0.4);
+</action>
+<hotspot name="viktor-redbull3" ath="-137.45956036091277" atv="0.9305020852570149" scale="1" rx="2.5" ry="14.5" rz="10" style="speech_bubbles"
+    s_position="right"
+    s_photo="viktor"
+    s_user="@viktor"
+    s_date="3w"
+    s_heart="true"
+    s_content="Lo sé... Esta vez me han ayudado a ser-lo... [br]Hagamos la actividad juntes!"
+    onclick.addevent="js:launchPopup('link1poli6');" 
+    s_invisible_at_start="true"
+/>
+
+    <hotspot name="poliesportiu_6-no"
+            url="assets/poliesportiu_6-no.png"
+            distorted="true"
+            onloaded="calc_pos_from_hfov_yaw_pitch_roll(52.5926, 95.6654, -6.46448, 19.4015); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+            handcursor="false"
+            enabled="false"
+            visible="true"
+            alpha="0"
+            zorder="10"
+            bgcapture="false"
+    />
+
+
+
+
+
+
+
+<hotspot name="laura-redbull" ath="63.45303390539556" atv="-2.2401039544900048" scale="1" rx="0" ry="0" rz="11" style="speech_bubbles"
+    s_position="bottomright"
+    s_photo="laura"
+    s_user="@laura"
+    s_date="4w"
+    s_heart="null"
+    s_content="Salud! 🍻"   
+    enabled="false"  handcursor="false" 
+/>
+
+<hotspot name="julia-redbull" ath="131.9638057679933" atv="5.211502006998379" scale="1" rx="12.5" ry="7" rz="-4.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="julia"
+    s_user="@julia"
+    s_date="5w"
+    s_heart="null"
+    s_content="Nos lo hemos ganado... 😵‍💫"  
+    enabled="false"  handcursor="false"  
+/>
+
+
+
+
 
 
 </krpano>

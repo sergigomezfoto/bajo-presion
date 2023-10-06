@@ -1,0 +1,69 @@
+﻿<krpano version="1.21" title="Virtual Tour">
+<autorotate enabled="true"
+            waittime="1.5"
+            accel="0.5"
+            speed="10.0"
+            horizon="0.0"
+            tofov="off"
+            oneroundrange="360.0"
+            zoomslowdown="true"
+            interruptionevents="userviewchange|layers|keyboard"
+            />
+	<action name="skin_onstart_loadscene" scope="local" autorun="onstart">
+		
+		<!-- load first scene -->
+		loadscene(calc(isset(startscene) ? startscene : 0), null, MERGE);
+	
+		<!-- set optional startup lookat -->
+		if(isset(startlookat),
+			txtsplit(startlookat, ',', hlookat,vlookat,fov,distortion,architectural);
+			lookat(get(hlookat),get(vlookat),get(fov),get(distortion),get(architectural));
+		);
+
+	</action>
+	
+	
+	<scene name="scene_casa_7" title="casa_7" onstart="trace('coiis');" thumburl="panos/casa_7.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/casa_7.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/casa_7.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
+		</image>
+
+	</scene>
+
+	<scene name="scene_casa_8" title="casa_8" onstart="" thumburl="panos/casa_8.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/casa_8.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/casa_8.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
+		</image>
+
+	</scene>
+
+	<scene name="scene_casa_9" title="casa_9" onstart="" thumburl="panos/casa_9.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/casa_9.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/casa_9.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
+		</image>
+
+	</scene>
+
+
+</krpano>

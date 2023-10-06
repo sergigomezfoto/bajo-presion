@@ -1,0 +1,21 @@
+
+
+#text_container{
+    position: absolute;
+    z-index: 2121231321;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    backdrop-filter: blur(3px);   
+    overflow-y: auto;
+
+}
+#text_wrapper{
+    padding: 40px;
+}
+#text_container h1{
+    font-family: 'bw_black';
+    text-align: center;
+}
+#text_container p{
+    line-height: 2rem;
+}

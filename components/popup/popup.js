@@ -16,6 +16,59 @@ const closePopup = async (overlay, iframeContainer, options) => {
   }
 };
 
+const launchPopupOutsideTour = async (extraNode, width='80%', height='80%',  providedOptions = {}) => {
+  const options = { ...popupDefaultOptions, ...providedOptions }; // Combinar opcions predeterminades amb les proporcionades
+
+  const overlay = document.createElement("div");
+  overlay.className = "iframeOverlay";
+  if (options.overlayColor) {
+    overlay.style.backgroundColor = options.overlayColor;
+  }
+  
+  const iframeContainer = document.createElement("div");
+  iframeContainer.className = "iframeContainer";
+  iframeContainer.style.width = width;
+  iframeContainer.style.height = height;
+
+  const iframeLoader = document.createElement("div");
+  iframeLoader.className = "iframeLoader";
+  iframeContainer.appendChild(iframeLoader);
+
+  const iframe = document.createElement("iframe");
+  const URL=extraNode
+  iframe.src =URL;
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.style.opacity = "0";
+  iframe.style.transition = "opacity 0.5s";
+
+  iframe.onload = function () {
+    iframeLoader.style.display = "none";
+    iframe.style.opacity = "1";
+  };
+
+  iframeContainer.appendChild(iframe);
+  overlay.appendChild(iframeContainer);
+
+  const closeButton = document.createElement("button");
+  closeButton.innerText = "X";
+  closeButton.className = "iframeCloseButton";
+  closeButton.addEventListener("click", () => closePopup(overlay, iframeContainer, options));
+  iframeContainer.appendChild(closeButton);
+
+  overlay.addEventListener("click", function (event) {
+    if (event.target === overlay) {
+      closePopup(overlay, iframeContainer, options);
+    }
+  });
+
+  document.body.appendChild(overlay);
+
+  overlay.style.opacity = "1";
+  await awaitStylecomplete(overlay, "opacity", "1");
+  iframeContainer.style.opacity = "1";
+
+}
 const launchPopup = async (extraNode, width='80%', height='80%',  providedOptions = {}) => {
   const options = { ...popupDefaultOptions, ...providedOptions }; // Combinar opcions predeterminades amb les proporcionades
 
@@ -35,7 +88,7 @@ const launchPopup = async (extraNode, width='80%', height='80%',  providedOption
   iframeContainer.appendChild(iframeLoader);
 
   const iframe = document.createElement("iframe");
-  const URL =data[Game.place].panos[Game.panoIndex].extra[extraNode]
+  const URL=data[Game.place].panos[Game.panoIndex].extra[extraNode]
   iframe.src =URL;
   iframe.width = "100%";
   iframe.height = "100%";

@@ -363,6 +363,14 @@ if (caller.s_heart == 'true' OR !isset(caller.s_heart) OR caller.s_heart == 'tra
 
 </action>
 
+<action name="add_points_normal" scope="local">
+if (!caller.s_add_points,
+jscall("Game.incPanoPoints()");
+check_talents_and_next();
+caller.s_add_points=true;
+);
+</action>
+
 <action name="check_talents_and_next" scope="local">
 jscall("Game.checkPanoPointsGoal(showNextPano)"); 
 if(!isset(caller.allready_clicked),

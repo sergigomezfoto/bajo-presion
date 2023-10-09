@@ -7,7 +7,7 @@
     s_user="hola"
     s_date="1w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
+    s_content="boto per passar"
     onclick.addevent="js:launchPopup('casadoslink');"
     
 />

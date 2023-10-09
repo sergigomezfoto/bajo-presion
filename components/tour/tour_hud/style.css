@@ -77,8 +77,10 @@
 }
 
 #finalPlacePicture{
-    height: 554px;
-    width: 368px;
+    /* height: 554px; */
+    /* width: 368px; */
+    width: 600px;
+    height:431px;
     position: absolute;
     top: 175px;
     left: 50%;

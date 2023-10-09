@@ -1,16 +1,46 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+<hotspot name="marc1" ath="30.171871249014714" atv="4.085554392625046" scale="1.128899999999997" rx="-3.5" ry="0" rz="20"  style="speech_bubbles"
+    s_position="left"
+    s_photo="marc"
+    s_user="SuperMarc92"
+    s_date="38s"
+    s_heart="null"
+    s_content="Oye, que difícil es un[br]
+     'día cualquiera', [br]
+     tomando decisiones [br]
+     conscientemente... 😵 "
+    onclick.addevent="lookto(-150,-5,130,tween(easeinoutquad,0.8));
+    tween(hotspot[marc1].alpha,0,1);
+    tween(hotspot[viktor1].alpha,1,1);"
     
 />
-
+<hotspot name="viktor1" ath="-142.14195878872977" atv="-19.892692249197943" scale="1.1249999999999973" rx="-22" ry="-3.5" rz="-7.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="viktor"
+    s_user="Viktor_Genio_y_Figura"
+    s_date="2d"
+    s_heart="null"
+    s_content="Ya ves! Pero como mínimo él no tiene[br]
+             que enfrentarse día sí día también[br]
+            a una panda de borrachos en alta[br]
+             mar en el día a día como Tintín 🍻🤣 "
+    onclick.addevent="lookto(-39,-4,130,tween(easeinoutquad,0.8));
+    tween(hotspot[viktor1].alpha,0,1);
+    tween(hotspot[marc2].alpha,1,1);"
+     s_invisible_at_start="true"
+/>
+<hotspot name="marc2" ath="-26.886194478982134" atv="-19.174345490164132" scale="1.229999999999995" rx="-27.5" ry="-4.5" rz="20" style="speech_bubbles"
+    s_position="right"
+    s_photo="marc"
+    s_user="SuperMarc92"
+    s_date="14m"
+    s_heart="true"
+    s_content="Jejeeje! Nunca pasa [br]de moda eh, Tintín![br] Me ayudas con la [br]historieta de Nico? "
+    onclick.addevent="js:launchPopup('link1centro3');"
+     s_invisible_at_start="true"
+    
+/>
 
 </krpano>

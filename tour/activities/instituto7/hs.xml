@@ -1,16 +1,309 @@
 <krpano>
 
-
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<!-- 00  -->
+<hotspot name="baf_00" ath="28.23463634204819" atv="-15.156396292463237" scale="1" rx="-19.5" ry="37" rz="0" style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_photo="maria"
+    s_user="@MeryDreamer68"
+    s_date="23m"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Ahora que hemos visto bastantes casos, qué creéis que [br]podríamos hacer para ayudar a alguien que lo esté sufriendo?"
+    onclick.addevent="baf_00_action();"  
 />
-
+<action name="baf_00_action">
+    tween(hotspot[greta-nico].alpha,1,0.1);
+    looktohotspot(baf_01,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_00].alpha,0,1);
+    tween(hotspot[baf_01].alpha,1,1);
+</action>
+<!-- 01  -->
+<hotspot name="baf_01" ath="-150.0669092794374" atv="-9.42406278170523" scale="1" rx="-2.5" ry="-16" rz="3" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="16m"
+    s_heart="true"
+    s_content="Escucha y valida sus sentimientos: Si alguien se abre contigo[br]
+     sobre su experiencia de acoso, escúchala atentamente y muestra empatía. [br]
+     Hazle saber que lo que está sintiendo es válido y que no está sola."
+    onclick.addevent="baf_01_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="greta-nico"
+        url="assets/institut_7-greta-nico.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(25.856, 147.952, -14.568, 12.8598); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_01_action">
+    
+    looktohotspot(baf_02,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_01].alpha,0,1);
+    tween(hotspot[baf_02].alpha,1,1);
+</action>
+<!-- 02 -->
+<hotspot name="baf_02" ath="-139.97398077762747" atv="-10.034136160186808" scale="1" rx="-2.5" ry="-16" rz="7" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="nico"
+    s_user="@Nicon_Platon"
+    s_date="9d"
+    s_heart="true"
+    s_content="No minimices su experiencia: El acoso escolar puede tener  [br]
+    un impacto profundo en la salud mental y física de una persona. [br]
+    Evita decir cosas como 'no es para tanto' o 'sólo están bromeando'. [br]
+    En lugar de ello, reconoce la gravedad de la situación."
+    onclick.addevent="baf_02_action" 
+    s_invisible_at_start="true" 
+/>
+<action name="baf_02_action">
+    tween(hotspot[greta-nico].alpha,0,0.1); 
+    tween(hotspot[ruth].alpha,1,0.1); 
+    looktohotspot(baf_03,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_02].alpha,0,1);
+    tween(hotspot[baf_03].alpha,1,1);
+</action>
+<!-- 03  -->
+<hotspot name="baf_03" ath="-44.73163957865182" atv="-9.41141501416538" scale="1" rx="-12.5" ry="-32" rz="15.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="ruth"
+    s_user="@AnnonaCherimola"
+    s_date="12w"
+    s_heart="true"
+    s_content="Ofrece tu apoyo: Hazle saber que estás allí para ayudarle[br]
+    en la forma que puedas. Esto puede ser desde brindarle un hombro[br]
+    sobre el cual llorar, hasta intervenir directamente (si te sientes [br]
+    segura para hacerlo) o buscar ayuda de una persona adulta."
+    onclick.addevent="baf_03_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="ruth"
+        url="assets/institut_7-ruth.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(9.37449, 48.8382, 6.26805, 6.16132); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_03_action">
+    tween(hotspot[ruth].alpha,0,0.1); 
+    tween(hotspot[mariona].alpha,1,0.1); 
+    looktohotspot(baf_04,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_03].alpha,0,1);
+    tween(hotspot[baf_04].alpha,1,1);
+</action>
+<!-- 04  -->
+<hotspot name="baf_04" ath="-70.22956630964347" atv="-11.336911158970187" scale="1" rx="-14.5" ry="-9.5" rz="7" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="mariona"
+    s_user="@Chispis_Marions"
+    s_date="1d"
+    s_heart="true"
+    s_content="Alentar a la persona a buscar ayuda de adultas de confianza: [br]
+    Esto puede ser una maestra, una consejera escolar, una directora o [br]
+    su familia. Ellas tienen la responsabilidad y, generalmente, los [br]
+    medios para abordar el acoso escolar de manera efectiva."
+    onclick.addevent="baf_04_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="mariona"
+        url="assets/institut_7-mariona.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(20.3621, 76.3962, 4.66665, 27.0444); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_04_action">
+    tween(hotspot[mariona].alpha,0,0.1); 
+    tween(hotspot[viktor].alpha,1,0.1); 
+    looktohotspot(baf_05,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_04].alpha,0,1);
+    tween(hotspot[baf_05].alpha,1,1);
+</action>
+<!-- 05 -->
+<hotspot name="baf_05" ath="172.34094224594133" atv="-15.902668245792698" scale="1" rx="-8.5" ry="-18.5" rz="10" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="viktor"
+    s_user="@Viktor_Genio_y_Figura"
+    s_date="1d"
+    s_heart="true"
+    s_content="Perdón, estaba en el baño... 🚽🚾💩🤣 Otra propuesta:[br]
+    No te involucres en el acoso: Nunca participes en el acoso, [br]
+    incluso si sientes presión de tus compañeras para hacerlo. [br]
+    Mantén tu integridad y sé un modelo a seguir para otras."
+    onclick.addevent="baf_05_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="viktor"
+        url="assets/institut_7-viktor.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(8.27572, -169.272, -6.7288, -3.10778); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_05_action">
+    tween(hotspot[viktor].alpha,0,0.1); 
+    tween(hotspot[laura].alpha,1,0.1); 
+    looktohotspot(baf_06,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_05].alpha,0,1);
+    tween(hotspot[baf_06].alpha,1,1);
+</action>
+<!-- 06 -->
+<hotspot name="baf_06" ath="-66.60692901043348" atv="-7.695372013601476" scale="1" rx="-5.5" ry="-35.5" rz="-12.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="laura"
+    s_user="@Wave_Laurii"
+    s_date="1d"
+    s_heart="true"
+    s_content="Se una defensora activa: Si ves acoso escolar, toma [br]
+    medidas. Si te sientes segura, puedes intervenir directamente, [br]
+    o puedes reportarlo a una adulta. Recuerda, el silencio puede [br]
+    ser interpretado como aprobación por quienes realizan el acoso."
+    onclick.addevent="baf_06_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="laura"
+        url="assets/institut_7-laura.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(24.2078, 53.9109, -23.2144, 39.2217); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_06_action">
+    tween(hotspot[laura].alpha,0,0.1); 
+    tween(hotspot[marc].alpha,1,0.1); 
+    looktohotspot(baf_07,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_06].alpha,0,1);
+    tween(hotspot[baf_07].alpha,1,1);
+</action>
+<!-- 07 -->
+<hotspot name="baf_07" ath="-102.32811534519567" atv="-7.037107333795109" scale="1" rx="-18" ry="-17" rz="3.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@SuperMarc92"
+    s_date="1d"
+    s_heart="true"
+    s_content="Educación y sensibilización: Participa en o promueve programas [br]
+    de prevención de acoso en tu escuela. La educación puede ser una[br]
+    herramienta poderosa para cambiar la cultura de acoso en las escuelas."
+    onclick.addevent="baf_07_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="marc"
+        url="assets/institut_7-marc.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(13.0864, 106.069, 7.00488, 15.3397); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_07_action">
+    tween(hotspot[marc].alpha,0,0.1); 
+    tween(hotspot[marta].alpha,1,0.1); 
+    looktohotspot(baf_08,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_07].alpha,0,1);
+    tween(hotspot[baf_08].alpha,1,1);
+</action>
+<!-- 08 -->
+<hotspot name="baf_08" ath="-19.560875379119977" atv="-8.005178138269201" scale="1" rx="-0.5" ry="-7.5" rz="11" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marta"
+    s_user="@marta_ink371"
+    s_date="1d"
+    s_heart="true"
+    s_content="Se me ocurre también... Quizá podríamos poner un buzón 📫 anónimo[br]
+    donde podamos comunicaros a los profesores 📩 que hemos detectado o creemos [br]
+    que está habiendo una situación de bullyng💪😥, y así podéis tomar medidas..."
+    onclick.addevent="baf_08_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="marta"
+        url="assets/institut_7-marta.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(31.0329, 24.9983, 18.396, 12.1002); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_08_action">
+    <!--tween(hotspot[marta].alpha,0,0.1); 
+     tween(hotspot[xxx].alpha,1,0.1);  -->
+    looktohotspot(baf_09,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_08].alpha,0,1);
+    tween(hotspot[baf_09].alpha,1,1);
+</action>
+<!-- 09 -->
+<hotspot name="baf_09" ath="-40.24824776040953" atv="-6.196417927427129" scale="1" rx="7.5" ry="-17" rz="-11" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@JuliaStarz_12"
+    s_date="12d"
+    s_heart="true"
+    s_content="Me parece buena idea! Así no tendríamos miedo😨😨 [br]a posibles represalias de los abusadores..."
+    onclick.addevent="baf_09_action" 
+    s_invisible_at_start="true" 
+/>
+<action name="baf_09_action">
+    tween(hotspot[marta].alpha,0,0.1); 
+    tween(hotspot[nil].alpha,1,0.1); 
+    looktohotspot(baf_10,105,tween(easeinoutquad,0.8));
+    tween(hotspot[baf_09].alpha,0,1);
+    tween(hotspot[baf_10].alpha,1,1);
+</action>
+<!-- 10 -->
+<hotspot name="baf_10" ath="-116.10597300647242" atv="-4.710294722074999" scale="1" rx="2.5" ry="4.5" rz="2" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="nil"
+    s_user="@niiil_cardonero"
+    s_date="1d"
+    s_heart="true"
+    s_content="Quizás vosotras, que estáis detrás de estas Gafas Chupi Guais🤓🤓[br]
+    También podríais dar alguna propuesta para ayudar a alguien que sufra acoso... "
+    onclick.addevent="baf_10_action" 
+    s_invisible_at_start="true" 
+/>
+<hotspot name="nil"
+        url="assets/institut_7-nil.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(17.2984, 118.297, -5.86312, 15.2228); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        zorder="2"
+        bgcapture="false"
+    />
+<action name="baf_10_action">
+    tween(hotspot[julia].alpha,0,0.1);  
+    <!-- tween(hotspot[xxx].alpha,1,0.1);  -->
+    <!-- looktohotspot(baf_09,105,tween(easeinoutquad,0.8)); -->
+    tween(hotspot[baf_10].alpha,0,1);
+    <!-- tween(hotspot[baf_09].alpha,1,1); -->
+</action>
 
 </krpano>

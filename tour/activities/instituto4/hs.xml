@@ -1,4 +1,18 @@
 <krpano>
+<!-- <<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="borrar" ath="39.707627588967966" atv="-25.59902097411777" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="maria"
+    s_user="@MeryDreamer68"
+    s_date="23m"
+    s_heart="true"
+    s_content="botó per passar d'activitat. [br]A data.js, posar que son 5 punts!!"
+    onclick.addevent=""  
+/>
+<!-- <<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+
+
+
 
 <!-- <<<<<<<<<<<<<<<<<< VIDEO MOTXILLA >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 <hotspot name="boto-play-mochilla" ath="-47.096738926866806" atv="-9.35589567562806" scale="0.3199999999999996"  distorted="true"  

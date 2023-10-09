@@ -1,0 +1,66 @@
+<krpano>
+
+
+<hotspot name="profe-vr" ath="-34.67897319579231" atv="-14.242779631073295" scale="1" rx="7" ry="21.5" rz="-16.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="carlos"
+    s_user="@carlos_profe_molon"
+    s_date="1h"
+    s_heart="true"
+    s_content="Ponte las gafas VR 🤓 [br]y vívelo en primera persona!"
+    onclick.addevent="js:launchPopup('link1insti2');"
+/>
+<hotspot name="ruth-pc" ath="-2.7821726560885054" atv="2.2890820237102822" scale="1" rx="-6.5" ry="10" rz="12" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="ruth"
+    s_user="@AnnonaCherimola"
+    s_date="1h"
+    s_heart="true"
+    s_content="O puedes verlo directamente [br] en el ordenador 🖥️"
+    onclick.addevent="js:launchPopup('link2insti2');"
+/>
+
+
+<hotspot name="mariona" ath="55.66085212077883" atv="-4.334213193041491" scale="1" rx="-13.5" ry="25.5" rz="3" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="mariona"
+    s_user="@Chispis_Marion"
+    s_date="27m"
+    s_heart="true"
+    s_content="Joder que mierda... 😰📉[br] He suspendido!"
+    onclick.addevent="js:launchPopup('link3insti2');"
+/>
+<hotspot name="abuseitors" ath="170.4233362729825" atv="-13.731143087126217" scale="1" rx="3.5" ry="-0.5" rz="-17" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="abuseitors"
+    s_user="@abuseitors2000"
+    s_date="3h"
+    s_heart="null"
+    s_content="Ha vuelto a suspender! Es que parece [br]que lo hace a posta! 🤣🐸💩"
+    enabled="false"  handcursor="false" 
+/>
+
+<hotspot name="quimira" ath="-79.02986609424573" atv="-10.09176427036929" scale="1" rx="3.5" ry="-0.5" rz="10" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="laura"
+    s_user="@Wave_Laurii"
+    s_date="3h"
+    s_heart="null"
+    s_content="😶‍🌫️ Siempre la están puteando..."
+    zorder="3"
+    enabled="false"  handcursor="false" 
+/>
+
+<hotspot name="quimira2" ath="-100.74596348613107" atv="-3.6646952787938245" scale="1" rx="2" ry="-16.5" rz="-13" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@SuperMarc92"
+    s_date="3h"
+    s_heart="null"
+    s_content="Esto no va con nosotros 🤷🏻‍♂️"
+    zorder="2"
+    enabled="false"  handcursor="false" 
+/>
+
+
+</krpano>

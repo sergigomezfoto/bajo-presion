@@ -9,14 +9,15 @@
     edge="center" 
     enabled="true"
     handcursor="true"
-    onclick.addevent="tween(hotspot[help-pop-up].alpha,1,1);"
+    onclick.addevent="tween(hotspot[help-pop-up].alpha,1,1); 
+    tween(hotspot[close-help].alpha,1,1);"
 /> 
 
 
     
 
 
-<hotspot name="help-pop-up" ath="180" atv="0" distorted="true" style="speech_bubbles" 
+<hotspot name="help-pop-up" ath="-166.19860145824435" atv="7.094745630740572" scale="1.2768999999999948" rx="5.849999999999997" ry="-14.049999999999994" rz="0" distorted="true" style="speech_bubbles" 
     s_position="null"
     s_photo="null"
     s_user="null"
@@ -35,9 +36,23 @@ AFECTIVIDAD - VALENTÍA - SER PREVISOR/A - PACIENCIA - INTELIGENTE EN...
 "
     onclick.addevent="tween(hotspot[help-pop-up].alpha,0,1);"
     s_invisible_at_start="true"
-  
-  
-
+    zorder="99"
+    enabled="false"
+    handcursor="false"
+/> 
+<hotspot name="close-help" ath="-133.84456577578544" atv="-8.62801177122541" scale="0.49499999999999955" rx="-21.5" ry="-25" rz="0" distorted="true"  
+    alpha="0"
+    s_invisible_at_start="true"
+    type="image" 
+    url="assets/close_pissarra.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="tween(hotspot[help-pop-up].alpha,0,1); 
+    tween(hotspot[close-help].alpha,0,1);"
+    zorder="90"
+    capture="false"
 /> 
 
 
@@ -50,8 +65,8 @@ AFECTIVIDAD - VALENTÍA - SER PREVISOR/A - PACIENCIA - INTELIGENTE EN...
     s_content="Puedes descargar la pizarra en tu [br]dispositivo y si quieres, compartirla."
     onclick.addevent="screenshoot()"
     s_invisible_at_start="true"
-
 /> 
+
 <hotspot name="etna" ath="0" atv="0" distorted="true"  style="speech_bubbles" 
     s_position="left"
     s_photo="null"

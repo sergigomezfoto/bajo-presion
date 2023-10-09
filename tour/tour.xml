@@ -30,7 +30,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-25" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/casa_1.tiles/preview.jpg" />
 
@@ -45,7 +45,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-4" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/casa_2.tiles/preview.jpg" />
 
@@ -59,7 +59,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/casa_3.tiles/preview.jpg" />
 
@@ -73,7 +73,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-105" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/casa_4.tiles/preview.jpg" />
 
@@ -256,7 +256,7 @@
 
 	<scene name="scene_instituto_1" title="instituto_1" onstart="" thumburl="panos/instituto_1.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
-		<control bouncinglimits="calc:image.cube ? true : false" />
+			<control bouncinglimits="calc:image.cube ? true : false" />
 
 		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -272,7 +272,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="37" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_2.tiles/preview.jpg" />
 
@@ -284,9 +284,9 @@
 
 	<scene name="scene_instituto_3" title="instituto_3" onstart="" thumburl="panos/instituto_3.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
-		<control bouncinglimits="calc:image.cube ? true : false" />
+			<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="158" vlookat="-27" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_3.tiles/preview.jpg" />
 
@@ -300,7 +300,7 @@
 		
 			<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-95" vlookat="-21" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_4.tiles/preview.jpg" />
 
@@ -314,7 +314,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-82" vlookat="-6" fovtype="MFOV" fov="85" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_5.tiles/preview.jpg" />
 
@@ -328,7 +328,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="70" vlookat="10.5" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_6.tiles/preview.jpg" />
 
@@ -340,16 +340,16 @@
 
 	<scene name="scene_instituto_7" title="instituto_7" onstart="" thumburl="panos/instituto_7.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
-		<control bouncinglimits="calc:image.cube ? true : false" />
+			<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="20" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_7.tiles/preview.jpg" />
 
 		<image>
 			<cube url="panos/instituto_7.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048" />
 		</image>
-		<include url="%FIRSTXML%/activities/instituto7/hs.xml" />
+				<include url="%FIRSTXML%/activities/instituto7/hs.xml" />
 	</scene>
 
 	<scene name="scene_instituto_8" title="instituto_8" onstart="" thumburl="panos/instituto_8.tiles/thumb.jpg" lat="" lng="" alt="" heading="">

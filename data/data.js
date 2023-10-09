@@ -56,17 +56,17 @@ const data = {
       4: {
         video: "RpLm69FLs74",
         instructions: "<p><b>¡Soy portada!</b> </p><p>Ha llegado la hora de ver cómo llevas lo de promocionarte. Como eres nueva en el pueblo, la revista comarcal va a hacer una pequeña sección sobre ti.</p><p>Ahora es tu oportunidad para hablar sobre las cualidades que has identificado anteriormente. Escribe dos o tres frases para presentarte.</p><p>¡No te cortes, la gente del pueblo tiene ganas de conocerte de verdad y aparecerás en portada!   </p>",
-        points: 1,
+        points: 2,
         aptitudes: ["liderazgo", "visión espacial"],
         extra: {
-          link1: "",
+          link1casa4: "",
 
         },
       },
       5: {
         video: "BOUlQUAen-c",
         instructions: "<p><b>¡No cruces ahora! </b> </p><p>A continuación, tendrás que reflexionar sobre tus límites. Aparecerán distintas situaciones y tendrás que seleccionar verde o rojo, dependiendo de si lo toleras o no, siendo verde que lo aceptas y rojo que por ahí no pasas.</p> <p> ¡Vamos a ello! </p>  ",
-        points: 1,
+        points: 4,
         aptitudes: ["empatía", "innovación"],
         extra: {
           link1casa5: "https://view.genial.ly/65041d02e19b6a0011a3bf19",
@@ -258,7 +258,7 @@ const data = {
       2: {
         video: "2udfbSXOZTs",
         instructions: "<p><b>Vive un acoso escolar</b></p> <p>Vive una situación de acoso escolar en primera persona. </p><p>Escanea el código QR de la pizarra y ponte las gafas de realidad virtual. </p><p>¿Preparado para ponerte en los zapatos de cada uno de los personajes?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvio, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR a mayor resolución posible.</p>",
-        points: 1,
+        points: 2,
         aptitudes: ["perseverancia", "adaptabilidad"],
         extra: {
           link1insti2: "https://noupunt.com/test/pds/bajo-presion/tour/activities/instituto2/assets/insti2.html",
@@ -269,61 +269,59 @@ const data = {
       },
       3: {
         video: "TDIr4yTrl1o",
-        instructions: "<p><b>¿Quién es quién? </b></p> Después de ver la situación que se ha dado en clase, ¿sabrías decirme quién es quién? <p></p><p>En la siguiente actividad deberás adivinar desde dónde se vivió lo que pasó, es decir, qué roles o papeles tenía cada personaje en la situación.  </p>",
-        points: 15,
+        instructions: "<p><b>¿Quién es quién? </b></p> Después de ver la situación que se ha dado en clase, ¿sabrías decirme quién es quién? <p></p><p>En la siguiente actividad deberás adivinar desde dónde se vivió lo que pasó, es decir, qué roles o papeles tenía cada personaje en la situación.  </p><br><p><b>¡Atención!</b></p><p>Haz clic en los pósters para averiguar quién es quién...</p>",
+        points: 3,
         aptitudes: ["paciencia", "disciplina"],
         extra: {
-          link1: "https://view.genial.ly/650971e96281ff00111c367a",
-          link2: "https://view.genial.ly/650971e621818c001098595a",
-          link3: "https://view.genial.ly/6509700750d05d001190c930",
+          link1insti3: "https://view.genial.ly/650971e96281ff00111c367a",
+          link2insti3: "https://view.genial.ly/650971e621818c001098595a",
+          link3insti3: "https://view.genial.ly/6509700750d05d001190c930",
         },
       },
       4: {
         video: "00TBnXamWQg",
-        instructions: "<p><b>Esto no mola...</b></p> <p>Hay muchas cosas interesantes y divertidas en internet, pero a veces hay que ir con cuidado porque nuestro comportamiento podría dañar a los demás. Aprende qué tipos de ciberacoso existen y qué puedes hacer para respetar a tus compañeros y a la vez tener más “netiqueta”. </p><br><p><b>¡Atención!</b></p><p>La netiqueta o etiqueta net es el conjunto de normas que busca regular el comportamiento de los usuarios en internet para mantener una sana convivencia en los entornos digitales.  </p>",
-        points: 20,
+        instructions: "<p><b>Esto no mola...</b></p> <p>Hay muchas cosas interesantes y divertidas en internet, pero a veces hay que ir con cuidado porque nuestro comportamiento podría dañar a los demás. </p><p>Aprende qué tipos de ciberacoso existen y qué puedes hacer para respetar a tus compañeros y a la vez tener más “netiqueta”. </p><br><p><b>¡Atención!</b></p><p>Aquí no hay diálogos, haz clic en el PLAY de los móviles para ver los vídeos y los enlaces informatiovs!   </p>",
+        points: 1,
         aptitudes: ["creatividad", "individualidad"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1insti4: "https://www.youtube.com/embed/ZHQ03fSn9J0?si=p-FQx50TlaUirtxb",
+          link2insti4: "https://www.tupunto.org/sustancias/adicciones-sin-sustancia/como-sextear-de-manera-mas-segura/",
         },
       },
       5: {
-        instructions: "<p><b>Atrapa al Bully</b></p> <p>En clase de tecnología habéis construido una nave espacial para viajar al espacio. Pero cuidado, ha habido un pequeño incidente que podría convertir vuestro viaje en una experiencia desagradable... </p>",
-        points: 25,
+        instructions: "<p><b>Atrapa al Bully</b></p> <p>En clase de tecnología habéis construido una nave espacial para viajar al espacio. Pero cuidado, ha habido un pequeño incidente que podría convertir vuestro viaje en una experiencia desagradable... </p><br><p><b>¡Atención!</b></p><p>Sigue la conversación y juega!</p>",
+        points: 1,
         aptitudes: ["apertura", "auto-mejora"],
         extra: {
-          link1: "https://view.genial.ly/6502e599d687f3001153bba6",
+          link1insti5: "https://view.genial.ly/6502e599d687f3001153bba6",
 
         },
       },
       6: {
         instructions: "<p><b>¿Y tú qué harías? </b></p> <p>Reflexiona ahora sobre cómo actuarías tú ante el acoso escolar de un compañero o compañera. Intenta también responder estas preguntas:</p><p>¿Por qué es importante que las personas observadoras actúen ante el acoso? </p><p>¿Qué emociones se pueden sentir en el rol de “persona observadora”?</p><p>¿Puede que a veces sintamos presión por no decir nada? </p><p>¿Cómo crees que podemos vencer esa presión? </p>",
-        points: 30,
+        points: 1,
         aptitudes: ["positividad", "auto-reconocimiento"],
         extra: {
-          link1: "https://forms.office.com/e/y9rFkk4GSm",
+          link1insti6: "https://forms.office.com/pages/responsepage.aspx?id=LFvYQ2IP1ESMd8itHKVUnjk-zYsXS0VKkniDWv_RcdhURTFIRVZPUVZPQkU1SEpRR0w5U0VKNUxESiQlQCN0PWcu",
 
         },
       },
       7: {
         instructions: "<p><b>¡Stop Bullying! </b></p> <p>Vamos a ver si nuestros compañeros nos dan ideas para ayudar a alguien que está sufriendo acoso</p><p>¡Dales turno de palabra!</p>",
-        points: 35,
+        points: 10,
         aptitudes: ["descanso", "regeneración"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1: "",
+
         },
       },
       8: {
         video: "igxxG6Qy-tI",
         instructions: "<p><b>¡Pasapalabra! </b></p> <p>Y para terminar... ¿cuántos conceptos relacionados con las violencias sociales conoces?</p>",
-        points: 40,
+        points: 1,
         aptitudes: ["curiosidad", "hambre de conocimiento"],
         extra: {
-          link1: "https://view.genial.ly/65041b5d5a6dc5001103da7c",
+          link1insti8: "https://view.genial.ly/65041b5d5a6dc5001103da7c",
 
         },
 
@@ -340,7 +338,7 @@ const data = {
     panos: {
       1: {
         instructions: "<p><b>Que tu influencia seas tú</b></p> <p>Ponte en el lugar de Etna y experimenta en su piel tres formas distintas de responder a un compañero que le pide que haga algo que ella no quiere hacer.</p><p>Trasládate con las gafas de RV al parque donde Etna y sus nuevos amigos están ahora pasando el rato. </p><p>¿Te suenan estos estilos comunicativos? ¿Con qué tipo de reacción te identificas más?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvio, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR a mayor resolución posible.</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "sergigomez.com",
@@ -350,7 +348,7 @@ const data = {
       },
       2: {
         instructions: "<p><b>¿Y tú qué crees?</b></p> <p>A veces, lo que pensamos no es la realidad objetiva. Ahora tienes la oportunidad de conocer el consumo de las personas jóvenes de 14-18 años. ¡Vamos a jugar!</p><p> Greta, a quien le gusta saber la verdad de las cosas, ha revisado los últimos informes de datos extraídos de varias encuestas a jóvenes. </p><p> ¡Ponte a prueba, a ver si adivinas qué dato es el correcto!</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "",
@@ -360,7 +358,7 @@ const data = {
       3: {
         video: "DO3zz6a2MPM",
         instructions: "<p><b>Bajo presión</b></p> <p>Quizás vosotras o alguien de vuestro entorno haya vivido una situación parecida a la que veréis a continuación. </p> <p>Prestad especial atención a cómo se ejerce la presión social sobre el protagonista.</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "https://www.youtube.com/embed/7xjcDmdTjyI?si=n5rDJu-kfDTbWYWK",
@@ -370,7 +368,7 @@ const data = {
       4: {
         video: "RvqsSlcsLmg",
         instructions: "<p><b>Desmitifícate</b></p> <p>Ahora que ya tienes un poco más de información sobre las drogas, vamos a ver si te queda algún mito histórico por desmentir... </p><p>Hemos traído a alguien con una máquina del tiempo para que nos ayude a identificar algunos de ellos. </p><p>¡Saludad a Platón!</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "",
@@ -380,7 +378,7 @@ const data = {
       5: {
         video: "O93jmZv57Sw",
         instructions: "<p><b>Diversión como antídoto</b></p> <p>Navega por el parque de skate y descubre el experimento de “El parque de las ratas”. </p><p>¿Crees que el entorno que nos rodea influye a la hora de tomar decisiones sobre nuestra salud?</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "https://www.youtube.com/embed/A5k_TC5ZuzM?si=mS2AMbzuOwfENs4O",
@@ -390,7 +388,7 @@ const data = {
       },
       6: {
         instructions: "<p><b>Drogo-Quizz </b></p> <p>Y por último... ¿te has quedado con todo? Vamos a verlo...</p>",
-        points: 10,
+        points: 1,
         aptitudes: ["love", "empathy"],
         skill: "criterio própio",
         extra: {

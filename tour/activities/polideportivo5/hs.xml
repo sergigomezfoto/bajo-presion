@@ -1,15 +1,14 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="25.53193157035406" atv="-11.509267583774788" scale="1" rx="8" ry="-15.5" rz="-14" style="speech_bubbles"
+<hotspot name="alexandra_balls" ath="25.53193157035406" atv="-11.509267583774788" scale="1" rx="8" ry="-15.5" rz="-14" style="speech_bubbles"
     s_position="left"
     s_photo="alexandra"
-    s_user="@alexandra"
+    s_user="@AlexandraStyle"
     s_date="1w"
     s_heart="true"
     s_content="El equipo depende de mi..."
     onclick.addevent="tir_action();"
-    
 />
 
 
@@ -19,30 +18,48 @@ lookto(-60,-60,70,tween(linear,0.4));
 lookto(-115,-80,70,tween(linear,0.4));
 lookto(-180,-37,5,70,tween(linear,1)); -->
 set(hotspot[poliesportiu_5-tir].alpha,1);
+set(hotspot[poliesportiu_5-ma].alpha,0);
 tween(hotspot[ball].ath,3,0.8,easeOutQuad);
 tween(hotspot[ball].atv,-80,0.8,easeOutQuad);
 <!-- tween(hotspot[ball].ath,178,2.2);
 tween(hotspot[ball].atv,-36,2.2); -->
 
+delayedcall (0.8,
+  jscall(
+    launchPopup('link1poli5','80%','80%',
+        {
+              onClose: function(){krpano.call('retorn_al_inici()');}
+        }
+    )
+  );
+);
 
-
-  delayedcall (0.8,
+  <!-- aquesta no fa res a l'acabar. l'altra funcio, torna al principi per poder tornar a tirar.
+    
+    delayedcall (0.8,
         jscall(
           launchPopup('link1poli5')
         );
         tween(hotspot[ball].alpha,0,0.8);
- );
+ ); -->
 </action>
 
-<hotspot name="ball" ath="0.20410846166981855" atv="-11.780884625133165" scale="0.8949999999999999" rx="0" ry="0" rz="0" distorted="true"  
+<action name="retorn_al_inici">
+  set(hotspot[poliesportiu_5-tir].alpha,0);
+  set(hotspot[poliesportiu_5-ma].alpha,1);
+  tween(hotspot[ball].ath,0.204,0.1,easeOutQuad);
+  tween(hotspot[ball].atv,-11.781,0.1,easeOutQuad);
+</action>
+
+<hotspot name="ball" ath="0.20410846166981855" atv="-11.780884625133162" scale="0.29609999999999703"  distorted="true"  
     alpha="1"
-    s_invisible_at_start="true"
     type="image" 
     url="assets/basket_ball.png" 
     align="center" 
     edge="center" 
-    enabled="true"
+    enabled="false"
     handcursor="false"
+    zorder="1"
   
 /> 
  <hotspot name="poliesportiu_5-tir"
@@ -55,6 +72,18 @@ tween(hotspot[ball].atv,-36,2.2); -->
 			 alpha="0"
 			 zorder="10"
 			 bgcapture="false"
+			 />
+
+<hotspot name="poliesportiu_5-ma"
+          url="assets/poliesportiu_5ma.png"
+          distorted="true"
+          onloaded="calc_pos_from_hfov_yaw_pitch_roll(4.24691, -1.66061, -11.88, 0.0292656); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+          enabled="false"
+        visible="true"
+        alpha="1"
+        zorder="10"
+        bgcapture="false"
 			 />
 
 

@@ -1,33 +1,84 @@
 <krpano>
 
 
+
+
+
+
+<hotspot name="poster1" ath="-93.3597407469619" atv="-14.670908972574898" scale="2.8899999999999597" rx="-12.400000000000054" ry="0.8000000000000003" rz="0" distorted="true"  
+    type="image" 
+    url="assets/boto_transparent.jpg" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="js:launchPopup('link2insti3');"
+    alpha="0.00001"
+    zorder="3"
+    capture="false"
+    onover.addevent="tween(alpha,0.3,1);"
+    onout.addevent="tween(alpha,0.00001,1);"
+/> 
+<hotspot name="poster2" ath="-65.9995808376953" atv="-13.776503848498708" scale="2.6757999999999766" rx="-13.300000000000066" ry="-24.799999999999972" rz="0" distorted="true"  
+    type="image" 
+    url="assets/boto_transparent.jpg" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="js:launchPopup('link1insti3');"
+    alpha="0.00001"
+    zorder="3"
+    capture="false"
+    onover.addevent="tween(alpha,0.3,1);"
+    onout.addevent="tween(alpha,0.00001,1);"
+/> 
+<hotspot name="poster3" ath="-46.75501318677266" atv="-11.190048971280683" scale="2.139999999999997" rx="-13.300000000000066" ry="-43.800000000000026" rz="0" distorted="true"  
+    type="image" 
+    url="assets/boto_transparent.jpg" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="js:launchPopup('link3insti3');"
+    alpha="0.00001"
+    zorder="3"
+    capture="false"
+    onover.addevent="tween(alpha,0.3,1);"
+    onout.addevent="tween(alpha,0.00001,1);"    
+/> 
+
+
+
+
+<!-- <<<<<<<<<<<<<<<<<< borrar els botons de sota!!!!!!!!! >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 <hotspot name="insti3-julia" ath="76.34265608179862" atv="-29.641667346963345" scale="1.2108999999999954" rx="-31" ry="10" rz="-1.2999999999999992"  style="speech_bubbles"
     s_position="right"
     s_photo="julia"
-    s_user="JuliaStarz_12"
+    s_user="@JuliaStarz_12"
     s_date="13h"
     s_heart="true"
-    s_content="¿Quién es quién?"
+    s_content="BORRAR AQUEST BOTO"
     onclick.addevent="js:launchPopup('link2insti3');"  
 />
 
 <hotspot name="insti3-j" ath="-45.81452808587568" atv="15.225649443679096" scale="1" rx="2" ry="-47.5" rz="36"  style="speech_bubbles"
     s_position="right"
     s_photo="mariona"
-    s_user="Chispis_Marions"
+    s_user="@Chispis_Marions"
     s_date="18h"
     s_heart="true"
-    s_content="¿Quién es quién?"
+    s_content="BORRAR AQUEST BOTO"
     onclick.addevent="js:launchPopup('link1insti3');"  
 />
 
 <hotspot name="insti3-jp" ath="35.9345100190493" atv="8.578429680728396" scale="1.1606999999999965" rx="13.5" ry="9" rz="22.5"  style="speech_bubbles"
     s_position="bottom"
     s_photo="laura"
-    s_user="Wave_Laurii"
+    s_user="@Wave_Laurii"
     s_date="58m"
     s_heart="true"
-    s_content="¿Quién es quién?"
+    s_content="BORRAR AQUEST BOTO"
     onclick.addevent="js:launchPopup('link2insti3');"  
 />
 

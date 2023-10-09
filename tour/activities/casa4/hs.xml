@@ -1,16 +1,46 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="etna1" ath="-77.95377737409291" atv="-14.727019565233222" scale="1" rx="0" ry="0" rz="-10.5" style="speech_bubbles"
+    s_position="leftbottom"
+    s_photo="null"
+    s_user="Soy portada!!! 😱💓📸💒 "
+    s_date="3w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Me han echo una entrevista para [br]conocerme, que vergüenza!!⛹[br]¿La has visto?"
+    onclick.addevent="portada_life();"  
 />
 
+<action name="portada_life">
+    looktohotspot(life,60,tween(easeinoutquad,0.8));
+    tween(hotspot[etna1].alpha,0,1);
 
+    delayedcall(1, 
+        lookto(22.24,-13.15,105,tween(easeinoutquad,0.8));
+        tween(hotspot[etna2].alpha,1,1);
+    );
+</action>
+
+<hotspot name="etna2" ath="49.738699862179146" atv="-21.147436732647332" scale="1" rx="0" ry="-3" rz="-16.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="etna_life"
+    s_user="@Mi_Yo_de_la_Portada😜"
+    s_date="3w"
+    s_heart="true"
+    s_content="[b]¿Y tu?[/b] 📽️🤩🐋[br]Es tu turno! ¿Quieres salir en[br] la portada también?🙈🙈🙈"
+    onclick.addevent="js:launchPopup('link1casa4');"  
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="life" ath="20.592157181354878" atv="-8.996169551603408" scale="0.26999999999999935" rx="-4.9" ry="-18.749999999999975"  
+    distorted="true"      
+    type="image" 
+    url="assets/life.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    onclick.addevent=""
+    alpha="1"
+/> 
 </krpano>

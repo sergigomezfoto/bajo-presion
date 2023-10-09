@@ -9,8 +9,183 @@
     s_heart="true"
     s_content="Vamos a ver algunas situaciones[br]a ver si sabemos poner límites!"
     onclick.addevent="js:launchPopup('link1casa5');"
-    
 />
 
+
+
+
+
+
+<hotspot name="life" ath="62.578001034355566" atv="-15.89315324761065" scale="0.15799999999999725" rx="-24.85000000000004" ry="-47.14999999999951" rz="-1.5000000000000004"
+    distorted="true"      
+    type="image" 
+    url="../casa3/assets/life.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    onclick.addevent=""
+    alpha="1"
+/> 
+
+
+<hotspot name="semafor_verd"
+        url="assets/habitacio_5_verd.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(14, 66.8939, 1.95575, 14.0692); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        bgcapture="false"
+/>
+<hotspot name="semafor_vermell"
+        url="assets/habitacio_5_vermell.png"
+        distorted="true"
+        onloaded="calc_pos_from_hfov_yaw_pitch_roll(14, 67.9555, -3.21312, 1.71295); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+        handcursor="false"
+        enabled="false"
+        visible="true"
+        alpha="0"
+        bgcapture="false"
+/>
+
+
+<!-- SEMAFOR -->
+<!-- FONT https://arantxamolina.es/el-semaforo-de-los-limites/ -->
+
+<!-- <<<<<<<<<<   SEMAFORO ROJO   >>>>>>>>>> -->
+<hotspot name="rojo" ath="-44.812573235174455" atv="-5.134453953948951" scale="1" rx="2.5" ry="0" rz="-17.849999999999994"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="Límites Rojos ✋⛔🛑"
+    s_date="null"
+    s_heart="true"
+    s_content="null"
+    onclick.addevent="action_rojo();"
+/>
+<action name="action_rojo">
+    tween(hotspot[semafor_vermell].alpha,1,1);
+    tween(hotspot[semafor_verd].alpha,0,1);
+
+    tween(hotspot[naranja].alpha,0,1);
+    tween(hotspot[rojo].alpha,0,1);
+    tween(hotspot[verde].alpha,0,1);
+    tween(hotspot[rojo_expl].alpha,1,1); 
+</action>
+<hotspot name="rojo_expl" ath="-68.90433954787994" atv="-16.611619591874117" scale="1" rx="-18" ry="-32" rz="-2.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="null"
+    s_user="null"
+    s_date="null"
+    s_heart="null"
+    s_content="✋⛔🛑 Reglas super estrictas que sabes que no debes cruzar, [br] 
+    sin importar las circunstancias. Son fáciles de identificar [br]
+    porque son como señales de peligro: [/b]líneas rojas[/b]. Ejemplo ✍[br]
+    Está totalmente prohibido el uso de violencia física o insultos."
+    onclick.addevent="action_rojo_return();"
+    s_invisible_at_start="true"
+/>
+<action name="action_rojo_return">
+    tween(hotspot[semafor_vermell].alpha,0,1);
+    tween(hotspot[semafor_verd].alpha,0,1);
+
+    tween(hotspot[naranja].alpha,1,1);
+    tween(hotspot[rojo].alpha,1,1);
+    tween(hotspot[verde].alpha,1,1);
+    tween(hotspot[rojo_expl].alpha,0,1); 
+</action>
+<!-- <<<<<<<<<<   FIN SEMAFORO ROJO   >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<<   SEMAFORO NARANJA   >>>>>>>>>> -->
+<hotspot name="naranja" ath="-90.44158242635007" atv="4.487343595659001" scale="1" rx="-13.5" ry="-10" rz="13.5"  style="speech_bubbles"
+    s_position="right"
+    s_photo="null"
+    s_user="Límites Naranjas ❕❓"
+    s_date="null"
+    s_heart="true"
+    s_content="null"
+    onclick.addevent="action_naranja();"
+/>
+<action name="action_naranja">
+    tween(hotspot[semafor_vermell].alpha,1,1);
+    tween(hotspot[semafor_verd].alpha,1,1);
+
+    tween(hotspot[naranja].alpha,0,1);
+    tween(hotspot[rojo].alpha,0,1);
+    tween(hotspot[verde].alpha,0,1);
+    tween(hotspot[naranja_expl].alpha,1,1); 
+</action>
+<hotspot name="naranja_expl" ath="-68.90433954787994" atv="-16.611619591874117" scale="1" rx="-18" ry="-32" rz="-2.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="null"
+    s_user="null"
+    s_date="null"
+    s_heart="null"
+    s_content="❕❓ Son un poco más flexibles. Son como reglas que generalmente sigues, [br]
+                pero en algunas situaciones especiales puedes permitirte romperlas un poco.[br]
+                 Estos límites te ayudan a vivir una vida menos rígida. Ejemplo ✍ Intentas [br]
+                 comer sano 🍉 pero hoy, estamos de celebración, y harás una excepción...🍭🍰     "
+    onclick.addevent="action_naranja_return();"
+    s_invisible_at_start="true"
+/>
+<action name="action_naranja_return">
+    tween(hotspot[semafor_vermell].alpha,0,1);
+    tween(hotspot[semafor_verd].alpha,0,1);
+
+    tween(hotspot[naranja].alpha,1,1);
+    tween(hotspot[rojo].alpha,1,1);
+    tween(hotspot[verde].alpha,1,1);
+    tween(hotspot[naranja_expl].alpha,0,1); 
+</action>
+<!-- <<<<<<<<<<   FIN SEMAFORO NARANJA   >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<<   SEMAFORO VERDE   >>>>>>>>>> -->
+<hotspot name="verde" ath="-43.12076998483286" atv="14.028393112761732" scale="1" rx="2.5" ry="0" rz="7.650000000000006"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="Límites Verdes ✅😻"
+    s_date="null"
+    s_heart="true"
+    s_content="null"
+    onclick.addevent="action_verde();"
+/>
+<action name="action_verde">
+    tween(hotspot[semafor_vermell].alpha,0,1);
+    tween(hotspot[semafor_verd].alpha,1,1);
+
+    tween(hotspot[naranja].alpha,0,1);
+    tween(hotspot[rojo].alpha,0,1);
+    tween(hotspot[verde].alpha,0,1);
+    tween(hotspot[verde_expl].alpha,1,1); 
+</action>
+<hotspot name="verde_expl" ath="-68.90433954787994" atv="-16.611619591874117" scale="1" rx="-18" ry="-32" rz="-2.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="null"
+    s_user="null"
+    s_date="null"
+    s_heart="null"
+    s_content="✅😻 Son muy personales y pueden no coincidir con los de otras personas. [br]
+    Son como tus propias reglas basadas en lo que crees y sientes. Estos límites te ayudan  [br]
+    a vivir tu vida de acuerdo con tus valores y tu verdadera esencia. Ejemplo ✍ [br]
+    En clase de Boxeo, nos damos permiso para darnos puñetazos! 🤼🤜🤛🤪😁
+    "
+    onclick.addevent="action_verde_return();"
+    s_invisible_at_start="true"
+/>
+<action name="action_verde_return">
+    tween(hotspot[semafor_vermell].alpha,0,1);
+    tween(hotspot[semafor_verd].alpha,0,1);
+
+    tween(hotspot[naranja].alpha,1,1);
+    tween(hotspot[rojo].alpha,1,1);
+    tween(hotspot[verde].alpha,1,1);
+    tween(hotspot[verde_expl].alpha,0,1); 
+</action>
+<!-- <<<<<<<<<<   FIN SEMAFORO VERDE   >>>>>>>>>> -->
 
 </krpano>

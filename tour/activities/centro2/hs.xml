@@ -1,5 +1,58 @@
-<krpano>
+<krpano onstart="animacio_hotspot_si(si);animacio_hotspot_no(no);"
+>
 
+<!-- MARTI SI/NO ANIMACIO -->
+<hotspot name="si" ath="-81.60636769587325" atv="20.764454444517767" scale="0.473"   
+    distorted="true"  
+    alpha="1"
+    type="image" 
+    url="assets/si.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    zorder="1"
+/> 
+ <hotspot name="cap_porter_futbolin_si"
+	url="assets/futbolin_si.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(3.88066, 82.5865, -2.46524, 26.6263); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="1"
+    zorder="10"
+    bgcapture="false"
+/>
+<hotspot name="no" ath="100.12406516285893" atv="19.41175574308549" scale="0.478"   
+    distorted="true"  
+    alpha="1"
+    type="image" 
+    url="assets/no.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    zorder="1"
+/> 
+ <hotspot name="cap_porter_futbolin_no"
+	url="assets/futbolin_no.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(3.19753, -100.165, -4.86778, -23.1878); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="1"
+    zorder="10"
+    bgcapture="false"
+/>
+<action name="animacio_hotspot_si">
+   tween(hotspot[si].scale, 0.6, 1, default, tween(hotspot[si].scale, 0.473, 1, default, animacio_hotspot_si(si)) );
+</action>
+<action name="animacio_hotspot_no"> 
+   tween(hotspot[no].scale, 0.6, 1, default, tween(hotspot[no].scale, 0.478, 1, default, animacio_hotspot_no(no)) );
+</action>
+<!-- FI MARTI SI/NO ANIMACIO -->
 
 
 

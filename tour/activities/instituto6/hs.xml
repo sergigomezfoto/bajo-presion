@@ -1,16 +1,47 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="nacho" ath="-120.89868418881633" atv="-15.580266370280608" scale="1" rx="-19" ry="-9" rz="0"  style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_photo="ignasi"
+    s_user="@The_Mitis_Guy"
+    s_date="12h"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="¿Y tu? ¿Qué harías?"
+    onclick.addevent="js:launchPopup('link1insti6');"
 />
 
+<hotspot name="julia-exploting" ath="70.26659288715518" atv="-10.88831838863141" scale="1" rx="-13.5" ry="-31.5" rz="0"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@JuliaStarz_12"
+    s_date="19m"
+    s_heart="null"
+    s_content="El líquido amarillo somos nosotras ayer. [br]
+    El líquido oscuro son las nuevas ideas que hoy hemos aprendido. [br]
+    La mezcla... A partir de mañana... somos personas diferentes!💁💃💏🌱🌱 "
+    onclick.addevent=""
+    handcursor="false" enabled="false"
+/>
+
+<hotspot name="viktor-metafora" ath="135.26804291762872" atv="-8.419622190476773" scale="1" rx="-2.5" ry="34" rz="-2.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="viktor"
+    s_user="@Viktor_Genio_y_Figura"
+    s_date="19m"
+    s_heart="null"
+    s_content="Que metafórica te has puesto, Júlia! 👵😝😹"
+    onclick.addevent="" handcursor="false" enabled="false"
+/>
+
+<hotspot name="gretaa" ath="-49.29095534896652" atv="-18.388665949155065" scale="1" rx="-12.5" ry="-20" rz="1" style="speech_bubbles"
+    s_position="bottomleft"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="19m"
+    s_heart="null"
+    s_content="Yo sólo espero que [br]esto no explote! 💥💥💨"
+    onclick.addevent="" handcursor="false" enabled="false"
+/>
 
 </krpano>

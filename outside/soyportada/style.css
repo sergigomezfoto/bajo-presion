@@ -1,0 +1,109 @@
+body {
+    font-family: 'untitled_sansregular';
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+#wrapper {
+    padding: 40px;
+    padding-top: 10px;
+    overflow: auto;
+
+}
+
+#wrapper h1 {
+    font-family: 'bw_black';
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+#wrapper h2 {
+    font-family: 'bw_black';
+    /* text-transform: uppercase; */
+    /* text-align: center; */
+}
+
+
+.floating-image {
+    float: left;
+    /* Posiciona la imatge a la dreta */
+    margin-right: 20px;
+    margin-bottom: 20px;
+width:400px;
+    /* Podries ajustar aquest valor segons les teves necessitats */
+    height: auto;
+}
+
+/* 
+    background-color: #ffffff;
+    color: #f5005d;
+*/
+.transparent-link {
+    display: table;
+    position: relative;
+    text-decoration: none !important;
+    background: none;
+    font: inherit;
+    border: none;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+  }
+  .transparent-link:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  
+  
+  .transparent-link:hover,
+  .transparent-link:focus,
+  .transparent-link:active {
+    color: inherit;
+    text-decoration: none;
+    background: none;
+    border: none;
+    outline: none;
+  }
+.custom-button {
+    background-color: #f5005d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.custom-button:hover {
+    background-color: white;
+    color: #f5005d;
+    border: 2px solid #f5005d;
+}
+
+.transparent-link:hover .custom-button{
+    background-color: white;
+    color: #f5005d;
+    border: 2px solid #f5005d;
+}
+/* Media query per canviar l'estil quan la pantalla és menys de 768px d'ample */
+@media (max-width: 650px) {
+    .floating-image {
+        float: none;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        display: block;
+        width: 100%;
+    }
+}

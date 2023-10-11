@@ -1,22 +1,22 @@
 const closePopup = async (overlay, iframeContainer, options) => {
   // Executem l'acció onClose immediatament
   if (typeof options.onClose === "function") {
-      options.onClose();
+    options.onClose();
   }
 
   overlay.style.opacity = "0";
   iframeContainer.style.opacity = "0";
 
   try {
-      await awaitStylecomplete(overlay, "opacity", "0");
-      // ps.destroy();
-      document.body.removeChild(overlay);
+    await awaitStylecomplete(overlay, "opacity", "0");
+    // ps.destroy();
+    document.body.removeChild(overlay);
   } catch (error) {
-      console.error("Error al tancar el popup:", error.message);
+    console.error("Error al tancar el popup:", error.message);
   }
 };
 
-const launchPopupOutsideTour = async (extraNode, width='80%', height='80%',  providedOptions = {}) => {
+const launchPopupOutsideTour = async (extraNode, width = "80%", height = "80%", providedOptions = {}) => {
   const options = { ...popupDefaultOptions, ...providedOptions }; // Combinar opcions predeterminades amb les proporcionades
 
   const overlay = document.createElement("div");
@@ -24,7 +24,7 @@ const launchPopupOutsideTour = async (extraNode, width='80%', height='80%',  pro
   if (options.overlayColor) {
     overlay.style.backgroundColor = options.overlayColor;
   }
-  
+
   const iframeContainer = document.createElement("div");
   iframeContainer.className = "iframeContainer";
   iframeContainer.style.width = width;
@@ -35,8 +35,8 @@ const launchPopupOutsideTour = async (extraNode, width='80%', height='80%',  pro
   iframeContainer.appendChild(iframeLoader);
 
   const iframe = document.createElement("iframe");
-  const URL=extraNode
-  iframe.src =URL;
+  const URL = extraNode;
+  iframe.src = URL;
   iframe.width = "100%";
   iframe.height = "100%";
   iframe.style.opacity = "0";
@@ -67,9 +67,8 @@ const launchPopupOutsideTour = async (extraNode, width='80%', height='80%',  pro
   overlay.style.opacity = "1";
   await awaitStylecomplete(overlay, "opacity", "1");
   iframeContainer.style.opacity = "1";
-
-}
-const launchPopup = async (extraNode, width='80%', height='80%',  providedOptions = {}) => {
+};
+const launchPopup = async (extraNode, width = "80%", height = "80%", providedOptions = {}) => {
   const options = { ...popupDefaultOptions, ...providedOptions }; // Combinar opcions predeterminades amb les proporcionades
 
   const overlay = document.createElement("div");
@@ -77,7 +76,7 @@ const launchPopup = async (extraNode, width='80%', height='80%',  providedOption
   if (options.overlayColor) {
     overlay.style.backgroundColor = options.overlayColor;
   }
-  
+
   const iframeContainer = document.createElement("div");
   iframeContainer.className = "iframeContainer";
   iframeContainer.style.width = width;
@@ -88,8 +87,8 @@ const launchPopup = async (extraNode, width='80%', height='80%',  providedOption
   iframeContainer.appendChild(iframeLoader);
 
   const iframe = document.createElement("iframe");
-  const URL=data[Game.place].panos[Game.panoIndex].extra[extraNode]
-  iframe.src =URL;
+  const URL = data[Game.place].panos[Game.panoIndex].extra[extraNode];
+  iframe.src = URL;
   iframe.width = "100%";
   iframe.height = "100%";
   iframe.style.opacity = "0";
@@ -120,28 +119,27 @@ const launchPopup = async (extraNode, width='80%', height='80%',  providedOption
   overlay.style.opacity = "1";
   await awaitStylecomplete(overlay, "opacity", "1");
   iframeContainer.style.opacity = "1";
+};
 
-}
-
-const popupDefaultOptions={
+const popupDefaultOptions = {
   overlayColor: "rgba(0,0,0,0..7)",
   onClose: function () {
     console.log("popup tancat");
   },
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////POPUP IMATGES//////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const launchImagePopup = async (imageURL, width=null, height=null, providedOptions = {}) => {
+const launchImagePopup = async (imageURL, width = null, height = null, providedOptions = {},linkURL=null) => {
   const options = { ...popupDefaultOptions, ...providedOptions };
-console.log(imageURL);
-console.log(width);
+  console.log(imageURL);
+  console.log(width);
   const overlay = document.createElement("div");
   overlay.className = "iframeOverlay";
   if (options.overlayColor) {
-      overlay.style.backgroundColor = options.overlayColor;
+    overlay.style.backgroundColor = options.overlayColor;
   }
 
   const imageContainer = document.createElement("div");
@@ -155,42 +153,50 @@ console.log(width);
   img.src = imageURL;
   img.style.opacity = "0";
   img.style.transition = "opacity 0.5s";
-
+  const anchor = document.createElement("a"); // Creem l'element <a>
+  if (linkURL) {
+    anchor.href = linkURL;
+    anchor.target = "_blank";
+  } else {
+    anchor.href = "javascript:void(0);"; // No fa res quan es clica
+    anchor.style.pointerEvents = "none"; // Desactivem les interaccions
+    anchor.style.cursor = "auto"; // Canviem l'estil del cursor
+  }
+  anchor.style.margin = "0"; // Estils inline
+  anchor.style.padding = "0"; // Estils inline
+  anchor.style.lineHeight = "0"; // Estils inline
+  anchor.style.display = "block"; // Estils inline
   img.onload = function () {
-      imgLoader.style.display = "none";
-      imageContainer.style.opacity = "1";
-      img.style.opacity = "1";
-      img.style.width = "100%";
+    imgLoader.style.display = "none";
+    imageContainer.style.opacity = "1";
+    img.style.opacity = "1";
+    img.style.width = "100%";
 
-      // Si es proporciona l'ample però no l'alçada, calculem l'alçada proporcional
-      if (width && !height) {
-        height = `${img.naturalHeight * (parseInt(width) / img.naturalWidth)}px`;
-        console.log('height', height);
-      }
+    // Si es proporciona l'ample però no l'alçada, calculem l'alçada proporcional
+    if (width && !height) {
+      height = `${img.naturalHeight * (parseInt(width) / img.naturalWidth)}px`;
+      console.log("height", height);
+    }
 
-      // Si es proporciona l'alçada però no l'ample, calculem l'ample proporcional
-      if (!width && height) {
-          width = `${img.naturalWidth * (parseInt(height) / img.naturalHeight)}px`;
-          console.log('width', width);
-        }
+    // Si es proporciona l'alçada però no l'ample, calculem l'ample proporcional
+    if (!width && height) {
+      width = `${img.naturalWidth * (parseInt(height) / img.naturalHeight)}px`;
+      console.log("width", width);
+    }
 
+    // Si no es proporciona ni l'ample ni l'alçada, utilitzem les dimensions originals de la imatge
+    if (!width && !height) {
+      width = `${img.naturalWidth}px`;
+      height = `${img.naturalHeight}px`;
+      console.log("width", width);
+      console.log("height", height);
+    }
 
-      // Si no es proporciona ni l'ample ni l'alçada, utilitzem les dimensions originals de la imatge
-      if (!width && !height) {
-          width = `${img.naturalWidth}px`;
-          height = `${img.naturalHeight}px`;
-          console.log('uuuuuuuuuuuuuultim');
-          console.log('width', width);
-          console.log('height', height);
-        }
-
-      imageContainer.style.width = width;
-      // imageContainer.style.height = height;
-      
-      
+    imageContainer.style.width = width;
+    // imageContainer.style.height = height;
   };
-
-  imageContainer.appendChild(img);
+  anchor.appendChild(img);
+  imageContainer.appendChild(anchor);
   overlay.appendChild(imageContainer);
 
   const closeButton = document.createElement("button");
@@ -200,15 +206,15 @@ console.log(width);
   imageContainer.appendChild(closeButton);
 
   overlay.addEventListener("click", function (event) {
-      if (event.target === overlay) {
-          closePopup(overlay, imageContainer, options);
-      }
+    if (event.target === overlay) {
+      closePopup(overlay, imageContainer, options);
+    }
   });
 
   document.body.appendChild(overlay);
   img.onerror = function (error) {
     console.error("Hi ha hagut un error en carregar la imatge:", error);
-};
+  };
   overlay.style.opacity = "1";
   await awaitStylecomplete(overlay, "opacity", "1");
-}
+};

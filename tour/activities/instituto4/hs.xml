@@ -326,7 +326,7 @@
 <!-- <<<<<<<<<<<<<<<<<< fi play vídeo extern >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 
 <!-- <<<<<<<<<<<<<<<<<< sexting >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
-<hotspot name="sexting" ath="54.025223313940614" atv="4.4700771546965035" scale="0.6749999999999997"  distorted="true"  
+<hotspot name="sexting" ath="26.459536698363195" atv="-1.6106478650412657" scale="0.6749999999999997"   distorted="true"  
     type="image" 
     url="assets/info.png" 
     align="center" 
@@ -360,7 +360,55 @@
 <action name="sexting_action">
         set(hotspot[cor-sexting-1].alpha, 0);
         set(hotspot[cor-sexting-2].alpha, 1);
-        jscall(launchPopup('link2insti4'));
+        jscall(
+    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    launchImagePopup('tour/activities/instituto4/assets/tipos.jpg','800px');
+);
+        <!-- jscall(launchPopup('link2insti4')); -->
 </action>
 <!-- <<<<<<<<<<<<<<<<<< fi sexting >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<!-- <<<<<<<<<<<<<<<<<< cyberbullying >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<hotspot name="cyberbullying" ath="156.3766558713749" atv="-3.4714843062260985" scale="0.6749999999999997"   distorted="true"  
+    type="image" 
+    url="assets/info.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="true"
+    onclick.addevent="cyberbullying_action();"
+    alpha="0.65"
+    zorder="3"
+/> 
+<hotspot name="cor-cyberbullying-1" ath="177.07396515330873" atv="-11.934031910993275" scale="0.7199999999999998"   distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor-cyberbullying-2" ath="177.07396515330873" atv="-11.934031910993275" scale="0.7199999999999998"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/> 
+<action name="cyberbullying_action">
+        set(hotspot[cor-cyberbullying-1].alpha, 0);
+        set(hotspot[cor-cyberbullying-2].alpha, 1);
+        jscall(
+    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const ampleDesitjat = `${amplePantalla * 0.6}px`;
+    launchImagePopup('tour/activities/instituto4/assets/tipos.jpg','800px');
+);
+        <!-- jscall(launchPopup('link2insti4')); -->
+</action>
+<!-- <<<<<<<<<<<<<<<<<< fi cyberbullying >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+
 </krpano>

@@ -1,15 +1,39 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
+<hotspot name="alexpregunta" ath="60.055894135775134" atv="-15.781219964610948" scale="1" rx="-20" ry="19" rz="-2"  style="speech_bubbles"
+    s_position="left"
     s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_user="@AlexCool--17"
+    s_date="15w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Chucuchú, chucuchú, chucuchú 🚋🚋🤣🤣[br] Venga va! Lo hacemos juntis?"
+    onclick.addevent="video_action();"   
+/>
+<action name="video_action">
+        jscall(
+        launchPopup('link1centro4','80%','80%',
+            {
+                    onClose: function(){krpano.call('bafarada_2()');}
+            }
+        )
+        );
+</action>
+<action name="bafarada_2">
+lookto(-144,-1,130,tween(easeinoutquad,0.8));
+tween(hotspot[lauravideo].alpha,1,1);"
+</action>
+
+
+<hotspot name="lauravideo" ath="-113.32333427149345" atv="-15.595898981914722" scale="1" rx="-10" ry="-3.5" rz="-3"  style="speech_bubbles"
+    s_position="left"
+    s_photo="laura"
+    s_user="@AWave_Laurii"
+    s_date="11m"
+    s_heart="true"
+    s_content="Buff, tela! Etna, nos cuentas[br] tu mini-rallada?💥🤯"
+    onclick.addevent="js:launchPopup('link2centro4');" 
+     s_invisible_at_start="true"  
 />
 
 

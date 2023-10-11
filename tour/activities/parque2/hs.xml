@@ -1,15 +1,895 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="greta0" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"  
+    style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="1m"
+    s_heart="null"
+    s_content="Everybody Ready? Os haré algunas preguntas, [br]las respuestas pueden ser [b]Mayoría[/b] o [b]Minoría[/b] [br]o bien [b]Ellos[/b] o [b]Ellas[/b]. Vamos allá!"
+    onclick.addevent="      tween(hotspot[greta0].alpha,0,1);
+                            tween(hotspot[greta1].alpha,1,1);
+                            set(hotspot[plaza_2_maj_min].alpha,1);"
+/>
+
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 1 MAJORIA MINORIA >>>>>>>>>> -->
+<hotspot name="greta1" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"  
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="[b]PREGUNTA 1:[/b][br]¿La mayoría o la minoría de jóvenes hacen [b]binge drinking?[/b] [br](consumir 5 o más unidades de bebida en 2 horas aprox.)"
+    onclick.addevent="action_greta1();"
+    s_invisible_at_start="true"  
+/>
+<action name="action_greta1">
+    tween(hotspot[mayoria1].alpha,1,1);
+    tween(hotspot[minoria1].alpha,1,1);
+    lookto(166,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta1].enabled,false);
+    set(hotspot[greta1].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="mayoria1" ath="134.96750755144757" atv="-14.965532085956267" scale="1" 
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi6"
+    s_user="@Multi-user_Majority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Mayoría??"
+    onclick.addevent="action_greta1_maj();"
+    s_invisible_at_start="true"  
+/>
+<action name="action_greta1_maj">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_minoria].alpha,1);
+    tween(hotspot[mayoria1].alpha,0,1);
+    tween(hotspot[minoria1].alpha,0,1);
+    tween(hotspot[greta1].alpha,0,1); 
+    tween(hotspot[greta1_no].alpha,1,1); 
+</action>
+<hotspot name="greta1_no" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"  
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] Un 27,9%.de jóvenes han realizadio binge drinking el último mes. [br]
+                Esto nos indica que no todas las personas pertenecientes a esa franja[br]
+                 de edad tienen interés en salir de fiesta y en consumir alcohol, sobre [br]
+                 todo un consumo abusivo en un corto periodo de tiempo."
+    onclick.addevent="    tween(hotspot[greta1_no].alpha,0,1); tween(hotspot[greta1].alpha,0,1);
+                            tween(hotspot[greta2].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0);"
+    s_invisible_at_start="true"  
+/>
+
+<hotspot name="minoria1" ath="-145.14062852757243" atv="-10.806562337073448" scale="1" rx="4.5" ry="-3" rz="0"  
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi2_parc"
+    s_user="@Less-user_Minority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Minoría??"
+    onclick.addevent="action_greta1_min();"
+    s_invisible_at_start="true"  
+/>
+<action name="action_greta1_min">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_minoria].alpha,1);
+    tween(hotspot[mayoria1].alpha,0,1);
+    tween(hotspot[minoria1].alpha,0,1);
+    tween(hotspot[greta1].alpha,0,1); 
+    tween(hotspot[greta1_si].alpha,1,1); 
+</action>
+<hotspot name="greta1_si" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"  
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] Un 27,9%.de jóvenes han realizadio binge drinking el último mes. [br]
+                Esto nos indica que no todas las personas pertenecientes a esa franja[br]
+                 de edad tienen interés en salir de fiesta y en consumir alcohol, sobre [br]
+                 todo un consumo abusivo en un corto periodo de tiempo."
+    onclick.addevent="    tween(hotspot[greta1_si].alpha,0,1); tween(hotspot[greta1].alpha,0,1);
+                            tween(hotspot[greta2].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0);"
+    s_invisible_at_start="true"  
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 1 MAJORIA MINORIA >>>>>>>>>> -->
+
+
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 2 HOMBRES MUJERES >>>>>>>>>> -->
+<hotspot name="greta2" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 2:[/b][br]¿Más hombres o más mujeres han consumido [br]alcohol en los últimos 12 meses?"
+    onclick.addevent="action_greta2();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta2">
+    set(hotspot[plaza_2_elles_ells].alpha,1);
+    tween(hotspot[ells2].alpha,1,1);
+    tween(hotspot[elles2].alpha,1,1);
+    lookto(0,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta2].enabled,false);
+    set(hotspot[greta2].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="ells2" ath="62.58938724416737" atv="-24.375683606004518" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@Nosotros"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Hombres??"
+    onclick.addevent="action_greta2_ells();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta2_ells">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_elles].alpha,1);
+    tween(hotspot[elles2].alpha,0,1);
+    tween(hotspot[ells2].alpha,0,1);
+    tween(hotspot[greta2].alpha,0,1); 
+    tween(hotspot[greta2_no].alpha,1,1);
+</action>
+<hotspot name="greta2_no" ath="-2.720715786146343" atv="-24.264676476327754" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] Un 73,3% de las mujeres han consumido alcohol en los últimos 12 meses. [br]
+              En cambio, un 67,8% hombres lo han hecho. Esto nos demuestra que los hombres no tienen [br]
+              una mayor prevalencia que las mujeres, esto va ligado a la temprana maduración de las [br]
+              chicas dentro de esta franja de edad. La cual, está relacionada con el ocio nocturno y [br]
+              juntarse con personas más mayores que ellas.
+"
+    onclick.addevent="    tween(hotspot[greta2_no].alpha,0,1); tween(hotspot[greta2].alpha,0,1);
+                            tween(hotspot[greta3].alpha,1,1); set(hotspot[plaza_2_elles].alpha,0);"
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="elles2" ath="-56.54085893000041" atv="-23.327979792315073" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@Nosotras"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Mujeres??"
+    onclick.addevent="action_greta2_elles();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta2_elles">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_elles].alpha,1);
+    tween(hotspot[elles2].alpha,0,1);
+    tween(hotspot[ells2].alpha,0,1);
+    tween(hotspot[greta2].alpha,0,1); 
+    tween(hotspot[greta2_si].alpha,1,1);
+</action>
+<hotspot name="greta2_si" ath="-2.720715786146343" atv="-24.264676476327754" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] Un 73,3% de las mujeres han consumido alcohol en los últimos 12 meses. [br]
+              En cambio, un 67,8% hombres lo han hecho. Esto nos demuestra que los hombres no tienen [br]
+              una mayor prevalencia que las mujeres, esto va ligado a la temprana maduración de las [br]
+              chicas dentro de esta franja de edad. La cual, está relacionada con el ocio nocturno y [br]
+              juntarse con personas más mayores que ellas."
+    onclick.addevent="    tween(hotspot[greta2_si].alpha,0,1); tween(hotspot[greta2].alpha,0,1);
+                            tween(hotspot[greta3].alpha,1,1); set(hotspot[plaza_2_elles].alpha,0);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 2 HOMBRES MUJERES >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 3 HOMBRES MUJERES >>>>>>>>>> -->
+<hotspot name="greta3" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 3:[/b][br]¿Más hombres o más mujeres Han mezclado más[br] alcohol con bebidas energéticas en los últimos 12 meses?"
+    onclick.addevent="action_greta3();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta3">
+    set(hotspot[plaza_2_elles_ells].alpha,1);
+    tween(hotspot[ells3].alpha,1,1);
+    tween(hotspot[elles3].alpha,1,1);
+    lookto(0,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta3].enabled,false);
+    set(hotspot[greta3].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="ells3" ath="62.58938724416737" atv="-24.375683606004518" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@Nosotros"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Hombres??"
+    onclick.addevent="action_greta3_ells();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta3_ells">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_ells].alpha,1);
+    tween(hotspot[elles3].alpha,0,1);
+    tween(hotspot[ells3].alpha,0,1);
+    tween(hotspot[greta3].alpha,0,1); 
+    tween(hotspot[greta3_si].alpha,1,1);
+</action>
+<hotspot name="greta3_no" ath="-2.5387982328066983" atv="-23.9643712770349" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] El porcentaje de mujeres / hombres de entre 14 y 18 años [br]
+              que han bebidas energéticas con alcohol en los 30 días = 14,6% mujeres / 17,5% [br]
+               hombres. Esto nos indica que los hombres tienen una percepción menor de [br]
+               riesgo respecto a la combinación de dos sustancias con efectos diferentes [br]
+               (estimulante y depresora). No obstante, la diferencia es muy pequeña. "
+    onclick.addevent="    tween(hotspot[greta3_no].alpha,0,1); tween(hotspot[greta3].alpha,0,1);
+                            tween(hotspot[greta4].alpha,1,1); set(hotspot[plaza_2_ells].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="elles3" ath="-56.54085893000041" atv="-23.327979792315073" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@Nosotras"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Mujeres??"
+    onclick.addevent="action_greta3_elles();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta3_elles">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_ells].alpha,1);
+    tween(hotspot[elles3].alpha,0,1);
+    tween(hotspot[ells3].alpha,0,1);
+    tween(hotspot[greta3].alpha,0,1); 
+    tween(hotspot[greta3_no].alpha,1,1);
+</action>
+<hotspot name="greta3_si" ath="-2.5387982328066983" atv="-23.9643712770349" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] El porcentaje de mujeres / hombres de entre 14 y 18 años [br]
+              que han bebidas energéticas con alcohol en los 30 días = 14,6% mujeres / 17,5% [br]
+               hombres. Esto nos indica que los hombres tienen una percepción menor de [br]
+               riesgo respecto a la combinación de dos sustancias con efectos diferentes [br]
+               (estimulante y depresora). No obstante, la diferencia es muy pequeña. "
+    onclick.addevent="    tween(hotspot[greta3_si].alpha,0,1); tween(hotspot[greta3].alpha,0,1);
+                            tween(hotspot[greta4].alpha,1,1); set(hotspot[plaza_2_ells].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 3 HOMBRES MUJERES >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 4 MAJORIA MINORIA >>>>>>>>>> -->
+<hotspot name="greta4" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 4:[/b][br]¿La mayoría o la minoría de jóvenes [br]han consumido tabaco alguna vez en su vida?  "
+    onclick.addevent="action_greta4();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta4">
+    set(hotspot[plaza_2_maj_min].alpha,1);
+    tween(hotspot[mayoria4].alpha,1,1);
+    tween(hotspot[minoria4].alpha,1,1);
+    lookto(166,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta4].enabled,false);
+    set(hotspot[greta4].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="mayoria4" ath="134.96750755144757" atv="-14.965532085956267" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi6"
+    s_user="@Multi-user_Majority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Mayoría??"
+    onclick.addevent="action_greta4_maj();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta4_maj">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_minoria].alpha,1);
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    tween(hotspot[mayoria4].alpha,0,1);
+    tween(hotspot[minoria4].alpha,0,1);
+    tween(hotspot[greta4].alpha,0,1); 
+    tween(hotspot[greta4_no].alpha,1,1);
+</action>
+<hotspot name="greta4_no" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] El porcentaje de alumnos de entre 14 y 18 años que ha consumido tabaco [br]
+                alguna vez en su vida= 38,2%. Esto desmiente la creencia de que la gran mayoría[br]
+               de adolescentes y jóvenes están interesadas en probar, alguna vez, el tabaco. "
+    onclick.addevent="    tween(hotspot[greta4_no].alpha,0,1); tween(hotspot[greta4].alpha,0,1);
+                            tween(hotspot[greta5].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="minoria4" ath="-145.14062852757243" atv="-10.806562337073448" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi2_parc"
+    s_user="@Less-user_Minority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Minoría??"
+    onclick.addevent="action_greta4_min();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta4_min">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_minoria].alpha,1);
+    tween(hotspot[mayoria4].alpha,0,1);
+    tween(hotspot[minoria4].alpha,0,1);
+    tween(hotspot[greta4].alpha,0,1);
+    tween(hotspot[greta4_si].alpha,1,1);
+</action>
+<hotspot name="greta4_si" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] El porcentaje de alumnos de entre 14 y 18 años que ha consumido tabaco [br]
+                alguna vez en su vida= 38,2%. Esto desmiente la creencia de que la gran mayoría[br]
+               de adolescentes y jóvenes están interesadas en probar, alguna vez, el tabaco. "
+    onclick.addevent="    tween(hotspot[greta4_si].alpha,0,1); tween(hotspot[greta4].alpha,0,1);
+                            tween(hotspot[greta5].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 4 MAJORIA MINORIA >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 5 MAJORIA MINORIA >>>>>>>>>> -->
+<hotspot name="greta5" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 5:[/b][br]¿La mayoría o la minoría de jóvenes [br]consumen tabaco diariamente?  "
+    onclick.addevent="action_greta5();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta5">
+    set(hotspot[plaza_2_maj_min].alpha,1);
+    tween(hotspot[mayoria5].alpha,1,1);
+    tween(hotspot[minoria5].alpha,1,1);
+    lookto(166,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta5].enabled,false);
     
+    set(hotspot[greta5].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="mayoria5" ath="134.96750755144757" atv="-14.965532085956267" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi6"
+    s_user="@Multi-user_Majority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Mayoría??"
+    onclick.addevent="action_greta5_maj();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta5_maj">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_minoria].alpha,1);
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    tween(hotspot[mayoria5].alpha,0,1);
+    tween(hotspot[minoria5].alpha,0,1);
+    tween(hotspot[greta5].alpha,0,1);
+    tween(hotspot[greta5_no].alpha,1,1);
+</action>
+<hotspot name="greta5_no" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] El porcentaje de estudiantes de entre 14 y 18 años que consumen tabaco[br]
+               diariamente es un 9%. Esto nos demuestra que la gran mayoría de personas dentro[br]
+              de esta franja de edad, tienen una gran percepción de riesgo entorno al tabaco.  "
+    onclick.addevent="    tween(hotspot[greta5_no].alpha,0,1); tween(hotspot[greta5].alpha,0,1);
+                            tween(hotspot[greta6].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1); "
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="minoria5" ath="-145.14062852757243" atv="-10.806562337073448" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi2_parc"
+    s_user="@Less-user_Minority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Minoría??"
+    onclick.addevent="action_greta5_min();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta5_min">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_minoria].alpha,1);
+    tween(hotspot[mayoria5].alpha,0,1);
+    tween(hotspot[minoria5].alpha,0,1);
+    tween(hotspot[greta5].alpha,0,1);
+    tween(hotspot[greta5_si].alpha,1,1);
+</action>
+<hotspot name="greta5_si" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b]  El porcentaje de estudiantes de entre 14 y 18 años que consumen tabaco[br]
+               diariamente es un 9%. Esto nos demuestra que la gran mayoría de personas dentro[br]
+              de esta franja de edad, tienen una gran percepción de riesgo entorno al tabaco.  "
+    onclick.addevent="    tween(hotspot[greta5_si].alpha,0,1); tween(hotspot[greta5].alpha,0,1);
+                            tween(hotspot[greta6].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 5 MAJORIA MINORIA >>>>>>>>>> -->
+
+
+
+
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 6 MAJORIA MINORIA >>>>>>>>>> -->
+<hotspot name="greta6" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 6:[/b][br]¿La mayoría o la minoría de jóvenes [br]han consumido cannabis en los últimos 30 días?  "
+    onclick.addevent="action_greta6();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta6">
+    set(hotspot[plaza_2_maj_min].alpha,1);
+    tween(hotspot[mayoria6].alpha,1,1);
+    tween(hotspot[minoria6].alpha,1,1);
+    lookto(166,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta6].enabled,false);
+
+    set(hotspot[greta6].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="mayoria6" ath="134.96750755144757" atv="-14.965532085956267" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi6"
+    s_user="@Multi-user_Majority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Mayoría??"
+    onclick.addevent="action_greta6_maj();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta6_maj">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_minoria].alpha,1);
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    tween(hotspot[mayoria6].alpha,0,1);
+    tween(hotspot[minoria6].alpha,0,1);
+    tween(hotspot[greta6].alpha,0,1);
+    tween(hotspot[greta6_no].alpha,1,1);
+</action>
+<hotspot name="greta6_no" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] El porcentaje de estudiantes de entre 14 y 17 años que han [br]
+               consumido cannabis en los últimos 30 días= 14,7%. Este porcentaje también[br]
+               desmiente la creencia de que la mayoría de adolescentes fuman cannabis.  "
+    onclick.addevent="    tween(hotspot[greta6_no].alpha,0,1); tween(hotspot[greta6].alpha,0,1);
+                            tween(hotspot[greta7].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1); "
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="minoria6" ath="-145.14062852757243" atv="-10.806562337073448" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi2_parc"
+    s_user="@Less-user_Minority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Minoría??"
+    onclick.addevent="action_greta6_min();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta6_min">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_minoria].alpha,1);
+    tween(hotspot[mayoria6].alpha,0,1);
+    tween(hotspot[minoria6].alpha,0,1);
+    tween(hotspot[greta6].alpha,0,1);
+    tween(hotspot[greta6_si].alpha,1,1);
+</action>
+<hotspot name="greta6_si" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b]  El porcentaje de estudiantes de entre 14 y 17 años que han [br]
+               consumido cannabis en los últimos 30 días= 14,7%. Este porcentaje también[br]
+               desmiente la creencia de que la mayoría de adolescentes fuman cannabis.  "
+    onclick.addevent="    tween(hotspot[greta6_si].alpha,0,1); tween(hotspot[greta6].alpha,0,1);
+                            tween(hotspot[greta7].alpha,1,1); set(hotspot[plaza_2_minoria].alpha,0); set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 6 MAJORIA MINORIA >>>>>>>>>> -->
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 7 MAJORIA MINORIA >>>>>>>>>> -->
+<hotspot name="greta7" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 7:[/b][br]¿La mayoría o la minoría de jóvenes [br]han mezclado cannabis con tabaco en los últimos 30 días?  "
+    onclick.addevent="action_greta7();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta7">
+    set(hotspot[plaza_2_maj_min].alpha,1);
+    tween(hotspot[mayoria7].alpha,1,1);
+    tween(hotspot[minoria7].alpha,1,1);
+    lookto(166,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta7].enabled,false);
+
+    set(hotspot[greta7].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="mayoria7" ath="134.96750755144757" atv="-14.965532085956267" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi6"
+    s_user="@Multi-user_Majority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Mayoría??"
+    onclick.addevent="action_greta7_maj();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta7_maj">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_majoria].alpha,1);
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    tween(hotspot[mayoria7].alpha,0,1);
+    tween(hotspot[minoria7].alpha,0,1);
+    tween(hotspot[greta7].alpha,0,1);
+    tween(hotspot[greta7_si].alpha,1,1);
+</action>
+<hotspot name="greta7_no" ath="-2.1748130716720766" atv="-24.87606234635273" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] El porcentaje de estudiantes de entre 14 y 18 años que ha [br]
+              mezclado cannabis con tabaco en los últimos 30 días es del 87,7%. Este dato [br]
+              nos ayuda a desmentir que el cannabis es más sano que el tabaco. [br]
+              Primero de todo, no lo es. Cada una de ellas tiene riesgos distintos. [br]
+              Por otro lado, como se demuestra con este porcentaje, las personas [br]
+              que fuman cannabis, también fuman tabaco. "
+    onclick.addevent="    tween(hotspot[greta7_no].alpha,0,1); tween(hotspot[greta7].alpha,0,1);
+                            tween(hotspot[greta8].alpha,1,1); set(hotspot[plaza_2_majoria].alpha,0);  "
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="minoria7" ath="-145.14062852757243" atv="-10.806562337073448" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="multi2_parc"
+    s_user="@Less-user_Minority"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿La Minoría??"
+    onclick.addevent="action_greta7_min();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta7_min">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_maj_min].alpha,0);
+    set(hotspot[plaza_2_majoria].alpha,1);
+    tween(hotspot[mayoria7].alpha,0,1);
+    tween(hotspot[minoria7].alpha,0,1);
+    tween(hotspot[greta7].alpha,0,1);
+    tween(hotspot[greta7_no].alpha,1,1);
+</action>
+<hotspot name="greta7_si" ath="-2.1748130716720766" atv="-24.87606234635273" scale="1" rx="-28" ry="0" rz="0" 
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] El porcentaje de estudiantes de entre 14 y 18 años que ha [br]
+              mezclado cannabis con tabaco en los últimos 30 días es del 87,7%. Este dato [br]
+              nos ayuda a desmentir que el cannabis es más sano que el tabaco. [br]
+              Primero de todo, no lo es. Cada una de ellas tiene riesgos distintos. [br]
+              Por otro lado, como se demuestra con este porcentaje, las personas [br]
+              que fuman cannabis, también fuman tabaco. "
+    onclick.addevent="    tween(hotspot[greta7_si].alpha,0,1); tween(hotspot[greta7].alpha,0,1);
+                            tween(hotspot[greta8].alpha,1,1); set(hotspot[plaza_2_majoria].alpha,0); "
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 7 MAJORIA MINORIA >>>>>>>>>> -->
+
+
+
+
+<!-- <<<<<<<<<< PREGUNTA 8 HOMBRES MUJERES >>>>>>>>>> -->
+<hotspot name="greta8" ath="-1.9927527711361108" atv="-22.121416658065367" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]PREGUNTA 8:[/b][br]¿Más hombres o más mujeres han consumido [br]más bebidas energéticas en los últimos 12 meses?"
+    onclick.addevent="action_greta8();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta8">
+    set(hotspot[plaza_2_elles_ells].alpha,1);
+    tween(hotspot[ells8].alpha,1,1);
+    tween(hotspot[elles8].alpha,1,1);
+    lookto(0,0,150,tween(easeinoutquad,0.6));
+    set(hotspot[greta8].enabled,false);
+    set(hotspot[greta8].handcursor,false);
+</action>
+                <!-- <<<<<<<<<< RESPOSTA >>>>>>>>>> -->
+<hotspot name="ells8" ath="62.58938724416737" atv="-24.375683606004518" scale="1"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@Nosotros"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Hombres??"
+    onclick.addevent="action_greta8_ells();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta8_ells">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_elles].alpha,1);
+    tween(hotspot[elles8].alpha,0,1);
+    tween(hotspot[ells8].alpha,0,1);
+    tween(hotspot[greta8].alpha,0,1);
+    tween(hotspot[greta8_no].alpha,1,1);
+</action>
+<hotspot name="greta8_no" ath="-2.902578459849792" atv="-23.805730031945075" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤯😨😭😱🤢🤥🥴💩"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]ERROR!![/b] EL porcentaje de mujeres / hombres alumn@s de entre 14 y 18 [br]
+              años que han consumido bebidas energéticas l en los 30 días = 50,7% mujeres / 39% hombres.[br]
+              Este porcentaje nos desmiente la creencia de que la prevalencia de las bebidas [br]
+              energéticas es mayor en los hombres por temas deportivos y por temas relacionados [br]
+              con los videojuegos en horarios intensivos y nocturnos"
+    onclick.addevent="    tween(hotspot[greta8_no].alpha,0,1); tween(hotspot[greta8].alpha,0,1);
+                            tween(hotspot[greta9].alpha,1,1); set(hotspot[plaza_2_elles].alpha,0);"
+    s_invisible_at_start="true"
+/>
+
+<hotspot name="elles8" ath="-56.54085893000041" atv="-23.327979792315073" scale="1" rx="4.5" ry="-3" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@Nosotras"
+    s_date="null"
+    s_heart="null"
+    s_content="¿¿Más Mujeres??"
+    onclick.addevent="action_greta8_elles();"
+    s_invisible_at_start="true"
+/>
+<action name="action_greta8_elles">
+    lookto(0,0,130,tween(easeinoutquad,0.6));
+    set(hotspot[plaza_2_elles_ells].alpha,0);
+    set(hotspot[plaza_2_elles].alpha,1);
+    tween(hotspot[elles8].alpha,0,1);
+    tween(hotspot[ells8].alpha,0,1);
+    tween(hotspot[greta8].alpha,0,1);
+    tween(hotspot[greta8_si].alpha,1,1);
+</action>
+<hotspot name="greta8_si" ath="-2.902578459849792" atv="-23.805730031945075" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta 🤸🏻‍♀️💥🙋🏻‍♀️🤪🎉🥹💖☺️😎🥳"
+    s_date="null"
+    s_heart="null"
+    s_content="[b]BIEN!![/b] EL porcentaje de mujeres / hombres alumn@s de entre 14 y 18 [br]
+              años que han consumido bebidas energéticas l en los 30 días = 50,7% mujeres / 39% hombres.[br]
+              Este porcentaje nos desmiente la creencia de que la prevalencia de las bebidas [br]
+              energéticas es mayor en los hombres por temas deportivos y por temas relacionados [br]
+              con los videojuegos en horarios intensivos y nocturnos"
+    onclick.addevent="    tween(hotspot[greta8_si].alpha,0,1); tween(hotspot[greta8].alpha,0,1);
+                            tween(hotspot[greta9].alpha,1,1); set(hotspot[plaza_2_elles].alpha,0);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< FI PREGUNTA 8 HOMBRES MUJERES >>>>>>>>>> -->
+
+
+
+
+<!-- <<<<<<<<<< THE END >>>>>>>>>> -->
+<hotspot name="greta9" ath="-2.356829444397249" atv="-23.20233506315534" scale="1" rx="-28" ry="0" rz="0"
+    style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="2m"
+    s_heart="true"
+    s_content="[b]FELICIDADES![/b][br]No eran preguntas fáciles! Espero que te [br]
+    estos datos te hayan aportado una nueva perspectiva![br]
+    Puedes volver a empezar o pasar a la siguiente actividad!"
+    onclick.addevent=" tween(hotspot[greta9].alpha,0,1);
+                            tween(hotspot[greta1].alpha,1,1);
+                            set(hotspot[plaza_2_maj_min].alpha,1);"
+    s_invisible_at_start="true"
+/>
+<!-- <<<<<<<<<< THE END >>>>>>>>>> -->
+
+
+ <hotspot name="plaza_2_elles"
+	url="assets/plaza_2_elles.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_2_elles_ells"
+	url="assets/plaza_2_elles_ells.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_2_ells"
+	url="assets/plaza_2_ells.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_2_maj_min"
+	url="assets/plaza_2_maj_min.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_2_majoria"
+	url="assets/plaza_2_majoria.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_2_minoria"
+	url="assets/plaza_2_minoria.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(23.9292, 1.60055, -0.478219, 0.0165104); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
 />
 
 

@@ -1,15 +1,25 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="boto per passar"
-    onclick.addevent="js:launchPopup('casadoslink');"
+<hotspot name="mr_potato" ath="112.16394312130325" atv="10.345044503842535" scale="1" rx="-7" ry="8.5" rz="-13.5" style="speech_bubbles"
+    s_position="left"
+    s_photo="potato"
+    s_user="@MrPotato_TheBest"
+    s_date="2w"
+    s_heart="null"
+    s_content="Si soy una cebolla, [br]quiere decir que hago [br]llorar a la gente? 😭😭😭"
+    onclick.addevent="lookto(-12,0,105,tween(easeinoutquad,0.8));"
     
+/>
+
+<hotspot name="etna" ath="16.4222762387933" atv="-23.597939338261135" scale="1" rx="-0.5" ry="6" rz="-19.5"  style="speech_bubbles"
+    s_position="left"
+    s_photo="null"
+    s_user="🤣😂✨😭"
+    s_date="12h"
+    s_heart="true"
+    s_content="Jeje que tonto eres! [br]Esto va de identidades, [br]vamos a leerlo! "
+    onclick.addevent="js:launchPopup('link1casa2');"
 />
 
 

@@ -15,7 +15,7 @@
     looktohotspot(life,60,tween(easeinoutquad,0.8));
     tween(hotspot[etna1].alpha,0,1);
 
-    delayedcall(1, 
+    delayedcall(0.5, 
         lookto(22.24,-13.15,105,tween(easeinoutquad,0.8));
         tween(hotspot[etna2].alpha,1,1);
     );

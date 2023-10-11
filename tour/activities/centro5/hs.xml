@@ -1,16 +1,26 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="profe" ath="65.81970803440328" atv="-17.829634395130512" scale="1" rx="-11.5" ry="-22.5" rz="-9"  style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
+    s_photo="sofya"
+    s_user="@Sofya-Kovalévskaya"
     s_date="1w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Preparadas? Vamos allá con las situaciones! 👩🏻‍🏫"
+    onclick.addevent="js:launchPopup('link1centro5');"
 />
+<hotspot name="conflicto" ath="46.87190899240284" atv="-0.4353782221023591" scale="0.3499999999999994" rx="-3.5" ry="2.5" rz="-2.200000000000001"   
+    distorted="true"  
+    alpha="0.75"
+    type="image" 
+    url="assets/conflicto.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    zorder="1"
+/> 
 
 
 </krpano>

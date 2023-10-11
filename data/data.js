@@ -35,11 +35,11 @@ const data = {
       2: {
         video: "efHOIAOjHCM",
         instructions:
-          "<p><b>¿Cómo me veo?</b> </p><p>Una nariz, dos ojos... ¿y qué más? Para empezar, vamos a crear un avatar a nuestra imagen y semejanza. Si estáis en grupo, vais a elegir y mezclar varios rasgos y características que os identifiquen. También podéis pensar en qué cosas os identifican en conjunto. </p> <br> <p><b>¡Atención!</b></p><p>En esta actividad vamos a crear un avatar bla bla bla</p>",
+          "<p><b>Las diferentes pieles de Mr. Potato</b> </p><p>Mr. Potato, como una cebolla, también tiene muchas capas o pieles, cada grupo al que pertenece le aporta una “piel” nueva a su identidad.</p><p> ¿Quieres descubrir cuál es tu identidad social?</p>",
         points: 1,
         aptitudes: ["análisis", "colaboración"],
         extra: {
-          link1: "",
+          link1casa2: "",
 
         },
       },
@@ -55,7 +55,7 @@ const data = {
       },
       4: {
         video: "RpLm69FLs74",
-        instructions: "<p><b>¡Soy portada!</b> </p><p>Ha llegado la hora de ver cómo llevas lo de promocionarte. Como eres nueva en el pueblo, la revista comarcal va a hacer una pequeña sección sobre ti.</p><p>Ahora es tu oportunidad para hablar sobre las cualidades que has identificado anteriormente. Escribe dos o tres frases para presentarte.</p><p>¡No te cortes, la gente del pueblo tiene ganas de conocerte de verdad y aparecerás en portada!   </p>",
+        instructions: "<p><b>¡Soy portada!</b> </p><p>Ha llegado la hora de ver cómo llevas lo de promocionarte. Como eres nueva en el pueblo, la revista comarcal va a hacer una pequeña sección sobre ti.</p><p>Ahora es tu oportunidad para hablar sobre las cualidades que has identificado anteriormente. Escribe dos o tres frases para presentarte.</p><p>¡No te cortes, la gente del pueblo tiene ganas de conocerte de verdad y aparecerás en portada!   </p>    <p>Primero: elije la revista en la que quieres aparecer (por ejemplo: Bravo, Cuore, Teen Vogue, Rolling Stone, Cosmopolitan, Sports Illustrated, Hola, etc.)</p>    <p>Segundo: elije un titular como frase principal que responda al motivo por el que estás apareciendo en portada. ¿Qué hay de relevante o a destacar en ti y de lo que estés orgullosa?</p>    <p>Tercero: hazte una fotografía (selfie) con el teléfono móvil; mírarla unos minutos y describe en detalle y profundidad a la persona a la qué ves ahí.  Fíjate en lo que transmites, qué cosas físicas ves y cómo te muestras emocionalmente.</p>    <p>Y si no sabes por donde empezar, ¡Etna te muestra un ejemplo!</p>",
         points: 2,
         aptitudes: ["liderazgo", "visión espacial"],
         extra: {
@@ -164,7 +164,7 @@ const data = {
     talents: ["Mejorar vínculos personales", "Tomar decisiones", "Resolver problemas", "Escuchar activamente"],
     panos: {
       1: {
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>La complejidad de las emociones</b></p> <p>Identificar las emociones de las demás personas tiene su complejidad y aprender a gestionar las propias es un gran reto. </p><p>Mira este vídeo sobre un robot que está en pleno proceso de aprendizaje de estas habilidades. ¿Quieres jugar con R2D3 a identificarlas? </p>",
         points: 2,
         aptitudes: ["dedicación", "compromiso"],
         extra: {
@@ -173,7 +173,7 @@ const data = {
       },
       2: {
         video: "W_QZucbALkw",
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>¿Quién gana la jugada? </b></p> <p>En esta partida los goles están asegurados, pero... ¿en qué portería?</p><p>Van a aparecer ante ti distintas jugadas donde se sucumbe a la presión social o no. </p><p>Deberás clasificar cada situación según si está ganando lo que quiere hacer la persona individual o si está ganando lo que quiere hacer el grupo de amigos.</p>",
         points: 2,
         aptitudes: ["perseverancia", "adaptabilidad"],
         extra: {
@@ -182,58 +182,53 @@ const data = {
       },
       3: {
         video: "IRBuE6LMLWE",
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>La historia de las mil y una decisiones de Nico</b></p> <p>Desde el momento en que nos levantamos hasta que nos acostamos, pasamos por infinitas situaciones en las que tenemos que decidir qué hacer a continuación. Muchas veces ni siquiera somos conscientes de ello. Por ejemplo, levantarse o no de la cama ya es una decisión. </p><p>Entra en la historieta sobre mi día de hoy. ¿Me ayudas a tomar algunas decisiones?</p>",
         points: 1,
         aptitudes: ["paciencia", "disciplina"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1centro3: "https://view.genial.ly/650973e550d05d001190da24",
         },
       },
       4: {
         video: "c_mH63i9A0k",
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>El problema como un reto</b></p> <p>Algunos problemas no tienen solución y, desafortunadamente, tenemos que aprender a convivir con ellos. Otros muchos, en cambio, pueden solucionarse y los podemos tomar como un juego de estrategia para resolver. </p><p>A continuación, aparecerán letras desordenadas. Deberás ordenarlas para averiguar los 5 pasos de la estrategia para solucionar un problema. </p><p>Aplícalos y juega tus cartas.</p>",
         points: 1,
         aptitudes: ["creatividad", "individualidad"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1centro4: "sergigomez.com",
+          link2centro4: "https://www.youtube.com/embed/f5yAvgI-o0M?si=V9jWAKleBIuEsgDM",
+
         },
       },
       5: {
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>Es cosa de dos</b></p> <p>¿Eres de las que quiere tener siempre la razón o de las que suele ceder? En esta ocasión debéis poneros en parejas y debatir hasta poneros de acuerdo para elegir un lado: “de acuerdo” o “en desacuerdo”, con las frases que se os presentan.  </p><p>  Sea como sea, no os podéis separar e ir por vuestra cuenta; hablad, debatid, ceded... ¡o no! Pero manejad el conflicto.        </p>",
         points: 1,
         aptitudes: ["apertura", "auto-mejora"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1centro5: "https://view.genial.ly/650973ea6281ff00111c3f2e",
+
         },
       },
       6: {
         video: "WoxvjJdq7DY",
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
+        instructions: "<p><b>¿Qué le pasa? </b></p> <p>Llegó la hora de averiguar cómo de bien se os da comprender a las otras personas. ¿Eres capaz de adivinar qué emoción está sintiendo alguien sólo con su expresión? </p><p>¡Vamos a comprobar cuán hábil eres!</p>  <p>Sólo la persona que va a hacer mímica debe ver la pantalla; tenéis que representar la emoción que os aparezca de la mejor manera.</p><p> ¡Recordad que no podéis hablar, nada de nada! </p><br><p><b>¡Atención!</b></p><p>Hay varias cartas, ¡puedes ir sacando a ver qué emoción hay que representar!</p>",
         points: 1,
         aptitudes: ["positividad", "auto-reconocimiento"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1: "",
+
         },
       },
       7: {
         video: "ZiY7btz8LJM",
-        instructions: "<p><b>Introducción:</b></p> <p></p><p></p>",
-        points: 1,
+        instructions: "<p><b>Activa tu memoria </b></p> <p>Y para terminar... ¿te han quedado claros los conceptos? </p><p>¡A ver si los aciertas todos a la primera!</p>",
+        points: 7,
         aptitudes: ["curiosidad", "hambre de conocimiento"],
 
         skill: "sociabilidad",
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1centro7: "https://view.genial.ly/650973ec21818c0010986137",
+
         },
       },
     },
@@ -257,7 +252,7 @@ const data = {
       },
       2: {
         video: "2udfbSXOZTs",
-        instructions: "<p><b>Vive un acoso escolar</b></p> <p>Vive una situación de acoso escolar en primera persona. </p><p>Escanea el código QR de la pizarra y ponte las gafas de realidad virtual. </p><p>¿Preparado para ponerte en los zapatos de cada uno de los personajes?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvio, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR a mayor resolución posible.</p>",
+        instructions: "<p><b>Vive un acoso escolar</b></p> <p>Vive una situación de acoso escolar en primera persona. </p><p>Escanea el código QR de la pizarra y ponte las gafas de realidad virtual. </p><p>¿Preparado para ponerte en los zapatos de cada uno de los personajes?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvil, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR. Recuerda poner la mayor resolución posible en los ajustes de la App.</p>",
         points: 2,
         aptitudes: ["perseverancia", "adaptabilidad"],
         extra: {
@@ -337,18 +332,16 @@ const data = {
     talents: ["Comunicar asertivamente", "Información sobre drogas", "Identificar presión de grupo", "Romper mitos"],
     panos: {
       1: {
-        instructions: "<p><b>Que tu influencia seas tú</b></p> <p>Ponte en el lugar de Etna y experimenta en su piel tres formas distintas de responder a un compañero que le pide que haga algo que ella no quiere hacer.</p><p>Trasládate con las gafas de RV al parque donde Etna y sus nuevos amigos están ahora pasando el rato. </p><p>¿Te suenan estos estilos comunicativos? ¿Con qué tipo de reacción te identificas más?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvio, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR a mayor resolución posible.</p>",
+        instructions: "<p><b>Que tu influencia seas tú</b></p> <p>Ponte en el lugar de Etna y experimenta en su piel tres formas distintas de responder a un compañero que le pide que haga algo que ella no quiere hacer.</p><p>Trasládate con las gafas de RV al parque donde Etna y sus nuevos amigos están ahora pasando el rato. </p><p>¿Te suenan estos estilos comunicativos? ¿Con qué tipo de reacción te identificas más?</p><br><p><b>¡Atención!</b></p><p>Una vez escaneado el código QR con el móvil, necesitas usar la aplicación de YouTube en tu teléfono móvil para poder visualizar correctamente el vídeo en modo VR. Recuerda poner la mayor resolución posible en los ajustes de la App.</p>",
         points: 1,
         aptitudes: ["love", "empathy"],
         extra: {
-          link1: "sergigomez.com",
-          link2: "sergigomez.com",
-          link3: "sergigomez.com",
+          link1parque1: "https://www.youtube.com/embed/HeNV2eB11KA?si=5W56TxaHTVZVd8sO",
         },
       },
       2: {
         instructions: "<p><b>¿Y tú qué crees?</b></p> <p>A veces, lo que pensamos no es la realidad objetiva. Ahora tienes la oportunidad de conocer el consumo de las personas jóvenes de 14-18 años. ¡Vamos a jugar!</p><p> Greta, a quien le gusta saber la verdad de las cosas, ha revisado los últimos informes de datos extraídos de varias encuestas a jóvenes. </p><p> ¡Ponte a prueba, a ver si adivinas qué dato es el correcto!</p>",
-        points: 1,
+        points: 9,
         aptitudes: ["love", "empathy"],
         extra: {
           link1: "",

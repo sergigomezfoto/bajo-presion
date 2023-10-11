@@ -1,16 +1,276 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="testnormal_sumapunts" ath="-57.745864005410056" atv="-4.649104131753729" scale="1" rx="-2" ry="-27" rz="11"  style="speech_bubbles"
+    s_position="right"
+    s_photo="miriam"
+    s_user="@Aiko_Vibes17"
+    s_date="23h"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
+    s_content="Que te den, Nil! 😡 Y tu... [br]A ver si encuentras las parejas! "
+    onclick.addevent="js:launchPopup('link1centro7');"
     
 />
 
+
+ <hotspot name="conflicto"
+	url="assets/espai_jove_7_conflicto.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(14.6852, 19.9149, 11.1492, 9.72623); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_conflicto();"
+
+/>
+<hotspot name="cor_conflicto_1" ath="-13.116722852814632" atv="9.687719355641839" scale="0.49999999999999956" rx="0" ry="0" rz="-6.5"   distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_conflicto_2" ath="-13.116722852814632" atv="9.687719355641839" scale="0.49999999999999956" rx="0" ry="0" rz="-6.5"    distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_conflicto">
+        add_points_normal();
+		if(hotspot[conflicto].alpha === 0.00001,
+            tween(hotspot[conflicto].alpha,1);
+			,
+			tween(hotspot[conflicto].alpha,0.00001);
+            set(hotspot[cor_conflicto_1].alpha,0);
+            set(hotspot[cor_conflicto_2].alpha,1);
+			);
+</action>
+
+<hotspot name="emocion"
+	url="assets/espai_jove_7_emocion.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(21.4609, -40.6293, 19.8303, -0.0835467); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_emocion();"
+/>
+<hotspot name="cor_emocion_1" ath="49.636664959568634" atv="7.052680925694469" scale="0.6049999999999996" rx="0" ry="0" rz="-14.5"   distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_emocion_2" ath="49.636664959568634" atv="7.052680925694469" scale="0.6049999999999996" rx="0" ry="0" rz="-14.5"    distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_emocion">
+        add_points_normal();
+		if(hotspot[emocion].alpha === 0.00001,
+            tween(hotspot[emocion].alpha,1);
+			,
+			tween(hotspot[emocion].alpha,0.00001);
+            set(hotspot[cor_emocion_1].alpha,0);
+            set(hotspot[cor_emocion_2].alpha,1);
+			);
+</action>
+
+<hotspot name="limites"
+	url="assets/espai_jove_7_limites.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(15.784, -106.194, -4.77947, -7.12286); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_limites();"
+/>
+<hotspot name="cor_limites_1" ath="113.12177299439594" atv="5.756811447284126" scale="0.5799999999999996" rx="-4.5" ry="-41" rz="18"    distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/>
+<hotspot name="cor_limites_2" ath="113.12177299439594" atv="5.756811447284126" scale="0.5799999999999996" rx="-4.5" ry="-41" rz="18"    distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_limites">
+        add_points_normal();
+		if(hotspot[limites].alpha === 0.00001,
+            tween(hotspot[limites].alpha,1);
+			,
+			tween(hotspot[limites].alpha,0.00001);
+            set(hotspot[cor_limites_1].alpha,0);
+            set(hotspot[cor_limites_2].alpha,1);
+			);
+</action>
+
+<hotspot name="vinculo"
+	url="assets/espai_jove_7_vinculo.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(10.6564, 127.33, -5.83599, 11.8383); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_vinculo();"
+
+/>
+<hotspot name="cor_vinculo_1" ath="-124.13649676074135" atv="11.029388070494415" scale="0.47499999999999953" rx="0" ry="0" rz="4"     distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_vinculo_2" ath="-124.13649676074135" atv="11.029388070494415" scale="0.47499999999999953" rx="0" ry="0" rz="4"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_vinculo">
+        add_points_normal();
+		if(hotspot[vinculo].alpha === 0.00001,
+            tween(hotspot[vinculo].alpha,1);
+			,
+			tween(hotspot[vinculo].alpha,0.00001);
+            set(hotspot[cor_vinculo_1].alpha,0);
+            set(hotspot[cor_vinculo_2].alpha,1);
+			);
+</action>
+
+<hotspot name="comunicacion"
+	url="assets/espai_jove_7_comunicacion.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(13.4527, 106.669, 10.0955, 31.1876); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_comunicacion();"
+/>
+<hotspot name="cor_comunicacion_1" ath="-101.6096738305423" atv="25.60186961305573" scale="0.4549999999999995" rx="0" ry="0" rz="11.5"    distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_comunicacion_2" ath="-101.6096738305423" atv="25.60186961305573" scale="0.4549999999999995" rx="0" ry="0" rz="11.5"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_comunicacion">
+        add_points_normal();
+		if(hotspot[comunicacion].alpha === 0.00001,
+            tween(hotspot[comunicacion].alpha,1);
+			,
+			tween(hotspot[comunicacion].alpha,0.00001);
+            set(hotspot[cor_comunicacion_1].alpha,0);
+            set(hotspot[cor_comunicacion_2].alpha,1);
+			);
+</action>
+  
+  <hotspot name="presion"
+	url="assets/espai_jove_7_presion.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(10.3395, 100.029, -12.6809, 11.2032); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false" capture="false"
+    onclick.addevent="action_presion();"
+/>
+<hotspot name="cor_presion_1" ath="-96.55299134780233" atv="10.31679392365018" scale="0.4199999999999995" rx="0" ry="0" rz="-10.5"     distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_presion_2" ath="-96.55299134780233" atv="10.31679392365018" scale="0.4199999999999995" rx="0" ry="0" rz="-10.5"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
+/>
+<action name="action_presion">
+        add_points_normal();
+		if(hotspot[presion].alpha === 0.00001,
+            tween(hotspot[presion].alpha,1);
+			,
+			tween(hotspot[presion].alpha,0.00001);
+            set(hotspot[cor_presion_1].alpha,0);
+            set(hotspot[cor_presion_2].alpha,1);
+			);
+</action>
 
 </krpano>

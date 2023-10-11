@@ -1,12 +1,52 @@
-<krpano>
-
-
-
+<krpano 
+onstart="hotspotblink1(presion1);
+hotspotblink2(presion2);
+hotspotblink3(presion3);
+hotspotblink4(presion4);
+hotspotblink5(presion5);
+hotspotblink6(presion6);
+hotspotblink7(presion7);"
+>
+<!-- ANIMACIO HOTSPOTS  https://krpano.com/forum/wbb/index.php?page=Thread&threadID=2764 -->
+<action name="hotspotblink1">
+   tween(hotspot[%1].alpha, 0.9, 1, default, tween(hotspot[%1].alpha, 0.4, 1, default, hotspotblink1(%1)) );
+</action>
+<action name="hotspotblink2">
+delayedcall(1.0,  
+   tween(hotspot[%1].alpha, 0.9, 0.9, default, tween(hotspot[%1].alpha, 0.3, 0.9, default, hotspotblink2(%1)) );
+);
+</action>
+<action name="hotspotblink3">
+delayedcall(0.7,  
+   tween(hotspot[%1].alpha, 0.9, 0.6, default, tween(hotspot[%1].alpha, 0.5, 0.7, default, hotspotblink3(%1)) );
+);
+</action>
+<action name="hotspotblink4">
+delayedcall(0.3,  
+   tween(hotspot[%1].alpha, 0.9, 1, default, tween(hotspot[%1].alpha, 0.4, 0.9, default, hotspotblink4(%1)) );
+);
+</action>
+<action name="hotspotblink5">
+delayedcall(0.9,  
+   tween(hotspot[%1].alpha, 0.9, 0.8, default, tween(hotspot[%1].alpha, 0.3, 0.8, default, hotspotblink5(%1)) );
+);
+</action>
+<action name="hotspotblink6">
+delayedcall(0.4,  
+   tween(hotspot[%1].alpha, 0.9, 0.7, default, tween(hotspot[%1].alpha, 0.5, 0.8, default, hotspotblink6(%1)) );
+);
+</action>
+<action name="hotspotblink7">
+delayedcall(0.8,  
+   tween(hotspot[%1].alpha, 0.9, 0.9, default, tween(hotspot[%1].alpha, 0.4, 0.7, default, hotspotblink7(%1)) );
+);
+</action>
+<!-- FI ANIMACIO HOTSPOTS  -->
 
 <hotspot name="laura-pilota" ath="3.9026286560747963" atv="-2.389091315211292" scale="1" rx="1" ry="17.5" rz="-9"  style="speech_bubbles"
     s_position="left"
     s_photo="laura"
-    s_user="@laura"
+    s_user="@Wave_Laurii"
     s_date="12h"
     s_heart="null"
     s_content="Cuanta presión [br]en las gradas..."
@@ -17,8 +57,8 @@
 
 <hotspot name="pasa-pasa" ath="153.51397828090606" atv="-23.262678541340257"   style="speech_bubbles"
     s_position="bottomright"
-    s_photo="alex"
-    s_user="@alexandra"
+    s_photo="alexandra"
+    s_user="@AlexandraStyle"
     s_date="6h"
     s_heart="null"
     s_content="Pasa, pasa! Aquí!"
@@ -29,7 +69,7 @@
 <hotspot name="julia-cubre" ath="-170.5345481640523" atv="-5.984310681995706" scale="1" rx="-23.5" ry="11.5" rz="-32"  style="speech_bubbles"
     s_position="bottom"
     s_photo="julia"
-    s_user="@júlia"
+    s_user="@JuliaStarz_12"
     s_date="1d"
     s_heart="null"
     s_content="Marc, te cubro!"
@@ -39,7 +79,7 @@
 <hotspot name="miki-indica" ath="95.3948673706258" atv="-10.695296401685036" scale="1" rx="0" ry="0" rz="-16.5"  style="speech_bubbles"
     s_position="bottomright"
     s_photo="miki"
-    s_user="@miki_entrenador"
+    s_user="@Miki_el_Trendy"
     s_date="3w"
     s_heart="null"
     s_content="Etna, desmárcate, [br]muévete, ayuda al pase!"
@@ -48,7 +88,7 @@
 
 
 
-
+<!-- 
 <action name="presion_accio-no-la-faig-servir">
     tween(hotspot[presion1].alpha,0,1);
     tween(hotspot[presion2].alpha,0,1);
@@ -58,9 +98,7 @@
     tween(hotspot[presion6].alpha,0,1);
     tween(hotspot[presion7].alpha,0,1);
     skin_hotspotstyle_click-presion();
-    
-
-</action>
+</action> -->
 
 		
 
@@ -78,17 +116,16 @@
       onover.addevent=""
     />
 
-    <action name="action_presion2">
+    <!-- <action name="action_presion2">
         tween(hotspot[presion1].scale,0.22,1);
         delayedcall (1,tween(hotspot[presion1].scale,0.19,1););
         action_presion2();
-    </action>     
+    </action>      -->
 
     <hotspot name="presion1" 
         ath="-150.92124865684437" atv="-4.175059035924315" scale="0.19" rx="-5.5" ry="51.5" rz="0"
         style="hotspot-presion" 
         url="assets/presion1.png"  
-        
     />
 
 

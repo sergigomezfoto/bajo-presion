@@ -1,27 +1,93 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="cards"
-    
-/>
 
 <action name="cards" >
-
-s_random(1,13,cards_random);
-jscall(
-    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const ampleDesitjat = `${amplePantalla * 0.6}px`;
-    launchImagePopup('outside/cards/assets/' + krpano.cards_random + '.jpg','600px');
-);
-
+    add_points_normal();
+    s_random(1,13,cards_random);
+    jscall(
+        const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const ampleDesitjat = `${amplePantalla * 0.6}px`;
+        launchImagePopup('outside/cards/assets/' + krpano.cards_random + '.jpg','600px');
+    );
+    set(hotspot[cor_1].alpha,0);
+    set(hotspot[cor_2].alpha,1);
 </action>
+
+ <hotspot name="cartes1"
+	url="assets/cartes.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(56.7706, 172.348, -48.9177, 8.92319); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="true"
+    enabled="true"
+    visible="true"
+    alpha="0.00001"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+    onover.addevent="tween(hotspot[cartes1].alpha,1);"
+    onout.addevent="tween(hotspot[cartes1].alpha,0.00001);"
+    onclick.addevent="cards();"
+/>
+<hotspot name="cor_1" ath="-144.11286366726034" atv="38.51381930943864" scale="0.7557999999999997" rx="0" ry="0" rz="0"  distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="true"
+    handcursor="false"
+    alpha="1"
+    zorder="20"
+/> 
+<hotspot name="cor_2" ath="-144.11286366726034" atv="38.51381930943864" scale="0.7557999999999997" rx="0" ry="0" rz="0"   distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="20"
+/>
+
+
+
+<hotspot name="alex1" ath="39.838968231037086" atv="-17.40151686896792" scale="1.094999999999998" rx="0" ry="0" rz="0" style="speech_bubbles"
+    s_position="left"
+    s_photo="alexandra"
+    s_user="@AlexandraStyle"
+    s_date="18h"
+    s_heart="null"
+    s_content="Júlia, adivina cuál emoción[br] tengo en estas cartas 😁🥺😭😡😨"   
+    onclick.addevent="lookto(-178,-13,130,tween(easeinoutquad,0.8));            
+             tween(hotspot[alex1].alpha,0,0.8);
+             tween(hotspot[julia].alpha,1,0.8);"
+/>
+
+<hotspot name="julia" ath="-176.40754106129867" atv="-28.244532951891017" scale="1.094999999999998" rx="-16" ry="0" rz="0" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="julia"
+    s_user="@JuliaStarz_12"
+    s_date="22h"
+    s_heart="null"
+    s_content="A ver... A mi no me engañas [br]con esta cara de Jóker! ♠️♣️♥️♦️"  
+    s_invisible_at_start="true" 
+    onclick.addevent="lookto(-35,-3,130,tween(easeinoutquad,0.8));
+            tween(hotspot[julia].alpha,0,0.8);
+             tween(hotspot[alex2].alpha,1,0.8);"
+/>
+
+<hotspot name="alex2" ath="-45.384479203297474" atv="-32.952943783799356" scale="1.094999999999998" rx="-18.5" ry="0" rz="9.5" style="speech_bubbles"
+    s_position="right"
+    s_photo="alexandra"
+    s_user="@AlexandraStyle"
+    s_date="18h"
+    s_heart="null"
+    s_content="Jajajaj es cara de Póker no de Jóker! 😂🤣🃏[br] Venga va, escoje una carta y [br]empezemos con la mímica! 🤸🏻‍♀️🎴" 
+    s_invisible_at_start="true" 
+    onclick.addevent="lookto(-177,39,95,tween(easeinoutquad,0.8));
+                     tween(hotspot[alex2].alpha,0,0.8);" 
+/>
 
 
 

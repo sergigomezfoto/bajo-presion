@@ -14,7 +14,6 @@
 <action name="qr_action" >
 jscall(
     const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const ampleDesitjat = `${amplePantalla * 0.6}px`;
     launchImagePopup('tour/activities/instituto2/assets/insti2.jpg','600px');
 );
 </action>
@@ -42,7 +41,6 @@ jscall(
 <action name="insta_action" >
 jscall(
     const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const ampleDesitjat = `${amplePantalla * 0.6}px`;
     launchImagePopup('tour/activities/instituto2/assets/instagram.jpg','800px');
 );
 </action>

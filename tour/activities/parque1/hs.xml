@@ -1,15 +1,30 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+<hotspot name="etnaa" ath="-148.49567435664198" atv="-10.38719989134199" scale="1" rx="8" ry="-6.5" rz="13.5"  style="speech_bubbles"
+    s_position="right"
+    s_photo="etna_life"
+    s_user=" @Etna.s_World"
+    s_date="14w"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Ponte las gafas VR 🤓[br] y vívelo en primera persona!"
+    onclick.addevent="qr_action();"
+/>
+<action name="qr_action" >
+jscall(
+    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    launchImagePopup('tour/activities/parque1/assets/qr.jpg','600px');
+);
+</action>
+
+<hotspot name="etnaa2" ath="-84.29162864330601" atv="-13.432136676240415" scale="1" rx="-9.5" ry="9" rz="-24"  style="speech_bubbles"
+    s_position="left"
+    s_photo="etna_life"
+    s_user=" @Etna.s_World"
+    s_date="14w"
+    s_heart="true"
+    s_content="O puedes verlo directamente [br] en el ordenador 🖥️"
+    onclick.addevent="js:launchPopup('link1parque1');"
 />
 
 

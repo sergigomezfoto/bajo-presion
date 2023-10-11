@@ -5,7 +5,7 @@
 <hotspot name="nil-pregunta" ath="125.08116062411486" atv="-10.069100594201796" style="speech_bubbles"
     s_position="leftbottom"
     s_photo="nil"
-    s_user="@nil"
+    s_user="@niiil_cardonero"
     s_date="15s"
     s_heart="true"
     s_content="Entrenador, queremos [br]ir ya a la pista a jugar!"
@@ -23,7 +23,7 @@ tween(hotspot[nil-pregunta].alpha,0,1);
 <hotspot name="entrenador-respon" ath="-83.2699472600608" atv="-18.021305815451004" scale="1" rx="-16" ry="0" rz="0" style="speech_bubbles"
     s_position="leftbottom"
     s_photo="miki"
-    s_user="@miki_entrenador"
+    s_user="@Miki_el_Trendy"
     s_date="36s"
     s_heart="true"
     s_content="Enseguida lo haremos, pero antes [br]quiero que repasemos la táctica..."
@@ -40,8 +40,8 @@ jscall(
    launchPopup('link1poli2','80%','80%',
       {
             onClose: function(){krpano.call('zoom-out-pissarra()');}
-       }
-   )
+      }
+   )
 );
 </action>
 

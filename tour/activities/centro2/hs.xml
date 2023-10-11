@@ -4,7 +4,7 @@
 <!-- MARTI SI/NO ANIMACIO -->
 <hotspot name="si" ath="-81.60636769587325" atv="20.764454444517767" scale="0.473"   
     distorted="true"  
-    alpha="1"
+
     type="image" 
     url="assets/si.png" 
     align="center" 
@@ -12,6 +12,7 @@
     enabled="false"
     handcursor="false"
     zorder="1"
+    alpha="0"
 /> 
  <hotspot name="cap_porter_futbolin_si"
 	url="assets/futbolin_si.png"
@@ -20,13 +21,13 @@
     handcursor="false"
     enabled="false"
     visible="true"
-    alpha="1"
+    
     zorder="10"
     bgcapture="false"
 />
 <hotspot name="no" ath="100.12406516285893" atv="19.41175574308549" scale="0.478"   
     distorted="true"  
-    alpha="1"
+
     type="image" 
     url="assets/no.png" 
     align="center" 
@@ -34,6 +35,7 @@
     enabled="false"
     handcursor="false"
     zorder="1"
+    alpha="0"
 /> 
  <hotspot name="cap_porter_futbolin_no"
 	url="assets/futbolin_no.png"
@@ -42,7 +44,7 @@
     handcursor="false"
     enabled="false"
     visible="true"
-    alpha="1"
+    
     zorder="10"
     bgcapture="false"
 />
@@ -119,6 +121,7 @@ if (socker_game_counter LT socker_game_questions_length ,
     if (socker_current_match LT socker_answer_per_match,
             hotspot[socker_button0].enabled=true;
             hotspot[socker_button1].enabled=true;
+            tween(hotspot[no].alpha|hotspot[si].alpha,1,0.2);
         if (!socker_game_position,
             socker_current_canvas="socker_question0";    
             socker_game_position=1;
@@ -263,6 +266,7 @@ document.getElementById('kp_s_' + caller.name).style.cssText += "backdrop-filter
 
     hotspot[socker_button0].enabled=false;
     hotspot[socker_button1].enabled=false;
+    tween(hotspot[no].alpha|hotspot[si].alpha,0,0.2);
 
  if (socker_current_match LE socker_answer_per_match,
     

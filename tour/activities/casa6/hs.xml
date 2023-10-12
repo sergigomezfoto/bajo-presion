@@ -1,16 +1,25 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="-8.094932171552614" atv="2.2449975859656206" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
+<hotspot name="etna_crucigrama" ath="-8.094932171552614" atv="2.2449975859656206" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
     s_position="rightbottom"
     s_photo="null"
     s_user="Hacemos un crucigrama?"
     s_date="23h"
     s_heart="true"
     s_content="Sabías que gramma viene del [br]griego γράμμα y significa letra?"
-    onclick.addevent="js:launchPopup('link1casa6');"
-    
+    onclick.addevent="crucigrama_action_bona_sergi();"
 />
+
+
+
+<action name="crucigrama_action_bona_sergi" >
+    jscall(
+        launchImagePopup('tour/activities/casa6/assets/crucigrama.jpg','600px',null,{},'https://puzzel.org/es/crossword/play?p=-NaGo1pSHfOppFQUMHSW');
+        );
+</action>
+
+
 
 
 </krpano>

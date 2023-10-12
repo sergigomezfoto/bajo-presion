@@ -1,5 +1,5 @@
 <krpano>
-<!-- <<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<!-- <<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  
 <hotspot name="borrar" ath="39.707627588967966" atv="-25.59902097411777" scale="1" rx="0" ry="0" rz="0" style="speech_bubbles"
     s_position="bottom"
     s_photo="maria"
@@ -9,7 +9,7 @@
     s_content="botó per passar d'activitat. [br]A data.js, posar que son 5 punts!!"
     onclick.addevent=""  
 />
-<!-- <<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+<<<<<<<<<<<<<<<<<< BORRAR QUANT ELS BOTONS DE PLAY SUMIN >>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 
 
 
@@ -83,6 +83,7 @@
          capture="false"
     />
 <action name="action_play-mochilla">
+        add_points_normal();
         hotspot[video_mochila].play();
         tween(hotspot[boto-play-mochilla].alpha, 0, 0.5);
         set(hotspot[boto-play-mochilla].handcursor, false);
@@ -174,6 +175,7 @@
          capture="false"
     />
 <action name="action_play-wc">
+        add_points_normal();
         hotspot[video_wc].play();
         tween(hotspot[boto-play-wc].alpha, 0, 0.5);
         set(hotspot[boto-play-wc].handcursor, false);
@@ -265,6 +267,7 @@
          capture="false"
     />
 <action name="action_play-tanga">
+        add_points_normal();
         hotspot[video_tanga].play();
         tween(hotspot[boto-play-tanga].alpha, 0, 0.5);
         set(hotspot[boto-play-tanga].handcursor, false);
@@ -319,6 +322,7 @@
     zorder="3"
 /> 
 <action name="ciberacoso_action">
+        add_points_normal();
         set(hotspot[cor-ciberacoso-1].alpha, 0);
         set(hotspot[cor-ciberacoso-2].alpha, 1);
         jscall(launchPopup('link1insti4'));
@@ -358,6 +362,7 @@
     zorder="3"
 /> 
 <action name="sexting_action">
+        add_points_normal();
         set(hotspot[cor-sexting-1].alpha, 0);
         set(hotspot[cor-sexting-2].alpha, 1);
         jscall(
@@ -400,13 +405,10 @@
     zorder="3"
 /> 
 <action name="cyberbullying_action">
+        add_points_normal();
         set(hotspot[cor-cyberbullying-1].alpha, 0);
         set(hotspot[cor-cyberbullying-2].alpha, 1);
-        jscall(
-    const amplePantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const ampleDesitjat = `${amplePantalla * 0.6}px`;
-    launchImagePopup('tour/activities/instituto4/assets/tipos.jpg','800px');
-);
+        jscall(launchPopup('link2insti4'));
         <!-- jscall(launchPopup('link2insti4')); -->
 </action>
 <!-- <<<<<<<<<<<<<<<<<< fi cyberbullying >>>>>>>>>>>>>>>>>>>>>>>>>>  -->

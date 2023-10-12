@@ -6,7 +6,7 @@
     s_photo="null"
     s_user="¿Vemos el vídeo juntas?"
     s_date="null"
-    s_heart="true"
+    s_heart="null"
     s_content="Yo a veces confundo [br]la envidia con la admiración... [br]A ver que te parece el vídeo!"
     onclick.addevent="etna-play-pc();"
     
@@ -20,18 +20,46 @@ tween(hotspot[play].alpha,0.5,0.7);
 
 
 
-<hotspot name="play" ath="171.15844035955206" atv="-24.507024574646646" scale="0.8" rx="-23" ry="0" rz="0"  distorted="true"  
-    
-    
+<hotspot name="play" ath="171.15844035955206" atv="-24.507024574646646" scale="0.8" rx="-23" ry="0" rz="0"  distorted="true"      
     type="image" 
     url="assets/play.png" 
     align="center" 
     edge="center" 
     enabled="true"
     handcursor="true"
-    onclick.addevent="js:launchPopup('link1casa3');"
+    onclick.addevent="action_play();"
     alpha="0"
     autoalpha="true"
+/> 
+
+<action name="action_play">
+    add_points_normal();
+    jscall(
+    launchPopup('link1casa3')
+    );
+    set(hotspot[cor_1].alpha, 0);
+    set(hotspot[cor_2].alpha, 1);
+</action>
+
+<hotspot name="cor_1" ath="-150.50296248843435" atv="-37.805409351986796" scale="1.0099999999999998" rx="33.5" ry="36.5" rz="3.5"  distorted="true"  
+    type="image" 
+    url="assets/cor-1.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="1"
+    zorder="3"
+/> 
+<hotspot name="cor_2" ath="-150.50296248843435" atv="-37.805409351986796" scale="1.0099999999999998" rx="33.5" ry="36.5" rz="3.5" distorted="true"  
+    type="image" 
+    url="assets/cor-2.png" 
+    align="center" 
+    edge="center" 
+    enabled="false"
+    handcursor="false"
+    alpha="0"
+    zorder="3"
 /> 
 
 

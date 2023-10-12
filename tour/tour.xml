@@ -5,13 +5,13 @@
 <include url="%FIRSTXML%/../components/tour/krpano_injections/injections.xml" />
 <include url="%FIRSTXML%/../components/tour/krpano_events/events.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_loadscene/loadscene.xml" />
-<include url="%FIRSTXML%/../components/tour/nadir/nadir.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_next/tour_next.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_help/tour_help.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_user/tour_user.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_mini_video/videolayer.xml" />
 <include url="%FIRSTXML%/../components/tour/tour_pano_text/lateral_text_bg.xml" />
 <include url="%FIRSTXML%/../components/tour/krpano_hotspots/hotspot_socialnetwork.xml" />
+<include url="%FIRSTXML%/../components/tour/nadir/nadir.xml" />
 	<!-- <include url="skin/vtourskin.xml" /> -->
 	<action name="skin_onstart_loadscene" scope="local" autorun="onstart">
 		
@@ -327,9 +327,9 @@
 
 	<scene name="scene_instituto_6" title="instituto_6" onstart="" thumburl="panos/instituto_6.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
 		
-		<control bouncinglimits="calc:image.cube ? true : false" />
+			<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="70" vlookat="10.5" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="70.0" vlookat="10.5" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/instituto_6.tiles/preview.jpg" />
 
@@ -399,7 +399,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-93" vlookat="8" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/parque_3.tiles/preview.jpg" />
 
@@ -413,7 +413,7 @@
 		
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
-		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-138" vlookat="5" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/parque_4.tiles/preview.jpg" />
 

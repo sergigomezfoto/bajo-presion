@@ -1,16 +1,197 @@
 <krpano>
-
-
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
-    s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
-    s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+ <hotspot name="nico"
+	url="assets/plaza_4.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(22.7428, 104.772, 5.16238, -23.9661); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
 />
 
+<!-- <<<<<<<<<<<<<<<<<< PREGUNTA 1 >>>>>>>>>>>>>>>>>> -->
+<hotspot name="pregunta1" ath="-158.4090362835574" atv="-2.85770812462234" scale="1" rx="-9" ry="-4" rz="9.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marta"
+    s_user="@marta_ink371"
+    s_date="12h"
+    s_heart="true"
+    s_content="¿Vomitar o sudar ayuda a pasar la borrachera?"
+    onclick.addevent="accion_pregunta1();"
+/>
+<action name="accion_pregunta1">
+    lookto(-115,-11,105,tween(easeinoutquad,0.6));
+    delayedcall(0.1, 
+        set(hotspot[nico].alpha,1);
+    );
+    
+
+    delayedcall(0.5, 
+            jscall(
+                launchPopup('link1vomitar','80%','80%',
+                    {
+                        onClose: function(){krpano.call('accion_return_pregunta1()');}
+                    }
+                )
+            );
+    );
+</action>
+<action name="accion_return_pregunta1">
+    <!-- tween(hotspot[pregunta1].alpha,0,0.1); 
+
+    tween(hotspot[pregunta2].alpha,1,0.1);  -->
+    looktohotspot(pregunta2,105,tween(easeinoutquad,0.6));
+    set(hotspot[nico].alpha,0);
+</action>
+<!-- <<<<<<<<<<<<<<<<<< FI PREGUNTA 1 >>>>>>>>>>>>>>>>>> -->
+
+<!-- <<<<<<<<<<<<<<<<<< PREGUNTA 2 >>>>>>>>>>>>>>>>>> -->
+<hotspot name="pregunta2" ath="45.2923702262608" atv="-6.430986092194188" scale="1" rx="0" ry="16" rz="9.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="greta"
+    s_user="@TrapGreta"
+    s_date="29m"
+    s_heart="true"
+    s_content="¿El tabaco hace sentir bien y relaja?"
+    onclick.addevent="accion_pregunta2();"
+/>
+<action name="accion_pregunta2">
+    lookto(-115,-11,105,tween(easeinoutquad,0.6));
+    delayedcall(0.1, 
+        set(hotspot[nico].alpha,1);
+    );
+    
+
+    delayedcall(0.5, 
+            jscall(
+                launchPopup('link2tabaco','80%','80%',
+                    {
+                        onClose: function(){krpano.call('accion_return_pregunta2()');}
+                    }
+                )
+            );
+    );
+</action>
+<action name="accion_return_pregunta2">
+    <!-- tween(hotspot[pregunta2].alpha,0,0.1); 
+
+    tween(hotspot[pregunta3].alpha,1,0.1);  -->
+    looktohotspot(pregunta3,105,tween(easeinoutquad,0.6));
+    set(hotspot[nico].alpha,0);
+</action>
+<!-- <<<<<<<<<<<<<<<<<< FI PREGUNTA 2 >>>>>>>>>>>>>>>>>> -->
+
+
+<!-- <<<<<<<<<<<<<<<<<< PREGUNTA 3 >>>>>>>>>>>>>>>>>> -->
+<hotspot name="pregunta3" ath="142.8041445354158" atv="2.6212714994814954" scale="1" rx="0" ry="0" rz="14"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="viktor"
+    s_user="@Viktor_Genio_y_Figura"
+    s_date="17m"
+    s_heart="true"
+    s_content="¿Una bebida energética antes[br] de hacer deporte ayuda a rendir más?"
+    onclick.addevent="accion_pregunta3();"
+/>
+<action name="accion_pregunta3">
+    lookto(-115,-11,105,tween(easeinoutquad,0.6));
+    delayedcall(0.1, 
+        set(hotspot[nico].alpha,1);
+    );
+    
+
+    delayedcall(0.5, 
+            jscall(
+                launchPopup('link3bebidaenergetica','80%','80%',
+                    {
+                        onClose: function(){krpano.call('accion_return_pregunta3()');}
+                    }
+                )
+            );
+    );
+</action>
+<action name="accion_return_pregunta3">
+    <!-- tween(hotspot[pregunta3].alpha,0,0.1); 
+
+    tween(hotspot[pregunta4].alpha,1,0.1);  -->
+    looktohotspot(pregunta4,105,tween(easeinoutquad,0.6));
+    set(hotspot[nico].alpha,0);
+</action>
+<!-- <<<<<<<<<<<<<<<<<< FI PREGUNTA 3 >>>>>>>>>>>>>>>>>> -->
+
+
+<!-- <<<<<<<<<<<<<<<<<< PREGUNTA 4 >>>>>>>>>>>>>>>>>> -->
+<hotspot name="pregunta4" ath="113.30628521432217" atv="16.7360945322823" scale="1" rx="7.5" ry="-2" rz="-24.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marc"
+    s_user="@SuperMarc92"
+    s_date="29h"
+    s_heart="true"
+    s_content="¿El cannabis causa esquizofrenia?"
+    onclick.addevent="accion_pregunta4();"
+/>
+
+<action name="accion_pregunta4">
+    lookto(-115,-11,105,tween(easeinoutquad,0.6));
+    delayedcall(0.1, 
+        set(hotspot[nico].alpha,1);
+    );
+    
+
+    delayedcall(0.5, 
+            jscall(
+                launchPopup('link4esquisofrenia','80%','80%',
+                    {
+                        onClose: function(){krpano.call('accion_return_pregunta4()');}
+                    }
+                )
+            );
+    );
+</action>
+<action name="accion_return_pregunta4">
+    <!-- tween(hotspot[pregunta4].alpha,0,0.1); 
+
+    tween(hotspot[pregunta5].alpha,1,0.1);  -->
+    looktohotspot(pregunta5,105,tween(easeinoutquad,0.6));
+    set(hotspot[nico].alpha,0);
+</action>
+<!-- <<<<<<<<<<<<<<<<<< FI PREGUNTA 4 >>>>>>>>>>>>>>>>>> -->
+
+
+<!-- <<<<<<<<<<<<<<<<<< PREGUNTA 5 >>>>>>>>>>>>>>>>>> -->
+<hotspot name="pregunta5" ath="-8.117868086503961" atv="-18.033901306401578" scale="1" rx="-20" ry="-6.5" rz="9.5" style="speech_bubbles"
+    s_position="bottom"
+    s_photo="ruth"
+    s_user="AnnonaCherimola"
+    s_date="19m"
+    s_heart="true"
+    s_content="¿El cannabis ayuda a dormir mejor?"
+    onclick.addevent="accion_pregunta5();"
+/>
+<action name="accion_pregunta5">
+    lookto(-115,-11,105,tween(easeinoutquad,0.6));
+    delayedcall(0.1, 
+        set(hotspot[nico].alpha,1);
+    );
+    
+
+    delayedcall(0.5, 
+            jscall(
+                launchPopup('link5cannabis','80%','80%',
+                    {
+                        onClose: function(){krpano.call('accion_return_pregunta5()');}
+                    }
+                )
+            );
+    );
+</action>
+<action name="accion_return_pregunta5">
+    <!-- tween(hotspot[pregunta5].alpha,0,0.1);  -->
+    set(hotspot[nico].alpha,0);
+    looktohotspot(pregunta1,105,tween(easeinoutquad,0.6));
+</action>
+<!-- <<<<<<<<<<<<<<<<<< FI PREGUNTA 5 >>>>>>>>>>>>>>>>>> -->
 
 </krpano>

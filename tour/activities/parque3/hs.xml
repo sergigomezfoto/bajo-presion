@@ -1,16 +1,118 @@
 <krpano>
 
 
-<hotspot name="testnormal_sumapunts" ath="0" atv="0"  style="speech_bubbles"
+<hotspot name="video" ath="125.42916894980976" atv="-5.052710310542562" scale="1" rx="-3.5" ry="-16" rz="6.5" style="speech_bubbles"
     s_position="bottom"
-    s_photo="alex"
-    s_user="hola"
-    s_date="1w"
+    s_photo="mariona"
+    s_user="@Chispis_Marions"
+    s_date="18h"
     s_heart="true"
-    s_content="El content que ens dongui la real gana va aquí. que no sigui massa llarg..."
-    onclick.addevent="js:launchPopup('elqusiguiescritaqui');"
-    
+    s_content="Vamos a ver otro ejemplo, este a mí me resuena un montón!!"
+    onclick.addevent="accion_video();"
+/>
+<action name="accion_video">
+
+        <!-- jscall(launchPopup('link1parque3')); -->
+
+        jscall(
+   launchPopup('link1parque3','80%','80%',
+      {
+            onClose: function(){krpano.call('accion_mirar_reflesion()');}
+      }
+   )
+);
+</action>
+<action name="accion_mirar_reflesion">
+    tween(hotspot[reflexion].alpha,1,0.1); 
+    tween(hotspot[video].alpha,0,0.1); 
+    looktohotspot(reflexion,105,tween(easeinoutquad,0.6));
+</action>
+
+<hotspot name="reflexion" ath="8.786736298159724" atv="-1.9530676707680061" scale="1" rx="0" ry="0" rz="-8.5"  style="speech_bubbles"
+    s_position="bottom"
+    s_photo="marta"
+    s_user="@marta_ink371"
+    s_date="12w"
+    s_heart="true"
+    s_content="Uau... Os parece reflexionar sobre como [br]ejercemos y sentimos la presión del grupo"
+    onclick.addevent="js:launchPopup('link2parque3');"
+    s_invisible_at_start="true"
 />
 
+
+
+
+ <hotspot name="plaza_3_birra"
+	url="assets/plaza_3_birra.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_3_birra_no"
+	url="assets/plaza_3_birra_no.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_3_birra_si"
+	url="assets/plaza_3_birra_si.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_3_porro"
+	url="assets/plaza_3_porro.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_3_porro_no"
+	url="assets/plaza_3_porro_no.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
+ <hotspot name="plaza_3_porro_si"
+	url="assets/plaza_3_porro_si.png"
+    distorted="true"
+    onloaded="calc_pos_from_hfov_yaw_pitch_roll(73.4691, 73.4274, -7.54213, 5.80937); if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););"
+    handcursor="false"
+    enabled="false"
+    visible="true"
+    alpha="0"
+    zorder="10"
+    bgcapture="false"
+    capture="false"
+/>
 
 </krpano>

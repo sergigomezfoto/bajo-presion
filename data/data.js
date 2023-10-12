@@ -39,7 +39,7 @@ const data = {
         points: 1,
         aptitudes: ["análisis", "colaboración"],
         extra: {
-          link1casa2: "",
+          link1casa2: "outside/potato/index.html",
 
         },
       },
@@ -56,10 +56,10 @@ const data = {
       4: {
         video: "RpLm69FLs74",
         instructions: "<p><b>¡Soy portada!</b> </p><p>Ha llegado la hora de ver cómo llevas lo de promocionarte. Como eres nueva en el pueblo, la revista comarcal va a hacer una pequeña sección sobre ti.</p><p>Ahora es tu oportunidad para hablar sobre las cualidades que has identificado anteriormente. Escribe dos o tres frases para presentarte.</p><p>¡No te cortes, la gente del pueblo tiene ganas de conocerte de verdad y aparecerás en portada!   </p>    <p>Primero: elije la revista en la que quieres aparecer (por ejemplo: Bravo, Cuore, Teen Vogue, Rolling Stone, Cosmopolitan, Sports Illustrated, Hola, etc.)</p>    <p>Segundo: elije un titular como frase principal que responda al motivo por el que estás apareciendo en portada. ¿Qué hay de relevante o a destacar en ti y de lo que estés orgullosa?</p>    <p>Tercero: hazte una fotografía (selfie) con el teléfono móvil; mírarla unos minutos y describe en detalle y profundidad a la persona a la qué ves ahí.  Fíjate en lo que transmites, qué cosas físicas ves y cómo te muestras emocionalmente.</p>    <p>Y si no sabes por donde empezar, ¡Etna te muestra un ejemplo!</p>",
-        points: 2,
+        points: 1,
         aptitudes: ["liderazgo", "visión espacial"],
         extra: {
-          link1casa4: "",
+          link1casa4: "outside/soyportada/index.html",
 
         },
       },
@@ -276,11 +276,11 @@ const data = {
       4: {
         video: "00TBnXamWQg",
         instructions: "<p><b>Esto no mola...</b></p> <p>Hay muchas cosas interesantes y divertidas en internet, pero a veces hay que ir con cuidado porque nuestro comportamiento podría dañar a los demás. </p><p>Aprende qué tipos de ciberacoso existen y qué puedes hacer para respetar a tus compañeros y a la vez tener más “netiqueta”. </p><br><p><b>¡Atención!</b></p><p>Aquí no hay diálogos, haz clic en el PLAY de los móviles para ver los vídeos y los enlaces informatiovs!   </p>",
-        points: 1,
+        points: 6,
         aptitudes: ["creatividad", "individualidad"],
         extra: {
           link1insti4: "https://www.youtube.com/embed/ZHQ03fSn9J0?si=p-FQx50TlaUirtxb",
-          link2insti4: "https://www.tupunto.org/sustancias/adicciones-sin-sustancia/como-sextear-de-manera-mas-segura/",
+          link2insti4: "outside/sexting/index.html",
         },
       },
       5: {
@@ -349,22 +349,26 @@ const data = {
         },
       },
       3: {
-        video: "DO3zz6a2MPM",
+        
         instructions: "<p><b>Bajo presión</b></p> <p>Quizás vosotras o alguien de vuestro entorno haya vivido una situación parecida a la que veréis a continuación. </p> <p>Prestad especial atención a cómo se ejerce la presión social sobre el protagonista.</p>",
-        points: 1,
+        points: 2,
         aptitudes: ["love", "empathy"],
         extra: {
-          link1: "https://www.youtube.com/embed/7xjcDmdTjyI?si=n5rDJu-kfDTbWYWK",
-          link2: "https://forms.office.com/e/UiUJpvLCAj",
+          link1parque3: "https://www.youtube.com/embed/7xjcDmdTjyI?si=n5rDJu-kfDTbWYWK",
+          link2parque3: "https://forms.office.com/pages/responsepage.aspx?id=LFvYQ2IP1ESMd8itHKVUnjk-zYsXS0VKkniDWv_RcdhURDE3MFg5S1pUTFRJUE1DWjVUVU0xSkZFOSQlQCN0PWcu",
         },
       },
       4: {
-        video: "RvqsSlcsLmg",
+        video: "DO3zz6a2MPM",
         instructions: "<p><b>Desmitifícate</b></p> <p>Ahora que ya tienes un poco más de información sobre las drogas, vamos a ver si te queda algún mito histórico por desmentir... </p><p>Hemos traído a alguien con una máquina del tiempo para que nos ayude a identificar algunos de ellos. </p><p>¡Saludad a Platón!</p>",
-        points: 1,
+        points: 5,
         aptitudes: ["love", "empathy"],
         extra: {
-          link1: "",
+          link1vomitar: "https://www.youtube.com/embed/v_95L-wlMHY?si=NFMunNPapZ-A7UGP",
+          link2tabaco: "https://www.youtube.com/embed/qa7DikIYWak?si=il1_5ztEc5_pk_8X",
+          link3bebidaenergetica: "https://www.youtube.com/embed/082vIKv2mvY?si=NOnvbZDh_NlGBoqS",
+          link4esquisofrenia: "https://www.youtube.com/embed/pFKKQUExq9M?si=NV_NMZ66fN-h2L14",
+          link5cannabis: "https://www.youtube.com/embed/mUmuN5F0qOo?si=9QVIvsSN5158tPyv",
 
         },
       },
@@ -380,6 +384,7 @@ const data = {
         },
       },
       6: {
+        video: "RvqsSlcsLmg",
         instructions: "<p><b>Drogo-Quizz </b></p> <p>Y por último... ¿te has quedado con todo? Vamos a verlo...</p>",
         points: 1,
         aptitudes: ["love", "empathy"],

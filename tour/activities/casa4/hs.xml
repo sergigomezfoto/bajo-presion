@@ -6,7 +6,7 @@
     s_photo="null"
     s_user="Soy portada!!! 😱💓📸💒 "
     s_date="3w"
-    s_heart="true"
+    s_heart="null"
     s_content="Me han echo una entrevista para [br]conocerme, que vergüenza!!⛹[br]¿La has visto?"
     onclick.addevent="portada_life();"  
 />
@@ -25,7 +25,7 @@
     s_position="left"
     s_photo="etna_life"
     s_user="@Mi_Yo_de_la_Portada😜"
-    s_date="3w"
+    s_date="6w"
     s_heart="true"
     s_content="[b]¿Y tu?[/b] 📽️🤩🐋[br]Es tu turno! ¿Quieres salir en[br] la portada también?🙈🙈🙈"
     onclick.addevent="js:launchPopup('link1casa4');"  

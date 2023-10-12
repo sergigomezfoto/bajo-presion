@@ -28,7 +28,7 @@ const data = {
         points: 1,
         aptitudes: ["creatividad", "adaptabilidad"],
         extra: {
-          link2: "",
+          link1casa1: "outside/casa_ideas/index.html",
 
         },
       },

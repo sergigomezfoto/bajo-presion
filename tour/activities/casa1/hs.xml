@@ -9,15 +9,14 @@
     edge="center" 
     enabled="true"
     handcursor="true"
-    onclick.addevent="tween(hotspot[help-pop-up].alpha,1,1); 
-    tween(hotspot[close-help].alpha,1,1);"
+    onclick.addevent="js:launchPopup('link1casa1','700px','500px');"
 /> 
 
 
     
 
 
-<hotspot name="help-pop-up" ath="-166.19860145824435" atv="7.094745630740572" scale="1.2768999999999948" rx="5.849999999999997" ry="-14.049999999999994" rz="0" distorted="true" style="speech_bubbles" 
+<!-- <hotspot name="help-pop-up" ath="-166.19860145824435" atv="7.094745630740572" scale="1.2768999999999948" rx="5.849999999999997" ry="-14.049999999999994" rz="0" distorted="true" style="speech_bubbles" 
     s_position="null"
     s_photo="null"
     s_user="null"
@@ -53,7 +52,7 @@ AFECTIVIDAD - VALENTÍA - SER PREVISOR/A - PACIENCIA - INTELIGENTE EN...
     tween(hotspot[close-help].alpha,0,1);"
     zorder="90"
     capture="false"
-/> 
+/>  -->
 
 
 <hotspot name="pissarra" ath="-170.15370270681444" atv="-35.17924923088549" scale="1" rx="-37.40000000000011" ry="-7.2999999999999945" rz="0.450000000000004" distorted="true"  style="speech_bubbles" 

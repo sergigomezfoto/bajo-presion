@@ -3,7 +3,7 @@
 const ballRadius = 16;
 const slingColor = "#fff";
 // const transparent = "black";
-const transparent = "rgba(0,0,0,1)";
+const transparent = "rgba(0,0,0,0)";
 const bote = 1;
 const mass = 50;
 

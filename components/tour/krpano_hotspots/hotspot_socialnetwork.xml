@@ -16,7 +16,7 @@
     height="20"   
     distorted="true"
     zoom="true"
-    capture="true"
+    capture="false"
     renderer="css3d"
     handcursor="true"
     align="bottomleft"

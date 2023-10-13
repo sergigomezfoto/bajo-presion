@@ -7,6 +7,20 @@
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no"" />
     <title>Bajo presión</title>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const mobileDiv = document.getElementById("mobile");
+        // Funció per verificar l'amplada de la pantalla
+        const checkScreenWidth=()=> {
+            if (window.matchMedia('only screen and (max-width:900px)').matches) {
+            mobileDiv.style.display = "flex";
+            } else {
+            mobileDiv.style.display = "none";
+            }
+        }
+        // Verifiquem l'amplada de la pantalla una vegada carregada la pàgina
+        checkScreenWidth();
+        });
+
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
 
         // // EVITAR QUE ES PUGUI FER ZOOM    
@@ -82,10 +96,12 @@
 
             </script>
             <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
             <link rel="stylesheet" href="styles/fonts.css" type="text/css" charset="utf-8" />
             <link rel="stylesheet" href="styles/style.css">
             <link rel="stylesheet" href="styles/perfect-scrollbar.css">
             <link rel="stylesheet" href="app/freestyle/freestyle.css">
+            <link rel="stylesheet" href="components/mobile/style.css">
             <link rel="stylesheet" href="components/localstorage/style.css">
             <link rel="stylesheet" href="components/tour/style.css">
             <link rel="stylesheet" href="components/general_loader/style.css">
@@ -129,13 +145,13 @@
 
 <body>
 
-    <script>
-
-
-    </script>
     <!-- <div id="home-interface" class="fullscreen" style="display:none;"></div> -->
     <div id="startcontainer">
-
+        <div id="mobile" style="display:none">
+            <h1 style="text-align:center">Soorry!!!</h1>
+            <h3 style="text-align:center">Esta actividad está optimizada para ordenadores y tabletas... </h3>
+            <p>See you soon!</p>
+        </div>
 
         <div id="loader">
             <div class="loader-spinner"></div>
@@ -441,7 +457,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
 
-            
+
         });
 
     </script>

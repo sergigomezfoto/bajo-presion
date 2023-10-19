@@ -30,6 +30,7 @@ function onYouTubeIframeAPIReady() {
       modestbranding: 1,
       controls: 0,
       rel: 0,
+
       // iv_load_policy:3,
     },
     events: {
@@ -50,6 +51,7 @@ function onYouTubeIframeAPIReady() {
       modestbranding: 1,
       controls: 0,
       rel: 0,
+
       // mute:1,
     },
     events: {

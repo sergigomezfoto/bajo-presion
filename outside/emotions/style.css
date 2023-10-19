@@ -94,79 +94,8 @@
 
 
 /* Estilos específicos para cada elemento .blackboardElement */
-/* optimismo */
-#optimismo {
-    background-color: #ffcb67;
-    top: 60px;
-    left: 113px;
-    color: #fb0192;
-}
-
-/* amor */
-#amor {
-    background-color: #dee270;
-    top: 255px;
-    left: 449px;
-    color: #757820;
-
-}
-
-/* sumision */
-#sumision {
-    background-color: #9ace7d;
-    top: 149px;
-    left: 215px;
-    color: #43682e;
-
-}
-
-/* susto */
-#susto {
-    background-color: #73c4b5;
-    top: 373px;
-    left: 309px;
-    color: #397db0;
-
-}
-
-/* decepción */
-#decepcion {
-    background-color: #66afe6;
-    top: 333px;
-    left: 133px;
-    color: #397db0;
-
-}
-
-/* remordimiento */
-#remordimiento {
-    background-color: #7084d6;
-    top: 326px;
-    left: 563px;
-    color: #2b386d;
-
-}
-
-/* desprecio */
-#desprecio {
-    background-color: #b2749e;
-    top: 51px;
-    left: 560px;
-    color: #691e51;
-}
-
-/* agresividad */
-#agresividad {
-    background-color: #e68b68;
-    top: 128px;
-    left: 393px;
-    color: #7a371d;
-
-}
-
-/* Estilos específicos para cada elemento .blackboardElement */
-/* optimismo */
-.optimismo {
+/* alegria */
+#alegria {
     background-color: #ffcb67;
     top: 60px;
     left: 113px;
@@ -176,8 +105,8 @@
     text-transform: uppercase;
 }
 
-/* amor */
-.amor {
+/* confianza */
+#confianza {
     background-color: #dee270;
     top: 255px;
     left: 449px;
@@ -188,8 +117,8 @@
 
 }
 
-/* sumision */
-.sumision {
+/* miedo */
+#miedo {
     background-color: #9ace7d;
     top: 149px;
     left: 215px;
@@ -200,8 +129,8 @@
 
 }
 
-/* susto */
-.susto {
+/* sorpresa */
+#sorpresa {
     background-color: #73c4b5;
     top: 373px;
     left: 309px;
@@ -212,8 +141,8 @@
 
 }
 
-/* decepción */
-.decepcion {
+/* tristeza */
+#tristeza {
     background-color: #66afe6;
     top: 333px;
     left: 133px;
@@ -224,8 +153,8 @@
 
 }
 
-/* remordimiento */
-.remordimiento {
+/* asco */
+#asco {
     background-color: #7084d6;
     top: 326px;
     left: 563px;
@@ -236,8 +165,8 @@
 
 }
 
-/* desprecio */
-.desprecio {
+/* ira */
+#ira {
     background-color: #b2749e;
     top: 51px;
     left: 560px;
@@ -247,8 +176,8 @@
     text-transform: uppercase;
 }
 
-/* agresividad */
-.agresividad {
+/* anticipacion */
+#anticipacion {
     background-color: #e68b68;
     top: 128px;
     left: 393px;
@@ -260,14 +189,14 @@
 }
 
 
-#optimismo:hover,
-#amor:hover,
-#sumision:hover,
-#susto:hover,
-#decepcion:hover,
-#remordimiento:hover,
-#desprecio:hover,
-#agresividad:hover {
+#alegria:hover,
+#confianza:hover,
+#miedo:hover,
+#sorpresa:hover,
+#tristeza:hover,
+#asco:hover,
+#ira:hover,
+#anticipacion:hover {
     color: #ffffff;
 }
 
@@ -366,42 +295,42 @@
 }
 
 
-.alegria {
+.optimismo {
     background-color: #f9ea66;
     color: white;
 }
 
-.confianza {
+.amor {
     background-color: #c0dd77;
     color: white;
 }
 
-.miedo {
+.sumision {
     background-color: #78c085;
     color: white;
 }
 
-.sorpresa {
+.alarma {
     background-color: #9bdaf1;
     color: white;
 }
 
-.tristeza {
+.decepcion {
     background-color: #5f96e3;
     color: white;
 }
 
-.asco {
+.remordimiento {
     background-color: #8b72c8;
     color: white;
 }
 
-.ira {
+.desprecio {
     background-color: #d97673;
     color: white;
 }
 
-.anticipacion {
+.agresividad {
     background-color: #eda266;
     color: white;
 }

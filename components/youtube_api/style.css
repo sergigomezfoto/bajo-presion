@@ -115,3 +115,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+@media (max-height: 800px) {
+  #skipVideoButton {
+    top: 50%;
+    right: -70%;
+    left: unset;
+    transform: translateY(-50%);
+  }
+}

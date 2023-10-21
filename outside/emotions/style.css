@@ -334,3 +334,12 @@
     background-color: #eda266;
     color: white;
 }
+
+.blackboardElement {
+    box-sizing: border-box;
+    border: 2px solid transparent;  /* Afegeix un borde transparent per defecte */
+  }
+  
+  .blackboardElement.highlight {
+    border-color: black;  /* Canvia només el color del borde quan es destaca */
+  }

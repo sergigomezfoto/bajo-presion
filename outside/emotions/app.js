@@ -1,6 +1,37 @@
 // Definim una variable per fer un seguiment dels elements seleccionats
 let easymode = true;  // valor per defecte
 
+const highlightPossibleMatchesOnBlackboard = (clickedElementId) => {
+  let blackboardElements = document.querySelectorAll(".blackboardElement");
+  blackboardElements.forEach((element) => {
+    element.classList.remove("highlight");
+  });
+
+  let emotions = document.querySelectorAll(".emotion");
+  emotions.forEach((emotion) => {
+    let emotion1 = emotion.getAttribute("data-emotion1");
+    let emotion2 = emotion.getAttribute("data-emotion2");
+
+    if (emotion1 === clickedElementId || emotion2 === clickedElementId) {
+      let element1 = document.getElementById(emotion1);
+      let element2 = document.getElementById(emotion2);
+
+      if (!element1.classList.contains("inactive")) {
+        element1.classList.add("highlight");
+      }
+      if (!element2.classList.contains("inactive")) {
+        element2.classList.add("highlight");
+      }
+    }
+  });
+};
+// Funció per eliminar tots els bordes destacats
+const clearHighlights = () => {
+  let blackboardElements = document.querySelectorAll(".blackboardElement.highlight");
+  blackboardElements.forEach((element) => {
+    element.classList.remove("highlight");
+  });
+};
 // Funció per a llegir paràmetres de la URL
 const getURLParameter = (name) => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,10 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const handleBlackboardElementClick = (element) => {
   // Afegim la classe "chosen" a l'element seleccionat
   element.classList.add("chosen");
-
+  if (element.classList.contains("highlight")) {
+    clearHighlights();
+  }
   // Afegim l'ID de l'element al nostre array d'elements seleccionats
   selectedElements.push(element.id);
-
+  highlightPossibleMatchesOnBlackboard(element.id);
   // Si hem seleccionat dos elements
   if (selectedElements.length === 2) {
     checkEmotionMatch();
@@ -61,7 +94,7 @@ const checkEmotionMatch = () => {
   emotions.forEach((emotion) => {
     let emotion1 = emotion.getAttribute("data-emotion1");
     let emotion2 = emotion.getAttribute("data-emotion2");
-
+    clearHighlights();
     if ((selectedElements[0] === emotion1 && selectedElements[1] === emotion2) || (selectedElements[1] === emotion1 && selectedElements[0] === emotion2)) {
       matchingEmotion = emotion;
     }

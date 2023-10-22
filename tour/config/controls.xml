@@ -36,6 +36,21 @@
          invert="false"
          bouncinglimits="false"
          />
-  
+      <contextmenu versioninfo="true"
+             fullscreen="false"
+             enterfs="Fullscreen"
+             exitfs="Exit Fullscreen"
+             touch="true"
+             customstyle=""
+             >
+    <item name="noupunt"
+          caption="powered by: NOUPUNT.COM"
+          enabled="true"
+          visible="true"
+          separator="true"
+          showif=""
+          onclick="openurl('https://noupunt.com',_blank);"
+          />
+</contextmenu>
 </krpano>
 

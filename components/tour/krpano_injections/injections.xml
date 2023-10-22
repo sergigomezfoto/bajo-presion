@@ -9,9 +9,11 @@ onnewscene="efimer_injections"
 
 
         view.maxpixelzoom=1;
-        view.fov=125;
         view.fovmax=130;
-
+if (scene[get(xml.scene)].name !== "scene_poliesportiu_3-public", 
+set(view.fov,125);
+);
+        <!-- view.fov=125; -->
 
 
 </action>

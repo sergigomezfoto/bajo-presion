@@ -51,8 +51,18 @@
     top:20px;
     right: 50%;
     transform: translateX(50%);
+}
+/* mediaquery para height menores de 700px */
+@media (max-height: 650px) {
+    #mob_logo{
+        width: 120px;
+        height: 120px;
+    }
 
 }
+
+
+
 
 #mobile h3 {
     padding: 0px 20px;

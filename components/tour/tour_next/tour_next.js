@@ -15,7 +15,7 @@ const showNextPano = () => {
       tourNext.innerText = "LO HAS LOGRADO!";
       tourNextLayer.end = "true";
     } else {
-      tourNext.innerText = "SIGUIENTE ACTIVIDAD";
+      tourNext.innerText = "SIGUIENTE MINIRETO";
       tourNextLayer.end = "false";
     }
     tourNextLayer.enabled = true;

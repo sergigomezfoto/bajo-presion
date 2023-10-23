@@ -105,4 +105,21 @@ freestyleWrapper.style.display = 'flex';
 await sleep(200);
 freestyleWrapper.style.opacity = 1;
   };
-  
+
+
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const divFreestylePdf = document.getElementById('freestylePdf');
+
+    if (divFreestylePdf) {
+        divFreestylePdf.addEventListener('click', (event) => {
+            // Per obrir el PDF en una nova pestanya
+            window.open('guia-pedagogica/guia_pedagogica.pdf', '_blank');
+
+            // per descarregar el PDF
+            // window.location.href = 'ruta/al/document.pdf';
+        });
+    } else {
+        console.error('El div #freestylePdf no es troba');
+    }
+});

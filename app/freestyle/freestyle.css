@@ -26,6 +26,19 @@
     height: 238px;
 
 }
+#freestylePdf {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url(../../assets/img/pdf.png);
+    pointer-events: none;
+    background-size: cover;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    pointer-events: all;
+}
 
 #freestyleTitle {
     font-family: 'bw_black';

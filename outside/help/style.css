@@ -5,7 +5,7 @@
     z-index: 2121231321;
     height: 100%;
     background-color: rgba(255,255,255,1);
-    backdrop-filter: blur(3px);   
+    backdrop-filter: blur(3px);
     overflow-y: auto;
     line-height: 1.5;
 
@@ -29,6 +29,14 @@
     font-family: 'bw_black';
     /* text-transform: uppercase; */
     /* text-align: center; */
+}
+#wrapper h5 {
+    font-family: 'bw_black';
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 1.5rem;
 }
 
 
@@ -81,7 +89,7 @@ ol > li::marker {
 }
 
 
-/* 
+/*
     background-color: #ffffff;
     color: #f5005d;
 */
@@ -107,8 +115,8 @@ ol > li::marker {
     bottom: 0;
     z-index: 1;
   }
-  
-  
+
+
   .transparent-link:hover,
   .transparent-link:focus,
   .transparent-link:active {
@@ -164,4 +172,23 @@ a:hover {
         display: block;
         width: 100%;
     }
+}
+
+
+/* especifics */
+
+.image-100{
+   width: 100%;     
+}
+
+.list-flex{
+    display:flex;
+    align-items: center;
+
+}
+.flex-list-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

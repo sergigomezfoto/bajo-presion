@@ -80,6 +80,12 @@ ol > li {
 ul > li {
     margin-bottom: 15px;  /* Ajusta aquest valor segons les teves necessitats */
 }
+ul > ul {
+    margin-bottom: 15px;  /* Ajusta aquest valor segons les teves necessitats */
+}
+ul > ul > li{
+    list-style-type: disc;  /* Ajusta aquest valor segons les teves necessitats */
+}
 ol {
     list-style-type: decimal;
 }

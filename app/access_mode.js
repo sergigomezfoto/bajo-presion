@@ -1,5 +1,5 @@
 let passToVideo = false; // activat a form
-const timeShowIntroElements = 1000;
+const timeShowIntroElements = 300000;
 const intro = document.getElementById("intro");
 const startcontainer = document.getElementById("startcontainer");
 const intro_black = document.getElementById("intro_black");

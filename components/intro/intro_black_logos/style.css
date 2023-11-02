@@ -16,10 +16,8 @@
     transition: opacity 1s linear;
     background: #000;
     z-index: 1;
-    gap: 80px;
+    gap: 200px;
     max-width: 1024px;
-    padding:20px
-
 }
 
 .logos_intro {
@@ -34,6 +32,7 @@
     transition: opacity 1s linear;
     font-family: 'bw_black', Courier, monospace;
     font-size: 2.2rem;
+    padding-bottom: 21%;
 }
 
 #cont_logos_noupunt_pds{
@@ -46,8 +45,8 @@
     align-items: flex-start;
 }
 
-#l1{
-
+#l3{
+padding-top: 100px;
 }
 
 

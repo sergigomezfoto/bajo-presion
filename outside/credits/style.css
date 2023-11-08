@@ -4,6 +4,7 @@
     position: absolute;
     z-index: 2121231321;
     height: 100%;
+    width: 100%;
     background-color: rgba(255,255,255,1);
     backdrop-filter: blur(3px);   
     overflow-y: auto;
